@@ -365,6 +365,7 @@ public class appController extends Center implements Initializable {
     @FXML
     private void seans_islemleri_giris(ActionEvent event) {
 
+
     }
 
     @FXML
