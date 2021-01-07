@@ -175,8 +175,8 @@ public class vizyondaki_filmlerDAO {
 
     }
 
-    public String[][] vizyondaki_filmler_combo_doldur() {
-        String[][] arr = new String[kac_tane_vizyonda_film_var()][2];
+    public String[] vizyondaki_filmler_combo_doldur() {
+        String[] arr = new String[kac_tane_vizyonda_film_var()];
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
@@ -187,10 +187,9 @@ public class vizyondaki_filmlerDAO {
             filmlerDAO fdao = new filmlerDAO();
             yonetmenlerDAO ydao = new yonetmenlerDAO();
             while (rs.next()) {
-                String vizyondaki_filmler_combo = fdao.filmler_film_adi_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_type_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_suresi_getir(rs.getInt("film_id")) + " | " + ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(rs.getInt("film_id")));
+                String vizyondaki_filmler_combo = rs.getInt("vizyondaki_film_id") + " | "  + fdao.filmler_film_adi_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_type_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_suresi_getir(rs.getInt("film_id")) + " | " + ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(rs.getInt("film_id")));
                 int id = rs.getInt("vizyondaki_film_id");
-                arr[i][0] = vizyondaki_filmler_combo;
-                arr[i][1] = String.valueOf(id);
+                arr[i] = vizyondaki_filmler_combo;
                 i++;
             }
 

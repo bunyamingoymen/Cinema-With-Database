@@ -92,7 +92,7 @@
       </VBox>
       <AnchorPane fx:id="pnl_vizyondaki_filmler" layoutX="319.0" layoutY="57.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="57.0">
          <children>
-            <Pane fx:id="ust_pnl_vizyondaki_filmler" layoutX="8.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" visible="false" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-1.0">
+            <Pane fx:id="ust_pnl_vizyondaki_filmler" layoutX="8.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-1.0">
                <children>
                   <Text fill="WHITE" layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vizyondaki Filmler" wrappingWidth="391.31494140625">
                      <font>
@@ -104,7 +104,7 @@
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_degistir_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#vizyondaki_filmler_degistir_geri" rotate="180.0" size="40.0" />
                </children>
             </Pane>
-            <GridPane fx:id="vizyondaki_filmler_grid" layoutX="22.0" layoutY="197.0" prefHeight="487.0" prefWidth="991.0" visible="false" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="197.0">
+            <GridPane fx:id="vizyondaki_filmler_grid" layoutX="22.0" layoutY="197.0" prefHeight="487.0" prefWidth="991.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="197.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -203,15 +203,14 @@
                         </Label>
                         <Button layoutX="401.0" layoutY="196.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Sadece Vizyondan Sil Ve Eski Filmlere Ekle" textFill="WHITE" />
                         <Button layoutX="58.0" layoutY="196.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_tamamen_sil" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Filmi Tamamen Sil" textFill="WHITE" />
-                        <Button layoutX="291.0" layoutY="112.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_vazgec" prefHeight="31.0" prefWidth="163.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Filmi Getir" textFill="WHITE" />
+                        <Button layoutX="291.0" layoutY="112.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_vazgec" prefHeight="31.0" prefWidth="163.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
                      </children>
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="seans_table_pane" layoutX="8.0" layoutY="4.0" prefHeight="711.0" prefWidth="1058.0" visible="false" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="4.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="328.0" layoutY="56.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
+      <AnchorPane fx:id="pnl_seans" layoutX="328.0" layoutY="56.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
          <children>
             <Pane fx:id="ust_pnl_seans" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;">
                <children>
@@ -225,7 +224,7 @@
                   <FontAwesomeIconView fx:id="seans_degistir_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#seans_degistir_geri" rotate="180.0" size="40.0" />
                </children>
             </Pane>
-            <GridPane fx:id="vizyondaki_filmler_grid1" layoutX="34.0" layoutY="179.0" prefHeight="487.0" prefWidth="991.0">
+            <GridPane fx:id="seans_grid" layoutX="34.0" layoutY="179.0" prefHeight="487.0" prefWidth="991.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -255,23 +254,70 @@
                         <Button layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#seans_degistir_sil_giris" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Değiştir / Sil" textFill="WHITE" />
                      </children>
                   </Pane>
-                  <TableView fx:id="table_vizyondaki_filmler1" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="table_seans" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="vizyondaki_filmler_film_adi1" prefWidth="218.0" text="Film Adı" />
-                        <TableColumn fx:id="vizyondaki_filmler_film_type1" prefWidth="151.0" text="Film Türü" />
-                        <TableColumn fx:id="vizyondaki_filmler_film_suresi1" prefWidth="115.0" text="Film Suresi" />
-                        <TableColumn fx:id="vizyondaki_filmler_yonetmen1" prefWidth="239.0" text="Yönetmen" />
-                        <TableColumn fx:id="vizyondaki_filmler_kalkis1" prefWidth="140.0" text="Kalkış Tarihi" />
-                        <TableColumn fx:id="vizyondaki_filmler_kullanici_puani1" prefWidth="127.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="seans_film_adi" prefWidth="327.0" text="Film Adı" />
+                        <TableColumn fx:id="seans_salon_adi" prefWidth="351.0" text="Salon Adı" />
+                        <TableColumn fx:id="seans_saat" prefWidth="310.0" text="Saat" />
                      </columns>
                   </TableView>
                </children>
             </GridPane>
+            <Pane fx:id="seans_ekle_pane" layoutY="156.0" prefHeight="554.0" prefWidth="1058.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="156.0">
+               <children>
+                  <ComboBox fx:id="seans_ekle_film_combo" layoutX="357.0" layoutY="98.0" prefHeight="31.0" prefWidth="305.0" />
+                  <ComboBox fx:id="seans_ekle_salon_combo" layoutX="357.0" layoutY="182.0" prefHeight="31.0" prefWidth="305.0" />
+                  <ComboBox fx:id="seans_ekle_saat_combo" layoutX="357.0" layoutY="270.0" prefHeight="31.0" prefWidth="305.0" />
+                  <Button layoutX="793.0" layoutY="448.0" mnemonicParsing="false" onAction="#seans_ekle_ekle" prefHeight="31.0" prefWidth="115.0" styleClass="button2" text="Ekle" textFill="WHITE" />
+                  <Button layoutX="180.0" layoutY="448.0" mnemonicParsing="false" onAction="#seans_ekle_sifirla" prefHeight="31.0" prefWidth="115.0" styleClass="button2" text="Sıfırla" textFill="WHITE" />
+                  <Label layoutX="304.0" layoutY="103.0" text="Film:" />
+                  <Label layoutX="304.0" layoutY="187.0" text="Salon:" />
+                  <Label layoutX="308.0" layoutY="275.0" text="Saat:" />
+                  <Label fx:id="seans_ekle_uyari_mesaj" layoutX="328.0" layoutY="390.0" textFill="#e40000" />
+               </children>
+            </Pane>
+            <Pane fx:id="seans_degistir_sil_pane" layoutY="156.0" prefHeight="554.0" prefWidth="1058.0" visible="false">
+               <children>
+                  <Pane fx:id="seans_degistir_sil_pane_1" prefHeight="101.0" prefWidth="1058.0">
+                     <children>
+                        <ComboBox fx:id="seans_degistir_seans_getir_combo" layoutX="234.0" layoutY="30.0" prefHeight="31.0" prefWidth="341.0" />
+                        <Button layoutX="617.0" layoutY="30.0" mnemonicParsing="false" onAction="#seans_degistir_sil_seans_getir" prefHeight="31.0" prefWidth="212.0" styleClass="button2" text="Seansı Getir" textFill="WHITE" />
+                        <Label fx:id="seans_degistir_sil_uyari_mesaj_1" layoutX="311.0" layoutY="77.0" textFill="RED" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="seans_degistir_sil_pane_2" layoutY="101.0" prefHeight="454.0" prefWidth="1058.0" visible="false">
+                     <children>
+                        <ComboBox fx:id="seans_degistir_sil_film_combo" layoutX="379.0" layoutY="88.0" prefHeight="31.0" prefWidth="293.0" />
+                        <Button layoutX="763.0" layoutY="353.0" mnemonicParsing="false" onAction="#seans_degistir_sil_degistir" prefHeight="31.0" prefWidth="212.0" styleClass="button2" text="Değiştir" textFill="WHITE" />
+                        <Button layoutX="135.0" layoutY="353.0" mnemonicParsing="false" onAction="#seans_degsitir_sil_sil" prefHeight="31.0" prefWidth="212.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                        <ComboBox fx:id="seans_degistir_sil_salon_combo" layoutX="383.0" layoutY="169.0" prefHeight="31.0" prefWidth="293.0" />
+                        <ComboBox fx:id="seans_degistir_sil_saat_combo" layoutX="379.0" layoutY="244.0" prefHeight="31.0" prefWidth="293.0" />
+                        <Label layoutX="312.0" layoutY="93.0" text="Fİlm:" />
+                        <Label layoutX="311.0" layoutY="169.0" text="Salon:" />
+                        <Label layoutX="315.0" layoutY="249.0" text="Saat:" />
+                        <Label fx:id="seans_degistir_sil_uyari_mesaj_2" layoutX="389.0" layoutY="316.0" textFill="RED" />
+                        <Label layoutX="298.0" layoutY="32.0" text="Seans id:" />
+                        <Label fx:id="seans_degistir_sil_seans_id" layoutX="366.0" layoutY="32.0" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="seans_degistir_sil_silmekten_emin_pane" layoutX="161.0" layoutY="92.0" prefHeight="288.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
+                     <children>
+                        <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="25.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="403.0" layoutY="190.0" mnemonicParsing="false" onAction="#seans_degistir_sil_silmekten_emin_sil" prefHeight="31.0" prefWidth="287.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                        <Button layoutX="63.0" layoutY="189.0" mnemonicParsing="false" onAction="#seans_degistir_sil_silmekten_emin_vazgec" prefHeight="33.0" prefWidth="267.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnl_sinema_salonlari" layoutX="328.0" layoutY="56.0" prefHeight="711.0" prefWidth="1059.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="56.0">
          <children>
-            <Pane fx:id="salon_bir_pane" prefHeight="678.0" prefWidth="1075.0" visible="false" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="salon_bir_pane" layoutX="20.0" layoutY="46.0" prefHeight="678.0" prefWidth="1075.0" visible="false">
                <children>
                   <Button fx:id="a2_1" layoutX="303.0" layoutY="554.0" mnemonicParsing="false" onAction="#a2_1" prefHeight="20.0" prefWidth="42.0" style="-fx-background-color: #6fc3b9;" text="A2" textAlignment="CENTER" textFill="#2f2b43">
                      <padding>
@@ -930,7 +976,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="salon_iki_pane" prefHeight="678.0" prefWidth="1075.0" visible="false" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="salon_iki_pane" layoutX="10.0" layoutY="47.0" prefHeight="678.0" prefWidth="1075.0" visible="false">
                <children>
                   <Button fx:id="a2_2" layoutX="354.0" layoutY="554.0" mnemonicParsing="false" onAction="#a2_2" prefHeight="20.0" prefWidth="42.0" style="-fx-background-color: #6fc3b9;" text="A2" textAlignment="CENTER" textFill="#2f2b43">
                      <padding>
@@ -1829,7 +1875,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="salon_uc_pane" prefHeight="660.0" prefWidth="1075.0" visible="false" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="salon_uc_pane" layoutX="20.0" layoutY="46.0" prefHeight="660.0" prefWidth="1075.0" visible="false">
                <children>
                   <Button fx:id="a2_3" layoutX="187.0" layoutY="567.0" mnemonicParsing="false" onAction="#a2_3" prefHeight="10.0" prefWidth="21.0" style="-fx-background-color: #6fc3b9;" text="A2" textAlignment="CENTER" textFill="#2f2b43">
                      <padding>
@@ -3963,7 +4009,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="salon_dort_pane" prefHeight="678.0" prefWidth="1075.0" visible="false" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="salon_dort_pane" layoutX="10.0" layoutY="47.0" prefHeight="678.0" prefWidth="1075.0" visible="false">
                <children>
                   <Button fx:id="a2_4" layoutX="120.0" layoutY="531.0" mnemonicParsing="false" onAction="#a2_4" prefHeight="10.0" prefWidth="21.0" style="-fx-background-color: #6fc3b9;" text="A2" textAlignment="CENTER" textFill="#2f2b43">
                      <padding>

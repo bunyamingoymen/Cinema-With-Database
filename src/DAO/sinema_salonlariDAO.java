@@ -18,8 +18,8 @@ import util.DBConnector;
  */
 public class sinema_salonlariDAO {
 
-    public String[][] salonlar_combo_doldur() {
-        String[][] arr = new String[kac_tane_salon_var()][2];
+    public String[] salonlar_combo_doldur() {
+        String[] arr = new String[kac_tane_salon_var()];
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
@@ -31,8 +31,7 @@ public class sinema_salonlariDAO {
             while (rs.next()) {
                 String salonlar_combo = rs.getInt("salon_id") + " | " + rs.getString("salon_name") + " | " + rs.getInt("koltuk_sayisi");
                 int id = rs.getInt("salon_id");
-                arr[i][0] = salonlar_combo;
-                arr[i][1] = String.valueOf(id);
+                arr[i] = salonlar_combo;
                 i++;
             }
 
