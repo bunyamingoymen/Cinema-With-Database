@@ -1,0 +1,155 @@
+
+
+
+/*Üstüne gelindiği zaman işaret parmağının göstermesi için yazılan komutlar*/
+
+
+FontAwesomeIconView {
+    -fx-cursor:hand;
+}
+Button{
+    -fx-cursor:hand;
+}
+
+.fare1 {
+    -fx-cursor:hand;
+}
+
+
+
+/*Buton işlemleri*/
+
+/*Program ilk başlatıldığında görüneceği şekil*/
+.button1
+{
+    -fx-background-color : #393351;
+    -fx-background-radius :  30 0 0 30;
+}
+
+/*Üstüne gelindiği zaman görüneceği şekil*/
+.button1:hover
+{
+    -fx-background-color : #524A7B ;
+    -fx-background-radius :  30 0 0 30;
+}
+
+/*Tıklandığı zaman görüleceği şekil*/
+.button1:pressed
+{
+    -fx-background-color : #2F2B43 ;
+    -fx-background-radius :  30 0 0 30;
+}
+
+.button2
+{
+    -fx-background-color : #393351;
+    -fx-background-radius :  20;
+}
+.button2:hover
+{
+    -fx-background-color : #524A7B ;
+    -fx-background-radius :  20;
+}
+.button2:pressed
+{
+    -fx-background-color : #2F2B43 ;
+    -fx-background-radius :  20;
+}
+
+.button3
+{
+    -fx-background-color : #141124;
+    -fx-background-radius :  0 0 0 0;
+}
+.button3:hover
+{
+    -fx-background-color : #524A7B ;
+}
+.button3:pressed
+{
+    -fx-background-color : #2F2B43 ;
+}
+
+.button4
+{
+    -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
+    -fx-background-radius :  30 30 30 30;
+}
+.button4:hover
+{
+    -fx-background-color :linear-gradient(to top left, #D4CEE3, #41951C);
+    -fx-background-radius :  30 30 30 30;
+}
+.button4:pressed
+{
+    -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
+    -fx-background-radius :  30 30 30 30;
+}
+
+.button5
+{
+    -fx-background-color : #FA2C56;  
+    -fx-background-radius :  20;
+}
+
+
+.button5:hover
+{
+    -fx-background-color :  #f96180;
+    -fx-background-radius :  20;
+}
+
+
+.button5:pressed
+{
+    -fx-background-color : transparent ; /*#A80022*/
+    -fx-background-radius :  20;
+}
+
+.button6
+{
+    -fx-background-color : #3F2B63;/*#F3F3F3;*/  /* #FA2C56 */
+
+}
+
+
+.button6:hover
+{
+    -fx-background-color :  #2A1C42;  /*#7156DD;*/ /*#A1C1F4*/ /*#f96180;*/
+    -fx-graphic-text-gap: 13;
+
+}
+
+
+.button6:pressed
+{
+    -fx-background-color : #7156DD; /*#73A3EF ;*/ /*#A80022*/
+    -fx-graphic-text-gap: 11;
+
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler{
+    -fx-cell-size: 20;
+    -fx-background-color: #7156DD; /* #2D75E8*/ 
+}
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell{
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+    -fx-text-fill: #000000;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell:selected{
+    -fx-background-color: rgb(127,172,243);
+}
+
+.table-row-cell:selected .text{
+    -fx-fill: white;
+}

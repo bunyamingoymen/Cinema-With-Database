@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: transparent;" stylesheets="@../Css/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.loginController">
+   <children>
+      <Pane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-radius: 10;">
+         <children>
+            <AnchorPane fx:id="oturum_ac_paneli" layoutX="544.0" layoutY="2.0" prefHeight="768.0" prefWidth="827.0" style="-fx-background-radius: 50;">
+               <children>
+                  <Pane layoutX="-4.0" layoutY="-10.0" prefHeight="778.0" prefWidth="827.0" style="-fx-background-color: white;">
+                     <children>
+                        <Text layoutX="334.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-size: 2em; -fx-font-weight: bold; -fx-fill: #2F2B43;" text="Oturum Aç" />
+                        <HBox alignment="CENTER_RIGHT" layoutX="286.0" layoutY="249.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <TextField fx:id="tf_username" promptText="Kullanıcı adı veya E-mail" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIconView fill="#888888" glyphName="USER">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="gizli" alignment="CENTER_RIGHT" layoutX="295.0" layoutY="364.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <PasswordField fx:id="pf_password" promptText="Şifre" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </PasswordField>
+                              <FontAwesomeIconView fill="#888888" glyphName="EYE" onMouseClicked="#goster">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <FontAwesomeIconView fill="#888888" glyphName="KEY" layoutX="243.0" layoutY="47.0" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="acik" alignment="CENTER_RIGHT" layoutX="295.0" layoutY="364.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;" visible="false">
+                           <children>
+                              <TextField fx:id="tf_password" promptText="Şifre" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIconView fill="#888888" glyphName="EYE_SLASH" onMouseClicked="#gizle">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <FontAwesomeIconView fill="#888888" glyphName="KEY" layoutX="246.0" layoutY="47.0" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="label" layoutX="349.0" layoutY="587.0" textFill="RED" />
+                        <Button layoutX="315.0" layoutY="643.0" mnemonicParsing="false" onAction="#login" prefWidth="193.0" style="-fx-text-fill: white;" styleClass="button2" text="Giriş Yap" />
+                        <HBox alignment="BOTTOM_CENTER" layoutX="32.0" layoutY="354.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="kayit_ol_paneli" layoutX="3.0" prefHeight="768.0" prefWidth="827.0" visible="false">
+               <children>
+                  <Pane layoutX="-4.0" layoutY="-10.0" prefHeight="778.0" prefWidth="827.0" style="-fx-background-color: white;">
+                     <children>
+                        <Text layoutX="337.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-size: 2em; -fx-font-weight: bold; -fx-fill: #2F2B43;" text="Kayıt Ol" />
+                        <HBox alignment="CENTER_RIGHT" layoutX="286.0" layoutY="225.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <TextField fx:id="tf_username2" promptText="Kullanıcı adı" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIconView fill="#888888" glyphName="USER">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" layoutX="286.0" layoutY="355.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <TextField fx:id="tf_mail" promptText="E-mail" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIconView fill="#888888" glyphName="ENVELOPE">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="gizli2" alignment="CENTER_RIGHT" layoutX="286.0" layoutY="483.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <PasswordField fx:id="pf_password2" promptText="Şifre" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </PasswordField>
+                              <FontAwesomeIconView fill="#888888" glyphName="EYE" onMouseClicked="#goster2">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <FontAwesomeIconView fill="#888888" glyphName="KEY" layoutX="243.0" layoutY="47.0" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="acik2" alignment="CENTER_RIGHT" layoutX="286.0" layoutY="483.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;" visible="false">
+                           <children>
+                              <TextField fx:id="tf_password2" promptText="Şifre" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIconView fill="#888888" glyphName="EYE_SLASH" onMouseClicked="#gizle2">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <FontAwesomeIconView fill="#888888" glyphName="KEY" layoutX="246.0" layoutY="47.0" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="label2" layoutX="349.0" layoutY="587.0" textFill="RED" />
+                        <Button layoutX="315.0" layoutY="643.0" mnemonicParsing="false" onAction="#kayit_ol" prefWidth="193.0" style="-fx-text-fill: white;" styleClass="button2" text="Kayıt Ol" />
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ortadaki_pane" layoutX="-6.0" layoutY="-8.0" prefHeight="778.0" prefWidth="547.0" style="-fx-background-color: #393351;">
+               <children>
+                  <Label fx:id="yazi1" layoutX="62.0" layoutY="148.0" text="Kayıtlı Üyemiz Değil misin?" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="ortadaki_btn" layoutX="177.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#btn" prefWidth="193.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Kayıt Ol" />
+                  <Button fx:id="sifremi_unuttum" layoutX="178.0" layoutY="492.0" mnemonicParsing="false" prefWidth="193.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Şifremi Unuttum" />
+                  <Button fx:id="kayit_olmadan" layoutX="116.0" layoutY="659.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="316.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Kayıt Olmadan Vizyondaki Filmleri Gör" />
+                  <Label fx:id="yazi2" layoutX="58.0" layoutY="226.0" text="Kayıt Ol Ve Sana Özel Fırsatlardan Yararlan" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="1366.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView fill="#fed330" glyphName="CIRCLE" onMouseClicked="#min">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView fill="#26de81" glyphName="CIRCLE" onMouseClicked="#max">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView fill="#fe4451" glyphName="CIRCLE" onMouseClicked="#close">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
