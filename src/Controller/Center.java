@@ -23,7 +23,7 @@ public class Center implements Initializable {
     //////////////////////////////////////////////////////////////////////////
     //hem appController da hem de appStandart_userController da karışık ve ortak olanlar için ayrılan alan
     private boolean sifre_gosterim = false;
-
+ 
     private boolean a = false;
 
     @FXML
