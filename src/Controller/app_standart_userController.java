@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class app_standart_userController implements Initializable {
+public class app_standart_userController extends Center implements Initializable {
 
     /*
     Bunun devamı nerede ve neden Center diye bir şeyi extends ediyor?

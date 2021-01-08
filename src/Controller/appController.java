@@ -14,12 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -32,9 +28,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class appController extends Center implements Initializable {
 
@@ -333,6 +326,57 @@ public class appController extends Center implements Initializable {
         } else {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
         }
+    }
+
+    private void vizyondaki_filmler_table() {
+        vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
+
+        ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
+
+        data = vf.vizyondaki_filmler_select(data);
+
+        vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
+        vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
+        vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
+        vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+
+        FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(viz -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
+
+        table_vizyondaki_filmler.setItems(sortedData);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1009,6 +1053,56 @@ public class appController extends Center implements Initializable {
         }
     }
 
+    private void eski_filmler_table() {
+        eski_filmlerDAO edao = new eski_filmlerDAO();
+
+        ObservableList<eski_filmler> data = FXCollections.observableArrayList();
+
+        data = edao.eski_filmler_select(data);
+
+        eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
+        eski_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
+        eski_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        eski_filmler_hangi_abone.setCellValueFactory(new PropertyValueFactory("hangi_aboneler_izleyebilir"));
+        eski_filmler_aldigi_odul_sayisi.setCellValueFactory(new PropertyValueFactory("aldigi_odul_sayisi"));
+
+        FilteredList<eski_filmler> filteredData = new FilteredList<>(data, b -> true);
+        filterField_eski.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(esk -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (esk.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (esk.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (esk.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getHangi_aboneler_izleyebilir()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getAldigi_odul_sayisi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<eski_filmler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_eski_filmler.comparatorProperty());
+
+        table_eski_filmler.setItems(sortedData);
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
     Kampanyalar
@@ -1248,6 +1342,55 @@ public class appController extends Center implements Initializable {
         kampanyalar_ekle_geri_tusu.setVisible(false);
     }
 
+    private void kampanyalar_table() {
+        kampanyalarDAO kdao = new kampanyalarDAO();
+
+        ObservableList<kampanyalar> data = FXCollections.observableArrayList();
+
+        data = kdao.kampanyalar_select(data, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
+
+        kampanyalar_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
+        kampanyalar_title.setCellValueFactory(new PropertyValueFactory("Title"));
+        kampanyalar_kampanya.setCellValueFactory(new PropertyValueFactory("Kampanya"));
+        kampanyalar_tarih.setCellValueFactory(new PropertyValueFactory("Tarih"));
+        kampanyalar_kampanya_kategorisi.setCellValueFactory(new PropertyValueFactory("Kampanya_Kategorisi"));
+        kampanyalar_sil.setCellValueFactory(new PropertyValueFactory("sil"));
+
+        FilteredList<kampanyalar> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField_kampanyalar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kam -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(kam.getHangi_kullanici_turu()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getKampanya().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getKampanya_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<kampanyalar> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_kampanyalar.comparatorProperty());
+
+        table_kampanyalar.setItems(sortedData);
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
     Haberler
@@ -1485,6 +1628,55 @@ public class appController extends Center implements Initializable {
         haberler_degistir_geri_tusu.setVisible(false);
         haberler_geri_tusu.setVisible(true);
         haberler_ekle_geri_tusu.setVisible(false);
+    }
+
+    private void haberler_table() {
+        haberlerDAO hdao = new haberlerDAO();
+
+        ObservableList<haberler> data = FXCollections.observableArrayList();
+
+        data = hdao.haberler_select(data, haberler_sil_emin_misin_pane, haberler_silmekten_emin_haber_id);
+
+        haberler_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
+        haberler_title.setCellValueFactory(new PropertyValueFactory("Title"));
+        haberler_haber.setCellValueFactory(new PropertyValueFactory("Haber"));
+        haberler_tarih.setCellValueFactory(new PropertyValueFactory("Tarih"));
+        haberler_haber_kategorisi.setCellValueFactory(new PropertyValueFactory("Haber_Kategorisi"));
+        haberler_sil.setCellValueFactory(new PropertyValueFactory("sil"));
+
+        FilteredList<haberler> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField_haberler.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(hab -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(hab.getHangi_kullanici_turu()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (hab.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (hab.getHaber().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (hab.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (hab.getHaber_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<haberler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_haberler.comparatorProperty());
+
+        table_haberler.setItems(sortedData);
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
@@ -2013,6 +2205,52 @@ public class appController extends Center implements Initializable {
 
     }
 
+    private void yonetmenler_table() {
+
+        yonetmenlerDAO ydao = new yonetmenlerDAO();
+
+        ObservableList<yonetmenler> data = FXCollections.observableArrayList();
+
+        data = ydao.yonetmenler_select(data);
+
+        yonetmenler_yonetmen_id.setCellValueFactory(new PropertyValueFactory("yonetmen_id"));
+        yonetmenler_ad.setCellValueFactory(new PropertyValueFactory("yonetmen_name"));
+        yonetmenler_soyad.setCellValueFactory(new PropertyValueFactory("yonetmen_sur_name"));
+        yonetmenler_film_sayisi.setCellValueFactory(new PropertyValueFactory("film_sayisi"));
+
+        FilteredList<yonetmenler> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField_yonetmenler.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(yon -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(yon.getYonetmen_id()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (yon.getYonetmen_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (yon.getYonetmen_sur_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(yon.getFilm_sayisi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<yonetmenler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_yonetmenler.comparatorProperty());
+
+        table_yonetmenler.setItems(sortedData);
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
@@ -2359,54 +2597,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
 
-            vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
-
-            ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
-
-            data = vf.vizyondaki_filmler_select(data);
-
-            vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
-            vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
-            vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
-            vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
-            vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
-            vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
-
-            FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
-
-            filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(viz -> {
-
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    String lowerCaseFilter = newValue.toLowerCase();
-
-                    if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                });
-            });
-
-            SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
-
-            sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
-
-            table_vizyondaki_filmler.setItems(sortedData);
+            vizyondaki_filmler_table();
 
         } else if (btn1.getText().equals("Kampanyalar")) {
 
@@ -2426,52 +2617,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
 
-            kampanyalarDAO kdao = new kampanyalarDAO();
-
-            ObservableList<kampanyalar> data = FXCollections.observableArrayList();
-
-            data = kdao.kampanyalar_select(data, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
-
-            kampanyalar_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
-            kampanyalar_title.setCellValueFactory(new PropertyValueFactory("Title"));
-            kampanyalar_kampanya.setCellValueFactory(new PropertyValueFactory("Kampanya"));
-            kampanyalar_tarih.setCellValueFactory(new PropertyValueFactory("Tarih"));
-            kampanyalar_kampanya_kategorisi.setCellValueFactory(new PropertyValueFactory("Kampanya_Kategorisi"));
-            kampanyalar_sil.setCellValueFactory(new PropertyValueFactory("sil"));
-
-            FilteredList<kampanyalar> filteredData = new FilteredList<>(data, b -> true);
-
-            filterField_kampanyalar.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(kam -> {
-
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    String lowerCaseFilter = newValue.toLowerCase();
-
-                    if (String.valueOf(kam.getHangi_kullanici_turu()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (kam.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (kam.getKampanya().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (kam.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (kam.getKampanya_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                });
-            });
-
-            SortedList<kampanyalar> sortedData = new SortedList<>(filteredData);
-
-            sortedData.comparatorProperty().bind(table_kampanyalar.comparatorProperty());
-
-            table_kampanyalar.setItems(sortedData);
+            kampanyalar_table();
 
         } else if (btn1.getText().equals("Yönetmenler")) {
 
@@ -2491,49 +2637,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
 
-            yonetmenlerDAO ydao = new yonetmenlerDAO();
-
-            ObservableList<yonetmenler> data = FXCollections.observableArrayList();
-
-            data = ydao.yonetmenler_select(data);
-
-            yonetmenler_yonetmen_id.setCellValueFactory(new PropertyValueFactory("yonetmen_id"));
-            yonetmenler_ad.setCellValueFactory(new PropertyValueFactory("yonetmen_name"));
-            yonetmenler_soyad.setCellValueFactory(new PropertyValueFactory("yonetmen_sur_name"));
-            yonetmenler_film_sayisi.setCellValueFactory(new PropertyValueFactory("film_sayisi"));
-
-            FilteredList<yonetmenler> filteredData = new FilteredList<>(data, b -> true);
-
-            filterField_yonetmenler.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(yon -> {
-
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    String lowerCaseFilter = newValue.toLowerCase();
-
-                    if (String.valueOf(yon.getYonetmen_id()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (yon.getYonetmen_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (yon.getYonetmen_sur_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (String.valueOf(yon.getFilm_sayisi()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                });
-            });
-
-            SortedList<yonetmenler> sortedData = new SortedList<>(filteredData);
-
-            sortedData.comparatorProperty().bind(table_yonetmenler.comparatorProperty());
-
-            table_yonetmenler.setItems(sortedData);
-
+            yonetmenler_table();
         }
     }
 
@@ -2563,53 +2667,7 @@ public class appController extends Center implements Initializable {
             seans_ekle_pane.setVisible(false);
             seans_degistir_sil_pane.setVisible(false);
 
-            eski_filmlerDAO edao = new eski_filmlerDAO();
-
-            ObservableList<eski_filmler> data = FXCollections.observableArrayList();
-
-            data = edao.eski_filmler_select(data);
-
-            eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
-            eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
-            eski_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
-            eski_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
-            eski_filmler_hangi_abone.setCellValueFactory(new PropertyValueFactory("hangi_aboneler_izleyebilir"));
-            eski_filmler_aldigi_odul_sayisi.setCellValueFactory(new PropertyValueFactory("aldigi_odul_sayisi"));
-
-            FilteredList<eski_filmler> filteredData = new FilteredList<>(data, b -> true);
-            filterField_eski.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(esk -> {
-
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    String lowerCaseFilter = newValue.toLowerCase();
-
-                    if (esk.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (esk.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (String.valueOf(esk.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (esk.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (String.valueOf(esk.getHangi_aboneler_izleyebilir()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (String.valueOf(esk.getAldigi_odul_sayisi()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                });
-            });
-
-            SortedList<eski_filmler> sortedData = new SortedList<>(filteredData);
-
-            sortedData.comparatorProperty().bind(table_eski_filmler.comparatorProperty());
-
-            table_eski_filmler.setItems(sortedData);
+            eski_filmler_table();
 
         } else if (btn2.getText().equals("Haberler")) {
 
@@ -2629,52 +2687,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
 
-            haberlerDAO hdao = new haberlerDAO();
-
-            ObservableList<haberler> data = FXCollections.observableArrayList();
-
-            data = hdao.haberler_select(data, haberler_sil_emin_misin_pane, haberler_silmekten_emin_haber_id);
-
-            haberler_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
-            haberler_title.setCellValueFactory(new PropertyValueFactory("Title"));
-            haberler_haber.setCellValueFactory(new PropertyValueFactory("Haber"));
-            haberler_tarih.setCellValueFactory(new PropertyValueFactory("Tarih"));
-            haberler_haber_kategorisi.setCellValueFactory(new PropertyValueFactory("Haber_Kategorisi"));
-            haberler_sil.setCellValueFactory(new PropertyValueFactory("sil"));
-
-            FilteredList<haberler> filteredData = new FilteredList<>(data, b -> true);
-
-            filterField_haberler.textProperty().addListener((observable, oldValue, newValue) -> {
-                filteredData.setPredicate(hab -> {
-
-                    if (newValue == null || newValue.isEmpty()) {
-                        return true;
-                    }
-
-                    String lowerCaseFilter = newValue.toLowerCase();
-
-                    if (String.valueOf(hab.getHangi_kullanici_turu()).indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (hab.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (hab.getHaber().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (hab.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else if (hab.getHaber_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                });
-            });
-
-            SortedList<haberler> sortedData = new SortedList<>(filteredData);
-
-            sortedData.comparatorProperty().bind(table_haberler.comparatorProperty());
-
-            table_haberler.setItems(sortedData);
+            haberler_table();
 
         } else if (btn2.getText().equals("Aktörler")) {
             pnl_aktorler.setVisible(true);
@@ -2727,67 +2740,6 @@ public class appController extends Center implements Initializable {
 
         btn3.setVisible(false);
         btn4.setVisible(false);
-    }
-
-    @FXML
-    private void close(MouseEvent event) {
-        usersDAO udao = new usersDAO();
-        udao.bilgi_sil();
-
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
-    }
-
-    //görünüş açısından gizlenen ve manuel olarak elle eklenen tam ekran moda geçme tuşunun methodu
-    @FXML
-    private void max(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-
-        //yukarıda tanımladığımız değişkene göre tam ekran moda alıyoruz ya da normal boyuta alıyoruz.
-        if (a == false) {
-            //a false ise daha küçük demektir ve büyültüyoruz.
-            stage.setFullScreenExitHint("Tam moda geçildi çıkmak için 'esc' tuşuna basınız");
-            stage.setFullScreen(true);
-            a = true;
-            //a'yı true yapyıyoruz. Çünkü program artık tam ekran modunda.
-        } else {
-            //eğer a true ise program tak eran modundadır o zaman da normal noyuta geçiyoruz.
-            stage.setFullScreen(false);
-            // a'yı false yapıyoruz çünkü artık tam ekranda değil nomral boyutta
-            a = false;
-        }
-    }
-
-    //görünüş açısından gizlenen ve manuel olarak elle eklenen aşağı alma tuşunun methodu
-    @FXML
-    private void min(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    private void cikis(MouseEvent event) throws IOException {
-
-        usersDAO udao = new usersDAO();
-        udao.bilgi_sil();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-
-        scene.setFill(Color.TRANSPARENT);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
-        stage.setTitle("Cinema-Admin");
-        Node node = (Node) event.getSource();
-        Stage stage2 = (Stage) node.getScene().getWindow();
-        stage2.close();
-
     }
 
     @Override

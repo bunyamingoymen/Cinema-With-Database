@@ -17,13 +17,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import DAO.*;
-import entity. *;
+import entity.*;
+
 public class Center implements Initializable {
 
     //////////////////////////////////////////////////////////////////////////
     //hem appController da hem de appStandart_userController da karışık ve ortak olanlar için ayrılan alan
     private boolean sifre_gosterim = false;
- 
+
     private boolean a = false;
 
     @FXML
@@ -68,22 +69,68 @@ public class Center implements Initializable {
         acik.setVisible(false);
         user_password.setText(tf_user_password.getText());
     }
+    
+    @FXML
+    private void close(MouseEvent event) {
+        usersDAO udao = new usersDAO();
+        udao.bilgi_sil();
 
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+    }
+
+    //görünüş açısından gizlenen ve manuel olarak elle eklenen tam ekran moda geçme tuşunun methodu
+    @FXML
+    private void max(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        //yukarıda tanımladığımız değişkene göre tam ekran moda alıyoruz ya da normal boyuta alıyoruz.
+        if (a == false) {
+            //a false ise daha küçük demektir ve büyültüyoruz.
+            stage.setFullScreenExitHint("Tam moda geçildi çıkmak için 'esc' tuşuna basınız");
+            stage.setFullScreen(true);
+            a = true;
+            //a'yı true yapyıyoruz. Çünkü program artık tam ekran modunda.
+        } else {
+            //eğer a true ise program tak eran modundadır o zaman da normal noyuta geçiyoruz.
+            stage.setFullScreen(false);
+            // a'yı false yapıyoruz çünkü artık tam ekranda değil nomral boyutta
+            a = false;
+        }
+    }
+
+    //görünüş açısından gizlenen ve manuel olarak elle eklenen aşağı alma tuşunun methodu
+    @FXML
+    private void min(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    
     //bu metot ise kullnıcının çıkış yapmasına olanak sağlıyor. Yani kısacası app_standart_user.fxml ile app.fxml'i kapatıp login.fxml'i açıyor.
     @FXML
-    private void sign_out(MouseEvent event) throws IOException {
+    private void cikis(MouseEvent event) throws IOException {
+
+        usersDAO udao = new usersDAO();
+        udao.bilgi_sil();
+
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
+
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
-
+        stage.setTitle("Cinema-Admin");
         Node node = (Node) event.getSource();
         Stage stage2 = (Stage) node.getScene().getWindow();
         stage2.close();
+
     }
 
     //setting pane'in içinde bulunan Güncelle mbutonunun metodudur. Yaptığı şey kısaca kullanıcının verilerini textfield gibi yerlerden alıp dosyaya kaydetme işlevini görüyor.
@@ -92,11 +139,8 @@ public class Center implements Initializable {
         //Bu metot ayarlar kısmındaki Güncelle butonunun işlevini görmektedir. Yani kısacası Bu butona basıldığında kullanıcıların verileri isteklerine göre değişebiliyor.
 
         //Dosya işlemlerini yapabilmek adına bir dosya nesnesi oluşturuluyor.
-        
-
         //Bu 2 satır var olan kullanıcıları bir bağlı listeye aktarıyor (dosya işlemleri ile)
         usersDAO udao = new usersDAO();
-        
 
         //Her giriş yapıldığında. Giriş yapan kullanıcının id'sini bir txt dosyasında tutuluyor(bilgi.txt) oradan en son giriş yapan kullanıcının id'sine erişiliyor. 
         int user_id = udao.bilgi_oku();
@@ -119,7 +163,7 @@ public class Center implements Initializable {
             } else {
                 password = tf_user_password.getText();
             }
-            
+
             int user_type = udao.user_type_getir(user_id);
 
             //yukarıda aldığımız kullanıcının girdiği bilgileri User adlı sınıfın içindeki metoda yolluyor. Bu metodun yaptığı işlevi ksaca anlatmak gerekirse. Yapılan değiişikliği ilk önce bağlı listede değiştiriyor ardından ise bunu dosyaya yazıp kalıcı hale getiriyor. 
@@ -135,9 +179,6 @@ public class Center implements Initializable {
         }
 
     }
-
-
-
 
     //Sinema Salnları için ortak olan değişkenler burada bulunuyor.
     //bu alanda sadece değişkenler tanımlanmıştır. Çünü hem appController'da hem de app_standart_userController'da ortak bir metot bulnmamaktadır ancka ortak değişkenler bulunmaktadır. 
@@ -215,7 +256,7 @@ public class Center implements Initializable {
     //bu koltuğu kontrol ediyor. Bu metot false dönerse koltuk boş, true dönerse koltuk dolu anlamına geliyor.
     private boolean search(String koltuk, int seans_id) {
         //ilk başta satılan koltukları bulmak için bir bağlı liste oluşturuyoruz.
-        
+
         //daha sonra parametre oalrak gelen sealon ve seans'lardaki dolu olan koltukları bu bağlı listeye ekliyoruz.
         satin_alinan_biletlerDAO sabdao = new satin_alinan_biletlerDAO();
         String arr[] = sabdao.satin_alinan_biletler_satyin_alinanlari_gonder(seans_id);
@@ -5202,7 +5243,6 @@ public class Center implements Initializable {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //bu bölge scene builder da 4.salona denk gelmektedir ve 294 tane koltuk bulunmaktadır.
-    
     //burası ile 1., 2. ve 3.salon aynıdır bu yüzden burada anlatım yapılmamıştır.
     @FXML
     private Button a1_4, a2_4, a3_4, a4_4, a5_4, a6_4, a7_4, a8_4, a9_4, a10_4, a11_4, a12_4, a13_4, a14_4, a15_4, a16_4, a17_4, a18_4, a19_4, a20_4, a21_4, a22_4, a23_4, a24_4, a25_4, a26_4, a27_4, a28_4;
