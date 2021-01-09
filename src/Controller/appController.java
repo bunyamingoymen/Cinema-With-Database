@@ -104,33 +104,18 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void vizyondaki_filmler_geri(MouseEvent event) {
-        btn1.setText("Filmler");
-        btn2.setText("Duyurular");
-
-        btn3.setVisible(true);
-        btn4.setVisible(true);
-
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        film_actor_pane.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
-
+        geri_don();
     }
 
     @FXML
     private void vizyondaki_filmler_ekle_geri(MouseEvent event) {
         vizyondaki_filmler_grid.setVisible(true);
         vizyondaki_filmler_ekle_pane.setVisible(false);
-        vizyondaki_filmler_degistir_pane.setVisible(false);
 
         vizyondaki_filmler_geri_tusu.setVisible(true);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
-
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
+        
+        vizyondaki_filmler_table();
     }
 
     @FXML
@@ -216,9 +201,11 @@ public class appController extends Center implements Initializable {
     private void vizyondaki_filmler_degistir_geri(MouseEvent event) {
         vizyondaki_filmler_grid.setVisible(true);
         vizyondaki_filmler_degistir_pane.setVisible(false);
+
         vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_geri_tusu.setVisible(true);
-        vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
+        
+        vizyondaki_filmler_table();
 
     }
 
@@ -677,7 +664,8 @@ public class appController extends Center implements Initializable {
     @FXML
     private void seans_geri(MouseEvent event) {
         pnl_seans.setVisible(false);
-        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(true);
+
         vizyondaki_filmler_grid.setVisible(true);
         vizyondaki_filmler_ekle_pane.setVisible(false);
         vizyondaki_filmler_degistir_pane.setVisible(false);
@@ -692,19 +680,22 @@ public class appController extends Center implements Initializable {
     private void seans_ekle_geri(MouseEvent event) {
         seans_grid.setVisible(true);
         seans_ekle_pane.setVisible(false);
-        seans_degistir_sil_pane.setVisible(false);
 
         seans_geri_tusu.setVisible(true);
         seans_ekle_geri_tusu.setVisible(false);
+        
+        seans_table();
     }
 
     @FXML
     private void seans_degistir_geri(MouseEvent event) {
         seans_grid.setVisible(true);
         seans_degistir_sil_pane.setVisible(false);
+
         seans_degistir_geri_tusu.setVisible(false);
         seans_geri_tusu.setVisible(true);
-        seans_ekle_geri_tusu.setVisible(false);
+        
+        seans_table();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -758,39 +749,29 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void eski_filmler_geri(MouseEvent event) {
-        btn1.setText("Filmler");
-        btn2.setText("Duyurular");
-
-        btn3.setVisible(true);
-        btn4.setVisible(true);
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        film_actor_pane.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
-
+        geri_don();
     }
 
     @FXML
     private void eski_filmler_ekle_geri(MouseEvent event) {
         eski_filmler_grid.setVisible(true);
         eski_filmler_ekle_pane.setVisible(false);
-        eski_filmler_degistir_pane.setVisible(false);
 
         eski_filmler_geri_tusu.setVisible(true);
         eski_filmler_ekle_geri_tusu.setVisible(false);
-        eski_filmler_degistir_geri_tusu.setVisible(false);
+        
+        eski_filmler_table();
     }
 
     @FXML
     private void eski_filmler_degistir_geri(MouseEvent event) {
         eski_filmler_grid.setVisible(true);
         eski_filmler_degistir_pane.setVisible(false);
+
         eski_filmler_degistir_geri_tusu.setVisible(false);
         eski_filmler_geri_tusu.setVisible(true);
-        eski_filmler_ekle_geri_tusu.setVisible(false);
+        
+        eski_filmler_table();
 
     }
 
@@ -1305,41 +1286,29 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void kampanyalar_geri(MouseEvent event) {
-        btn1.setText("Filmler");
-        btn2.setText("Duyurular");
-
-        btn3.setVisible(true);
-        btn4.setVisible(true);
-
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        film_actor_pane.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
+        geri_don();
     }
 
     @FXML
     private void kampanyalar_ekle_geri(MouseEvent event) {
         kampanyalar_grid.setVisible(true);
         kampanyalar_ekle_pane.setVisible(false);
-        kampanyalar_degistir_pane.setVisible(false);
 
         kampanyalar_geri_tusu.setVisible(true);
         kampanyalar_ekle_geri_tusu.setVisible(false);
-        kampanyalar_degistir_geri_tusu.setVisible(false);
+        
+        kampanyalar_table();
     }
 
     @FXML
     private void kampanyalar_degistir_geri(MouseEvent event) {
         kampanyalar_grid.setVisible(true);
         kampanyalar_degistir_pane.setVisible(false);
-        kampanyalar_ekle_pane.setVisible(false);
 
         kampanyalar_degistir_geri_tusu.setVisible(false);
         kampanyalar_geri_tusu.setVisible(true);
-        kampanyalar_ekle_geri_tusu.setVisible(false);
+        
+        kampanyalar_table();
     }
 
     private void kampanyalar_table() {
@@ -1593,41 +1562,29 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void haberler_geri(MouseEvent event) {
-        btn1.setText("Filmler");
-        btn2.setText("Duyurular");
-
-        btn3.setVisible(true);
-        btn4.setVisible(true);
-
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        film_actor_pane.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
+        geri_don();
     }
 
     @FXML
     private void haberler_ekle_geri(MouseEvent event) {
         haberler_grid.setVisible(true);
         haberler_ekle_pane.setVisible(false);
-        haberler_degistir_pane.setVisible(false);
 
         haberler_geri_tusu.setVisible(true);
         haberler_ekle_geri_tusu.setVisible(false);
-        haberler_degistir_geri_tusu.setVisible(false);
+        
+        haberler_table();
     }
 
     @FXML
     private void haberler_degistir_geri(MouseEvent event) {
         haberler_grid.setVisible(true);
         haberler_degistir_pane.setVisible(false);
-        haberler_ekle_pane.setVisible(false);
 
         haberler_degistir_geri_tusu.setVisible(false);
         haberler_geri_tusu.setVisible(true);
-        haberler_ekle_geri_tusu.setVisible(false);
+        
+        haberler_table();
     }
 
     private void haberler_table() {
@@ -1953,7 +1910,6 @@ public class appController extends Center implements Initializable {
     private void sinema_salonu_duzenle_sil_geri(MouseEvent event) {
         sinema_salonu_duzenle_pane.setVisible(false);
         sinema_salonlari_home_pane.setVisible(true);
-        sinema_salonu_duzenle_pane_2.setVisible(false);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2170,38 +2126,27 @@ public class appController extends Center implements Initializable {
     private void yonetmenler_ekle_geri(MouseEvent event) {
         yonetmenler_grid.setVisible(true);
         yonetmenler_ekle_pane.setVisible(false);
-        yonetmenler_degistir_pane.setVisible(false);
 
         yonetmenler_geri_tusu.setVisible(true);
         yonetmenler_ekle_geri_tusu.setVisible(false);
-        yonetmenler_degistir_geri_tusu.setVisible(false);
+        
+        yonetmenler_table();
     }
 
     @FXML
     private void yonetmenler_geri(MouseEvent event) {
-        btn1.setText("Filmler");
-        btn2.setText("Duyurular");
-
-        btn3.setVisible(true);
-        btn4.setVisible(true);
-
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        film_actor_pane.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
-
+        geri_don();
     }
 
     @FXML
     private void yonetmenler_degistir_geri(MouseEvent event) {
         yonetmenler_grid.setVisible(true);
         yonetmenler_degistir_pane.setVisible(false);
+
         yonetmenler_degistir_geri_tusu.setVisible(false);
         yonetmenler_geri_tusu.setVisible(true);
-        yonetmenler_ekle_geri_tusu.setVisible(false);
+        
+        yonetmenler_table();
 
     }
 
@@ -2338,19 +2283,7 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void aktorler_geri(MouseEvent event) {
-        btn1.setText("Filmler");
-        btn2.setText("Duyurular");
-
-        btn3.setVisible(true);
-        btn4.setVisible(true);
-
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        film_actor_pane.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
+        geri_don();
     }
 
     @FXML
@@ -2569,7 +2502,16 @@ public class appController extends Center implements Initializable {
     private boolean a = false;
 
     @FXML
-    private Button btn1, btn2, btn3, btn4, btn5;
+    private Button btn1, btn2, btn3, btn4;
+
+    @FXML
+    private AnchorPane home_pane;
+
+    @FXML
+    private Label vizyondaki_film_sayisi, eski_film_sayisi, haber_sayisi, kampanya_sayisi, sinema_salonu_sayisi, yonetmen_sayisi, aktor_sayisi, kullanici_sayisi;
+
+    @FXML
+    private FontAwesomeIconView home;
 
     @FXML
     private void btn10(ActionEvent event) throws IOException, SQLException {
@@ -2580,62 +2522,57 @@ public class appController extends Center implements Initializable {
 
             btn3.setVisible(false);
             btn4.setVisible(false);
+
+            home.setVisible(true);
         } else if (btn1.getText().equals("Vizyondaki Filmler")) {
+
             pnl_vizyondaki_filmler.setVisible(true);
+            pnl_eski_filmler.setVisible(false);
+            pnl_sinema_salonlari.setVisible(false);
+            pnl_seans.setVisible(false);
+            home_pane.setVisible(false);
+
             vizyondaki_filmler_geri_tusu.setVisible(true);
+            vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
+            vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+
             vizyondaki_filmler_grid.setVisible(true);
             vizyondaki_filmler_ekle_pane.setVisible(false);
             vizyondaki_filmler_degistir_pane.setVisible(false);
-            vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
-            vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
-            pnl_eski_filmler.setVisible(false);
-            pnl_yonetmenler.setVisible(false);
-            pnl_aktorler.setVisible(false);
-            film_actor_pane.setVisible(false);
-            pnl_kampanyalar.setVisible(false);
-            pnl_haberler.setVisible(false);
-            pnl_sinema_salonlari.setVisible(false);
-            pnl_seans.setVisible(false);
 
             vizyondaki_filmler_table();
 
         } else if (btn1.getText().equals("Kampanyalar")) {
 
             pnl_kampanyalar.setVisible(true);
+            pnl_haberler.setVisible(false);
+            pnl_sinema_salonlari.setVisible(false);
+            home_pane.setVisible(false);
+
             kampanyalar_geri_tusu.setVisible(true);
+            kampanyalar_ekle_geri_tusu.setVisible(false);
+            kampanyalar_degistir_geri_tusu.setVisible(false);
+
             kampanyalar_grid.setVisible(true);
             kampanyalar_ekle_pane.setVisible(false);
             kampanyalar_degistir_pane.setVisible(false);
-            kampanyalar_ekle_geri_tusu.setVisible(false);
-            kampanyalar_degistir_geri_tusu.setVisible(false);
-            pnl_eski_filmler.setVisible(false);
-            pnl_vizyondaki_filmler.setVisible(false);
-            pnl_aktorler.setVisible(false);
-            film_actor_pane.setVisible(false);
-            pnl_yonetmenler.setVisible(false);
-            pnl_haberler.setVisible(false);
-            pnl_sinema_salonlari.setVisible(false);
-            pnl_seans.setVisible(false);
 
             kampanyalar_table();
 
         } else if (btn1.getText().equals("Yönetmenler")) {
 
             pnl_yonetmenler.setVisible(true);
+            pnl_aktorler.setVisible(false);
+            pnl_sinema_salonlari.setVisible(false);
+            home_pane.setVisible(false);
+
             yonetmenler_geri_tusu.setVisible(true);
+            yonetmenler_ekle_geri_tusu.setVisible(false);
+            yonetmenler_degistir_geri_tusu.setVisible(false);
+
             yonetmenler_grid.setVisible(true);
             yonetmenler_ekle_pane.setVisible(false);
             yonetmenler_degistir_pane.setVisible(false);
-            yonetmenler_ekle_geri_tusu.setVisible(false);
-            yonetmenler_degistir_geri_tusu.setVisible(false);
-            pnl_eski_filmler.setVisible(false);
-            pnl_vizyondaki_filmler.setVisible(false);
-            pnl_aktorler.setVisible(false);
-            film_actor_pane.setVisible(false);
-            pnl_kampanyalar.setVisible(false);
-            pnl_haberler.setVisible(false);
-            pnl_sinema_salonlari.setVisible(false);
-            pnl_seans.setVisible(false);
 
             yonetmenler_table();
         }
@@ -2644,67 +2581,64 @@ public class appController extends Center implements Initializable {
     @FXML
     private void btn20(ActionEvent event) throws IOException {
         if (btn2.getText().equals("Duyurular")) {
+
             btn1.setText("Kampanyalar");
             btn2.setText("Haberler");
 
             btn3.setVisible(false);
             btn4.setVisible(false);
+
+            home.setVisible(true);
         } else if (btn2.getText().equals("Eski Filmler")) {
+
             pnl_eski_filmler.setVisible(true);
-            eski_filmler_geri_tusu.setVisible(true);
-            eski_filmler_ekle_pane.setVisible(false);
-            eski_filmler_degistir_pane.setVisible(false);
-            eski_filmler_ekle_geri_tusu.setVisible(false);
-            eski_filmler_degistir_geri_tusu.setVisible(false);
             pnl_vizyondaki_filmler.setVisible(false);
-            pnl_yonetmenler.setVisible(false);
-            pnl_aktorler.setVisible(false);
-            film_actor_pane.setVisible(false);
-            pnl_kampanyalar.setVisible(false);
-            pnl_haberler.setVisible(false);
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
-            seans_ekle_pane.setVisible(false);
-            seans_degistir_sil_pane.setVisible(false);
+            home_pane.setVisible(false);
+
+            eski_filmler_geri_tusu.setVisible(true);
+            eski_filmler_ekle_geri_tusu.setVisible(false);
+            eski_filmler_degistir_geri_tusu.setVisible(false);
+
+            eski_filmler_grid.setVisible(true);
+            eski_filmler_ekle_pane.setVisible(false);
+            eski_filmler_degistir_pane.setVisible(false);
 
             eski_filmler_table();
 
         } else if (btn2.getText().equals("Haberler")) {
 
             pnl_haberler.setVisible(true);
+            pnl_kampanyalar.setVisible(false);
+            pnl_sinema_salonlari.setVisible(false);
+            home_pane.setVisible(false);
+
             haberler_geri_tusu.setVisible(true);
+            haberler_ekle_geri_tusu.setVisible(false);
+            haberler_degistir_geri_tusu.setVisible(false);
+
             haberler_grid.setVisible(true);
             haberler_ekle_pane.setVisible(false);
             haberler_degistir_pane.setVisible(false);
-            haberler_ekle_geri_tusu.setVisible(false);
-            haberler_degistir_geri_tusu.setVisible(false);
-            pnl_eski_filmler.setVisible(false);
-            pnl_vizyondaki_filmler.setVisible(false);
-            pnl_aktorler.setVisible(false);
-            film_actor_pane.setVisible(false);
-            pnl_yonetmenler.setVisible(false);
-            pnl_kampanyalar.setVisible(false);
-            pnl_sinema_salonlari.setVisible(false);
-            pnl_seans.setVisible(false);
 
             haberler_table();
 
         } else if (btn2.getText().equals("Aktörler")) {
             pnl_aktorler.setVisible(true);
-            aktorler_grid.setVisible(true);
-            aktorler_geri_tusu.setVisible(true);
-            aktorler_ekle_pane.setVisible(false);
-            aktorler_ekle_geri_tusu.setVisible(false);
-            pnl_vizyondaki_filmler.setVisible(false);
-            pnl_eski_filmler.setVisible(false);
             pnl_yonetmenler.setVisible(false);
-            aktorler_sil_emin_misin.setVisible(false);
-            film_actor_pane.setVisible(false);
+            pnl_sinema_salonlari.setVisible(false);
+            home_pane.setVisible(false);
+
+            aktorler_geri_tusu.setVisible(true);
+            aktorler_ekle_geri_tusu.setVisible(false);
             film_actor_geri_tusu.setVisible(false);
             film_actor_ekle_geri_tusu.setVisible(false);
-            pnl_kampanyalar.setVisible(false);
-            pnl_sinema_salonlari.setVisible(false);
-            pnl_seans.setVisible(false);
+
+            aktorler_grid.setVisible(true);
+            aktorler_ekle_pane.setVisible(false);
+            aktorler_sil_emin_misin.setVisible(false);
+            film_actor_pane.setVisible(false);
 
             aktorler_table();
         }
@@ -2713,13 +2647,7 @@ public class appController extends Center implements Initializable {
     @FXML
     private void btn30(ActionEvent event) throws IOException {
         pnl_sinema_salonlari.setVisible(true);
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        pnl_seans.setVisible(false);
+        home_pane.setVisible(false);
 
         sinema_salonlari_home_pane.setVisible(true);
 
@@ -2731,6 +2659,8 @@ public class appController extends Center implements Initializable {
         sinema_salonlari_goruntule_pane.setVisible(false);
         sinema_salonu_ekle_pane.setVisible(false);
         sinema_salonu_duzenle_pane.setVisible(false);
+
+        home.setVisible(true);
     }
 
     @FXML
@@ -2740,10 +2670,67 @@ public class appController extends Center implements Initializable {
 
         btn3.setVisible(false);
         btn4.setVisible(false);
+
+        home.setVisible(true);
+    }
+
+    private void home_page() {
+        vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
+        vizyondaki_film_sayisi.setText(String.valueOf(vdao.kac_tane_vizyonda_film_var()));
+
+        eski_filmlerDAO edao = new eski_filmlerDAO();
+        eski_film_sayisi.setText(String.valueOf(edao.kac_tane_eski_film_var()));
+
+        haberlerDAO hdao = new haberlerDAO();
+        haber_sayisi.setText(String.valueOf(hdao.kac_tane_haber_var()));
+
+        kampanyalarDAO kdao = new kampanyalarDAO();
+        kampanya_sayisi.setText(String.valueOf(kdao.kac_tane_kampanya_var()));
+
+        sinema_salonlariDAO sdao = new sinema_salonlariDAO();
+        sinema_salonu_sayisi.setText(String.valueOf(sdao.kac_tane_salon_var()));
+
+        yonetmenlerDAO ydao = new yonetmenlerDAO();
+        yonetmen_sayisi.setText(String.valueOf(ydao.kac_tane_yonetmen_var()));
+
+        actorDAO adao = new actorDAO();
+        aktor_sayisi.setText(String.valueOf(adao.kac_tane_actor_var()));
+
+        usersDAO udao = new usersDAO();
+        kullanici_sayisi.setText(String.valueOf(udao.kac_tane_user_var()));
+
+    }
+
+    @FXML
+    private void home_geri_gel(MouseEvent event) {
+        geri_don();
+    }
+
+    private void geri_don() {
+        btn1.setText("Filmler");
+        btn2.setText("Duyurular");
+
+        btn3.setVisible(true);
+        btn4.setVisible(true);
+
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_seans.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
+        pnl_eski_filmler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_yonetmenler.setVisible(false);
+        pnl_aktorler.setVisible(false);
+
+        home_pane.setVisible(true);
+        home_page();
+
+        home.setVisible(false);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        home_page();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

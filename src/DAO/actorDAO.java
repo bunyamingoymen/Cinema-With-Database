@@ -113,11 +113,34 @@ public class actorDAO {
             Statement st = c.createStatement();
             String komut = "insert into actor (ad,soyad) values ('" + a.getAd() + "','" + a.getSoyad() + "')";
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
         } catch (SQLException e) {
             System.out.println("Hata Kodu: 161 " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    public int kac_tane_actor_var() {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (actor_id) from actor";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 216  " + e.getMessage());;
         }
 
         return sonuc;

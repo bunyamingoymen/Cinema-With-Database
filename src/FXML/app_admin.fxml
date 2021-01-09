@@ -88,6 +88,7 @@
             </Button>
             <FontAwesomeIconView fill="WHITE" glyphName="GEARS" size="40.0" translateX="275.0" translateY="160.0" />
             <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" onMouseClicked="#cikis" rotate="180.0" size="40.0" translateX="10.0" translateY="120.0" />
+            <FontAwesomeIconView fx:id="home" fill="WHITE" glyphName="HOME" size="40.0" translateX="140.0" translateY="75.0" visible="false" />
          </children>
       </VBox>
       <AnchorPane fx:id="pnl_vizyondaki_filmler" layoutX="319.0" layoutY="57.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="57.0">
@@ -6379,7 +6380,7 @@
                <children>
                   <Button layoutX="412.0" layoutY="221.0" mnemonicParsing="false" onAction="#sinema_salonlarini_gor" prefHeight="31.0" prefWidth="251.0" styleClass="button2" text="Sinema Salonlarını Gör" textFill="WHITE" />
                   <Button layoutX="412.0" layoutY="336.0" mnemonicParsing="false" onAction="#yeni_sinema_salonu_ekle" prefHeight="31.0" prefWidth="251.0" styleClass="button2" text="Yeni Sinema Salonu Ekle" textFill="WHITE" />
-                  <Button layoutX="413.0" layoutY="454.0" mnemonicParsing="false" onAction="#sinema_salonu_duzenle_sil" prefHeight="31.0" prefWidth="251.0" styleClass="button2" text="Sinema Salonlarını Gör" textFill="WHITE" />
+                  <Button layoutX="413.0" layoutY="454.0" mnemonicParsing="false" onAction="#sinema_salonu_duzenle_sil" prefHeight="31.0" prefWidth="251.0" styleClass="button2" text="Sinema Salonlarını Değiştir/Sil" textFill="WHITE" />
                </children>
             </Pane>
             <Pane fx:id="sinema_salonlari_goruntule_pane" layoutX="101.0" layoutY="14.0" prefHeight="89.0" prefWidth="1075.0" visible="false" AnchorPane.bottomAnchor="622.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -6558,7 +6559,7 @@
       </AnchorPane>
       <AnchorPane fx:id="pnl_kampanyalar" layoutX="339.0" layoutY="77.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="56.0">
          <children>
-            <Pane fx:id="ust_pnl_kampanyalar" layoutX="-11.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="18.0">
+            <Pane fx:id="ust_pnl_kampanyalar" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0">
                <children>
                   <Text fill="WHITE" layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kampanyalar" wrappingWidth="391.31494140625">
                      <font>
@@ -6675,7 +6676,7 @@
       </AnchorPane>
       <AnchorPane fx:id="pnl_haberler" layoutX="329.0" layoutY="56.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="56.0">
          <children>
-            <Pane fx:id="ust_pnl_haberler" layoutX="-1.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="8.0">
+            <Pane fx:id="ust_pnl_haberler" layoutX="-1.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="18.0">
                <children>
                   <Text fill="WHITE" layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haberler" wrappingWidth="391.31494140625">
                      <font>
@@ -6792,7 +6793,7 @@
       </AnchorPane>
       <AnchorPane fx:id="pnl_yonetmenler" layoutX="339.0" layoutY="77.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="56.0">
          <children>
-            <Pane fx:id="ust_pnl_yonetmenler" layoutX="-11.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="18.0">
+            <Pane fx:id="ust_pnl_yonetmenler" layoutX="-1.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="18.0">
                <children>
                   <Text fill="WHITE" layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yönetmenler" wrappingWidth="391.31494140625">
                      <font>
@@ -6896,7 +6897,7 @@
       </AnchorPane>
       <AnchorPane fx:id="pnl_aktorler" layoutX="349.0" layoutY="87.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="56.0">
          <children>
-            <Pane fx:id="ust_pnl_aktorler" layoutX="-22.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-22.0" AnchorPane.rightAnchor="29.0">
+            <Pane fx:id="ust_pnl_aktorler" layoutX="-1.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="18.0">
                <children>
                   <Text fill="WHITE" layoutX="118.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktörler" wrappingWidth="391.31494140625">
                      <font>
@@ -7048,6 +7049,130 @@
                         <Label fx:id="film_actor_id" layoutX="368.0" layoutY="144.0" style="-fx-text-fill: transparent;" />
                      </children>
                   </Pane>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="home_pane" layoutX="328.0" layoutY="65.0" prefHeight="705.0" prefWidth="1058.0" visible="false">
+         <children>
+            <Pane layoutX="155.0" layoutY="22.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="116.0" prefWidth="309.0" styleClass="button2" />
+                  <Label layoutX="31.0" layoutY="14.0" prefHeight="41.0" prefWidth="228.0" text="Vizyondaki Film Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="vizyondaki_film_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="633.0" layoutY="22.0" prefHeight="116.0" prefWidth="317.0">
+               <children>
+                  <Button layoutX="-2.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="317.0" styleClass="button2" />
+                  <Label layoutX="35.0" layoutY="14.0" prefHeight="41.0" prefWidth="161.0" text="Eski Film Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="eski_film_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="155.0" layoutY="177.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button layoutX="1.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="309.0" styleClass="button2" />
+                  <Label layoutX="21.0" layoutY="14.0" prefHeight="41.0" prefWidth="143.0" text="Haber Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="haber_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="637.0" layoutY="177.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button layoutX="-7.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="317.0" styleClass="button2" />
+                  <Label layoutX="23.0" layoutY="14.0" prefHeight="41.0" prefWidth="175.0" text="Kampanya Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kampanya_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="155.0" layoutY="353.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button layoutX="-6.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="317.0" styleClass="button2" />
+                  <Label fx:id="sinema_salonu_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="14.0" prefHeight="41.0" prefWidth="212.0" text="Sinema Salonu Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="637.0" layoutY="353.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button layoutX="-6.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="317.0" styleClass="button2" />
+                  <Label fx:id="yonetmen_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="14.0" prefHeight="41.0" prefWidth="212.0" text="Yönetmen Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="155.0" layoutY="517.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button layoutX="-6.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="317.0" styleClass="button2" />
+                  <Label fx:id="aktor_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="14.0" prefHeight="41.0" prefWidth="212.0" text="Aktör Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="637.0" layoutY="517.0" prefHeight="116.0" prefWidth="309.0">
+               <children>
+                  <Button layoutX="-6.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="317.0" styleClass="button2" />
+                  <Label fx:id="kullanici_sayisi" layoutX="129.0" layoutY="18.0" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="79.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="14.0" prefHeight="41.0" prefWidth="212.0" text="Kullanıcı Sayısı:" textFill="WHITE">
+                     <font>
+                        <Font name="Gabriola" size="31.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

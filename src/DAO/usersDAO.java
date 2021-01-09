@@ -331,5 +331,28 @@ public class usersDAO {
 
         return sonuc;
     }
+    
+        public int kac_tane_user_var() {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (user_id) from users";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 217  " + e.getMessage());;
+        }
+
+        return sonuc;
+    }
 
 }
