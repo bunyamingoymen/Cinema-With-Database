@@ -274,6 +274,7 @@ public class usersDAO {
             Statement st = c.createStatement();
             String komut = "select * from bilgi";
             ResultSet rs = st.executeQuery(komut);
+            rs.next();
             bilgi = rs.getInt("giren_user_id");
 
             c.close();
@@ -297,6 +298,7 @@ public class usersDAO {
 
             String komut = "select * from users where user_id=" + user_id;
             ResultSet rs = st.executeQuery(komut);
+            rs.next();
             user_type = rs.getInt("user_type");
 
             c.close();
@@ -318,21 +320,20 @@ public class usersDAO {
             Connection c = d.connect();
             Statement st = c.createStatement();
 
-            String komut = "update users set user_name='"+ u.getUser_name() +"', user_mail='"+ u.getUser_mail() +"', user_password = '"+u.getUser_password()+"', user_type = '"+u.getUser_type()+"' where user_id = " + u.getUser_id();
+            String komut = "update users set user_name='" + u.getUser_name() + "', user_mail='" + u.getUser_mail() + "', user_password = '" + u.getUser_password() + "', user_type = '" + u.getUser_type() + "' where user_id = " + u.getUser_id();
             sonuc = st.executeUpdate(komut);
-            
 
             c.close();
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 191" + e.getMessage());;
+            System.out.println("Hata kodu: 221" + e.getMessage());;
         }
 
         return sonuc;
     }
-    
-        public int kac_tane_user_var() {
+
+    public int kac_tane_user_var() {
         int sonuc = -1;
 
         try {
@@ -353,6 +354,72 @@ public class usersDAO {
         }
 
         return sonuc;
+    }
+
+    public String user_name_getir(int id) {
+        String name = null;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from users where user_id='" + id + "'";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            name = rs.getString("user_name");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 218  " + e.getMessage());;
+        }
+
+        return name;
+    }
+
+    public String user_mail_getir(int id) {
+        String name = null;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from users where user_id='" + id + "'";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            name = rs.getString("user_mail");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 219  " + e.getMessage());;
+        }
+
+        return name;
+    }
+
+    public String user_password_getir(int id) {
+        String name = null;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from users where user_id='" + id + "'";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            name = rs.getString("user_password");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 220  " + e.getMessage());;
+        }
+
+        return name;
     }
 
 }

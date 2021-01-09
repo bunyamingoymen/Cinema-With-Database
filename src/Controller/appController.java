@@ -114,7 +114,7 @@ public class appController extends Center implements Initializable {
 
         vizyondaki_filmler_geri_tusu.setVisible(true);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
-        
+
         vizyondaki_filmler_table();
     }
 
@@ -204,7 +204,7 @@ public class appController extends Center implements Initializable {
 
         vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_geri_tusu.setVisible(true);
-        
+
         vizyondaki_filmler_table();
 
     }
@@ -683,7 +683,7 @@ public class appController extends Center implements Initializable {
 
         seans_geri_tusu.setVisible(true);
         seans_ekle_geri_tusu.setVisible(false);
-        
+
         seans_table();
     }
 
@@ -694,7 +694,7 @@ public class appController extends Center implements Initializable {
 
         seans_degistir_geri_tusu.setVisible(false);
         seans_geri_tusu.setVisible(true);
-        
+
         seans_table();
     }
 
@@ -759,7 +759,7 @@ public class appController extends Center implements Initializable {
 
         eski_filmler_geri_tusu.setVisible(true);
         eski_filmler_ekle_geri_tusu.setVisible(false);
-        
+
         eski_filmler_table();
     }
 
@@ -770,7 +770,7 @@ public class appController extends Center implements Initializable {
 
         eski_filmler_degistir_geri_tusu.setVisible(false);
         eski_filmler_geri_tusu.setVisible(true);
-        
+
         eski_filmler_table();
 
     }
@@ -1296,7 +1296,7 @@ public class appController extends Center implements Initializable {
 
         kampanyalar_geri_tusu.setVisible(true);
         kampanyalar_ekle_geri_tusu.setVisible(false);
-        
+
         kampanyalar_table();
     }
 
@@ -1307,7 +1307,7 @@ public class appController extends Center implements Initializable {
 
         kampanyalar_degistir_geri_tusu.setVisible(false);
         kampanyalar_geri_tusu.setVisible(true);
-        
+
         kampanyalar_table();
     }
 
@@ -1572,7 +1572,7 @@ public class appController extends Center implements Initializable {
 
         haberler_geri_tusu.setVisible(true);
         haberler_ekle_geri_tusu.setVisible(false);
-        
+
         haberler_table();
     }
 
@@ -1583,7 +1583,7 @@ public class appController extends Center implements Initializable {
 
         haberler_degistir_geri_tusu.setVisible(false);
         haberler_geri_tusu.setVisible(true);
-        
+
         haberler_table();
     }
 
@@ -2129,7 +2129,7 @@ public class appController extends Center implements Initializable {
 
         yonetmenler_geri_tusu.setVisible(true);
         yonetmenler_ekle_geri_tusu.setVisible(false);
-        
+
         yonetmenler_table();
     }
 
@@ -2145,7 +2145,7 @@ public class appController extends Center implements Initializable {
 
         yonetmenler_degistir_geri_tusu.setVisible(false);
         yonetmenler_geri_tusu.setVisible(true);
-        
+
         yonetmenler_table();
 
     }
@@ -2505,7 +2505,7 @@ public class appController extends Center implements Initializable {
     private Button btn1, btn2, btn3, btn4;
 
     @FXML
-    private AnchorPane home_pane;
+    private AnchorPane home_pane, pnl_settings;
 
     @FXML
     private Label vizyondaki_film_sayisi, eski_film_sayisi, haber_sayisi, kampanya_sayisi, sinema_salonu_sayisi, yonetmen_sayisi, aktor_sayisi, kullanici_sayisi;
@@ -2531,6 +2531,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
             home_pane.setVisible(false);
+            pnl_settings.setVisible(false);
 
             vizyondaki_filmler_geri_tusu.setVisible(true);
             vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
@@ -2548,6 +2549,7 @@ public class appController extends Center implements Initializable {
             pnl_haberler.setVisible(false);
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
+            pnl_settings.setVisible(false);
 
             kampanyalar_geri_tusu.setVisible(true);
             kampanyalar_ekle_geri_tusu.setVisible(false);
@@ -2565,6 +2567,7 @@ public class appController extends Center implements Initializable {
             pnl_aktorler.setVisible(false);
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
+            pnl_settings.setVisible(false);
 
             yonetmenler_geri_tusu.setVisible(true);
             yonetmenler_ekle_geri_tusu.setVisible(false);
@@ -2596,6 +2599,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             pnl_seans.setVisible(false);
             home_pane.setVisible(false);
+            pnl_settings.setVisible(false);
 
             eski_filmler_geri_tusu.setVisible(true);
             eski_filmler_ekle_geri_tusu.setVisible(false);
@@ -2613,6 +2617,7 @@ public class appController extends Center implements Initializable {
             pnl_kampanyalar.setVisible(false);
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
+            pnl_settings.setVisible(false);
 
             haberler_geri_tusu.setVisible(true);
             haberler_ekle_geri_tusu.setVisible(false);
@@ -2629,6 +2634,7 @@ public class appController extends Center implements Initializable {
             pnl_yonetmenler.setVisible(false);
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
+            pnl_settings.setVisible(false);
 
             aktorler_geri_tusu.setVisible(true);
             aktorler_ekle_geri_tusu.setVisible(false);
@@ -2648,6 +2654,7 @@ public class appController extends Center implements Initializable {
     private void btn30(ActionEvent event) throws IOException {
         pnl_sinema_salonlari.setVisible(true);
         home_pane.setVisible(false);
+        pnl_settings.setVisible(false);
 
         sinema_salonlari_home_pane.setVisible(true);
 
@@ -2726,6 +2733,29 @@ public class appController extends Center implements Initializable {
         home_page();
 
         home.setVisible(false);
+    }
+
+    @FXML
+    private void settings_giris(MouseEvent event) {
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_seans.setVisible(false);
+        pnl_eski_filmler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
+        pnl_yonetmenler.setVisible(false);
+        pnl_aktorler.setVisible(false);
+        home_pane.setVisible(false);
+        
+        pnl_settings.setVisible(true);
+
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+
+        this.user_name.setText(udao.user_name_getir(user_id));
+        this.user_mail.setText(udao.user_mail_getir(user_id));
+        this.user_password.setText(udao.user_password(user_id));
+
     }
 
     @Override

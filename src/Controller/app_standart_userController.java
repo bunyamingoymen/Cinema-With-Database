@@ -107,40 +107,4 @@ public class app_standart_userController extends Center implements Initializable
     private void seanslari_goster() {
 
     }
-
-    @FXML
-    private void close(MouseEvent event) {
-        usersDAO udao = new usersDAO();
-        int sonuc = udao.bilgi_sil();
-
-        if (sonuc == 1) {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.close();
-        }
-    }
-
-    @FXML
-    private void cikis(MouseEvent event) throws IOException {
-
-        usersDAO udao = new usersDAO();
-        int sonuc = udao.bilgi_sil();
-
-        if (sonuc == 1) {
-            Parent root = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-
-            scene.setFill(Color.TRANSPARENT);
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
-            stage.setTitle("Cinema-Admin");
-            Node node = (Node) event.getSource();
-            Stage stage2 = (Stage) node.getScene().getWindow();
-            stage2.close();
-        }
-    }
-
 }
