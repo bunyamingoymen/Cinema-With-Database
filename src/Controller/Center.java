@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import DAO.*;
 import entity.*;
+import javafx.scene.layout.AnchorPane;
 
 public class Center implements Initializable {
 
@@ -45,6 +46,9 @@ public class Center implements Initializable {
     @FXML
     protected Label guncelle_mesaj;
 
+    @FXML
+    protected AnchorPane pnl_settings;
+
     //program da aktif olarak çalışan paneler
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,7 +73,7 @@ public class Center implements Initializable {
         acik.setVisible(false);
         user_password.setText(tf_user_password.getText());
     }
-    
+
     @FXML
     protected void close(MouseEvent event) {
         usersDAO udao = new usersDAO();
@@ -109,7 +113,6 @@ public class Center implements Initializable {
         stage.setIconified(true);
     }
 
-    
     //bu metot ise kullnıcının çıkış yapmasına olanak sağlıyor. Yani kısacası app_standart_user.fxml ile app.fxml'i kapatıp login.fxml'i açıyor.
     @FXML
     protected void cikis(MouseEvent event) throws IOException {
@@ -132,7 +135,7 @@ public class Center implements Initializable {
         stage2.close();
 
     }
-    
+
     //setting pane'in içinde bulunan Güncelle mbutonunun metodudur. Yaptığı şey kısaca kullanıcının verilerini textfield gibi yerlerden alıp dosyaya kaydetme işlevini görüyor.
     @FXML
     protected void guncelle(ActionEvent event) {
@@ -184,7 +187,10 @@ public class Center implements Initializable {
     //Sinema Salnları için ortak olan değişkenler burada bulunuyor.
     //bu alanda sadece değişkenler tanımlanmıştır. Çünü hem appController'da hem de app_standart_userController'da ortak bir metot bulnmamaktadır ancka ortak değişkenler bulunmaktadır. 
     @FXML
-    protected Pane sinema_salonlari_pane, salon_bir_pane, salon_iki_pane, salon_uc_pane, salon_dort_pane;
+    protected Pane salon_bir_pane, salon_iki_pane, salon_uc_pane, salon_dort_pane;
+
+    @FXML
+    protected AnchorPane pnl_sinema_salonlari;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //bu alan scene builderdaki 1.salona denk gelmektedir. ve 129 tane koltuk bulunmaktadır.
     //Not: Sadece buradaki değişkenler ve metotların ne olduğu açıklanmıştır. Daha aşağıdaki salonlar buraya benzediği için açıklamalar bulunmamaktadır.

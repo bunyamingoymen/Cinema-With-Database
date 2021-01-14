@@ -1662,8 +1662,6 @@ public class appController extends Center implements Initializable {
     @FXML
     private TextField sinema_salonu_ekle_name, sinema_salonu_guncelle_name;
 
-    @FXML
-    private AnchorPane pnl_sinema_salonlari;
 
     //combovox'ın içine koltuk sayılarını yazmak için oluşturulan metot. Kısacası parametre olarak hangi combobox gelirse onun içine bizim daha önceden belirlediğimiz koltuk sayılarını yazıyor.
     private void koltuk_sayisi_combo(ComboBox<String> combo, String promp) {
@@ -2505,7 +2503,7 @@ public class appController extends Center implements Initializable {
     private Button btn1, btn2, btn3, btn4;
 
     @FXML
-    private AnchorPane home_pane, pnl_settings;
+    private AnchorPane home_pane;
 
     @FXML
     private Label vizyondaki_film_sayisi, eski_film_sayisi, haber_sayisi, kampanya_sayisi, sinema_salonu_sayisi, yonetmen_sayisi, aktor_sayisi, kullanici_sayisi;
