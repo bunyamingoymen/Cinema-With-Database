@@ -1,23 +1,13 @@
 package Controller;
 
 import DAO.usersDAO;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.layout.AnchorPane;
 
 public class app_standart_userController extends Center implements Initializable {
 
@@ -31,80 +21,46 @@ public class app_standart_userController extends Center implements Initializable
      */
     //Bu metod bu sınıfa özgü olan pane'leri tanımlıyor (appController ya da başka yerde kullanılmayan)
     @FXML
-    private Pane bilet_satin_al_pane, bilet_satin_al_uyari_pane, bilet_satin_al_filmi_sec_pane, bilet_satin_al_seans_sec_pane, bilet_satin_al_koltuk_sec_pane;
+    private AnchorPane pnl_abonelik_0;
+    
+    @FXML
+    private void vizyondaki_filmler_giris(ActionEvent event){
+        pnl_vizyondaki_filmler.setVisible(true);
+        
+        
+        pnl_settings.setVisible(false);
+        
+        vizyondaki_filmler_table();
+    }
+    
+    @FXML
+    private void vizyondaki_filmler_geri(MouseEvent event){
+        pnl_vizyondaki_filmler.setVisible(false);
+    }
 
     @FXML
-    private Label bilet_satin_al_uyari_mesaj, filmi_sec_uyari_mesaj, seans_sec_uyari_mesaj, bilet_satin_al_film_id, bilet_satin_al_salon_id, bilet_satin_al_seans_id, bilet_satin_al_buton_bilet_satin_al_uyari_mesaj;
-
-    @FXML
-    private ComboBox<String> filmleri_goster, seanslari_goster;
+    private void settings_giris(MouseEvent event) {
+        pnl_settings.setVisible(true);
+        
+        
+        pnl_vizyondaki_filmler.setVisible(false);
+        
+        usersDAO udao = new usersDAO();
+        
+        int user_id = udao.bilgi_oku();
+        
+        user_name.setText(udao.user_name_getir(user_id));
+        
+        user_mail.setText(udao.user_mail_getir(user_id));
+        
+        user_password.setText(udao.user_password(user_id));
+        
+        
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    //Bu metot sol tarafta bulunan Ana Sayfa yazısına tıklandığında ne yapılacağını söylüyor. Anasayfa pane'i dışında bütün pane'leri kapatıyor.
-    @FXML
-    private void home(MouseEvent event) {
-
-    }
-
-    @FXML
-    private void settings(MouseEvent event) {
-
-    }
-
-    //Sol tarafta bulunan Vizyondaki Filmler butonuna tıklandığında ne olacağını söylüyor
-    @FXML
-    private void vizyondai_filmler(ActionEvent event) {
-
-    }
-
-    //Sol tarafta bulunan Eski Filmler butonuna tıklandığında ne olacağını söylüyor.
-    @FXML
-    private void eski_filmler(ActionEvent event) {
-
-    }
-
-    //Sol tarafta bulunan kampanyalar butonuna tıklandığında ne olacağını söylüyor.
-    @FXML
-    private void kampanyalar(ActionEvent event) {
-
-    }
-
-    //Sol tarafta bulunan haberler butonuna tıklandığıdna ne olacağını söylüyor.
-    @FXML
-    private void haberler(ActionEvent event) {
-
-    }
-
-    //Sol tarafta bulunan Bilet satın al metodu tarafıntan aktif hale getirilen metotdur.
-    @FXML
-    private void bilet_satin_al(ActionEvent event) {
-
-    }
-
-    //bu metot bilet_Satin_al içinde bulunan filmi seç butonuna tıklandığında ne yapılacağını belirtiyor.
-    @FXML
-    private void filmi_sec(ActionEvent event) {
-
-    }
-
-    //Bu metot seans seç butonuna tıklandığında ne yapılacağını gösteriyor.
-    @FXML
-    private void seans_sec(ActionEvent event) {
-
-    }
-
-    //bu buton en son kademede bulunan(koltuk seçme kademesi) bilet al butonuna basıldığında aktif oluyor. 
-    @FXML
-    private void bilet_satin_al_buton_bilet_satin_al(ActionEvent event) {
-
-    }
-
-    //bu metot bilet satın al içindeki seanslari göster butonununa tıklandıktan sonra combo box'ın içini doldurmak için yazılmış bir metoddur.
-    private void seanslari_goster() {
-
-    }
 }

@@ -81,8 +81,19 @@ public class loginController implements Initializable {
 
                 switch (authority) {
                     case 0: {
-                        label.setText("Normal Kullanıcı Girişi Yaptınız");
+                        Parent root = FXMLLoader.load(getClass().getResource("/FXML/app_standart.fxml"));
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
 
+                        scene.setFill(Color.TRANSPARENT);
+                        stage.setScene(scene);
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.show();
+                        stage.setTitle("Cinema");
+                        Node node = (Node) event.getSource();
+                        Stage stage2 = (Stage) node.getScene().getWindow();
+                        stage2.close();
                         break;
                     }
                     case 1: {
@@ -164,10 +175,7 @@ public class loginController implements Initializable {
             slide.setToX(832);
             slide.play();
 
-            oturum_ac_paneli.setVisible(false);
             kayit_ol_paneli.setVisible(true);
-            sifremi_unuttum.setVisible(false);
-            kayit_olmadan.setVisible(false);
 
             acik2.setVisible(false);
             gizli2.setVisible(true);
@@ -180,6 +188,11 @@ public class loginController implements Initializable {
             slide.setOnFinished((e -> {
 
             }));
+
+            oturum_ac_paneli.setVisible(false);
+            sifremi_unuttum.setVisible(false);
+            kayit_olmadan.setVisible(false);
+
         } else if (ortadaki_btn.getText().equals("Giriş Yap")) {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.5));
@@ -189,15 +202,16 @@ public class loginController implements Initializable {
             slide.play();
 
             oturum_ac_paneli.setVisible(true);
-            kayit_ol_paneli.setVisible(false);
-            sifremi_unuttum.setVisible(true);
-            kayit_olmadan.setVisible(true);
 
             ortadaki_btn.setText("Kayıt Ol");
 
             slide.setOnFinished((e -> {
 
             }));
+
+            kayit_ol_paneli.setVisible(false);
+            sifremi_unuttum.setVisible(true);
+            kayit_olmadan.setVisible(true);
 
             yazi1.setText("Kayıtlı Üyemiz Değil misin?");
             yazi2.setText("Kayıt Ol Ve Sana Özel Fırsatlardan Yararlan");
@@ -210,7 +224,7 @@ public class loginController implements Initializable {
 
     //görünüş açısından gizlenen ve manuel olarak elle eklenen kapatma tuşunun methodu
     @FXML
-    private void close(MouseEvent event) {        
+    private void close(MouseEvent event) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
