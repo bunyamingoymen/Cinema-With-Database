@@ -252,6 +252,24 @@ public class Center implements Initializable {
 
         table_vizyondaki_filmler.setItems(sortedData);
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Haberler için ayrılmış kısım
+
+    @FXML
+    protected TextField filterField_haberler;
+
+    @FXML
+    protected TableColumn<haberler, String> haberler_title, haberler_haber, haberler_tarih, haberler_haber_kategorisi, haberler_hangi_kullanıcı;
+
+    @FXML
+    protected TableView<haberler> table_haberler;
+
+    @FXML
+    protected AnchorPane pnl_haberler;
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Sinema Salnları için ortak olan değişkenler burada bulunuyor.
     //bu alanda sadece değişkenler tanımlanmıştır. Çünü hem appController'da hem de app_standart_userController'da ortak bir metot bulnmamaktadır ancka ortak değişkenler bulunmaktadır. 

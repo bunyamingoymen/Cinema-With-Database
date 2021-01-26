@@ -77,7 +77,7 @@ public class loginController implements Initializable {
                 label.setText("Kullanıcı adı veya şifre hatalı");
             } else {
 
-                int authority = users_islemleri.user_yetki_bul(user_id);
+                int authority = users_islemleri.user_type_getir(user_id);
 
                 switch (authority) {
                     case 0: {

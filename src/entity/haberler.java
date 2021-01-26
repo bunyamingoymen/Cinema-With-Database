@@ -58,6 +58,15 @@ public class haberler {
         this.Haber_Kategorisi = Haber_Kategorisi;
     }
 
+    public haberler(String Title, String Haber, String Tarih, String Haber_Kategorisi) {
+        this.Title = Title;
+        this.Haber = Haber;
+        this.Tarih = Tarih;
+        this.Haber_Kategorisi = Haber_Kategorisi;
+    }
+    
+    
+
     public int getHaber_id() {
         return haber_id;
     }

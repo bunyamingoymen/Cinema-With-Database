@@ -106,30 +106,6 @@ public class usersDAO {
         return sonuc;
     }
 
-    public int user_yetki_bul(int id) {
-
-        int sonuc = -1;
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from users where user_id=" + id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("user_type");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 107  " + e.getMessage());;
-        }
-
-        return sonuc;
-    }
-
     public int user_name_sayaci(String user_name) {
 
         int sonuc = -1;

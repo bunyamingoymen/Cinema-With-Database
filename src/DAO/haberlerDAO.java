@@ -22,7 +22,8 @@ import util.DBConnector;
  * @author bgoymen
  */
 public class haberlerDAO {
-     public ObservableList<haberler> haberler_select(ObservableList<haberler> data, Pane haberler_sil_emin_misin_pane, Label haberler_silmekten_emin_haber_id) {
+
+    public ObservableList<haberler> haberler_select(ObservableList<haberler> data, Pane haberler_sil_emin_misin_pane, Label haberler_silmekten_emin_haber_id) {
 
         try {
             DBConnector d = new DBConnector();
@@ -43,7 +44,39 @@ public class haberlerDAO {
                 sil.setText("Sil");
                 sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
 
-                data.addAll(FXCollections.observableArrayList(new haberler(haber_id, hangi_kullanıcı_turu, Title, Haber, Tarih, Haber_Kategorisi, sil,haberler_silmekten_emin_haber_id ,haberler_sil_emin_misin_pane)));
+                data.addAll(FXCollections.observableArrayList(new haberler(haber_id, hangi_kullanıcı_turu, Title, Haber, Tarih, Haber_Kategorisi, sil, haberler_silmekten_emin_haber_id, haberler_sil_emin_misin_pane)));
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 179  " + e.getMessage());;
+        }
+
+        return data;
+    }
+
+    public ObservableList<haberler> haberler_select(ObservableList<haberler> data, int kullanici_turu) {
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from haberler";
+            ResultSet rs = st.executeQuery(komut);
+
+            while (rs.next()) {
+                if (rs.getInt("hangi_kullanici_turu") <= kullanici_turu) {
+                    String Title = rs.getString("Title");
+                    String Haber = rs.getString("Haber");
+                    String Tarih = rs.getString("Tarih");
+                    String Haber_Kategorisi = rs.getString("Haber_Kategorisi");
+
+                    data.addAll(FXCollections.observableArrayList(new haberler(Title, Haber, Tarih, Haber_Kategorisi)));
+                }
+
             }
 
             c.close();
@@ -148,8 +181,8 @@ public class haberlerDAO {
         return sonuc;
 
     }
-    
-        public int haberler_sil(int haber_id) {
+
+    public int haberler_sil(int haber_id) {
         int sonuc = 0;
 
         try {
@@ -158,7 +191,7 @@ public class haberlerDAO {
             Statement st = c.createStatement();
             String komut = "delete from haberler where haber_id=" + haber_id;
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
 
@@ -166,7 +199,6 @@ public class haberlerDAO {
             System.out.println("Hata kodu :184" + e.getMessage());;
         }
 
-   
         return sonuc;
 
     }

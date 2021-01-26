@@ -60,7 +60,7 @@ public class appController extends Center implements Initializable {
      */
     @FXML
     private Pane ust_pnl_vizyondaki_filmler, vizyondaki_filmler_ekle_pane, vizyondaki_filmler_degistir_pane, vizyondaki_filmler_degistir_pane_1, vizyondaki_filmler_degistir_pane_2, vizyondaki_filmler_degistir_sil_emin_misin;
-    
+
     @FXML
     private TextField vizyondaki_filmler_ekle_film_adi, vizyondaki_filmler_ekle_film_suresi, vizyondaki_filmler_ekle_film_type, vizyondaki_filmler_ekle_kalkis, vizyondaki_filmleri_degistir_sil_film_name, vizyondaki_filmleri_degistir_sil_film_suresi, vizyondaki_filmleri_degistir_sil_film_type, vizyondaki_filmleri_degistir_sil_kalkis;
 
@@ -1306,9 +1306,6 @@ public class appController extends Center implements Initializable {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      */
     @FXML
-    private AnchorPane pnl_haberler;
-
-    @FXML
     private Pane ust_pnl_haberler, haberler_ekle_pane, haberler_degistir_pane, haberler_degistir_pane_1, haberler_degistir_pane_2, haberler_sil_emin_misin_pane;
 
     @FXML
@@ -1318,16 +1315,10 @@ public class appController extends Center implements Initializable {
     private FontAwesomeIconView haberler_geri_tusu, haberler_ekle_geri_tusu, haberler_degistir_geri_tusu;
 
     @FXML
-    private TableColumn<haberler, String> haberler_title, haberler_haber, haberler_tarih, haberler_haber_kategorisi, haberler_hangi_kullanıcı;
-
-    @FXML
     private TableColumn<haberler, Button> haberler_sil;
 
     @FXML
-    private TableView<haberler> table_haberler;
-
-    @FXML
-    private TextField filterField_haberler, haberler_ekle_title, haberler_ekle_tarih, haberler_ekle_kategori, haberler_degistir_title, haberler_degistir_tarih, haberler_degistir_kategori;
+    private TextField haberler_ekle_title, haberler_ekle_tarih, haberler_ekle_kategori, haberler_degistir_title, haberler_degistir_tarih, haberler_degistir_kategori;
 
     @FXML
     private ComboBox<String> haberler_ekle_hangi_kullanici, haberler_degistir_hangi_kullanici, haberler_degistir_haberleri_getir;
@@ -1400,7 +1391,7 @@ public class appController extends Center implements Initializable {
         } else {
             String title = haberler_ekle_title.getText();
             String tarih = haberler_ekle_tarih.getText();
-            String kategori = haberler_ekle_haber.getText();
+            String kategori = haberler_ekle_kategori.getText();
             String haber = haberler_ekle_haber.getText();
             String hangi = haberler_ekle_hangi_kullanici.getValue();
 
@@ -1513,7 +1504,7 @@ public class appController extends Center implements Initializable {
         haberler_geri_tusu.setVisible(true);
         haberler_ekle_geri_tusu.setVisible(false);
 
-        haberler_table();
+        haberler_table_butonlu();
     }
 
     @FXML
@@ -1524,10 +1515,10 @@ public class appController extends Center implements Initializable {
         haberler_degistir_geri_tusu.setVisible(false);
         haberler_geri_tusu.setVisible(true);
 
-        haberler_table();
+        haberler_table_butonlu();
     }
 
-    private void haberler_table() {
+    private void haberler_table_butonlu() {
         haberlerDAO hdao = new haberlerDAO();
 
         ObservableList<haberler> data = FXCollections.observableArrayList();
@@ -1601,7 +1592,6 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private TextField sinema_salonu_ekle_name, sinema_salonu_guncelle_name;
-
 
     //combovox'ın içine koltuk sayılarını yazmak için oluşturulan metot. Kısacası parametre olarak hangi combobox gelirse onun içine bizim daha önceden belirlediğimiz koltuk sayılarını yazıyor.
     private void koltuk_sayisi_combo(ComboBox<String> combo, String promp) {
@@ -2565,7 +2555,7 @@ public class appController extends Center implements Initializable {
             haberler_ekle_pane.setVisible(false);
             haberler_degistir_pane.setVisible(false);
 
-            haberler_table();
+            haberler_table_butonlu();
 
         } else if (btn2.getText().equals("Aktörler")) {
             pnl_aktorler.setVisible(true);
@@ -2684,7 +2674,7 @@ public class appController extends Center implements Initializable {
         pnl_yonetmenler.setVisible(false);
         pnl_aktorler.setVisible(false);
         home_pane.setVisible(false);
-        
+
         pnl_settings.setVisible(true);
 
         usersDAO udao = new usersDAO();
