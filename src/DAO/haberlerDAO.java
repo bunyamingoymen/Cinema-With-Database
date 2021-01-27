@@ -176,7 +176,7 @@ public class haberlerDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu :183" + e.getMessage());;
+            System.out.println("Hata kodu :183" + e.getMessage());
         }
         return sonuc;
 

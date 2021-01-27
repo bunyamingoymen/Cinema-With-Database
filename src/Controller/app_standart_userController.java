@@ -244,20 +244,75 @@ public class app_standart_userController extends Center implements Initializable
                 break;
         }
     }
-    
+
     @FXML
-    private void abonelik_bir_satin_al(ActionEvent event){
-        
+    private void abonelik_bir_satin_al(ActionEvent event) {
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+        int abonelik_turu = 1;
+
+        abonelerDAO adao = new abonelerDAO();
+
+        int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
+
+        if (sonuc == 1) {
+            pnl_abonelik_0.setVisible(false);
+            pnl_abonelik_uyari_mesaj.setVisible(true);
+
+            pnl_abonelik_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
+        } else {
+            pnl_abonelik_0.setVisible(false);
+            pnl_abonelik_uyari_mesaj.setVisible(true);
+
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -6)");
+        }
+
     }
-    
+
     @FXML
-    private void abonelik_iki_satin_al(ActionEvent event){
-        
+    private void abonelik_iki_satin_al(ActionEvent event) {
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+        int abonelik_turu = 2;
+
+        abonelerDAO adao = new abonelerDAO();
+
+        int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
+
+        if (sonuc == 1) {
+            pnl_abonelik_0.setVisible(false);
+            pnl_abonelik_uyari_mesaj.setVisible(true);
+
+            pnl_abonelik_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
+        } else {
+            pnl_abonelik_0.setVisible(false);
+            pnl_abonelik_uyari_mesaj.setVisible(true);
+
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -6)");
+        }
     }
-    
+
     @FXML
-    private void abonelik_uc_satin_al(ActionEvent event){
-        
+    private void abonelik_uc_satin_al(ActionEvent event) {
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+        int abonelik_turu = 3;
+
+        abonelerDAO adao = new abonelerDAO();
+
+        int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
+
+        if (sonuc == 1) {
+            pnl_abonelik_0.setVisible(false);
+            pnl_abonelik_uyari_mesaj.setVisible(true);
+
+            pnl_abonelik_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
+        } else {
+            pnl_abonelik_0.setVisible(false);
+            pnl_abonelik_uyari_mesaj.setVisible(true);
+
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -6)");
+        }
     }
 
     @Override

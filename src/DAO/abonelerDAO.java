@@ -19,7 +19,7 @@ public class abonelerDAO {
 
     public int abonelik_turu_bul(int user_id) {
         int kac_tane = kac_tane_user_id_var(user_id);
-        
+
         switch (kac_tane) {
             case -1:
                 return -1;
@@ -55,8 +55,8 @@ public class abonelerDAO {
 
         return sonuc;
     }
-    
-        public int abone_type_getir(int id) {
+
+    public int abone_type_getir(int id) {
         int abone_type = 0;
         try {
             DBConnector d = new DBConnector();
@@ -76,4 +76,73 @@ public class abonelerDAO {
         }
         return abone_type;
     }
+
+    public int abonelik_turu_satin_al(int abonelik_turu, int user_id) {
+        int user_id_sayisi = kac_tane_user_id_var(user_id);
+
+        switch (user_id_sayisi) {
+            case -1:
+                return 0;
+            case 0:
+                return abonelik_turu_ekle(abonelik_turu, user_id);
+            case 1:
+                return abonelik_turu_guncelle(abonelik_turu, user_id);
+            default:
+                return 0;
+        }
+
+    }
+
+    public int abonelik_turu_ekle(int abonelik_turu, int user_id) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+
+            int kalan_ucretsiz_bilet_sayisi = 0;
+
+            switch (abonelik_turu) {
+                case 1:
+                    kalan_ucretsiz_bilet_sayisi = 2;
+                    break;
+                case 2:
+                    kalan_ucretsiz_bilet_sayisi = 3;
+                    break;
+                case 3:
+                    kalan_ucretsiz_bilet_sayisi = 6;
+                    break;
+                default:
+                    return 0;
+            }
+            String komut = "insert into aboneler (user_id,abone_type,kalan_ucretsiz_bilet_sayisi) values (" + user_id + "," + abonelik_turu + "," + kalan_ucretsiz_bilet_sayisi + ")";
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :304" + e.getMessage());;
+        }
+
+        return sonuc;
+    }
+
+    public int abonelik_turu_guncelle(int abonelik_turu, int user_id) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "update aboneler set abone_type = " + abonelik_turu + "' where user_id =" + user_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :305" + e.getMessage());
+        }
+        return sonuc;
+    }
+
 }
