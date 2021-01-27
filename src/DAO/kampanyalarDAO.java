@@ -58,6 +58,38 @@ public class kampanyalarDAO {
         return data;
     }
 
+    public ObservableList<kampanyalar> kampanyalar_select(ObservableList<kampanyalar> data, int kullanici_turu) {
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from kampanyalar";
+            ResultSet rs = st.executeQuery(komut);
+
+            while (rs.next()) {
+                if (rs.getInt("hangi_kullanici_turu") <= kullanici_turu) {
+                    String Title = rs.getString("Title");
+                    String Kampanya = rs.getString("Kampanya");
+                    String Tarih = rs.getString("Tarih");
+                    String Kampanya_Kategorisi = rs.getString("Kampanya_Kategorisi");
+
+                    data.addAll(FXCollections.observableArrayList(new kampanyalar(Title, Kampanya, Tarih, Kampanya_Kategorisi)));
+                }
+
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 302  " + e.getMessage());;
+        }
+
+        return data;
+    }
+
     public String[][] kampanyalar_combo_doldur() {
         String[][] arr = new String[kac_tane_kampanya_var()][2];
         try {
@@ -149,8 +181,8 @@ public class kampanyalarDAO {
         return sonuc;
 
     }
-    
-        public int kampanyalar_sil(int kampanya_id) {
+
+    public int kampanyalar_sil(int kampanya_id) {
         int sonuc = 0;
 
         try {
@@ -159,7 +191,7 @@ public class kampanyalarDAO {
             Statement st = c.createStatement();
             String komut = "delete from kampanyalar where kampanya_id=" + kampanya_id;
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
 
@@ -167,7 +199,6 @@ public class kampanyalarDAO {
             System.out.println("Hata kodu :178" + e.getMessage());;
         }
 
-   
         return sonuc;
 
     }

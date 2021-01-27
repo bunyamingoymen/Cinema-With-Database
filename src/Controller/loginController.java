@@ -185,13 +185,13 @@ public class loginController implements Initializable {
             yazi1.setText("Üyemiz Misin?");
             yazi2.setText("Hemen Hesabına giriş yap");
 
-            slide.setOnFinished((e -> {
-
-            }));
-
             oturum_ac_paneli.setVisible(false);
             sifremi_unuttum.setVisible(false);
             kayit_olmadan.setVisible(false);
+
+            slide.setOnFinished((e -> {
+
+            }));
 
         } else if (ortadaki_btn.getText().equals("Giriş Yap")) {
             TranslateTransition slide = new TranslateTransition();
@@ -205,13 +205,13 @@ public class loginController implements Initializable {
 
             ortadaki_btn.setText("Kayıt Ol");
 
-            slide.setOnFinished((e -> {
-
-            }));
-
             kayit_ol_paneli.setVisible(false);
             sifremi_unuttum.setVisible(true);
             kayit_olmadan.setVisible(true);
+
+            slide.setOnFinished((e -> {
+
+            }));
 
             yazi1.setText("Kayıtlı Üyemiz Değil misin?");
             yazi2.setText("Kayıt Ol Ve Sana Özel Fırsatlardan Yararlan");

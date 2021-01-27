@@ -1029,8 +1029,6 @@ public class appController extends Center implements Initializable {
     Kampanyalar
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      */
-    @FXML
-    private AnchorPane pnl_kampanyalar;
 
     @FXML
     private Pane ust_pnl_kampanyalar, kampanyalar_ekle_pane, kampanyalar_degistir_pane, kampanyalar_degistir_pane_1, kampanyalar_degistir_pane_2, kampanyalar_sil_emin_misin_pane;
@@ -1042,16 +1040,13 @@ public class appController extends Center implements Initializable {
     private FontAwesomeIconView kampanyalar_geri_tusu, kampanyalar_ekle_geri_tusu, kampanyalar_degistir_geri_tusu;
 
     @FXML
-    private TableColumn<kampanyalar, String> kampanyalar_title, kampanyalar_kampanya, kampanyalar_tarih, kampanyalar_kampanya_kategorisi, kampanyalar_hangi_kullanıcı;
+    private TableColumn<kampanyalar, String>kampanyalar_hangi_kullanıcı;
 
     @FXML
     private TableColumn<kampanyalar, Button> kampanyalar_sil;
 
     @FXML
-    private TableView<kampanyalar> table_kampanyalar;
-
-    @FXML
-    private TextField filterField_kampanyalar, kampanyalar_ekle_title, kampanyalar_ekle_tarih, kampanyalar_ekle_kategori, kampanyalar_degistir_title, kampanyalar_degistir_tarih, kampanyalar_degistir_kategori;
+    private TextField kampanyalar_ekle_title, kampanyalar_ekle_tarih, kampanyalar_ekle_kategori, kampanyalar_degistir_title, kampanyalar_degistir_tarih, kampanyalar_degistir_kategori;
 
     @FXML
     private ComboBox<String> kampanyalar_ekle_hangi_kullanici, kampanyalar_degistir_hangi_kullanici, kampanyalar_degistir_kampanyalari_getir;
@@ -1237,7 +1232,7 @@ public class appController extends Center implements Initializable {
         kampanyalar_geri_tusu.setVisible(true);
         kampanyalar_ekle_geri_tusu.setVisible(false);
 
-        kampanyalar_table();
+        kampanyalar_table_butonlu();
     }
 
     @FXML
@@ -1248,10 +1243,10 @@ public class appController extends Center implements Initializable {
         kampanyalar_degistir_geri_tusu.setVisible(false);
         kampanyalar_geri_tusu.setVisible(true);
 
-        kampanyalar_table();
+        kampanyalar_table_butonlu();
     }
 
-    private void kampanyalar_table() {
+    private void kampanyalar_table_butonlu() {
         kampanyalarDAO kdao = new kampanyalarDAO();
 
         ObservableList<kampanyalar> data = FXCollections.observableArrayList();
@@ -2487,7 +2482,7 @@ public class appController extends Center implements Initializable {
             kampanyalar_ekle_pane.setVisible(false);
             kampanyalar_degistir_pane.setVisible(false);
 
-            kampanyalar_table();
+            kampanyalar_table_butonlu();
 
         } else if (btn1.getText().equals("Yönetmenler")) {
 

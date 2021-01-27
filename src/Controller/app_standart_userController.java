@@ -2,8 +2,10 @@ package Controller;
 
 import DAO.abonelerDAO;
 import DAO.haberlerDAO;
+import DAO.kampanyalarDAO;
 import DAO.usersDAO;
 import entity.haberler;
+import entity.kampanyalar;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -37,6 +39,7 @@ public class app_standart_userController extends Center implements Initializable
 
         pnl_settings.setVisible(false);
         pnl_haberler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
 
         vizyondaki_filmler_table();
     }
@@ -52,6 +55,7 @@ public class app_standart_userController extends Center implements Initializable
 
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
 
         usersDAO udao = new usersDAO();
 
@@ -116,29 +120,88 @@ public class app_standart_userController extends Center implements Initializable
 
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
 
         usersDAO udao = new usersDAO();
         int user_id = udao.bilgi_oku();
-        
+
         abonelerDAO adao = new abonelerDAO();
         int abonelik = adao.abonelik_turu_bul(user_id);
 
         haberler_table_butonsuz(abonelik);
     }
 
-    
     @FXML
-    private void haberler_geri(MouseEvent event){
+    private void haberler_geri(MouseEvent event) {
         pnl_haberler.setVisible(false);
     }
+
+    private void kampanyalar_table_butonsuz(int kullanici_turu) {
+        kampanyalarDAO kdao = new kampanyalarDAO();
+
+        ObservableList<kampanyalar> data = FXCollections.observableArrayList();
+
+        data = kdao.kampanyalar_select(data, kullanici_turu);
+
+        kampanyalar_title.setCellValueFactory(new PropertyValueFactory("Title"));
+        kampanyalar_kampanya.setCellValueFactory(new PropertyValueFactory("Kampanya"));
+        kampanyalar_tarih.setCellValueFactory(new PropertyValueFactory("Tarih"));
+        kampanyalar_kampanya_kategorisi.setCellValueFactory(new PropertyValueFactory("Kampanya_Kategorisi"));
+
+        FilteredList<kampanyalar> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField_kampanyalar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kam -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (kam.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getKampanya().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (kam.getKampanya_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<kampanyalar> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_kampanyalar.comparatorProperty());
+
+        table_kampanyalar.setItems(sortedData);
+    }
+
     @FXML
     private void kampanyalar_giris(ActionEvent event) {
+        pnl_kampanyalar.setVisible(true);
 
-    }
-    
-    @FXML
-    private void kampanyalar_geri(MouseEvent event){
+        pnl_settings.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_haberler.setVisible(false);
         
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+        
+        abonelerDAO adao = new abonelerDAO();
+        int abonelik_turu = adao.abone_type_getir(user_id);
+                
+        kampanyalar_table_butonsuz(abonelik_turu);
+        
+    }
+
+    @FXML
+    private void kampanyalar_geri(MouseEvent event) {
+        pnl_kampanyalar.setVisible(false);
     }
 
     @Override

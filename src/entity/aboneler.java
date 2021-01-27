@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entity;
 
-/**
- *
- * @author bgoymen
- */
+
 public class aboneler {
+
     private int abone_id;
     private int user_id;
     private int abone_type;
+    private int kalan_ucretsiz_bilet_sayisi;
 
     public aboneler() {
     }
@@ -26,6 +21,13 @@ public class aboneler {
     public aboneler(int user_id, int abone_type) {
         this.user_id = user_id;
         this.abone_type = abone_type;
+    }
+
+    public aboneler(int abone_id, int user_id, int abone_type, int kalan_ucretsiz_bilet_sayisi) {
+        this.abone_id = abone_id;
+        this.user_id = user_id;
+        this.abone_type = abone_type;
+        this.kalan_ucretsiz_bilet_sayisi = kalan_ucretsiz_bilet_sayisi;
     }
 
     public int getAbone_id() {
@@ -51,6 +53,13 @@ public class aboneler {
     public void setAbone_type(int abone_type) {
         this.abone_type = abone_type;
     }
-    
-    
+
+    public int getKalan_ucretsiz_bilet_sayisi() {
+        return kalan_ucretsiz_bilet_sayisi;
+    }
+
+    public void setKalan_ucretsiz_bilet_sayisi(int kalan_ucretsiz_bilet_sayisi) {
+        this.kalan_ucretsiz_bilet_sayisi = kalan_ucretsiz_bilet_sayisi;
+    }
+
 }

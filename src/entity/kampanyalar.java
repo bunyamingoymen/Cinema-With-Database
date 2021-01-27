@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
  * @author bgoymen
  */
 public class kampanyalar {
+
     private int kampanya_id;
     private int hangi_kullanici_turu;
     private String Title;
@@ -33,7 +34,7 @@ public class kampanyalar {
         this.Tarih = Tarih;
         this.Kampanya_Kategorisi = Kampanya_Kategorisi;
         this.sil = sil;
-        
+
         sil.setOnAction(e -> {
             kampanyalar_silmekten_emin_kampanya_id.setText(String.valueOf(this.kampanya_id));
             kampanyalar_sil_emin_misin_pane.setVisible(true);
@@ -57,7 +58,12 @@ public class kampanyalar {
         this.Kampanya_Kategorisi = Kampanya_Kategorisi;
     }
 
-    
+    public kampanyalar(String Title, String Kampanya, String Tarih, String Kampanya_Kategorisi) {
+        this.Title = Title;
+        this.Kampanya = Kampanya;
+        this.Tarih = Tarih;
+        this.Kampanya_Kategorisi = Kampanya_Kategorisi;
+    }
 
     public int getKampanya_id() {
         return kampanya_id;
@@ -114,7 +120,5 @@ public class kampanyalar {
     public void setSil(Button sil) {
         this.sil = sil;
     }
-    
-    
-    
+
 }
