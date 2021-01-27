@@ -71,7 +71,7 @@ public class loginController implements Initializable {
 
             if ((user_id == -1) || (user_id == -2)) {
 
-                label.setText("Bir hata meydana geldi.Hata Kodu=" + user_id);
+                label.setText("Bir hata meydana geldi.Hata Kodu= -13");
 
             } else if (user_id == 0) {
                 label.setText("Kullanıcı adı veya şifre hatalı");
@@ -114,7 +114,7 @@ public class loginController implements Initializable {
                         break;
                     }
                     default:
-                        label.setText("Bir Hata Meydana Geldi. Hata kodu=-3");
+                        label.setText("Bir Hata Meydana Geldi. Hata kodu=-14");
                         break;
                 }
 

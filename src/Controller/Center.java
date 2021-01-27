@@ -183,7 +183,7 @@ public class Center implements Initializable {
             if (control == 1) {
                 guncelle_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
             } else {
-                guncelle_mesaj.setText("Bir Hata Meydana Geldi");
+                guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata kodu = -12)");
             }
         }
 

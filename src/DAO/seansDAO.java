@@ -6,7 +6,6 @@
 package DAO;
 
 import entity.seans;
-import entity.vizyondaki_filmler;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +42,7 @@ public class seansDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 206  " + e.getMessage());;
+            System.out.println("Hata kodu: 201  " + e.getMessage());;
         }
 
         return data;
@@ -71,7 +70,7 @@ public class seansDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 207  " + e.getMessage());;
+            System.out.println("Hata kodu: 202  " + e.getMessage());;
         }
 
         return null;
@@ -94,7 +93,7 @@ public class seansDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 208  " + e.getMessage());;
+            System.out.println("Hata kodu: 203  " + e.getMessage());;
         }
 
         return sonuc;
@@ -117,7 +116,7 @@ public class seansDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 209  " + e.getMessage());;
+            System.out.println("Hata kodu: 204  " + e.getMessage());;
         }
 
         return film_id;
@@ -140,7 +139,7 @@ public class seansDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 210  " + e.getMessage());;
+            System.out.println("Hata kodu: 205  " + e.getMessage());;
         }
 
         return salon_id;
@@ -163,7 +162,7 @@ public class seansDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 211  " + e.getMessage());;
+            System.out.println("Hata kodu: 206  " + e.getMessage());;
         }
 
         return saat;
@@ -186,7 +185,7 @@ public class seansDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 212  " + e.getMessage());;
+            System.out.println("Hata kodu: 207  " + e.getMessage());;
         }
 
         return sonuc;
@@ -214,7 +213,7 @@ public class seansDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :213" + e.getMessage());;
+            System.out.println("Hata kodu :208" + e.getMessage());;
         }
 
         return sonuc;
@@ -234,7 +233,7 @@ public class seansDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :214" + e.getMessage());;
+            System.out.println("Hata kodu :209" + e.getMessage());;
         }
 
         return sonuc;
@@ -261,7 +260,7 @@ public class seansDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :215" + e.getMessage());;
+            System.out.println("Hata kodu :210" + e.getMessage());;
         }
 
         return sonuc;

@@ -44,7 +44,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 131  " + e.getMessage());;
+            System.out.println("Hata kodu: 109  " + e.getMessage());;
         }
 
         return data;
@@ -68,7 +68,7 @@ public class eski_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :150" + e.getMessage());;
+            System.out.println("Hata kodu :110" + e.getMessage());;
         }
 
         if (sonuc == 1 && sonuc2 == 1) {
@@ -96,7 +96,7 @@ public class eski_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :151 " + e.getMessage());;
+            System.out.println("Hata kodu :111 " + e.getMessage());;
         }
 
         if ((sonuc == 1) && (sonuc_2 == 1)) {
@@ -120,7 +120,7 @@ public class eski_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :132" + e.getMessage());;
+            System.out.println("Hata kodu :112" + e.getMessage());;
         }
 
         return sonuc;
@@ -140,7 +140,7 @@ public class eski_filmlerDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu :147" + e.getMessage());;
+            System.out.println("Hata kodu :113" + e.getMessage());;
         }
         if ((sonuc1 == 1) && (sonuc2 == 1)) {
             return 1;
@@ -163,7 +163,7 @@ public class eski_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :144" + e.getMessage());;
+            System.out.println("Hata kodu :114" + e.getMessage());;
         }
 
         return sonuc;
@@ -195,7 +195,7 @@ public class eski_filmlerDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 133  " + e.getMessage());;
+            System.out.println("Hata kodu: 115 " + e.getMessage());;
         }
 
         return null;
@@ -218,7 +218,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 134  " + e.getMessage());;
+            System.out.println("Hata kodu: 116  " + e.getMessage());;
         }
 
         return sonuc;
@@ -241,7 +241,7 @@ public class eski_filmlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 135  " + e.getMessage());;
+            System.out.println("Hata kodu: 117  " + e.getMessage());;
         }
 
         return film_adi;
@@ -264,7 +264,7 @@ public class eski_filmlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 136  " + e.getMessage());;
+            System.out.println("Hata kodu: 118  " + e.getMessage());;
         }
 
         return film_type;
@@ -288,7 +288,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 137  " + e.getMessage());;
+            System.out.println("Hata kodu: 119  " + e.getMessage());;
         }
 
         return film_suresi;
@@ -312,7 +312,7 @@ public class eski_filmlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 146  " + e.getMessage());;
+            System.out.println("Hata kodu: 120  " + e.getMessage());;
         }
 
         return yonetmen_id;
@@ -337,7 +337,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 138  " + e.getMessage());;
+            System.out.println("Hata kodu: 121  " + e.getMessage());;
         }
 
         return name_surname;
@@ -361,7 +361,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 139  " + e.getMessage());;
+            System.out.println("Hata kodu: 122  " + e.getMessage());;
         }
 
         return hangi_abone;
@@ -385,7 +385,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 140  " + e.getMessage());;
+            System.out.println("Hata kodu: 123  " + e.getMessage());;
         }
 
         return odul;
@@ -408,7 +408,7 @@ public class eski_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 141  " + e.getMessage());;
+            System.out.println("Hata kodu: 124  " + e.getMessage());;
         }
         return film_id;
     }

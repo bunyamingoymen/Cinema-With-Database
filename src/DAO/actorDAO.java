@@ -63,7 +63,7 @@ public class actorDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 158  " + e.getMessage());
+            System.out.println("Hata kodu: 104  " + e.getMessage());
         }
 
         return data;
@@ -82,7 +82,7 @@ public class actorDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :159" + e.getMessage());;
+            System.out.println("Hata kodu :105" + e.getMessage());;
         }
         return sonuc;
     }
@@ -100,7 +100,7 @@ public class actorDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :160" + e.getMessage());;
+            System.out.println("Hata kodu :106" + e.getMessage());;
         }
         return sonuc;
     }
@@ -117,7 +117,7 @@ public class actorDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata Kodu: 161 " + e.getMessage());
+            System.out.println("Hata Kodu: 107 " + e.getMessage());
         }
 
         return sonuc;
@@ -140,7 +140,7 @@ public class actorDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 216  " + e.getMessage());;
+            System.out.println("Hata kodu: 108  " + e.getMessage());;
         }
 
         return sonuc;

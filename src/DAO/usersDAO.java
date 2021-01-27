@@ -31,7 +31,7 @@ public class usersDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 105" + e.getMessage());;
+            System.out.println("Hata kodu: 179" + e.getMessage());;
         }
 
         return sonuc;
@@ -100,7 +100,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 106  " + e.getMessage());;
+            System.out.println("Hata kodu: 180  " + e.getMessage());;
         }
 
         return sonuc;
@@ -124,7 +124,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 108  " + e.getMessage());;
+            System.out.println("Hata kodu: 181  " + e.getMessage());;
         }
 
         return sonuc;
@@ -149,7 +149,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 109  " + e.getMessage());;
+            System.out.println("Hata kodu: 182  " + e.getMessage());;
         }
 
         return sonuc;
@@ -174,7 +174,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 110  " + e.getMessage());;
+            System.out.println("Hata kodu: 183  " + e.getMessage());;
         }
 
         return password;
@@ -217,7 +217,7 @@ public class usersDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 130" + e.getMessage());;
+            System.out.println("Hata kodu: 184" + e.getMessage());;
         }
 
         return sonuc;
@@ -236,7 +236,7 @@ public class usersDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu :131" + e.getMessage());;
+            System.out.println("Hata kodu :185" + e.getMessage());;
         }
         return sonuc;
     }
@@ -258,7 +258,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 190" + e.getMessage());;
+            System.out.println("Hata kodu: 186" + e.getMessage());;
         }
 
         return bilgi;
@@ -282,7 +282,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 191" + e.getMessage());;
+            System.out.println("Hata kodu: 187" + e.getMessage());;
         }
 
         return user_type;
@@ -303,7 +303,7 @@ public class usersDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 221" + e.getMessage());;
+            System.out.println("Hata kodu: 188" + e.getMessage());;
         }
 
         return sonuc;
@@ -326,7 +326,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 217  " + e.getMessage());;
+            System.out.println("Hata kodu: 189  " + e.getMessage());;
         }
 
         return sonuc;
@@ -348,7 +348,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 218  " + e.getMessage());;
+            System.out.println("Hata kodu: 190  " + e.getMessage());;
         }
 
         return name;
@@ -370,7 +370,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 219  " + e.getMessage());;
+            System.out.println("Hata kodu: 191  " + e.getMessage());;
         }
 
         return name;
@@ -392,7 +392,7 @@ public class usersDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 220  " + e.getMessage());;
+            System.out.println("Hata kodu: 192  " + e.getMessage());;
         }
 
         return name;

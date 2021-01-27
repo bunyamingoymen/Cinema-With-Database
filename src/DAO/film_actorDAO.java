@@ -55,7 +55,7 @@ public class film_actorDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 163  " + e.getMessage());;
+            System.out.println("Hata kodu: 125  " + e.getMessage());;
         }
 
         return data;
@@ -73,7 +73,7 @@ public class film_actorDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata Kodu: 164 " + e.getMessage());
+            System.out.println("Hata Kodu: 126 " + e.getMessage());
         }
         return sonuc;
     }
@@ -90,7 +90,7 @@ public class film_actorDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata Kodu: 167 " + e.getMessage());
+            System.out.println("Hata Kodu: 127 " + e.getMessage());
         }
         return sonuc;
     }

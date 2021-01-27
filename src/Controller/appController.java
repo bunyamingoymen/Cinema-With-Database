@@ -1131,7 +1131,7 @@ public class appController extends Center implements Initializable {
             if (sonuc == 1) {
                 kampanyalar_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti");
             } else {
-                kampanyalar_ekle_uyari_mesaj.setText("Bir Hata Meydana Geldi Lütfen Daha Sonra Tekrar Deneyiniz.");
+                kampanyalar_ekle_uyari_mesaj.setText("Bir Hata Meydana Geldi. (Hata Kodu: -1)");
             }
         }
     }
@@ -1193,7 +1193,7 @@ public class appController extends Center implements Initializable {
             if (sonuc == 1) {
                 kampanyalar_degistir_uyari_mesaj_2.setText("İşlem Başarılı Bir Şekilde Gerçekleti.");
             } else {
-                kampanyalar_degistir_uyari_mesaj_2.setText("Bir Hata Meydaha Geldi. Lütfen Daha Sonra Tekrar Deneyiniz.");
+                kampanyalar_degistir_uyari_mesaj_2.setText("Bir Hata Meydaha Geldi (Hata Kodu = -2)");
             }
         }
     }
@@ -1214,7 +1214,7 @@ public class appController extends Center implements Initializable {
         if (sonuc == 1) {
             kampanyalar_table_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
         } else {
-            kampanyalar_table_uyari_mesaj.setText("Bir Hata Meydana geldi Lütfen Daha Sonra Tekrar Deneyiniz.");
+            kampanyalar_table_uyari_mesaj.setText("Bir Hata Meydana geldi (Hata Kodu = -3)");
         }
 
     }
@@ -1398,7 +1398,7 @@ public class appController extends Center implements Initializable {
             if (sonuc == 1) {
                 haberler_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti");
             } else {
-                haberler_ekle_uyari_mesaj.setText("Bir Hata Meydana Geldi Lütfen Daha Sonra Tekrar Deneyiniz.");
+                haberler_ekle_uyari_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu = -4)");
             }
         }
     }
@@ -1460,7 +1460,7 @@ public class appController extends Center implements Initializable {
             if (sonuc == 1) {
                 haberler_degistir_uyari_mesaj_2.setText("İşlem Başarılı Bir Şekilde Gerçekleti.");
             } else {
-                haberler_degistir_uyari_mesaj_2.setText("Bir Hata Meydaha Geldi. Lütfen Daha Sonra Tekrar Deneyiniz.");
+                haberler_degistir_uyari_mesaj_2.setText("Bir Hata Meydaha Geldi (Hata Kodu = -5)");
             }
         }
     }
@@ -1481,7 +1481,7 @@ public class appController extends Center implements Initializable {
         if (sonuc == 1) {
             haberler_table_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
         } else {
-            haberler_table_uyari_mesaj.setText("Bir Hata Meydana geldi Lütfen Daha Sonra Tekrar Deneyiniz.");
+            haberler_table_uyari_mesaj.setText("Bir Hata Meydana geldi (Hata Kodu = -6)");
         }
 
     }
@@ -1822,7 +1822,7 @@ public class appController extends Center implements Initializable {
                     sinema_salonu_guncelle_uyari_mesaj.setText("Aynı ada sahip başka bir salon bulunmakta. Lütfen farklı bir ad giriniz.");
                     break;
                 default:
-                    sinema_salonu_guncelle_uyari_mesaj.setText("Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz(Hata Kodu: 205)");
+                    sinema_salonu_guncelle_uyari_mesaj.setText("Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz(Hata Kodu: -7)");
                     break;
             }
 

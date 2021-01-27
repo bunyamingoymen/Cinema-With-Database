@@ -234,7 +234,7 @@ public class app_standart_userController extends Center implements Initializable
                 pnl_abonelik_0.setVisible(false);
                 pnl_abonelik_diger.setVisible(false);
 
-                pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi (Hata Kodu -5)");
+                pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi (Hata Kodu -8)");
                 break;
             default:
                 pnl_abonelik_diger.setVisible(true);
@@ -264,7 +264,7 @@ public class app_standart_userController extends Center implements Initializable
             pnl_abonelik_0.setVisible(false);
             pnl_abonelik_uyari_mesaj.setVisible(true);
 
-            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -6)");
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -9)");
         }
 
     }
@@ -288,7 +288,7 @@ public class app_standart_userController extends Center implements Initializable
             pnl_abonelik_0.setVisible(false);
             pnl_abonelik_uyari_mesaj.setVisible(true);
 
-            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -6)");
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -10)");
         }
     }
 
@@ -311,7 +311,7 @@ public class app_standart_userController extends Center implements Initializable
             pnl_abonelik_0.setVisible(false);
             pnl_abonelik_uyari_mesaj.setVisible(true);
 
-            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -6)");
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -11)");
         }
     }
 

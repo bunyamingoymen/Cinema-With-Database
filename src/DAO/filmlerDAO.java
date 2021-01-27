@@ -42,7 +42,7 @@ public class filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 100, " + e.getMessage());;
+            System.out.println("Hata kodu: 128, " + e.getMessage());;
         }
 
         return id;
@@ -66,7 +66,7 @@ public class filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 101  " + e.getMessage());;
+            System.out.println("Hata kodu: 129  " + e.getMessage());;
         }
 
         return film_adi;
@@ -89,7 +89,7 @@ public class filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 102  " + e.getMessage());;
+            System.out.println("Hata kodu: 130  " + e.getMessage());;
         }
 
         return film_type;
@@ -112,7 +112,7 @@ public class filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 103  " + e.getMessage());;
+            System.out.println("Hata kodu: 131  " + e.getMessage());;
         }
 
         return film_suresi;
@@ -135,7 +135,7 @@ public class filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 104  " + e.getMessage());;
+            System.out.println("Hata kodu: 132  " + e.getMessage());;
         }
 
         return yonetmen_id;
@@ -154,7 +154,7 @@ public class filmlerDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu :149" + e.getMessage());;
+            System.out.println("Hata kodu :133" + e.getMessage());;
         }
 
         return sonuc;
@@ -185,7 +185,7 @@ public class filmlerDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 165  " + e.getMessage());;
+            System.out.println("Hata kodu: 134  " + e.getMessage());;
         }
 
         return null;
@@ -208,7 +208,7 @@ public class filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 166  " + e.getMessage());;
+            System.out.println("Hata kodu: 135  " + e.getMessage());;
         }
 
         return sonuc;

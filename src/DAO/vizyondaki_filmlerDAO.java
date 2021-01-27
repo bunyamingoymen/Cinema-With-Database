@@ -42,7 +42,7 @@ public class vizyondaki_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :111" + e.getMessage());;
+            System.out.println("Hata kodu :163" + e.getMessage());;
         }
 
         if (sonuc == 1 && sonuc2 == 1) {
@@ -70,7 +70,7 @@ public class vizyondaki_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :112" + e.getMessage());;
+            System.out.println("Hata kodu :164" + e.getMessage());;
         }
 
         if ((sonuc == 1) && (sonuc_2 == 1)) {
@@ -94,7 +94,7 @@ public class vizyondaki_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :113" + e.getMessage());;
+            System.out.println("Hata kodu :165" + e.getMessage());;
         }
 
         return sonuc;
@@ -113,7 +113,7 @@ public class vizyondaki_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :148" + e.getMessage());;
+            System.out.println("Hata kodu :166" + e.getMessage());;
         }
 
         return sonuc;
@@ -144,7 +144,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 114  " + e.getMessage());;
+            System.out.println("Hata kodu: 167  " + e.getMessage());;
         }
 
         return data;
@@ -165,7 +165,7 @@ public class vizyondaki_filmlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :115" + e.getMessage());;
+            System.out.println("Hata kodu :168" + e.getMessage());;
         }
         if ((sonuc1 == 1) && (sonuc2 == 1)) {
             return 1;
@@ -200,7 +200,7 @@ public class vizyondaki_filmlerDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 116  " + e.getMessage());;
+            System.out.println("Hata kodu: 169  " + e.getMessage());;
         }
 
         return null;
@@ -223,7 +223,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 117  " + e.getMessage());;
+            System.out.println("Hata kodu: 170  " + e.getMessage());;
         }
 
         return sonuc;
@@ -247,7 +247,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 118  " + e.getMessage());;
+            System.out.println("Hata kodu: 171  " + e.getMessage());;
         }
 
         return film_adi;
@@ -269,7 +269,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 119  " + e.getMessage());;
+            System.out.println("Hata kodu: 172  " + e.getMessage());;
         }
         return film_id;
     }
@@ -292,7 +292,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 120  " + e.getMessage());;
+            System.out.println("Hata kodu: 173  " + e.getMessage());;
         }
 
         return film_type;
@@ -316,7 +316,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 121  " + e.getMessage());;
+            System.out.println("Hata kodu: 174  " + e.getMessage());;
         }
 
         return film_suresi;
@@ -341,7 +341,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 122  " + e.getMessage());;
+            System.out.println("Hata kodu: 175  " + e.getMessage());;
         }
 
         return name_surname;
@@ -363,7 +363,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 123  " + e.getMessage());;
+            System.out.println("Hata kodu: 176  " + e.getMessage());;
         }
 
         return kalkis;
@@ -385,7 +385,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 124  " + e.getMessage());;
+            System.out.println("Hata kodu: 177  " + e.getMessage());;
         }
         return kullanici_puani;
     }
@@ -406,7 +406,7 @@ public class vizyondaki_filmlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 125  " + e.getMessage());;
+            System.out.println("Hata kodu: 178  " + e.getMessage());;
         }
         return seans_sayisi_getir;
     }
