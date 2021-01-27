@@ -52,7 +52,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="89.0" prefWidth="328.0" styleClass="button6" text="Abonelik" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#abonelik_giris" prefHeight="89.0" prefWidth="328.0" styleClass="button6" text="Abonelik" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BULLHORN" size="20" />
                </graphic>
@@ -6247,224 +6247,241 @@
             <Label fx:id="guncelle_mesaj" layoutX="293.0" layoutY="516.0" textFill="RED" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnl_abonelik_0" layoutX="324.0" layoutY="55.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
+      <AnchorPane fx:id="pnl_abonelik" layoutX="324.0" layoutY="55.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
          <children>
-            <Pane layoutX="14.0" layoutY="69.0" prefHeight="516.0" prefWidth="275.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 25;">
+            <Label fx:id="pnl_abonelik_uyari_mesaj" layoutX="265.0" layoutY="183.0" prefHeight="331.0" prefWidth="444.0" textAlignment="RIGHT" textFill="RED" visible="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="pnl_abonelik_0" prefHeight="711.0" prefWidth="1058.0" visible="false">
                <children>
-                  <Label layoutX="58.0" prefHeight="104.0" prefWidth="160.0" text="Abonelik 1" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="7.0" layoutY="87.0" prefHeight="35.0" prefWidth="102.0" text="Özellikleri:" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="49.0" layoutY="122.0" prefHeight="35.0" prefWidth="190.0" text="3 ayda 2 tane ücretsiz bilet" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="49.0" layoutY="157.0" prefHeight="35.0" prefWidth="190.0" text="Size Özel Bazı Eski Filmleri" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="50.0" layoutY="175.0" prefHeight="35.0" prefWidth="190.0" text="izleme şansı" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="32.0" layoutY="77.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="32.0" layoutY="112.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="105.0" layoutY="255.0" prefHeight="51.0" prefWidth="85.0" text="19.99" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="113.0" layoutY="234.0" prefHeight="73.0" prefWidth="50.0" text="/" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="66.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="71.0" layoutY="307.0" prefHeight="52.0" prefWidth="102.0" text="14.99" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="37.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="58.0" layoutY="432.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="160.0" styleClass="button5" text="Satın Al" textFill="WHITE" />
-                  <Label layoutX="83.0" layoutY="359.0" text="\%25 indirim" textFill="WHITE" />
-               </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Pane>
-            <Pane layoutX="341.0" layoutY="48.0" prefHeight="599.0" prefWidth="344.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 25;">
-               <children>
-                  <Label layoutX="84.0" layoutY="14.0" prefHeight="104.0" prefWidth="176.0" text="Abonelik 2" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="28.0" />
-                     </font>
-                  </Label>
-                  <Pane layoutX="3.0" layoutY="-48.0" prefHeight="89.0" prefWidth="338.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 25;">
+                  <Pane layoutX="23.0" layoutY="98.0" prefHeight="516.0" prefWidth="275.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 25;">
                      <children>
-                        <Label layoutX="21.0" layoutY="8.0" prefHeight="73.0" prefWidth="317.0" text="En Çok Tercih Edilen" textFill="WHITE">
+                        <Label layoutX="58.0" prefHeight="104.0" prefWidth="160.0" text="Abonelik 1" textFill="WHITE">
                            <font>
                               <Font name="Comic Sans MS" size="28.0" />
                            </font>
                         </Label>
+                        <Label layoutX="7.0" layoutY="87.0" prefHeight="35.0" prefWidth="102.0" text="Özellikleri:" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="122.0" prefHeight="35.0" prefWidth="190.0" text="3 ayda 2 tane ücretsiz bilet" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="157.0" prefHeight="35.0" prefWidth="190.0" text="Size Özel Bazı Eski Filmleri" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="50.0" layoutY="175.0" prefHeight="35.0" prefWidth="190.0" text="izleme şansı" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="77.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="112.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="105.0" layoutY="255.0" prefHeight="51.0" prefWidth="85.0" text="19.99" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="113.0" layoutY="234.0" prefHeight="73.0" prefWidth="50.0" text="/" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="66.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="71.0" layoutY="307.0" prefHeight="52.0" prefWidth="102.0" text="14.99" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="37.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="58.0" layoutY="432.0" mnemonicParsing="false" onAction="#abonelik_bir_satin_al" prefHeight="31.0" prefWidth="160.0" styleClass="button5" text="Satın Al" textFill="WHITE" />
+                        <Label layoutX="83.0" layoutY="359.0" text="\%25 indirim" textFill="WHITE" />
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Pane>
+                  <Pane layoutX="346.0" layoutY="63.0" prefHeight="599.0" prefWidth="344.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 25;">
+                     <children>
+                        <Label layoutX="84.0" layoutY="14.0" prefHeight="104.0" prefWidth="176.0" text="Abonelik 2" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="28.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="3.0" layoutY="-48.0" prefHeight="89.0" prefWidth="338.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 25;">
+                           <children>
+                              <Label layoutX="21.0" layoutY="8.0" prefHeight="73.0" prefWidth="317.0" text="En Çok Tercih Edilen" textFill="WHITE">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="28.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Label layoutX="40.0" layoutY="107.0" prefHeight="35.0" prefWidth="125.0" text="Özellikleri:" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="22.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="35.0" layoutY="489.0" mnemonicParsing="false" onAction="#abonelik_iki_satin_al" prefHeight="73.0" prefWidth="275.0" styleClass="button5" text="Satın Al" textFill="WHITE" />
+                        <Label layoutX="61.0" layoutY="162.0" prefHeight="35.0" prefWidth="204.0" text="Abonelik 1'e dahil olan her şey" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="59.0" layoutY="187.0" prefHeight="35.0" prefWidth="262.0" text="Abonelik 1'e dahil olandan daha fazla" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="56.0" layoutY="207.0" prefHeight="35.0" prefWidth="212.0" text="eski film izleme şansı" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="46.0" layoutY="151.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="46.0" layoutY="118.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="322.0" prefHeight="51.0" prefWidth="85.0" text="29.99" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="155.0" layoutY="297.0" prefHeight="73.0" prefWidth="50.0" text="/" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="66.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="93.0" layoutY="364.0" prefHeight="60.0" prefWidth="141.0" text="19.99" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="42.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="103.0" layoutY="419.0" text="\%33 indirim" textFill="WHITE" />
+                        <Label layoutX="60.0" layoutY="137.0" prefHeight="35.0" prefWidth="262.0" text="3 ayda 3 tane ücretsiz bilet" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="45.0" layoutY="91.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Pane>
+                  <Pane layoutX="743.0" layoutY="98.0" prefHeight="516.0" prefWidth="275.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 25;">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <children>
+                        <Label layoutX="68.0" layoutY="7.0" prefHeight="104.0" prefWidth="160.0" text="Abonelik 3" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="7.0" layoutY="92.0" prefHeight="35.0" prefWidth="102.0" text="Özellikleri:" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="64.0" layoutY="132.0" prefHeight="35.0" prefWidth="204.0" text="3 ayda 6 tane ücretsiz bilet" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="63.0" layoutY="218.0" prefHeight="35.0" prefWidth="190.0" text="Bütün eski filmleri izleme" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="61.0" layoutY="236.0" prefHeight="35.0" prefWidth="190.0" text="şansı" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="112.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="48.0" layoutY="87.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="107.0" layoutY="284.0" prefHeight="51.0" prefWidth="85.0" text="59.99" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="116.0" layoutY="263.0" prefHeight="73.0" prefWidth="50.0" text="/" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="66.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="83.0" layoutY="333.0" prefHeight="52.0" prefWidth="102.0" text="29.99" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="37.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="61.0" layoutY="431.0" mnemonicParsing="false" onAction="#abonelik_uc_satin_al" prefHeight="31.0" prefWidth="160.0" styleClass="button5" text="Satın Al" textFill="WHITE" />
+                        <Label layoutX="95.0" layoutY="385.0" text="\%50 indirim" textFill="WHITE" />
+                        <Label layoutX="64.0" layoutY="158.0" prefHeight="35.0" prefWidth="204.0" text="Abonelik 1'e dahil olan her şey" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="48.0" layoutY="175.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="49.0" layoutY="141.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="57.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="64.0" layoutY="185.0" prefHeight="35.0" prefWidth="204.0" text="Abonelik 2'e dahil olan her şey" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="40.0" layoutY="107.0" prefHeight="35.0" prefWidth="125.0" text="Özellikleri:" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="22.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="35.0" layoutY="489.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="275.0" styleClass="button5" text="Satın Al" textFill="WHITE" />
-                  <Label layoutX="61.0" layoutY="162.0" prefHeight="35.0" prefWidth="204.0" text="Abonelik 1'e dahil olan her şey" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="59.0" layoutY="187.0" prefHeight="35.0" prefWidth="262.0" text="Abonelik 1'e dahil olandan daha fazla" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="56.0" layoutY="207.0" prefHeight="35.0" prefWidth="212.0" text="eski film izleme şansı" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="46.0" layoutY="151.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="46.0" layoutY="118.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="139.0" layoutY="322.0" prefHeight="51.0" prefWidth="85.0" text="29.99" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="155.0" layoutY="297.0" prefHeight="73.0" prefWidth="50.0" text="/" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="66.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="93.0" layoutY="364.0" prefHeight="60.0" prefWidth="141.0" text="19.99" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="42.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="103.0" layoutY="419.0" text="\%33 indirim" textFill="WHITE" />
-                  <Label layoutX="60.0" layoutY="137.0" prefHeight="35.0" prefWidth="262.0" text="3 ayda 3 tane ücretsiz bilet" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="45.0" layoutY="91.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
                </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Pane>
-            <Pane layoutX="728.0" layoutY="89.0" prefHeight="516.0" prefWidth="275.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 25;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            </AnchorPane>
+            <AnchorPane fx:id="pnl_abonelik_diger" prefHeight="711.0" prefWidth="1058.0" visible="false">
                <children>
-                  <Label layoutX="68.0" layoutY="7.0" prefHeight="104.0" prefWidth="160.0" text="Abonelik 3" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="7.0" layoutY="92.0" prefHeight="35.0" prefWidth="102.0" text="Özellikleri:" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="64.0" layoutY="132.0" prefHeight="35.0" prefWidth="204.0" text="3 ayda 6 tane ücretsiz bilet" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="63.0" layoutY="218.0" prefHeight="35.0" prefWidth="190.0" text="Bütün eski filmleri izleme" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="61.0" layoutY="236.0" prefHeight="35.0" prefWidth="190.0" text="şansı" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="49.0" layoutY="112.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="48.0" layoutY="87.0" prefHeight="66.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="107.0" layoutY="284.0" prefHeight="51.0" prefWidth="85.0" text="59.99" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="116.0" layoutY="263.0" prefHeight="73.0" prefWidth="50.0" text="/" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="66.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="83.0" layoutY="333.0" prefHeight="52.0" prefWidth="102.0" text="29.99" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="37.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="61.0" layoutY="431.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="160.0" styleClass="button5" text="Satın Al" textFill="WHITE" />
-                  <Label layoutX="95.0" layoutY="385.0" text="\%50 indirim" textFill="WHITE" />
-                  <Label layoutX="64.0" layoutY="158.0" prefHeight="35.0" prefWidth="204.0" text="Abonelik 1'e dahil olan her şey" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="48.0" layoutY="175.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="49.0" layoutY="141.0" prefHeight="4.0" prefWidth="30.0" text="." textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="57.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="64.0" layoutY="185.0" prefHeight="35.0" prefWidth="204.0" text="Abonelik 2'e dahil olan her şey" textFill="WHITE">
-                     <font>
-                        <Font name="Comic Sans MS" size="14.0" />
-                     </font>
-                  </Label>
+                  <Button layoutX="770.0" layoutY="43.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="253.0" styleClass="button5" text="Abonelik Türü Değiştir" textFill="WHITE" />
+                  <Button layoutX="433.0" layoutY="197.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Filmleri İzle" textFill="WHITE" />
+                  <Button layoutX="433.0" layoutY="340.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Kampanyaları Gör" textFill="WHITE" />
+                  <Button layoutX="433.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Haberleri Gör" textFill="WHITE" />
                </children>
-            </Pane>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnl_haberler" layoutX="328.0" layoutY="61.0" prefHeight="711.0" prefWidth="1065.0" visible="false">

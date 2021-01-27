@@ -15,6 +15,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +32,20 @@ public class app_standart_userController extends Center implements Initializable
      */
     //Bu metod bu sınıfa özgü olan pane'leri tanımlıyor (appController ya da başka yerde kullanılmayan)
     @FXML
-    private AnchorPane pnl_abonelik_0;
+    private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger;
+
+    @FXML
+    private Label pnl_abonelik_uyari_mesaj;
+
+    private int abonelik_turu_getir() {
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+
+        abonelerDAO adao = new abonelerDAO();
+        int abonelik = adao.abonelik_turu_bul(user_id);
+
+        return abonelik;
+    }
 
     @FXML
     private void vizyondaki_filmler_giris(ActionEvent event) {
@@ -40,6 +54,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_settings.setVisible(false);
         pnl_haberler.setVisible(false);
         pnl_kampanyalar.setVisible(false);
+        pnl_abonelik.setVisible(false);
 
         vizyondaki_filmler_table();
     }
@@ -56,6 +71,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
         pnl_kampanyalar.setVisible(false);
+        pnl_abonelik.setVisible(false);
 
         usersDAO udao = new usersDAO();
 
@@ -121,14 +137,9 @@ public class app_standart_userController extends Center implements Initializable
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_kampanyalar.setVisible(false);
+        pnl_abonelik.setVisible(false);
 
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
-
-        abonelerDAO adao = new abonelerDAO();
-        int abonelik = adao.abonelik_turu_bul(user_id);
-
-        haberler_table_butonsuz(abonelik);
+        haberler_table_butonsuz(abonelik_turu_getir());
     }
 
     @FXML
@@ -188,20 +199,65 @@ public class app_standart_userController extends Center implements Initializable
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
-        
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
-        
-        abonelerDAO adao = new abonelerDAO();
-        int abonelik_turu = adao.abone_type_getir(user_id);
-                
-        kampanyalar_table_butonsuz(abonelik_turu);
-        
+        pnl_abonelik.setVisible(false);
+
+        kampanyalar_table_butonsuz(abonelik_turu_getir());
+
     }
 
     @FXML
     private void kampanyalar_geri(MouseEvent event) {
         pnl_kampanyalar.setVisible(false);
+    }
+
+    @FXML
+    private void abonelik_giris(ActionEvent event) {
+        pnl_abonelik.setVisible(true);
+
+        pnl_kampanyalar.setVisible(false);
+        pnl_settings.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_haberler.setVisible(false);
+
+        int abonelik_turu = abonelik_turu_getir();
+
+        switch (abonelik_turu) {
+            case 0:
+                pnl_abonelik_0.setVisible(true);
+
+                pnl_abonelik_diger.setVisible(false);
+                pnl_abonelik_uyari_mesaj.setVisible(false);
+                break;
+            case -1:
+                pnl_abonelik_uyari_mesaj.setVisible(true);
+
+                pnl_abonelik_0.setVisible(false);
+                pnl_abonelik_diger.setVisible(false);
+
+                pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi (Hata Kodu -5)");
+                break;
+            default:
+                pnl_abonelik_diger.setVisible(true);
+
+                pnl_abonelik_0.setVisible(false);
+                pnl_abonelik_uyari_mesaj.setVisible(false);
+                break;
+        }
+    }
+    
+    @FXML
+    private void abonelik_bir_satin_al(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void abonelik_iki_satin_al(ActionEvent event){
+        
+    }
+    
+    @FXML
+    private void abonelik_uc_satin_al(ActionEvent event){
+        
     }
 
     @Override
