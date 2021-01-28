@@ -52,7 +52,7 @@ public class haberlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 136  " + e.getMessage());;
+            System.out.println("Hata kodu: 136 - " + e.getMessage());
         }
 
         return data;
@@ -84,7 +84,7 @@ public class haberlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 137  " + e.getMessage());;
+            System.out.println("Hata kodu: 137 - " + e.getMessage());
         }
 
         return data;
@@ -115,7 +115,7 @@ public class haberlerDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 138  " + e.getMessage());;
+            System.out.println("Hata kodu: 138 - " + e.getMessage());
         }
 
         return null;
@@ -138,7 +138,7 @@ public class haberlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 139  " + e.getMessage());;
+            System.out.println("Hata kodu: 139 - " + e.getMessage());
         }
 
         return sonuc;
@@ -158,7 +158,7 @@ public class haberlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :140" + e.getMessage());;
+            System.out.println("Hata kodu :140 - " + e.getMessage());
         }
 
         return sonuc;
@@ -176,7 +176,7 @@ public class haberlerDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu :141" + e.getMessage());
+            System.out.println("Hata kodu :141 - " + e.getMessage());
         }
         return sonuc;
 
@@ -196,7 +196,7 @@ public class haberlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :142" + e.getMessage());;
+            System.out.println("Hata kodu :142 - " + e.getMessage());
         }
 
         return sonuc;
@@ -219,7 +219,7 @@ public class haberlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 143  " + e.getMessage());;
+            System.out.println("Hata kodu: 143 - " + e.getMessage());
         }
 
         return hangi_kullanici;
@@ -241,7 +241,7 @@ public class haberlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 144  " + e.getMessage());;
+            System.out.println("Hata kodu: 144 - " + e.getMessage());
         }
 
         return title;
@@ -263,7 +263,7 @@ public class haberlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 145  " + e.getMessage());;
+            System.out.println("Hata kodu: 145 - " + e.getMessage());
         }
 
         return haber;
@@ -285,7 +285,7 @@ public class haberlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 146  " + e.getMessage());;
+            System.out.println("Hata kodu: 146 - " + e.getMessage());
         }
 
         return tarih;
@@ -307,7 +307,7 @@ public class haberlerDAO {
             st.close();
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 147  " + e.getMessage());;
+            System.out.println("Hata kodu: 147 - " + e.getMessage());
         }
 
         return kategori;

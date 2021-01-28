@@ -39,7 +39,7 @@ public class satin_alinan_biletlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 211  " + e.getMessage());;
+            System.out.println("Hata kodu: 211 - " + e.getMessage());
         }
 
         return arr;
@@ -62,7 +62,7 @@ public class satin_alinan_biletlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 212  " + e.getMessage());;
+            System.out.println("Hata kodu: 212 - " + e.getMessage());
         }
 
         return sonuc;

@@ -50,7 +50,7 @@ public class abonelerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 100  " + e.getMessage());;
+            System.out.println("Hata kodu: 100 - " + e.getMessage());
         }
 
         return sonuc;
@@ -72,7 +72,7 @@ public class abonelerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 101  " + e.getMessage());;
+            System.out.println("Hata kodu: 101 - " + e.getMessage());
         }
         return abone_type;
     }
@@ -122,7 +122,7 @@ public class abonelerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :102" + e.getMessage());;
+            System.out.println("Hata kodu :102 - " + e.getMessage());
         }
 
         return sonuc;
@@ -155,7 +155,7 @@ public class abonelerDAO {
             c.close();
             st.close();
         } catch (SQLException e) {
-            System.out.println("Hata kodu :103" + e.getMessage());
+            System.out.println("Hata kodu :103 - " + e.getMessage());
         }
         return sonuc;
     }

@@ -34,7 +34,7 @@ public class yesil_olanDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :159" + e.getMessage());;
+            System.out.println("Hata kodu :159 - " + e.getMessage());
         }
 
         return sonuc;
@@ -54,7 +54,7 @@ public class yesil_olanDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :160" + e.getMessage());;
+            System.out.println("Hata kodu :160 - " + e.getMessage());
         }
 
         return sonuc;
@@ -77,7 +77,7 @@ public class yesil_olanDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 161  " + e.getMessage());;
+            System.out.println("Hata kodu: 161 - " + e.getMessage());
         }
 
         return sonuc;
@@ -97,7 +97,7 @@ public class yesil_olanDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :162" + e.getMessage());;
+            System.out.println("Hata kodu :162 - " + e.getMessage());
         }
 
         return sonuc;

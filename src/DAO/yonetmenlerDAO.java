@@ -36,7 +36,7 @@ public class yonetmenlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :148" + e.getMessage());;
+            System.out.println("Hata kodu :148 - " + e.getMessage());
         }
 
         return sonuc;
@@ -66,7 +66,7 @@ public class yonetmenlerDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 149  " + e.getMessage());;
+            System.out.println("Hata kodu: 149 - " + e.getMessage());
         }
 
         return null;
@@ -89,7 +89,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 150  " + e.getMessage());;
+            System.out.println("Hata kodu: 150 - " + e.getMessage());
         }
 
         return sonuc;
@@ -113,7 +113,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 151  " + e.getMessage());;
+            System.out.println("Hata kodu: 151 - " + e.getMessage());
         }
         return sonuc;
     }
@@ -135,7 +135,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 152  " + e.getMessage());;
+            System.out.println("Hata kodu: 152 - " + e.getMessage());
         }
 
         return name_surname;
@@ -164,7 +164,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 153  " + e.getMessage());;
+            System.out.println("Hata kodu: 153 - " + e.getMessage());
         }
 
         return data;
@@ -187,7 +187,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 154  " + e.getMessage());;
+            System.out.println("Hata kodu: 154 - " + e.getMessage());
         }
 
         return name;
@@ -210,7 +210,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 155  " + e.getMessage());;
+            System.out.println("Hata kodu: 155 - " + e.getMessage());
         }
 
         return surname;
@@ -233,7 +233,7 @@ public class yonetmenlerDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 156  " + e.getMessage());;
+            System.out.println("Hata kodu: 156 - " + e.getMessage());
         }
 
         return film_sayisi;
@@ -253,7 +253,7 @@ public class yonetmenlerDAO {
             st.close();
             
         } catch (SQLException e) {
-            System.out.println("Hata kodu :157" + e.getMessage());;
+            System.out.println("Hata kodu :157 - " + e.getMessage());
         }
         return sonuc;
     }
@@ -271,7 +271,7 @@ public class yonetmenlerDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :158" + e.getMessage());;
+            System.out.println("Hata kodu :158 - " + e.getMessage());
         }
 
         return sonuc;

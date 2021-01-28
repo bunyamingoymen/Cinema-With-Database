@@ -42,7 +42,7 @@ public class sinema_salonlariDAO {
             return arr;
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 193  " + e.getMessage());;
+            System.out.println("Hata kodu: 193 - " + e.getMessage());
         }
 
         return null;
@@ -65,7 +65,7 @@ public class sinema_salonlariDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 194  " + e.getMessage());;
+            System.out.println("Hata kodu: 194 - " + e.getMessage());
         }
 
         return sonuc;
@@ -87,7 +87,7 @@ public class sinema_salonlariDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 195  " + e.getMessage());;
+            System.out.println("Hata kodu: 195 - " + e.getMessage());
         }
         return koltuk_sayisi;
     }
@@ -113,7 +113,7 @@ public class sinema_salonlariDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :196" + e.getMessage());;
+            System.out.println("Hata kodu :196 - " + e.getMessage());
         }
 
         return sonuc;
@@ -135,7 +135,7 @@ public class sinema_salonlariDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 197  " + e.getMessage());;
+            System.out.println("Hata kodu: 197 - " + e.getMessage());
         }
         return name;
     }
@@ -154,7 +154,7 @@ public class sinema_salonlariDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :198" + e.getMessage());;
+            System.out.println("Hata kodu :198 - " + e.getMessage());
         }
 
         return sonuc;
@@ -182,7 +182,7 @@ public class sinema_salonlariDAO {
             st.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu :199" + e.getMessage());;
+            System.out.println("Hata kodu :199 - " + e.getMessage());
         }
 
         return sonuc;
@@ -206,7 +206,7 @@ public class sinema_salonlariDAO {
             rs.close();
 
         } catch (SQLException e) {
-            System.out.println("Hata kodu: 200  " + e.getMessage());;
+            System.out.println("Hata kodu: 200 - " + e.getMessage());
         }
 
         return sonuc;
