@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import DAO.*;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -285,6 +286,9 @@ public class Center implements Initializable {
     
     @FXML
     protected AnchorPane pnl_kampanyalar;
+    
+    @FXML
+    protected FontAwesomeIconView kampanyalar_geri_tusu;
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     

@@ -1037,7 +1037,7 @@ public class appController extends Center implements Initializable {
     private GridPane kampanyalar_grid;
 
     @FXML
-    private FontAwesomeIconView kampanyalar_geri_tusu, kampanyalar_ekle_geri_tusu, kampanyalar_degistir_geri_tusu;
+    private FontAwesomeIconView kampanyalar_ekle_geri_tusu, kampanyalar_degistir_geri_tusu;
 
     @FXML
     private TableColumn<kampanyalar, String>kampanyalar_hangi_kullanıcı;

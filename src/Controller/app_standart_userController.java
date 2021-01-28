@@ -4,6 +4,7 @@ import DAO.abonelerDAO;
 import DAO.haberlerDAO;
 import DAO.kampanyalarDAO;
 import DAO.usersDAO;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.haberler;
 import entity.kampanyalar;
 import java.net.URL;
@@ -34,12 +35,15 @@ public class app_standart_userController extends Center implements Initializable
     //Bu metod bu sınıfa özgü olan pane'leri tanımlıyor (appController ya da başka yerde kullanılmayan)
     @FXML
     private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger;
-    
+
     @FXML
     private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sahip_uc;
 
     @FXML
     private Label pnl_abonelik_uyari_mesaj;
+
+    @FXML
+    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu;
 
     private int abonelik_turu_getir() {
         usersDAO udao = new usersDAO();
@@ -205,6 +209,9 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_abonelik.setVisible(false);
 
+        kampanyalar_geri_tusu.setVisible(true);
+        sana_ozel_kampanyalar_geri_tusu.setVisible(false);
+
         kampanyalar_table_butonsuz(abonelik_turu_getir());
 
     }
@@ -216,13 +223,17 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void abonelik_giris(ActionEvent event) {
+        abonelik_giris_ortak();
+    }
+
+    private void abonelik_giris_ortak() {
         pnl_abonelik.setVisible(true);
 
         pnl_kampanyalar.setVisible(false);
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
-        
+
         abonelik_sahip_bir.setVisible(false);
         abonelik_sahip_iki.setVisible(false);
         abonelik_sahip_uc.setVisible(false);
@@ -327,16 +338,16 @@ public class app_standart_userController extends Center implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-    
+
     @FXML
-    private void abonelik_degistir(ActionEvent event){
+    private void abonelik_degistir(ActionEvent event) {
         pnl_abonelik_0.setVisible(true);
-        
+
         pnl_abonelik_diger.setVisible(false);
         pnl_abonelik_uyari_mesaj.setVisible(false);
-        
+
         int abonelik_turu = abonelik_turu_getir();
-        
+
         switch (abonelik_turu) {
             case 0:
                 abonelik_sahip_bir.setVisible(false);
@@ -345,31 +356,51 @@ public class app_standart_userController extends Center implements Initializable
                 break;
             case 1:
                 abonelik_sahip_bir.setVisible(true);
-                
+
                 abonelik_sahip_iki.setVisible(false);
                 abonelik_sahip_uc.setVisible(false);
                 break;
             case 2:
                 abonelik_sahip_iki.setVisible(true);
-                
+
                 abonelik_sahip_bir.setVisible(false);
                 abonelik_sahip_uc.setVisible(false);
                 break;
             case 3:
                 abonelik_sahip_uc.setVisible(true);
-                
+
                 abonelik_sahip_bir.setVisible(false);
                 abonelik_sahip_iki.setVisible(false);
                 break;
             default:
                 pnl_abonelik_uyari_mesaj.setVisible(true);
-                
+
                 pnl_abonelik_diger.setVisible(false);
                 pnl_abonelik_0.setVisible(false);
-                
+
                 pnl_abonelik_uyari_mesaj.setText("Bir hata Meydana geldi (Hata Kodu: -15)");
                 break;
         }
+    }
+
+    @FXML
+    private void sana_ozel_kampanyalar_giris(ActionEvent event) {
+        pnl_kampanyalar.setVisible(true);
+
+        pnl_settings.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_abonelik.setVisible(false);
+
+        kampanyalar_geri_tusu.setVisible(false);
+        sana_ozel_kampanyalar_geri_tusu.setVisible(true);
+
+        kampanyalar_table_butonsuz(abonelik_turu_getir());
+    }
+
+    @FXML
+    private void sana_ozel_kampanyalar_geri(MouseEvent event) {
+        abonelik_giris_ortak();
     }
 
 }
