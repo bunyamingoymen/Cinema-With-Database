@@ -6495,7 +6495,7 @@
                   <Button layoutX="433.0" layoutY="197.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Filmleri İzle" textFill="WHITE" />
                   <Button layoutX="433.0" layoutY="340.0" mnemonicParsing="false" onAction="#sana_ozel_kampanyalar_giris" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Kampanyaları Gör" textFill="WHITE" />
                   <Button layoutX="433.0" layoutY="492.0" mnemonicParsing="false" onAction="#sana_ozel_haberler_giris" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Haberleri Gör" textFill="WHITE" />
-                  <Button layoutX="770.0" layoutY="656.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="253.0" styleClass="button8" text="Aboneliği İptal Et" textFill="WHITE" />
+                  <Button layoutX="770.0" layoutY="656.0" mnemonicParsing="false" onAction="#abonelik_iptal_et" prefHeight="30.0" prefWidth="253.0" styleClass="button8" text="Aboneliği İptal Et" textFill="WHITE" />
                </children>
             </AnchorPane>
          </children>

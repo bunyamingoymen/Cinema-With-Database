@@ -411,14 +411,34 @@ public class app_standart_userController extends Center implements Initializable
     @FXML
     private void sana_ozel_haberler_giris(ActionEvent event) {
         haberler_giris_ortak();
-        
+
         haberler_geri_tusu.setVisible(false);
         sana_ozel_haberler_geri_tusu.setVisible(true);
     }
-    
+
     @FXML
-    private void sana_ozel_haberler_geri(MouseEvent event){
+    private void sana_ozel_haberler_geri(MouseEvent event) {
         abonelik_giris_ortak();
+    }
+
+    @FXML
+    private void abonelik_iptal_et(ActionEvent event) {
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+
+        abonelerDAO adao = new abonelerDAO();
+
+        int sonuc = adao.aboneler_sil(user_id);
+
+        pnl_abonelik_0.setVisible(false);
+        pnl_abonelik_diger.setVisible(false);
+        pnl_abonelik_uyari_mesaj.setVisible(true);
+
+        if (sonuc == 1) {
+            pnl_abonelik_uyari_mesaj.setText("İşlem Başarılı Bir şekilde gerçekleştirildi.");
+        } else {
+            pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -16)");
+        }
     }
 
 }

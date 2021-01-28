@@ -159,5 +159,26 @@ public class abonelerDAO {
         }
         return sonuc;
     }
+    
+        public int aboneler_sil(int user_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from aboneler where user_id=" + user_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :225 - " + e.getMessage());
+        }
+
+        return sonuc;
+
+    }
 
 }
