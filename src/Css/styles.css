@@ -146,6 +146,25 @@ Button{
     -fx-background-radius :  20;
 }
 
+.button8
+{
+    -fx-background-color : #FA2C56;
+    -fx-background-radius :  20;
+}
+
+.button8:hover
+{
+    -fx-background-color :  #f96180;
+    -fx-background-radius :  20;
+}
+
+
+.button8:pressed
+{
+    -fx-background-color : #A80022;
+    -fx-background-radius :  20;
+}
+
 .table-view .column-header,
 .table-view .column-header-background .filler{
     -fx-cell-size: 20;
