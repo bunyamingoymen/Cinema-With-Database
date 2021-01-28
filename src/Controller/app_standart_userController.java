@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 public class app_standart_userController extends Center implements Initializable {
 
@@ -33,6 +34,9 @@ public class app_standart_userController extends Center implements Initializable
     //Bu metod bu sınıfa özgü olan pane'leri tanımlıyor (appController ya da başka yerde kullanılmayan)
     @FXML
     private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger;
+    
+    @FXML
+    private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sayip_uc;
 
     @FXML
     private Label pnl_abonelik_uyari_mesaj;
@@ -218,6 +222,10 @@ public class app_standart_userController extends Center implements Initializable
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
+        
+        abonelik_sahip_bir.setVisible(false);
+        abonelik_sahip_iki.setVisible(false);
+        abonelik_sayip_uc.setVisible(false);
 
         int abonelik_turu = abonelik_turu_getir();
 
