@@ -43,7 +43,7 @@ public class app_standart_userController extends Center implements Initializable
     private Label pnl_abonelik_uyari_mesaj;
 
     @FXML
-    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu;
+    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu;
 
     private int abonelik_turu_getir() {
         usersDAO udao = new usersDAO();
@@ -140,6 +140,13 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void haberler_giris(ActionEvent event) {
+        haberler_giris_ortak();
+
+        haberler_geri_tusu.setVisible(true);
+        sana_ozel_haberler_geri_tusu.setVisible(false);
+    }
+
+    private void haberler_giris_ortak() {
         pnl_haberler.setVisible(true);
 
         pnl_settings.setVisible(false);
@@ -202,6 +209,14 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void kampanyalar_giris(ActionEvent event) {
+        kampanyalar_giris_ortak();
+
+        kampanyalar_geri_tusu.setVisible(true);
+        sana_ozel_kampanyalar_geri_tusu.setVisible(false);
+
+    }
+
+    private void kampanyalar_giris_ortak() {
         pnl_kampanyalar.setVisible(true);
 
         pnl_settings.setVisible(false);
@@ -209,11 +224,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_abonelik.setVisible(false);
 
-        kampanyalar_geri_tusu.setVisible(true);
-        sana_ozel_kampanyalar_geri_tusu.setVisible(false);
-
         kampanyalar_table_butonsuz(abonelik_turu_getir());
-
     }
 
     @FXML
@@ -385,21 +396,28 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void sana_ozel_kampanyalar_giris(ActionEvent event) {
-        pnl_kampanyalar.setVisible(true);
-
-        pnl_settings.setVisible(false);
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_haberler.setVisible(false);
-        pnl_abonelik.setVisible(false);
+        kampanyalar_giris_ortak();
 
         kampanyalar_geri_tusu.setVisible(false);
         sana_ozel_kampanyalar_geri_tusu.setVisible(true);
 
-        kampanyalar_table_butonsuz(abonelik_turu_getir());
     }
 
     @FXML
     private void sana_ozel_kampanyalar_geri(MouseEvent event) {
+        abonelik_giris_ortak();
+    }
+
+    @FXML
+    private void sana_ozel_haberler_giris(ActionEvent event) {
+        haberler_giris_ortak();
+        
+        haberler_geri_tusu.setVisible(false);
+        sana_ozel_haberler_geri_tusu.setVisible(true);
+    }
+    
+    @FXML
+    private void sana_ozel_haberler_geri(MouseEvent event){
         abonelik_giris_ortak();
     }
 

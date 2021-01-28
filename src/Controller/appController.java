@@ -1307,7 +1307,7 @@ public class appController extends Center implements Initializable {
     private GridPane haberler_grid;
 
     @FXML
-    private FontAwesomeIconView haberler_geri_tusu, haberler_ekle_geri_tusu, haberler_degistir_geri_tusu;
+    private FontAwesomeIconView haberler_ekle_geri_tusu, haberler_degistir_geri_tusu;
 
     @FXML
     private TableColumn<haberler, Button> haberler_sil;

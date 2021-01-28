@@ -267,6 +267,9 @@ public class Center implements Initializable {
 
     @FXML
     protected AnchorPane pnl_haberler;
+    
+    @FXML
+    protected FontAwesomeIconView haberler_geri_tusu;
 
 
 

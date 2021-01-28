@@ -6494,7 +6494,7 @@
                   <Button layoutX="770.0" layoutY="43.0" mnemonicParsing="false" onAction="#abonelik_degistir" prefHeight="76.0" prefWidth="253.0" styleClass="button8" text="Abonelik Türü Değiştir" textFill="WHITE" />
                   <Button layoutX="433.0" layoutY="197.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Filmleri İzle" textFill="WHITE" />
                   <Button layoutX="433.0" layoutY="340.0" mnemonicParsing="false" onAction="#sana_ozel_kampanyalar_giris" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Kampanyaları Gör" textFill="WHITE" />
-                  <Button layoutX="433.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Haberleri Gör" textFill="WHITE" />
+                  <Button layoutX="433.0" layoutY="492.0" mnemonicParsing="false" onAction="#sana_ozel_haberler_giris" prefHeight="31.0" prefWidth="253.0" styleClass="button2" text="Sana Özel Haberleri Gör" textFill="WHITE" />
                   <Button layoutX="770.0" layoutY="656.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="253.0" styleClass="button8" text="Aboneliği İptal Et" textFill="WHITE" />
                </children>
             </AnchorPane>
@@ -6510,6 +6510,7 @@
                      </font>
                   </Text>
                   <FontAwesomeIconView fx:id="haberler_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="30.0" layoutY="92.0" onMouseClicked="#haberler_geri" rotate="180.0" size="40.0" />
+                  <FontAwesomeIconView fx:id="sana_ozel_haberler_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#sana_ozel_haberler_geri" rotate="180.0" size="40.0" visible="false" />
                </children>
             </Pane>
             <GridPane fx:id="haberler_grid" layoutX="22.0" layoutY="197.0" prefHeight="487.0" prefWidth="991.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="197.0">
