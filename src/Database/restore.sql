@@ -74,7 +74,8 @@ SET default_table_access_method = heap;
 CREATE TABLE public.aboneler (
     abone_id integer NOT NULL,
     user_id integer,
-    abone_type integer
+    abone_type integer,
+    kalan_ucretsiz_bilet_sayisi integer
 );
 
 
@@ -531,9 +532,9 @@ ALTER TABLE public.yonetmenler ALTER COLUMN yonetmen_id ADD GENERATED ALWAYS AS 
 -- Data for Name: aboneler; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.aboneler (abone_id, user_id, abone_type) FROM stdin;
+COPY public.aboneler (abone_id, user_id, abone_type, kalan_ucretsiz_bilet_sayisi) FROM stdin;
 \.
-COPY public.aboneler (abone_id, user_id, abone_type) FROM '$$PATH$$/3130.dat';
+COPY public.aboneler (abone_id, user_id, abone_type, kalan_ucretsiz_bilet_sayisi) FROM '$$PATH$$/3130.dat';
 
 --
 -- Data for Name: actor; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -651,7 +652,7 @@ COPY public.yonetmenler (yonetmen_id, ad, soyad, film_sayisi) FROM '$$PATH$$/313
 -- Name: Aboneler_abone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Aboneler_abone_id_seq"', 4, true);
+SELECT pg_catalog.setval('public."Aboneler_abone_id_seq"', 6, true);
 
 
 --
@@ -665,35 +666,35 @@ SELECT pg_catalog.setval('public."Actor_id_seq"', 16, true);
 -- Name: Haberler_haber_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Haberler_haber_id_seq"', 1, true);
+SELECT pg_catalog.setval('public."Haberler_haber_id_seq"', 6, true);
 
 
 --
 -- Name: Kampanyalar_kampanya_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Kampanyalar_kampanya_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Kampanyalar_kampanya_id_seq"', 12, true);
 
 
 --
 -- Name: Seans_seans_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Seans_seans_id_seq"', 11, true);
+SELECT pg_catalog.setval('public."Seans_seans_id_seq"', 12, true);
 
 
 --
 -- Name: Sinema_Salonlari_salon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Sinema_Salonlari_salon_id_seq"', 6, true);
+SELECT pg_catalog.setval('public."Sinema_Salonlari_salon_id_seq"', 7, true);
 
 
 --
 -- Name: Users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Users_user_id_seq"', 13, true);
+SELECT pg_catalog.setval('public."Users_user_id_seq"', 15, true);
 
 
 --
@@ -735,7 +736,7 @@ SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 8, 
 -- Name: yesil_olan_yesil_olan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.yesil_olan_yesil_olan_id_seq', 24, true);
+SELECT pg_catalog.setval('public.yesil_olan_yesil_olan_id_seq', 31, true);
 
 
 --
