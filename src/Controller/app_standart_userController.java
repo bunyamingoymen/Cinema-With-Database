@@ -36,7 +36,7 @@ public class app_standart_userController extends Center implements Initializable
     private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger;
     
     @FXML
-    private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sayip_uc;
+    private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sahip_uc;
 
     @FXML
     private Label pnl_abonelik_uyari_mesaj;
@@ -225,7 +225,7 @@ public class app_standart_userController extends Center implements Initializable
         
         abonelik_sahip_bir.setVisible(false);
         abonelik_sahip_iki.setVisible(false);
-        abonelik_sayip_uc.setVisible(false);
+        abonelik_sahip_uc.setVisible(false);
 
         int abonelik_turu = abonelik_turu_getir();
 
@@ -326,6 +326,50 @@ public class app_standart_userController extends Center implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+    
+    @FXML
+    private void abonelik_degistir(ActionEvent event){
+        pnl_abonelik_0.setVisible(true);
+        
+        pnl_abonelik_diger.setVisible(false);
+        pnl_abonelik_uyari_mesaj.setVisible(false);
+        
+        int abonelik_turu = abonelik_turu_getir();
+        
+        switch (abonelik_turu) {
+            case 0:
+                abonelik_sahip_bir.setVisible(false);
+                abonelik_sahip_iki.setVisible(false);
+                abonelik_sahip_uc.setVisible(false);
+                break;
+            case 1:
+                abonelik_sahip_bir.setVisible(true);
+                
+                abonelik_sahip_iki.setVisible(false);
+                abonelik_sahip_uc.setVisible(false);
+                break;
+            case 2:
+                abonelik_sahip_iki.setVisible(true);
+                
+                abonelik_sahip_bir.setVisible(false);
+                abonelik_sahip_uc.setVisible(false);
+                break;
+            case 3:
+                abonelik_sahip_uc.setVisible(true);
+                
+                abonelik_sahip_bir.setVisible(false);
+                abonelik_sahip_iki.setVisible(false);
+                break;
+            default:
+                pnl_abonelik_uyari_mesaj.setVisible(true);
+                
+                pnl_abonelik_diger.setVisible(false);
+                pnl_abonelik_0.setVisible(false);
+                
+                pnl_abonelik_uyari_mesaj.setText("Bir hata Meydana geldi (Hata Kodu: -15)");
+                break;
+        }
     }
 
 }

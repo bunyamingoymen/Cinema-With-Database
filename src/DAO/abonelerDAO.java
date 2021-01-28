@@ -134,7 +134,22 @@ public class abonelerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "update aboneler set abone_type = " + abonelik_turu + "' where user_id =" + user_id;
+            int kalan_ucretsiz_bilet_sayisi = 0;
+            
+            switch (abonelik_turu) {
+                case 1:
+                    kalan_ucretsiz_bilet_sayisi = 2;
+                    break;
+                case 2:
+                    kalan_ucretsiz_bilet_sayisi = 3;
+                    break;
+                case 3:
+                    kalan_ucretsiz_bilet_sayisi = 6;
+                    break;
+                default:
+                    return 0;
+            }
+            String komut = "update aboneler set abone_type = " + abonelik_turu + ", kalan_ucretsiz_bilet_sayisi = "+ kalan_ucretsiz_bilet_sayisi +" where user_id =" + user_id;
             sonuc = st.executeUpdate(komut);
 
             c.close();
