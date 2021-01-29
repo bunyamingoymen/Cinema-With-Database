@@ -248,6 +248,7 @@ public class app_standart_userController extends Center implements Initializable
         abonelik_sahip_bir.setVisible(false);
         abonelik_sahip_iki.setVisible(false);
         abonelik_sahip_uc.setVisible(false);
+        pnl_eski_filmler.setVisible(false);
 
         int abonelik_turu = abonelik_turu_getir();
 
