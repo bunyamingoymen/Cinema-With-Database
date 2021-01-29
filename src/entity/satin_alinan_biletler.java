@@ -16,6 +16,11 @@ public class satin_alinan_biletler {
     private int user_id;
     private String koltuk_name;
 
+    private String film_name;
+    private String salon_name;
+    private String saat;
+    private String yonetmen_ad_soyad;
+
     public satin_alinan_biletler() {
     }
 
@@ -30,6 +35,14 @@ public class satin_alinan_biletler {
         this.seans_id = seans_id;
         this.user_id = user_id;
         this.koltuk_name = koltuk_name;
+    }
+
+    public satin_alinan_biletler(String film_name, String salon_name, String saat, String ad, String soyad, String koltuk_name) {
+        this.koltuk_name = koltuk_name;
+        this.film_name = film_name;
+        this.salon_name = salon_name;
+        this.saat = saat;
+        this.yonetmen_ad_soyad = ad + " " + soyad;
     }
 
     public int getSatin_alinan_bilet_id() {
@@ -62,6 +75,38 @@ public class satin_alinan_biletler {
 
     public void setKoltuk_name(String koltuk_name) {
         this.koltuk_name = koltuk_name;
+    }
+
+    public String getFilm_name() {
+        return film_name;
+    }
+
+    public void setFilm_name(String film_name) {
+        this.film_name = film_name;
+    }
+
+    public String getSalon_name() {
+        return salon_name;
+    }
+
+    public void setSalon_name(String salon_name) {
+        this.salon_name = salon_name;
+    }
+
+    public String getSaat() {
+        return saat;
+    }
+
+    public void setSaat(String saat) {
+        this.saat = saat;
+    }
+
+    public String getYonetmen_ad_soyad() {
+        return yonetmen_ad_soyad;
+    }
+
+    public void setYonetmen_ad_soyad(String yonetmen_ad_soyad) {
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
     }
 
 }

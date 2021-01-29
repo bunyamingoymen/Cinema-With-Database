@@ -4,11 +4,13 @@ import DAO.abonelerDAO;
 import DAO.eski_filmlerDAO;
 import DAO.haberlerDAO;
 import DAO.kampanyalarDAO;
+import DAO.satin_alinan_biletlerDAO;
 import DAO.usersDAO;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.eski_filmler;
 import entity.haberler;
 import entity.kampanyalar;
+import entity.satin_alinan_biletler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -19,6 +21,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -36,7 +41,7 @@ public class app_standart_userController extends Center implements Initializable
      */
     //Bu metod bu sınıfa özgü olan pane'leri tanımlıyor (appController ya da başka yerde kullanılmayan)
     @FXML
-    private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger;
+    private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger, pnl_biletlerim;
 
     @FXML
     private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sahip_uc;
@@ -45,16 +50,29 @@ public class app_standart_userController extends Center implements Initializable
     private Label pnl_abonelik_uyari_mesaj;
 
     @FXML
-    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu;
+    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu, biletlerim_geri_tusu;
+
+    @FXML
+    private TableView<satin_alinan_biletler> table_biletlerim;
+
+    @FXML
+    private TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk;
+
+    @FXML
+    private TextField filterField_biletlerim;
 
     private int abonelik_turu_getir() {
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
-
         abonelerDAO adao = new abonelerDAO();
-        int abonelik = adao.abonelik_turu_bul(user_id);
+        int abonelik = adao.abonelik_turu_bul(user_id_getir());
 
         return abonelik;
+    }
+
+    private int user_id_getir() {
+        usersDAO udao = new usersDAO();
+        int user_id = udao.bilgi_oku();
+        
+        return user_id;
     }
 
     @FXML
@@ -65,6 +83,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_kampanyalar.setVisible(false);
         pnl_abonelik.setVisible(false);
+        pnl_biletlerim.setVisible(false);
 
         vizyondaki_filmler_table();
     }
@@ -82,10 +101,11 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_kampanyalar.setVisible(false);
         pnl_abonelik.setVisible(false);
+        pnl_biletlerim.setVisible(false);
 
         usersDAO udao = new usersDAO();
 
-        int user_id = udao.bilgi_oku();
+        int user_id = user_id_getir();
 
         user_name.setText(udao.user_name_getir(user_id));
 
@@ -155,6 +175,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_kampanyalar.setVisible(false);
         pnl_abonelik.setVisible(false);
+        pnl_biletlerim.setVisible(false);
 
         haberler_table_butonsuz(abonelik_turu_getir());
     }
@@ -225,6 +246,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
         pnl_abonelik.setVisible(false);
+        pnl_biletlerim.setVisible(false);
 
         kampanyalar_table_butonsuz(abonelik_turu_getir());
     }
@@ -246,6 +268,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
+        pnl_biletlerim.setVisible(false);
 
         abonelik_sahip_bir.setVisible(false);
         abonelik_sahip_iki.setVisible(false);
@@ -280,8 +303,7 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void abonelik_bir_satin_al(ActionEvent event) {
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
+        int user_id = user_id_getir();
         int abonelik_turu = 1;
 
         abonelerDAO adao = new abonelerDAO();
@@ -304,8 +326,7 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void abonelik_iki_satin_al(ActionEvent event) {
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
+        int user_id = user_id_getir();
         int abonelik_turu = 2;
 
         abonelerDAO adao = new abonelerDAO();
@@ -327,8 +348,7 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void abonelik_uc_satin_al(ActionEvent event) {
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
+        int user_id = user_id_getir();
         int abonelik_turu = 3;
 
         abonelerDAO adao = new abonelerDAO();
@@ -426,8 +446,7 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void abonelik_iptal_et(ActionEvent event) {
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
+        int user_id = user_id_getir();
 
         abonelerDAO adao = new abonelerDAO();
 
@@ -443,7 +462,7 @@ public class app_standart_userController extends Center implements Initializable
             pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -16)");
         }
     }
-    
+
     private void eski_filmler_table_abonesiz(int kullanici_turu) {
         eski_filmlerDAO edao = new eski_filmlerDAO();
 
@@ -490,25 +509,90 @@ public class app_standart_userController extends Center implements Initializable
 
         table_eski_filmler.setItems(sortedData);
     }
-    
+
     @FXML
-    private void eski_filmler_giris(){
+    private void eski_filmler_giris() {
         pnl_eski_filmler.setVisible(true);
-        
+
         pnl_abonelik_0.setVisible(false);
         pnl_abonelik_diger.setVisible(false);
         pnl_abonelik_uyari_mesaj.setVisible(false);
-        
+
         int kullanici_turu = abonelik_turu_getir();
-        
+
         eski_filmler_table_abonesiz(kullanici_turu);
     }
-    
+
     @FXML
-    private void eski_filmler_geri(MouseEvent event){
-       pnl_abonelik_diger.setVisible(true);
-       
-       pnl_eski_filmler.setVisible(false);
+    private void eski_filmler_geri(MouseEvent event) {
+        pnl_abonelik_diger.setVisible(true);
+
+        pnl_eski_filmler.setVisible(false);
+    }
+
+    @FXML
+    private void biletlerim_giris(ActionEvent event) {
+        pnl_biletlerim.setVisible(true);
+        
+        pnl_settings.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_abonelik.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        
+        biletlerim_table(user_id_getir());
+    }
+
+    private void biletlerim_table(int user_id) {
+        satin_alinan_biletlerDAO edao = new satin_alinan_biletlerDAO();
+        
+        ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
+
+        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id);
+
+        biletlerim_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        biletlerim_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));
+        biletlerim_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        biletlerim_saat.setCellValueFactory(new PropertyValueFactory("saat"));
+        biletlerim_koltuk.setCellValueFactory(new PropertyValueFactory("koltuk_name"));
+
+        FilteredList<satin_alinan_biletler> filteredData = new FilteredList<>(data, b -> true);
+        filterField_biletlerim.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(bil -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (bil.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getSalon_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getSaat().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getKoltuk_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+        
+        SortedList<satin_alinan_biletler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_biletlerim.comparatorProperty());
+
+        table_biletlerim.setItems(sortedData);
+    }
+
+    @FXML
+    private void biletlerim_geri(MouseEvent event) {
+        pnl_biletlerim.setVisible(false);
     }
 
 }
