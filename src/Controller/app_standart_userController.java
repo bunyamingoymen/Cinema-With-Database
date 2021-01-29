@@ -1,10 +1,12 @@
 package Controller;
 
 import DAO.abonelerDAO;
+import DAO.eski_filmlerDAO;
 import DAO.haberlerDAO;
 import DAO.kampanyalarDAO;
 import DAO.usersDAO;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import entity.eski_filmler;
 import entity.haberler;
 import entity.kampanyalar;
 import java.net.URL;
@@ -442,9 +444,71 @@ public class app_standart_userController extends Center implements Initializable
         }
     }
     
+    private void eski_filmler_table_abonesiz(int kullanici_turu) {
+        eski_filmlerDAO edao = new eski_filmlerDAO();
+
+        ObservableList<eski_filmler> data = FXCollections.observableArrayList();
+
+        data = edao.eski_filmler_select_abone_ozel(data, kullanici_turu);
+
+        eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
+        eski_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
+        eski_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        eski_filmler_aldigi_odul_sayisi.setCellValueFactory(new PropertyValueFactory("aldigi_odul_sayisi"));
+
+        FilteredList<eski_filmler> filteredData = new FilteredList<>(data, b -> true);
+        filterField_eski.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(esk -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (esk.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (esk.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (esk.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getAldigi_odul_sayisi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<eski_filmler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_eski_filmler.comparatorProperty());
+
+        table_eski_filmler.setItems(sortedData);
+    }
+    
+    @FXML
+    private void eski_filmler_giris(){
+        pnl_eski_filmler.setVisible(true);
+        
+        pnl_abonelik_0.setVisible(false);
+        pnl_abonelik_diger.setVisible(false);
+        pnl_abonelik_uyari_mesaj.setVisible(false);
+        
+        int kullanici_turu = abonelik_turu_getir();
+        
+        eski_filmler_table_abonesiz(kullanici_turu);
+    }
+    
     @FXML
     private void eski_filmler_geri(MouseEvent event){
-        
+       pnl_abonelik_diger.setVisible(true);
+       
+       pnl_eski_filmler.setVisible(false);
     }
 
 }

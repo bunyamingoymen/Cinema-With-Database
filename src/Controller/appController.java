@@ -694,7 +694,7 @@ public class appController extends Center implements Initializable {
         eski_filmler_geri_tusu.setVisible(true);
         eski_filmler_ekle_geri_tusu.setVisible(false);
 
-        eski_filmler_table();
+        eski_filmler_table_aboneli();
     }
 
     @FXML
@@ -705,7 +705,7 @@ public class appController extends Center implements Initializable {
         eski_filmler_degistir_geri_tusu.setVisible(false);
         eski_filmler_geri_tusu.setVisible(true);
 
-        eski_filmler_table();
+        eski_filmler_table_aboneli();
 
     }
 
@@ -968,7 +968,7 @@ public class appController extends Center implements Initializable {
         }
     }
 
-    private void eski_filmler_table() {
+    private void eski_filmler_table_aboneli() {
         eski_filmlerDAO edao = new eski_filmlerDAO();
 
         ObservableList<eski_filmler> data = FXCollections.observableArrayList();
@@ -2526,7 +2526,7 @@ public class appController extends Center implements Initializable {
             eski_filmler_ekle_pane.setVisible(false);
             eski_filmler_degistir_pane.setVisible(false);
 
-            eski_filmler_table();
+            eski_filmler_table_aboneli();
 
         } else if (btn2.getText().equals("Haberler")) {
 

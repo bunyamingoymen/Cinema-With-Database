@@ -55,6 +55,16 @@ public class eski_filmler {
         this.hangi_aboneler_izleyebilir = hangi_abone;
         this.yonetmen_id = yonetmen_id;
     }
+
+    public eski_filmler(String film_name, String film_type, int film_suresi, String ad, String soyad, int aldigi_odul_sayisi) {
+        this.film_name = film_name;
+        this.film_type = film_type;
+        this.film_suresi = film_suresi;
+        this.yonetmen_ad_soyad = ad + " " + soyad;
+        this.aldigi_odul_sayisi = aldigi_odul_sayisi;
+    }
+    
+    
     
 
     public int getEski_film_id() {

@@ -49,6 +49,38 @@ public class eski_filmlerDAO {
 
         return data;
     }
+    
+        public ObservableList<eski_filmler> eski_filmler_select_abone_ozel(ObservableList<eski_filmler> data, int kullanici_turu) {
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from eski_filmler_tablo";
+            ResultSet rs = st.executeQuery(komut);
+
+            while (rs.next()) {
+                if(rs.getInt("hangi_aboneler_izleyebilir")<=kullanici_turu){
+                    
+                }
+                String film_name = rs.getString("film_name");
+                String film_type = rs.getString("film_type");
+                int film_suresi = rs.getInt("film_suresi");
+                String ad = rs.getString("ad");
+                String soyad = rs.getString("soyad");
+                int aldigi_odul_sayisi = rs.getInt("aldigi_odul_sayisi");
+                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, aldigi_odul_sayisi)));
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 226 - " + e.getMessage());
+        }
+
+        return data;
+    }
 
     public int eski_filmler_tamamen_sil(int id) {
         int sonuc = 0;
