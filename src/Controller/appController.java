@@ -647,16 +647,10 @@ public class appController extends Center implements Initializable {
     private Pane ust_pnl_eski_filmler, eski_filmler_ekle_pane, eski_filmler_degistir_pane, eski_filmler_degistir_pane_1, eski_filmler_degistir_pane_2, eski_filmler_degistir_sil_emin_misin;
 
     @FXML
-    private AnchorPane pnl_eski_filmler;
-
+    private TableColumn<eski_filmler, String>  eski_filmler_hangi_abone;
+    
     @FXML
-    private TableColumn<eski_filmler, String> eski_filmler_film_adi, eski_filmler_film_type, eski_filmler_film_suresi, eski_filmler_yonetmen, eski_filmler_hangi_abone, eski_filmler_aldigi_odul_sayisi;
-
-    @FXML
-    private TableView<eski_filmler> table_eski_filmler;
-
-    @FXML
-    private TextField filterField_eski, eski_film_name, eski_film_type, eski_film_suresi, eski_aldigi_odul_sayisi, eski_filmleri_degistir_sil_film_name, eski_filmleri_degistir_sil_film_type, eski_filmleri_degistir_sil_film_suresi, eski_filmleri_degistir_sil_aldigi_odul;
+    private TextField eski_film_name, eski_film_type, eski_film_suresi, eski_aldigi_odul_sayisi, eski_filmleri_degistir_sil_film_name, eski_filmleri_degistir_sil_film_type, eski_filmleri_degistir_sil_film_suresi, eski_filmleri_degistir_sil_aldigi_odul;
 
     @FXML
     private ComboBox<String> eski_hangi_aboneler, eski_ekle_yonetmenler, eski_degistir_sil_filmler, eski_filmleri_degistir_sil_yonetmen, eski_filmleri_degistir_sil_hangi_abone;

@@ -440,5 +440,10 @@ public class app_standart_userController extends Center implements Initializable
             pnl_abonelik_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -16)");
         }
     }
+    
+    @FXML
+    private void eski_filmler_geri(MouseEvent event){
+        
+    }
 
 }
