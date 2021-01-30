@@ -6261,6 +6261,11 @@
                   <Label fx:id="satin_al_odeme_yontemi_uyari_mesaj" layoutX="511.0" layoutY="614.0" textFill="RED" />
                </children>
             </Pane>
+            <Label fx:id="satin_al_uyari_mesaj" layoutX="235.0" layoutY="301.0" textFill="RED" visible="false">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnl_settings" layoutX="338.0" layoutY="66.0" prefHeight="711.0" prefWidth="1058.0" visible="false">

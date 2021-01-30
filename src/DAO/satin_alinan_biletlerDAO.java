@@ -28,7 +28,7 @@ public class satin_alinan_biletlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "select * from satin alinan biletler where seans_id = " + String.valueOf(seans_id);
+            String komut = "select * from satin_alinan_biletler where seans_id = " + String.valueOf(seans_id);
             ResultSet rs = st.executeQuery(komut);
             int i = 0;
             while (rs.next()) {

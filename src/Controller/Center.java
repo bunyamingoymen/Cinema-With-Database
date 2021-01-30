@@ -1625,7 +1625,7 @@ public class Center implements Initializable {
     @FXML
     protected Button l1_2, l2_2, l3_2, l4_2, l5_2, l6_2, l7_2, l8_2, l9_2, l10_2, l11_2, l12_2, l13_2, l14_2, l15_2, l16_2, l17_2, l18_2, l19_2;
 
-    protected void iki_koltuk_dolu(int salon_id, int seans_id) {
+    protected void iki_koltuk_dolu(int seans_id) {
         if (search("A1", seans_id)) {
             a1_2.styleProperty().set("-fx-background-color: red");
 
@@ -3265,7 +3265,7 @@ public class Center implements Initializable {
     @FXML
     protected Button m1_3, m2_3, m3_3, m4_3, m5_3, m6_3, m7_3, m8_3, m9_3, m10_3, m11_3, m12_3, m13_3, m14_3, m15_3, m16_3, m17_3, m18_3, m19_3, m20_3;
 
-    protected void uc_koltuk_dolu(int salon_id, int seans_id) {
+    protected void uc_koltuk_dolu(int seans_id) {
         if (search("A1", seans_id)) {
             a1_3.styleProperty().set("-fx-background-color: red");
         }
@@ -5422,7 +5422,7 @@ public class Center implements Initializable {
     @FXML
     protected Button j1_4, j2_4, j3_4, j4_4, j5_4, j6_4, j7_4, j8_4, j9_4, j10_4, j11_4, j12_4, j13_4, j14_4, j15_4, j16_4, j17_4, j18_4, j19_4, j20_4, j21_4, j22_4, j23_4, j24_4, j25_4, j26_4;
 
-    protected void dort_koltuk_dolu(int salon_id, int seans_id) {
+    protected void dort_koltuk_dolu(int seans_id) {
         if (search("A1", seans_id)) {
             a1_4.styleProperty().set("-fx-background-color: red");
         }
