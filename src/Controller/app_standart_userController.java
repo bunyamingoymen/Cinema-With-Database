@@ -20,6 +20,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,6 +61,15 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private TextField filterField_biletlerim;
+    
+    @FXML
+    private Pane satin_al_filmler_pane, satin_al_filmler_seans_pane, satin_al_koltuk_ust_pane, satin_al_odeme_yontemi_pane;
+    
+    @FXML
+    private ComboBox <String> satin_al_filmler_como, satin_al_filmler_seans_combo;
+    
+    @FXML
+    private Label satin_al_filmler_uyari_mesaj, satin_al_koltuk_film_adi, satin_al_koltuk_seans_saati, satin_al_koltuk_salon_adi, satin_al_koltuk_seans_id, satin_al_kalan_ucretsiz_bilet_sayisi_hakki, satin_al_odeme_yontemi_uyari_mesaj;
 
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
@@ -594,5 +604,29 @@ public class app_standart_userController extends Center implements Initializable
     private void biletlerim_geri(MouseEvent event) {
         pnl_biletlerim.setVisible(false);
     }
-
+    
+    @FXML
+    private void bilet_satin_al_giris(ActionEvent event){
+        
+    }
+    
+   @FXML
+   private void odeme_yontemi_giris(ActionEvent event){
+       
+   }
+   
+   @FXML
+   private void satin_al_havale_eft(ActionEvent event){
+       
+   }
+   
+   @FXML
+   private void satin_al_kredi_banka_karti(ActionEvent event){
+       
+   }
+   
+   @FXML
+   private void satin_al_ucretsiz_bilet_hakki (ActionEvent event){
+       
+   }
 }

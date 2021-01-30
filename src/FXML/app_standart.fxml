@@ -6223,40 +6223,40 @@
                   </Button>
                </children>
             </Pane>
-            <Pane layoutX="-1.0" prefHeight="701.0" prefWidth="1047.0" visible="false">
+            <Pane fx:id="satin_al_filmler_pane" layoutX="-1.0" prefHeight="701.0" prefWidth="1047.0" visible="false">
                <children>
-                  <ComboBox layoutX="641.0" layoutY="62.0" prefHeight="31.0" prefWidth="285.0" />
+                  <ComboBox fx:id="satin_al_filmler_como" layoutX="641.0" layoutY="62.0" prefHeight="31.0" prefWidth="285.0" />
                   <Label layoutX="567.0" layoutY="67.0" text="Filmler:" />
-                  <Label layoutX="573.0" layoutY="406.0" textFill="RED" />
-                  <Pane layoutX="246.0" layoutY="471.0" prefHeight="200.0" prefWidth="569.0">
+                  <Label fx:id="satin_al_filmler_uyari_mesaj" layoutX="573.0" layoutY="406.0" textFill="RED" />
+                  <Pane fx:id="satin_al_filmler_seans_pane" layoutX="246.0" layoutY="471.0" prefHeight="200.0" prefWidth="569.0">
                      <children>
                         <Label layoutX="92.0" layoutY="90.0" text="Seanslar:" />
-                        <ComboBox layoutX="192.0" layoutY="85.0" prefHeight="31.0" prefWidth="285.0" />
+                        <ComboBox fx:id="satin_al_filmler_seans_combo" layoutX="192.0" layoutY="85.0" prefHeight="31.0" prefWidth="285.0" />
                      </children>
                   </Pane>
                </children>
             </Pane>
-            <Pane layoutX="-10.0" layoutY="-13.0" prefHeight="89.0" prefWidth="1057.0" style="-fx-background-color: #7156DD;" visible="false">
+            <Pane fx:id="satin_al_koltuk_ust_pane" layoutX="-10.0" layoutY="-13.0" prefHeight="89.0" prefWidth="1057.0" style="-fx-background-color: #7156DD;" visible="false">
                <children>
                   <Label layoutX="28.0" layoutY="34.0" text="Film Adı:" textFill="WHITE" />
-                  <Label layoutX="102.0" layoutY="34.0" textFill="WHITE" />
+                  <Label fx:id="satin_al_koltuk_film_adi" layoutX="102.0" layoutY="34.0" textFill="WHITE" />
                   <Label layoutX="342.0" layoutY="34.0" text="Seans Saati:" textFill="WHITE" />
-                  <Label layoutX="424.0" layoutY="34.0" textFill="WHITE" />
+                  <Label fx:id="satin_al_koltuk_seans_saati" layoutX="424.0" layoutY="34.0" textFill="WHITE" />
                   <Label layoutX="564.0" layoutY="34.0" text="Salon:" textFill="WHITE" />
-                  <Label layoutX="620.0" layoutY="34.0" textFill="WHITE" />
-                  <Button layoutX="869.0" layoutY="29.0" mnemonicParsing="false" styleClass="button8" text="Ödeme Yöntemine Geç" textFill="WHITE" />
+                  <Label fx:id="satin_al_koltuk_salon_adi" layoutX="620.0" layoutY="34.0" textFill="WHITE" />
+                  <Button layoutX="869.0" layoutY="29.0" mnemonicParsing="false" onAction="#odeme_yontemi_giris" styleClass="button8" text="Ödeme Yöntemine Geç" textFill="WHITE" />
                   <Label layoutX="704.0" layoutY="34.0" text="Seans_id:" textFill="WHITE" />
-                  <Label layoutX="767.0" layoutY="34.0" textFill="WHITE" />
+                  <Label fx:id="satin_al_koltuk_seans_id" layoutX="767.0" layoutY="34.0" textFill="WHITE" />
                </children>
             </Pane>
-            <Pane layoutX="-10.0" layoutY="-13.0" prefHeight="718.0" prefWidth="1056.0" visible="false">
+            <Pane fx:id="satin_al_odeme_yontemi_pane" layoutX="-10.0" layoutY="-13.0" prefHeight="718.0" prefWidth="1056.0" visible="false">
                <children>
-                  <Button layoutX="410.0" layoutY="155.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="239.0" styleClass="button2" text="Havale/EFT" textFill="WHITE" />
-                  <Button layoutX="409.0" layoutY="297.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="239.0" styleClass="button2" text="Kredi / Banka Kartı" textFill="WHITE" />
-                  <Button layoutX="410.0" layoutY="446.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="239.0" styleClass="button2" text="Ücretsiz Bilet Hakkımı Kullan" textFill="WHITE" />
+                  <Button layoutX="410.0" layoutY="155.0" mnemonicParsing="false" onAction="#satin_al_havale_eft" prefHeight="31.0" prefWidth="239.0" styleClass="button2" text="Havale/EFT" textFill="WHITE" />
+                  <Button layoutX="409.0" layoutY="297.0" mnemonicParsing="false" onAction="#satin_al_kredi_banka_karti" prefHeight="31.0" prefWidth="239.0" styleClass="button2" text="Kredi / Banka Kartı" textFill="WHITE" />
+                  <Button layoutX="410.0" layoutY="446.0" mnemonicParsing="false" onAction="#satin_al_ucretsiz_bilet_hakki" prefHeight="31.0" prefWidth="239.0" styleClass="button2" text="Ücretsiz Bilet Hakkımı Kullan" textFill="WHITE" />
                   <Label layoutX="380.0" layoutY="499.0" text="Kalan Ücretsiz Bilet hakkınız:" />
-                  <Label layoutX="577.0" layoutY="499.0" />
-                  <Label layoutX="511.0" layoutY="614.0" textFill="RED" />
+                  <Label fx:id="satin_al_kalan_ucretsiz_bilet_sayisi_hakki" layoutX="577.0" layoutY="499.0" />
+                  <Label fx:id="satin_al_odeme_yontemi_uyari_mesaj" layoutX="511.0" layoutY="614.0" textFill="RED" />
                </children>
             </Pane>
          </children>
