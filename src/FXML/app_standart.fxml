@@ -86,7 +86,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="89.0" prefWidth="328.0" styleClass="button6" text="Bilet Satın Al" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#bilet_satin_al_giris" prefHeight="89.0" prefWidth="328.0" styleClass="button6" text="Bilet Satın Al" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
                </graphic>
@@ -6223,17 +6223,19 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="satin_al_filmler_pane" layoutX="-1.0" prefHeight="701.0" prefWidth="1047.0" visible="false">
+            <Pane fx:id="satin_al_filmler_pane" layoutX="-1.0" prefHeight="701.0" prefWidth="1047.0">
                <children>
                   <ComboBox fx:id="satin_al_filmler_como" layoutX="641.0" layoutY="62.0" prefHeight="31.0" prefWidth="285.0" />
                   <Label layoutX="567.0" layoutY="67.0" text="Filmler:" />
-                  <Label fx:id="satin_al_filmler_uyari_mesaj" layoutX="573.0" layoutY="406.0" textFill="RED" />
-                  <Pane fx:id="satin_al_filmler_seans_pane" layoutX="246.0" layoutY="471.0" prefHeight="200.0" prefWidth="569.0">
+                  <Label fx:id="satin_al_filmler_uyari_mesaj" layoutX="293.0" layoutY="407.0" textFill="RED" />
+                  <Pane fx:id="satin_al_filmler_seans_pane" layoutX="246.0" layoutY="471.0" prefHeight="200.0" prefWidth="569.0" visible="false">
                      <children>
                         <Label layoutX="92.0" layoutY="90.0" text="Seanslar:" />
                         <ComboBox fx:id="satin_al_filmler_seans_combo" layoutX="192.0" layoutY="85.0" prefHeight="31.0" prefWidth="285.0" />
+                        <Button layoutX="345.0" layoutY="139.0" mnemonicParsing="false" onAction="#satin_al_filmler_koltuk_sec" prefHeight="31.0" prefWidth="141.0" styleClass="button2" text="Koltuk Seç" textFill="WHITE" />
                      </children>
                   </Pane>
+                  <Button layoutX="856.0" layoutY="115.0" mnemonicParsing="false" onAction="#satin_al_filmler_filmi_getir" prefHeight="31.0" prefWidth="141.0" styleClass="button2" text="Filmi Getir" textFill="WHITE" />
                </children>
             </Pane>
             <Pane fx:id="satin_al_koltuk_ust_pane" layoutX="-10.0" layoutY="-13.0" prefHeight="89.0" prefWidth="1057.0" style="-fx-background-color: #7156DD;" visible="false">

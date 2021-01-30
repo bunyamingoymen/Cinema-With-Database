@@ -99,6 +99,57 @@ public class seansDAO {
         return sonuc;
     }
 
+    public String[] seans_combo_doldur(int vizyondaki_film_id) {
+        String[] arr = new String[kac_tane_seans_var(vizyondaki_film_id)];
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from seanslar_tablo where vizyondaki_film_id = " + vizyondaki_film_id;
+            ResultSet rs = st.executeQuery(komut);
+            int i = 0;
+            while (rs.next()) {
+                String seans_combo = rs.getInt("seans_id") + " | " + rs.getString("film_name") + " | " + rs.getString("salon_name") + " | " + rs.getString("saat");
+                arr[i] = seans_combo;
+                i++;
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return arr;
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 202 - " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    public int kac_tane_seans_var(int vizyondaki_film_id) {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (seans_id) from seans where vizyondaki_film_id =  " + vizyondaki_film_id;
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 203 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
     public int vizyondaki_film_id_getir(int id) {
         int film_id = 0;
 

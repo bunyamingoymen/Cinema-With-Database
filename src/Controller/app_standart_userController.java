@@ -5,6 +5,7 @@ import DAO.eski_filmlerDAO;
 import DAO.haberlerDAO;
 import DAO.kampanyalarDAO;
 import DAO.satin_alinan_biletlerDAO;
+import DAO.seansDAO;
 import DAO.usersDAO;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.eski_filmler;
@@ -61,13 +62,13 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private TextField filterField_biletlerim;
-    
+
     @FXML
     private Pane satin_al_filmler_pane, satin_al_filmler_seans_pane, satin_al_koltuk_ust_pane, satin_al_odeme_yontemi_pane;
-    
+
     @FXML
-    private ComboBox <String> satin_al_filmler_como, satin_al_filmler_seans_combo;
-    
+    private ComboBox<String> satin_al_filmler_como, satin_al_filmler_seans_combo;
+
     @FXML
     private Label satin_al_filmler_uyari_mesaj, satin_al_koltuk_film_adi, satin_al_koltuk_seans_saati, satin_al_koltuk_salon_adi, satin_al_koltuk_seans_id, satin_al_kalan_ucretsiz_bilet_sayisi_hakki, satin_al_odeme_yontemi_uyari_mesaj;
 
@@ -81,7 +82,7 @@ public class app_standart_userController extends Center implements Initializable
     private int user_id_getir() {
         usersDAO udao = new usersDAO();
         int user_id = udao.bilgi_oku();
-        
+
         return user_id;
     }
 
@@ -543,19 +544,19 @@ public class app_standart_userController extends Center implements Initializable
     @FXML
     private void biletlerim_giris(ActionEvent event) {
         pnl_biletlerim.setVisible(true);
-        
+
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
         pnl_abonelik.setVisible(false);
         pnl_kampanyalar.setVisible(false);
-        
+
         biletlerim_table(user_id_getir());
     }
 
     private void biletlerim_table(int user_id) {
         satin_alinan_biletlerDAO edao = new satin_alinan_biletlerDAO();
-        
+
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
 
         data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id);
@@ -592,7 +593,7 @@ public class app_standart_userController extends Center implements Initializable
 
             });
         });
-        
+
         SortedList<satin_alinan_biletler> sortedData = new SortedList<>(filteredData);
 
         sortedData.comparatorProperty().bind(table_biletlerim.comparatorProperty());
@@ -604,29 +605,89 @@ public class app_standart_userController extends Center implements Initializable
     private void biletlerim_geri(MouseEvent event) {
         pnl_biletlerim.setVisible(false);
     }
-    
+
     @FXML
-    private void bilet_satin_al_giris(ActionEvent event){
-        
+    private void bilet_satin_al_giris(ActionEvent event) {
+        pnl_sinema_salonlari.setVisible(true);
+
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_abonelik.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_biletlerim.setVisible(false);
+        pnl_settings.setVisible(false);
+
+        salon_bir_pane.setVisible(false);
+        salon_iki_pane.setVisible(false);
+        salon_uc_pane.setVisible(false);
+        salon_dort_pane.setVisible(false);
+        satin_al_koltuk_ust_pane.setVisible(false);
+        satin_al_odeme_yontemi_pane.setVisible(false);
+
+        satin_al_filmler_pane.setVisible(true);
+
+        satin_al_filmler_seans_pane.setVisible(false);
+
+        vizyondaki_filmler_combo(satin_al_filmler_como, satin_al_filmler_uyari_mesaj);
     }
     
-   @FXML
-   private void odeme_yontemi_giris(ActionEvent event){
-       
-   }
-   
-   @FXML
-   private void satin_al_havale_eft(ActionEvent event){
-       
-   }
-   
-   @FXML
-   private void satin_al_kredi_banka_karti(ActionEvent event){
-       
-   }
-   
-   @FXML
-   private void satin_al_ucretsiz_bilet_hakki (ActionEvent event){
-       
-   }
+        private int seans_combo(ComboBox<String> combo, int vizyondaki_filmler) {
+        seansDAO seans_islemleri = new seansDAO();
+        String[] arr = seans_islemleri.seans_combo_doldur(vizyondaki_filmler);
+        combo.getItems().clear();
+        if (arr.length == 0) {
+            return 0;
+
+        } else {
+            for (String s : arr) {
+                combo.getItems().addAll(s);
+            }
+
+            combo.setPromptText("İstediğiniz filmi seçiniz.");
+            return 1;
+        }
+    }
+
+    @FXML
+    private void satin_al_filmler_filmi_getir(ActionEvent event) {
+        if(satin_al_filmler_como.getValue() == null){
+        satin_al_filmler_uyari_mesaj.setText("Lütfen Bir film seçiniz");
+        }else{
+            String[] ab = satin_al_filmler_como.getValue().split(" | ");
+            int vizyondaki_film_id = Integer.parseInt(ab[0]);
+            int sonuc = seans_combo(satin_al_filmler_seans_combo,vizyondaki_film_id);
+            if(sonuc == 0){
+                satin_al_filmler_uyari_mesaj.setText("Bu filme ait herhangi bir seans tanımlı değil. Lütfen farklı bir film seçiniz.");
+                satin_al_filmler_seans_pane.setVisible(false);
+            }else{
+                satin_al_filmler_seans_pane.setVisible(true);
+                satin_al_filmler_uyari_mesaj.setText("");
+            }
+        }
+    }
+    
+    @FXML
+    private void satin_al_filmler_koltuk_sec(ActionEvent event){
+        
+    }
+
+    @FXML
+    private void odeme_yontemi_giris(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void satin_al_havale_eft(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void satin_al_kredi_banka_karti(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void satin_al_ucretsiz_bilet_hakki(ActionEvent event) {
+
+    }
 }
