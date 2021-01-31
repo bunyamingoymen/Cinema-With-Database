@@ -135,7 +135,7 @@ public class abonelerDAO {
             Connection c = d.connect();
             Statement st = c.createStatement();
             int kalan_ucretsiz_bilet_sayisi = 0;
-            
+
             switch (abonelik_turu) {
                 case 1:
                     kalan_ucretsiz_bilet_sayisi = 2;
@@ -149,7 +149,7 @@ public class abonelerDAO {
                 default:
                     return 0;
             }
-            String komut = "update aboneler set abone_type = " + abonelik_turu + ", kalan_ucretsiz_bilet_sayisi = "+ kalan_ucretsiz_bilet_sayisi +" where user_id =" + user_id;
+            String komut = "update aboneler set abone_type = " + abonelik_turu + ", kalan_ucretsiz_bilet_sayisi = " + kalan_ucretsiz_bilet_sayisi + " where user_id =" + user_id;
             sonuc = st.executeUpdate(komut);
 
             c.close();
@@ -159,8 +159,8 @@ public class abonelerDAO {
         }
         return sonuc;
     }
-    
-        public int aboneler_sil(int user_id) {
+
+    public int aboneler_sil(int user_id) {
         int sonuc = 0;
 
         try {
@@ -178,6 +178,40 @@ public class abonelerDAO {
         }
 
         return sonuc;
+
+    }
+
+    public int kalan_ucretsiz_bilet_sayisi(int user_id) {
+        int sonuc = 0;
+
+        int abonelik_turu = abonelik_turu_bul(user_id);
+
+        switch (abonelik_turu) {
+            case 0:
+                return 0;
+            case -1:
+                return -1;
+            default:
+                try {
+                    DBConnector d = new DBConnector();
+                    Connection c = d.connect();
+                    Statement st = c.createStatement();
+                    String komut = "select kalan_ucretsiz_bilet_sayisi from aboneler where user_id=" + user_id;
+                    ResultSet rs = st.executeQuery(komut);
+
+                    rs.next();
+                    sonuc = rs.getInt("kalan_ucretsiz_bilet_sayisi");
+
+                    c.close();
+                    st.close();
+                    rs.close();
+
+                } catch (SQLException e) {
+                    System.out.println("Hata kodu :228 - " + e.getMessage());
+                }
+
+                return sonuc;
+        }
 
     }
 

@@ -687,7 +687,7 @@ public class app_standart_userController extends Center implements Initializable
             String film_adi = sdao.film_adi_getir(seans_id);
             String salon_adi = sdao.salon_adi_getir(seans_id);
             String saat = sdao.saat_getir(seans_id);
-          
+            
             satin_al_koltuk_film_adi.setText(film_adi);
             satin_al_koltuk_salon_adi.setText(salon_adi);
             satin_al_koltuk_seans_saati.setText(saat);
@@ -756,6 +756,28 @@ public class app_standart_userController extends Center implements Initializable
     
     @FXML
     private void odeme_yontemi_giris(ActionEvent event) {
+        satin_al_odeme_yontemi_pane.setVisible(true);
+        
+        satin_al_koltuk_ust_pane.setVisible(false);
+        satin_al_filmler_pane.setVisible(false);
+        salon_bir_pane.setVisible(false);
+        salon_iki_pane.setVisible(false);
+        salon_uc_pane.setVisible(false);
+        salon_dort_pane.setVisible(false);
+        
+        int user_id = user_id_getir();
+        
+        abonelerDAO adao = new abonelerDAO();
+        int kalan_ucretsiz_bilet_sayisi = adao.kalan_ucretsiz_bilet_sayisi(user_id);
+        
+        if (kalan_ucretsiz_bilet_sayisi == -1) {
+            
+            satin_al_odeme_yontemi_pane.setVisible(false);
+            satin_al_uyari_mesaj.setVisible(true);
+            satin_al_uyari_mesaj.setText("Bir hata meydana geldi(Hata Kodu: -18)");
+        } else {
+            satin_al_kalan_ucretsiz_bilet_sayisi_hakki.setText(String.valueOf(kalan_ucretsiz_bilet_sayisi));
+        }
         
     }
     
