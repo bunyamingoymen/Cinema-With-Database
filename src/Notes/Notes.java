@@ -1,5 +1,5 @@
 
-// DAO larda kullanılan en son hata kodu sayısı: 228
+// DAO larda kullanılan en son hata kodu sayısı: 231
 
 // Controller larda kullanılan en son hata kodu sayısı: -18
 

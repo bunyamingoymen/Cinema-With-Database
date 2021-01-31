@@ -68,8 +68,8 @@ public class satin_alinan_biletlerDAO {
                 String ad = rs.getString("ad");
                 String soyad = rs.getString("soyad");
                 String koltuk_name = rs.getString("koltuk_name");
-                
-                data.addAll(FXCollections.observableArrayList(new satin_alinan_biletler(film_name, salon_name, saat, ad,soyad, koltuk_name)));
+
+                data.addAll(FXCollections.observableArrayList(new satin_alinan_biletler(film_name, salon_name, saat, ad, soyad, koltuk_name)));
             }
 
             c.close();
@@ -101,6 +101,41 @@ public class satin_alinan_biletlerDAO {
 
         } catch (SQLException e) {
             System.out.println("Hata kodu: 212 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    public int satin_alinan_bilet_satin_al (int user_id, int seans_id) {
+        yesil_olanDAO ydao = new yesil_olanDAO();
+        String arr[] = ydao.yesil_olanlar_toplu_gonder();
+        
+        for(int i = 0; i< arr.length; i++){
+            int sonuc = satin_alinan_biletler_ekle(user_id, seans_id, arr[i]);
+            if(sonuc == 0){
+                System.out.println("Hata kodu : 231 - ");
+                return 0;
+            }
+        }
+
+        return 1;
+    }
+
+    public int satin_alinan_biletler_ekle(int user_id, int seans_id, String koltuk_adi) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "insert into satin_alinan_biletler (user_id, seans_id, koltuk_adi) values ("+user_id+"," + seans_id + ",'" + koltuk_adi + "')";
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :230 - " + e.getMessage());
         }
 
         return sonuc;

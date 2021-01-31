@@ -59,7 +59,7 @@ public class yesil_olanDAO {
 
         return sonuc;
     }
-    
+
     public int kac_tane_yesil_olan_var() {
         int sonuc = -1;
 
@@ -82,8 +82,8 @@ public class yesil_olanDAO {
 
         return sonuc;
     }
-    
-        public int yesil_olan_dao_toplu_sil() {
+
+    public int yesil_olan_dao_toplu_sil() {
         int sonuc = 0;
 
         try {
@@ -101,6 +101,31 @@ public class yesil_olanDAO {
         }
 
         return sonuc;
+    }
+
+    public String[] yesil_olanlar_toplu_gonder() {
+        String[] arr = new String[kac_tane_yesil_olan_var()];
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from yesil_olan";
+            ResultSet rs = st.executeQuery(komut);
+            int i = 0;
+            while (rs.next()) {
+                arr[i] = rs.getString("koltuk_adi");
+                i++;
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 229 - " + e.getMessage());
+        }
+
+        return arr;
     }
 
 }
