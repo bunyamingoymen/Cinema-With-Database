@@ -215,4 +215,33 @@ public class abonelerDAO {
 
     }
 
+    public int ucretsiz_bilet_sayisi_dusur(int user_id) {
+        int sonuc = 0;
+        int kalan_ucretsiz_bilet_sayisi = kalan_ucretsiz_bilet_sayisi(user_id);
+        switch (kalan_ucretsiz_bilet_sayisi) {
+            case -1: //Hata çıktı anlamıan gelir
+                return -2;
+            case 0: //bilet hakkı yok anlamına gelir
+                return -1;
+            default: // bilet hakkı var ve düşürülme uygulanıyor.
+                try {
+
+                    DBConnector d = new DBConnector();
+                    Connection c = d.connect();
+                    Statement st = c.createStatement();
+                    int guncellenen_bilet_hakki = kalan_ucretsiz_bilet_sayisi - 1;
+                    String komut = "update aboneler set kalan_ucretsiz_bilet_sayisi=" + guncellenen_bilet_hakki + "where user_id = " + user_id;
+                    sonuc = st.executeUpdate(komut);
+
+                    c.close();
+                    st.close();
+
+                } catch (SQLException e) {
+                    System.out.println("Hata kodu: 188 - " + e.getMessage());
+                }
+                return sonuc;
+        }
+
+    }
+
 }
