@@ -97,6 +97,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_kampanyalar.setVisible(false);
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
 
         vizyondaki_filmler_table();
     }
@@ -115,6 +116,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_kampanyalar.setVisible(false);
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
 
         usersDAO udao = new usersDAO();
 
@@ -189,6 +191,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_kampanyalar.setVisible(false);
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
 
         haberler_table_butonsuz(abonelik_turu_getir());
     }
@@ -260,6 +263,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
 
         kampanyalar_table_butonsuz(abonelik_turu_getir());
     }
@@ -282,6 +286,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
         pnl_biletlerim.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
 
         abonelik_sahip_bir.setVisible(false);
         abonelik_sahip_iki.setVisible(false);
@@ -552,6 +557,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_abonelik.setVisible(false);
         pnl_kampanyalar.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
 
         biletlerim_table(user_id_getir());
     }
