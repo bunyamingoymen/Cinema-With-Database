@@ -812,6 +812,39 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void satin_al_ucretsiz_bilet_hakki(ActionEvent event) {
-        satin_al_ortak();
+        abonelerDAO adao = new abonelerDAO();
+
+        int sonuc = adao.ucretsiz_bilet_sayisi_dusur(user_id_getir());
+
+        switch (sonuc) {
+            case -2:
+                satin_al_uyari_mesaj.setVisible(true);
+
+                satin_al_odeme_yontemi_pane.setVisible(false);
+
+                satin_al_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -20)");
+
+                break;
+            case -1:
+                satin_al_odeme_yontemi_uyari_mesaj.setText("Ücretsiz Bilet Hakkınız Bulunmamaktadır.");
+                break;
+            case 0:
+                satin_al_uyari_mesaj.setVisible(true);
+
+                satin_al_odeme_yontemi_pane.setVisible(false);
+
+                satin_al_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -21)");
+                break;
+            case 1:
+                satin_al_ortak();
+                break;
+            default:
+                satin_al_uyari_mesaj.setVisible(true);
+
+                satin_al_odeme_yontemi_pane.setVisible(false);
+
+                satin_al_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -22)");
+                break;
+        }
     }
 }
