@@ -128,7 +128,7 @@ public class satin_alinan_biletlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into satin_alinan_biletler (user_id, seans_id, koltuk_adi) values ("+user_id+"," + seans_id + ",'" + koltuk_adi + "')";
+            String komut = "insert into satin_alinan_biletler (user_id, seans_id, koltuk_name) values ("+user_id+"," + seans_id + ",'" + koltuk_adi + "')";
             sonuc = st.executeUpdate(komut);
 
             c.close();

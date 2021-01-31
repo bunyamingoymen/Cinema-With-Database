@@ -783,7 +783,23 @@ public class app_standart_userController extends Center implements Initializable
     
     @FXML
     private void satin_al_havale_eft(ActionEvent event) {
+        satin_al_uyari_mesaj.setVisible(true);
         
+        satin_al_odeme_yontemi_pane.setVisible(false);
+        
+        satin_alinan_biletlerDAO sdao = new satin_alinan_biletlerDAO();
+        
+        int user_id = user_id_getir();
+        int seans_id = Integer.parseInt(satin_al_koltuk_seans_id.getText());
+        
+        int sonuc = sdao.satin_alinan_bilet_satin_al(user_id, seans_id);
+        
+        if(sonuc == 1){
+            satin_al_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti");
+        }
+        else{
+            satin_al_uyari_mesaj.setText("Bir hata Meydana Geldi (Hata Kodu: -19)");
+        }
     }
     
     @FXML
