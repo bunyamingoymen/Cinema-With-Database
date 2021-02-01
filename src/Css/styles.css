@@ -198,6 +198,39 @@ Button{
     -fx-border-radius: 60;
 }
 
+.pane2
+{
+    -fx-background-color:   #FA2C56;
+    -fx-background-radius: 70;
+    -fx-cursor:hand;
+    
+    -fx-border-color: #ff3b49;
+    -fx-border-width: 5;
+    -fx-border-radius: 60;
+
+}
+
+.pane2:hover
+{
+    -fx-background-radius :  70;
+    -fx-opacity: 0.50;
+    -fx-cursor:hand;
+
+    -fx-border-color: #ff3b49;
+    -fx-border-width: 5;
+    -fx-border-radius: 60;
+}
+.pane2:pressed
+{
+    -fx-background-radius :  70;
+    -fx-cursor:hand;
+    -fx-opacity: 0.80;
+
+    -fx-border-color: #ff3b49;
+    -fx-border-width: 5;
+    -fx-border-radius: 60;
+}
+
 .table-view .column-header,
 .table-view .column-header-background .filler{
     -fx-cell-size: 20;

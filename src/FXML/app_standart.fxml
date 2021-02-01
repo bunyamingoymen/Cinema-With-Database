@@ -10,6 +10,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -110,7 +112,7 @@
             </Button>
             <FontAwesomeIconView fill="WHITE" glyphName="GEARS" onMouseClicked="#settings_giris" size="40.0" translateX="275.0" translateY="70.0" />
             <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" onMouseClicked="#cikis" rotate="180.0" size="40.0" translateX="10.0" translateY="30.0" />
-            <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="40.0" translateX="140.0" translateY="-10.0" />
+            <FontAwesomeIconView fx:id="home_page_icon" fill="WHITE" glyphName="HOME" onMouseClicked="#home_giris" size="40.0" translateX="140.0" translateY="-10.0" visible="false" />
          </children>
       </VBox>
       <AnchorPane fx:id="pnl_vizyondaki_filmler" layoutX="329.0" layoutY="67.0" prefHeight="711.0" prefWidth="1065.0" visible="false">
@@ -6739,12 +6741,90 @@
       </AnchorPane>
       <AnchorPane fx:id="home_page" layoutX="329.0" layoutY="56.0" prefHeight="711.0" prefWidth="1056.0">
          <children>
-            <Pane layoutX="137.0" layoutY="80.0" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" />
-            <Pane layoutX="462.0" layoutY="80.0" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" />
-            <Pane layoutX="790.0" layoutY="79.0" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" />
-            <Pane layoutX="136.0" layoutY="333.0" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" />
-            <Pane layoutX="461.0" layoutY="333.0" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" />
-            <Pane layoutX="789.0" layoutY="332.0" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" />
+            <Pane layoutX="137.0" layoutY="80.0" onMouseClicked="#home_vizyondaki_filmler_giris" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" AnchorPane.bottomAnchor="444.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="688.0" AnchorPane.topAnchor="80.0">
+               <children>
+                  <ImageView fitHeight="119.0" fitWidth="125.0" layoutX="53.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lib/pic/mısır.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="31.0" layoutY="131.0" text="Vizyondaki Filmler" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="462.0" layoutY="80.0" onMouseClicked="#home_abonelik_giris" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" AnchorPane.bottomAnchor="444.0" AnchorPane.leftAnchor="462.0" AnchorPane.rightAnchor="363.0" AnchorPane.topAnchor="80.0">
+               <children>
+                  <ImageView fitHeight="117.0" fitWidth="112.0" layoutX="60.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lib/pic/abonelik.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="75.0" layoutY="142.0" text="Abonelik" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="790.0" layoutY="79.0" onMouseClicked="#home_bilet_satin_al_giris" prefHeight="187.0" prefWidth="231.0" styleClass="pane2" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="790.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="79.0">
+               <children>
+                  <ImageView fitHeight="112.0" fitWidth="186.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lib/pic/bilet%20satın%20al.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="62.0" layoutY="142.0" text="Bilet Satın Al" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="136.0" layoutY="333.0" onMouseClicked="#home_haberler_giris" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="689.0" AnchorPane.topAnchor="333.0">
+               <children>
+                  <ImageView fitHeight="112.0" fitWidth="168.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lib/pic/haberler.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="76.0" layoutY="142.0" text="Haberler" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="461.0" layoutY="333.0" onMouseClicked="#home_kampanyalar_giris" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="461.0" AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="333.0">
+               <children>
+                  <ImageView fitHeight="112.0" fitWidth="168.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lib/pic/kampanyalar.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="56.0" layoutY="126.0" text="Kampanyalar" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="789.0" layoutY="332.0" onMouseClicked="#home_biletlerim_giris" prefHeight="187.0" prefWidth="231.0" styleClass="pane1" AnchorPane.bottomAnchor="192.0" AnchorPane.leftAnchor="789.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="332.0">
+               <children>
+                  <ImageView fitHeight="112.0" fitWidth="168.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../lib/pic/biletlerim.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="69.0" layoutY="136.0" text="Biletlerim" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
    </children>

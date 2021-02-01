@@ -45,7 +45,7 @@ public class app_standart_userController extends Center implements Initializable
      */
     //Bu metod bu sınıfa özgü olan pane'leri tanımlıyor (appController ya da başka yerde kullanılmayan)
     @FXML
-    private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger, pnl_biletlerim;
+    private AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger, pnl_biletlerim, home_page;
 
     @FXML
     private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sahip_uc;
@@ -54,7 +54,7 @@ public class app_standart_userController extends Center implements Initializable
     private Label pnl_abonelik_uyari_mesaj;
 
     @FXML
-    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu, biletlerim_geri_tusu;
+    private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu, biletlerim_geri_tusu, home_page_icon;
 
     @FXML
     private TableView<satin_alinan_biletler> table_biletlerim;
@@ -90,7 +90,12 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void vizyondaki_filmler_giris(ActionEvent event) {
+        vizyondaki_filmler_giris_ortak();
+    }
+
+    private void vizyondaki_filmler_giris_ortak() {
         pnl_vizyondaki_filmler.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_settings.setVisible(false);
         pnl_haberler.setVisible(false);
@@ -98,18 +103,20 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        home_page.setVisible(false);
 
         vizyondaki_filmler_table();
     }
 
     @FXML
     private void vizyondaki_filmler_geri(MouseEvent event) {
-        pnl_vizyondaki_filmler.setVisible(false);
+        home_giris_ortak();
     }
 
     @FXML
     private void settings_giris(MouseEvent event) {
         pnl_settings.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_haberler.setVisible(false);
@@ -117,6 +124,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        home_page.setVisible(false);
 
         usersDAO udao = new usersDAO();
 
@@ -185,6 +193,7 @@ public class app_standart_userController extends Center implements Initializable
 
     private void haberler_giris_ortak() {
         pnl_haberler.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
@@ -192,13 +201,14 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        home_page.setVisible(false);
 
         haberler_table_butonsuz(abonelik_turu_getir());
     }
 
     @FXML
     private void haberler_geri(MouseEvent event) {
-        pnl_haberler.setVisible(false);
+        home_giris_ortak();
     }
 
     private void kampanyalar_table_butonsuz(int kullanici_turu) {
@@ -257,6 +267,7 @@ public class app_standart_userController extends Center implements Initializable
 
     private void kampanyalar_giris_ortak() {
         pnl_kampanyalar.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
@@ -264,13 +275,14 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        home_page.setVisible(false);
 
         kampanyalar_table_butonsuz(abonelik_turu_getir());
     }
 
     @FXML
     private void kampanyalar_geri(MouseEvent event) {
-        pnl_kampanyalar.setVisible(false);
+        home_giris_ortak();
     }
 
     @FXML
@@ -280,6 +292,7 @@ public class app_standart_userController extends Center implements Initializable
 
     private void abonelik_giris_ortak() {
         pnl_abonelik.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_kampanyalar.setVisible(false);
         pnl_settings.setVisible(false);
@@ -287,6 +300,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        home_page.setVisible(false);
 
         abonelik_sahip_bir.setVisible(false);
         abonelik_sahip_iki.setVisible(false);
@@ -550,7 +564,12 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void biletlerim_giris(ActionEvent event) {
+        biletlerim_giris_ortak();
+    }
+
+    private void biletlerim_giris_ortak() {
         pnl_biletlerim.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_settings.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(false);
@@ -558,6 +577,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_kampanyalar.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        home_page.setVisible(false);
 
         biletlerim_table(user_id_getir());
     }
@@ -611,12 +631,17 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void biletlerim_geri(MouseEvent event) {
-        pnl_biletlerim.setVisible(false);
+        home_giris_ortak();
     }
 
     @FXML
     private void bilet_satin_al_giris(ActionEvent event) {
+        bilet_satin_al_giris_ortak();
+    }
+
+    private void bilet_satin_al_giris_ortak() {
         pnl_sinema_salonlari.setVisible(true);
+        home_page_icon.setVisible(true);
 
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_abonelik.setVisible(false);
@@ -624,6 +649,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_kampanyalar.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_settings.setVisible(false);
+        home_page.setVisible(false);
 
         salon_bir_pane.setVisible(false);
         salon_iki_pane.setVisible(false);
@@ -852,5 +878,54 @@ public class app_standart_userController extends Center implements Initializable
                 satin_al_uyari_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -22)");
                 break;
         }
+    }
+
+    @FXML
+    private void home_vizyondaki_filmler_giris(MouseEvent event) {
+        vizyondaki_filmler_giris_ortak();
+    }
+
+    @FXML
+    private void home_abonelik_giris(MouseEvent event) {
+        abonelik_giris_ortak();
+    }
+
+    @FXML
+    private void home_bilet_satin_al_giris(MouseEvent event) {
+        bilet_satin_al_giris_ortak();
+    }
+
+    @FXML
+    private void home_haberler_giris(MouseEvent event) {
+        haberler_giris_ortak();
+    }
+
+    @FXML
+    private void home_kampanyalar_giris(MouseEvent event) {
+        kampanyalar_giris_ortak();
+    }
+
+    @FXML
+    private void home_biletlerim_giris(MouseEvent event) {
+        biletlerim_giris_ortak();
+    }
+
+    @FXML
+    private void home_giris(MouseEvent event) {
+        home_giris_ortak();
+    }
+
+    private void home_giris_ortak() {
+        home_page.setVisible(true);
+
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_abonelik.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_sinema_salonlari.setVisible(false);
+        pnl_biletlerim.setVisible(false);
+        pnl_settings.setVisible(false);
+
+        home_page_icon.setVisible(false);
     }
 }
