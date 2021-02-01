@@ -165,6 +165,39 @@ Button{
     -fx-background-radius :  20;
 }
 
+.pane1
+{
+    -fx-background-color:   #3F2B63;
+    -fx-background-radius: 70;
+    -fx-cursor:hand;
+    
+    -fx-border-color: slateblue;
+    -fx-border-width: 5;
+    -fx-border-radius: 60;
+
+}
+
+.pane1:hover
+{
+    -fx-background-radius :  70;
+    -fx-opacity: 0.50;
+    -fx-cursor:hand;
+
+    -fx-border-color: slateblue;
+    -fx-border-width: 5;
+    -fx-border-radius: 60;
+}
+.pane1:pressed
+{
+    -fx-background-radius :  70;
+    -fx-cursor:hand;
+    -fx-opacity: 0.80;
+
+    -fx-border-color: slateblue;
+    -fx-border-width: 5;
+    -fx-border-radius: 60;
+}
+
 .table-view .column-header,
 .table-view .column-header-background .filler{
     -fx-cell-size: 20;

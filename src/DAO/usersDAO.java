@@ -65,11 +65,6 @@ public class usersDAO {
 
     }
 
-    //bu methodumuz user tablosuna yazmak için
-    public void user_degis(users User) {
-
-    }
-
     public int user_password_control(String user_name, String password) {
         int user_id = user_id(user_name);
         String sql_password = user_password(user_id);
