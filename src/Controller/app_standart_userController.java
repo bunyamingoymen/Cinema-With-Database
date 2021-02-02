@@ -23,6 +23,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -51,7 +52,7 @@ public class app_standart_userController extends Center implements Initializable
     private Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sahip_uc;
 
     @FXML
-    private Label pnl_abonelik_uyari_mesaj;
+    private Label pnl_abonelik_uyari_mesaj, biletlerim_uyari_mesaj;
 
     @FXML
     private FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu, biletlerim_geri_tusu, home_page_icon;
@@ -61,6 +62,9 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk;
+
+    @FXML
+    private TableColumn<satin_alinan_biletler, Button> biletlerim_sil;
 
     @FXML
     private TextField filterField_biletlerim;
@@ -563,7 +567,7 @@ public class app_standart_userController extends Center implements Initializable
     }
 
     @FXML
-    private void biletlerim_giris(ActionEvent event) {
+    public void biletlerim_giris(ActionEvent event) {
         biletlerim_giris_ortak();
     }
 
@@ -582,18 +586,19 @@ public class app_standart_userController extends Center implements Initializable
         biletlerim_table(user_id_getir());
     }
 
-    private void biletlerim_table(int user_id) {
+    public void biletlerim_table(int user_id) {
         satin_alinan_biletlerDAO edao = new satin_alinan_biletlerDAO();
 
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
 
-        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id);
+        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil,filterField_biletlerim,biletlerim_uyari_mesaj, table_biletlerim);
 
         biletlerim_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         biletlerim_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));
         biletlerim_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
         biletlerim_saat.setCellValueFactory(new PropertyValueFactory("saat"));
         biletlerim_koltuk.setCellValueFactory(new PropertyValueFactory("koltuk_name"));
+        biletlerim_sil.setCellValueFactory(new PropertyValueFactory("biletlerim_sil"));
 
         FilteredList<satin_alinan_biletler> filteredData = new FilteredList<>(data, b -> true);
         filterField_biletlerim.textProperty().addListener((observable, oldValue, newValue) -> {

@@ -5,6 +5,21 @@
  */
 package entity;
 
+import Controller.app_standart_userController;
+import DAO.satin_alinan_biletlerDAO;
+import DAO.usersDAO;
+import entity.satin_alinan_biletler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 /**
  *
  * @author bgoymen
@@ -20,6 +35,8 @@ public class satin_alinan_biletler {
     private String salon_name;
     private String saat;
     private String yonetmen_ad_soyad;
+
+    private Button biletlerim_sil;
 
     public satin_alinan_biletler() {
     }
@@ -37,12 +54,75 @@ public class satin_alinan_biletler {
         this.koltuk_name = koltuk_name;
     }
 
-    public satin_alinan_biletler(String film_name, String salon_name, String saat, String ad, String soyad, String koltuk_name) {
+    public satin_alinan_biletler(int user_id,int satin_alinan_bilet_id, String film_name, String salon_name, String saat, String ad, String soyad, String koltuk_name, Button sil, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi,  TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
         this.koltuk_name = koltuk_name;
         this.film_name = film_name;
         this.salon_name = salon_name;
         this.saat = saat;
         this.yonetmen_ad_soyad = ad + " " + soyad;
+        this.biletlerim_sil = sil;
+
+        sil.setOnAction(e -> {
+            satin_alinan_biletlerDAO sdao = new satin_alinan_biletlerDAO();
+
+            int sonuc = sdao.satin_alinan_biletler_sil(satin_alinan_bilet_id);
+
+            if (sonuc == 1) {
+                biletlerim_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
+                biletlerim_table(user_id ,biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
+
+            } else {
+                biletlerim_uyari_mesaj.setText("Bir hata Meydana Geldi. (Hata Kodu: -23)");
+            }
+        });
+    }
+    
+        public void biletlerim_table(int user_id, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi,  TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
+        satin_alinan_biletlerDAO edao = new satin_alinan_biletlerDAO();
+
+        ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
+
+        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
+
+        biletlerim_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        biletlerim_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));
+        biletlerim_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        biletlerim_saat.setCellValueFactory(new PropertyValueFactory("saat"));
+        biletlerim_koltuk.setCellValueFactory(new PropertyValueFactory("koltuk_name"));
+        biletlerim_sil.setCellValueFactory(new PropertyValueFactory("biletlerim_sil"));
+
+        FilteredList<satin_alinan_biletler> filteredData = new FilteredList<>(data, b -> true);
+        filterField_biletlerim.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(bil -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (bil.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getSalon_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getSaat().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (bil.getKoltuk_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<satin_alinan_biletler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_biletlerim.comparatorProperty());
+
+        table_biletlerim.setItems(sortedData);
     }
 
     public int getSatin_alinan_bilet_id() {
@@ -107,6 +187,14 @@ public class satin_alinan_biletler {
 
     public void setYonetmen_ad_soyad(String yonetmen_ad_soyad) {
         this.yonetmen_ad_soyad = yonetmen_ad_soyad;
+    }
+
+    public Button getBiletlerim_sil() {
+        return biletlerim_sil;
+    }
+
+    public void setBiletlerim_sil(Button biletlerim_sil) {
+        this.biletlerim_sil = biletlerim_sil;
     }
 
 }

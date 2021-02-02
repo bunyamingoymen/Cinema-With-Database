@@ -6728,15 +6728,17 @@
                   </HBox>
                   <TableView fx:id="table_biletlerim" prefHeight="356.0" prefWidth="991.0" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="biletlerim_film_adi" prefWidth="408.0" text="Film Adı" />
-                        <TableColumn fx:id="biletlerim_salon_adi" prefWidth="119.0" text="Salon Adı" />
-                        <TableColumn fx:id="biletlerim_yonetmen" prefWidth="238.0" text="Yönetmen" />
-                        <TableColumn fx:id="biletlerim_saat" prefWidth="100.0" text="Saat" />
-                        <TableColumn fx:id="biletlerim_koltuk" prefWidth="125.0" text="Koltuk" />
+                        <TableColumn fx:id="biletlerim_film_adi" prefWidth="364.0" text="Film Adı" />
+                        <TableColumn fx:id="biletlerim_salon_adi" prefWidth="97.0" text="Salon Adı" />
+                        <TableColumn fx:id="biletlerim_yonetmen" prefWidth="231.0" text="Yönetmen" />
+                        <TableColumn fx:id="biletlerim_saat" prefWidth="130.0" text="Saat" />
+                        <TableColumn fx:id="biletlerim_koltuk" prefWidth="63.0" text="Koltuk" />
+                        <TableColumn fx:id="biletlerim_sil" prefWidth="74.0" text="Sil" />
                      </columns>
                   </TableView>
                </children>
             </GridPane>
+            <Label fx:id="biletlerim_uyari_mesaj" layoutX="522.0" layoutY="682.0" textAlignment="CENTER" textFill="RED" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="home_page" layoutX="329.0" layoutY="56.0" prefHeight="711.0" prefWidth="1056.0">

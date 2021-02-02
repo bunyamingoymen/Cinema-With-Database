@@ -1,7 +1,7 @@
 
-// DAO larda kullanılan en son hata kodu sayısı: 231
+// DAO larda kullanılan en son hata kodu sayısı: 232
 
-// Controller larda kullanılan en son hata kodu sayısı: -22
+// Controller larda kullanılan en son hata kodu sayısı: -23
 
 /*
 Proje Hakkında:
