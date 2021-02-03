@@ -202,57 +202,6 @@ public class Center implements Initializable {
 
     @FXML
     protected AnchorPane pnl_vizyondaki_filmler;
-
-    protected void vizyondaki_filmler_table() {
-        vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
-
-        ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
-
-        data = vf.vizyondaki_filmler_select(data);
-
-        vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
-        vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
-        vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
-        vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
-        vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
-        vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
-
-        FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
-
-        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(viz -> {
-
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-
-            });
-        });
-
-        SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
-
-        sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
-
-        table_vizyondaki_filmler.setItems(sortedData);
-    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Eski Filmler için

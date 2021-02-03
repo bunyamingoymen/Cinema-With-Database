@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import util.DBConnector;
 
 /**
@@ -145,6 +146,42 @@ public class vizyondaki_filmlerDAO {
 
         } catch (SQLException e) {
             System.out.println("Hata kodu: 167 - " + e.getMessage());
+        }
+
+        return data;
+    }
+    
+        public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data) {
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from vizyondaki_filmler_tablo";
+            ResultSet rs = st.executeQuery(komut);
+
+            while (rs.next()) {
+                int vizyondaki_film_id = rs.getInt("vizyondaki_film_id");
+                String film_name = rs.getString("film_name");
+                String film_type = rs.getString("film_type");
+                int film_suresi = rs.getInt("film_suresi");
+                String ad = rs.getString("ad");
+                String soyad = rs.getString("soyad");
+                String kalkis = rs.getString("vizyondan_kalkis_tarihi");
+                int kullanici_puani = rs.getInt("kullanici_puani");
+                
+                Button detay = new Button();
+                detay.setText("Detay");
+              
+                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 233 - " + e.getMessage());
         }
 
         return data;

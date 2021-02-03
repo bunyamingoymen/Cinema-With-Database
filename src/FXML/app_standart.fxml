@@ -153,12 +153,13 @@
                   </HBox>
                   <TableView fx:id="table_vizyondaki_filmler" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="vizyondaki_filmler_film_adi" prefWidth="218.0" text="Film Adı" />
-                        <TableColumn fx:id="vizyondaki_filmler_film_type" prefWidth="151.0" text="Film Türü" />
-                        <TableColumn fx:id="vizyondaki_filmler_film_suresi" prefWidth="115.0" text="Film Suresi" />
-                        <TableColumn fx:id="vizyondaki_filmler_yonetmen" prefWidth="239.0" text="Yönetmen" />
-                        <TableColumn fx:id="vizyondaki_filmler_kalkis" prefWidth="140.0" text="Kalkış Tarihi" />
-                        <TableColumn fx:id="vizyondaki_filmler_kullanici_puani" prefWidth="127.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="vizyondaki_filmler_film_adi" prefWidth="166.0" text="Film Adı" />
+                        <TableColumn fx:id="vizyondaki_filmler_film_type" prefWidth="130.0" text="Film Türü" />
+                        <TableColumn fx:id="vizyondaki_filmler_film_suresi" prefWidth="129.0" text="Film Suresi" />
+                        <TableColumn fx:id="vizyondaki_filmler_yonetmen" prefWidth="186.0" text="Yönetmen" />
+                        <TableColumn fx:id="vizyondaki_filmler_kalkis" prefWidth="149.0" text="Kalkış Tarihi" />
+                        <TableColumn fx:id="vizyondaki_filmler_kullanici_puani" prefWidth="151.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="vizyondaki_filmler_detay" prefWidth="76.0" text="Detay" />
                      </columns>
                   </TableView>
                </children>

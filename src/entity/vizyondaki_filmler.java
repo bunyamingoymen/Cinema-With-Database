@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
-/**
- *
- * @author bgoymen
- */
+import javafx.scene.control.Button;
+
 public class vizyondaki_filmler {
-    
+
     private int vizyondaki_filmler_id;
     private int film_id;
     private String film_name;
@@ -20,7 +13,7 @@ public class vizyondaki_filmler {
     private String vizyondan_kalkis_tarihi;
     private int kullanici_puani;
     private int seans_sayisi;
-    
+    private Button film_detayi;
 
     public vizyondaki_filmler(int film_id, String vizyondan_kalkis_tarihi, int kullanici_puani, int seans_sayisi) {
         this.film_id = film_id;
@@ -41,16 +34,25 @@ public class vizyondaki_filmler {
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
-        this.yonetmen_ad_soyad = yonetmen_ad + " " +yonetmen_soyad;
+        this.yonetmen_ad_soyad = yonetmen_ad + " " + yonetmen_soyad;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
         this.kullanici_puani = kullanici_puani;
     }
 
+    public vizyondaki_filmler(int vizyondaki_filmler_id, String film_name, String film_type, int film_suresi, String ad, String soyad, String vizyondan_kalkis_tarihi, int kullanici_puani, Button detay) {
+        this.vizyondaki_filmler_id = vizyondaki_filmler_id;
+        this.film_name = film_name;
+        this.film_type = film_type;
+        this.film_suresi = film_suresi;
+        this.yonetmen_ad_soyad = ad + " " + soyad;
+        this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
+        this.kullanici_puani = kullanici_puani;
+        this.film_detayi = detay;
 
-    
-    
-    
-
+        detay.setOnAction(e -> {
+            System.out.println("1");
+        });
+    }
 
     public int getVizyondaki_filmler_id() {
         return vizyondaki_filmler_id;
@@ -59,8 +61,6 @@ public class vizyondaki_filmler {
     public void setVizyondaki_filmler_id(int vizyondaki_filmler_id) {
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
     }
-    
-    
 
     public vizyondaki_filmler() {
     }
@@ -128,8 +128,14 @@ public class vizyondaki_filmler {
     public void setYonetmen_ad_soyad(String yonetmen_ad_soyad) {
         this.yonetmen_ad_soyad = yonetmen_ad_soyad;
     }
-    
-    
-    
-    
+
+    public Button getFilm_detayi() {
+        return film_detayi;
+    }
+
+    public void setFilm_detayi(Button film_detayi) {
+        this.film_detayi = film_detayi;
+    }
+
+
 }

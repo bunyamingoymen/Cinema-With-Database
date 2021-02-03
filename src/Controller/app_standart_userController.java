@@ -8,12 +8,14 @@ import DAO.satin_alinan_biletlerDAO;
 import DAO.seansDAO;
 import DAO.sinema_salonlariDAO;
 import DAO.usersDAO;
+import DAO.vizyondaki_filmlerDAO;
 import DAO.yesil_olanDAO;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.eski_filmler;
 import entity.haberler;
 import entity.kampanyalar;
 import entity.satin_alinan_biletler;
+import entity.vizyondaki_filmler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -65,6 +67,9 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private TableColumn<satin_alinan_biletler, Button> biletlerim_sil;
+    
+    @FXML
+    private TableColumn<vizyondaki_filmler, Button> vizyondaki_filmler_detay;
 
     @FXML
     private TextField filterField_biletlerim;
@@ -109,7 +114,59 @@ public class app_standart_userController extends Center implements Initializable
         pnl_sinema_salonlari.setVisible(false);
         home_page.setVisible(false);
 
-        vizyondaki_filmler_table();
+        vizyondaki_filmler_table_butonlu();
+    }
+    
+        protected void vizyondaki_filmler_table_butonlu() {
+        vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
+
+        ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
+
+        data = vf.vizyondaki_filmler_select(data);
+
+        vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
+        vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
+        vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
+        vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+        vizyondaki_filmler_detay.setCellValueFactory(new PropertyValueFactory("film_detayi"));
+
+        FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(viz -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
+
+        table_vizyondaki_filmler.setItems(sortedData);
     }
 
     @FXML

@@ -289,6 +289,57 @@ public class appController extends Center implements Initializable {
         }
     }
 
+    protected void vizyondaki_filmler_table() {
+        vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
+
+        ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
+
+        data = vf.vizyondaki_filmler_select(data);
+
+        vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
+        vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
+        vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
+        vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+
+        FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(viz -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
+
+        table_vizyondaki_filmler.setItems(sortedData);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
     Seans İşlemleri
@@ -630,8 +681,8 @@ public class appController extends Center implements Initializable {
     private Pane ust_pnl_eski_filmler, eski_filmler_ekle_pane, eski_filmler_degistir_pane, eski_filmler_degistir_pane_1, eski_filmler_degistir_pane_2, eski_filmler_degistir_sil_emin_misin;
 
     @FXML
-    private TableColumn<eski_filmler, String>  eski_filmler_hangi_abone;
-    
+    private TableColumn<eski_filmler, String> eski_filmler_hangi_abone;
+
     @FXML
     private TextField eski_film_name, eski_film_type, eski_film_suresi, eski_aldigi_odul_sayisi, eski_filmleri_degistir_sil_film_name, eski_filmleri_degistir_sil_film_type, eski_filmleri_degistir_sil_film_suresi, eski_filmleri_degistir_sil_aldigi_odul;
 
@@ -1006,7 +1057,6 @@ public class appController extends Center implements Initializable {
     Kampanyalar
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      */
-
     @FXML
     private Pane ust_pnl_kampanyalar, kampanyalar_ekle_pane, kampanyalar_degistir_pane, kampanyalar_degistir_pane_1, kampanyalar_degistir_pane_2, kampanyalar_sil_emin_misin_pane;
 
@@ -1017,7 +1067,7 @@ public class appController extends Center implements Initializable {
     private FontAwesomeIconView kampanyalar_ekle_geri_tusu, kampanyalar_degistir_geri_tusu;
 
     @FXML
-    private TableColumn<kampanyalar, String>kampanyalar_hangi_kullanıcı;
+    private TableColumn<kampanyalar, String> kampanyalar_hangi_kullanıcı;
 
     @FXML
     private TableColumn<kampanyalar, Button> kampanyalar_sil;
