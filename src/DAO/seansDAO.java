@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.seans;
@@ -14,10 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymen
- */
 public class seansDAO {
 
     public ObservableList<seans> seans_select(ObservableList<seans> data) {
@@ -172,20 +163,20 @@ public class seansDAO {
 
         return film_id;
     }
-    
-    public String film_adi_getir(int seans_id){
+
+    public String film_adi_getir(int seans_id) {
         int vizyondaki_film_id = vizyondaki_film_id_getir(seans_id);
-        
+
         vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
-        
-        return vdao.film_adi_getir(vizyondaki_film_id);         
+
+        return vdao.film_adi_getir(vizyondaki_film_id);
     }
-    
-    public String salon_adi_getir(int seans_id){
+
+    public String salon_adi_getir(int seans_id) {
         int salon_id = salon_id_getir(seans_id);
-        
+
         sinema_salonlariDAO sdao = new sinema_salonlariDAO();
-        
+
         return sdao.salon_adi_getir(salon_id);
     }
 

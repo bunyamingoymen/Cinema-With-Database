@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-/**
- *
- * @author bgoym
- */
 public class film_actor {
 
     private int film_actor_id;
@@ -23,7 +14,7 @@ public class film_actor {
     private String ad_soyad;
     private Button sil;
 
-    public film_actor(Label film_actor_id_label,Pane film_actor_sil_emin_misin_pane) {
+    public film_actor(Label film_actor_id_label, Pane film_actor_sil_emin_misin_pane) {
         sil.setOnAction(e -> {
             film_actor_id_label.setText(String.valueOf(this.film_actor_id));
             film_actor_sil_emin_misin_pane.setVisible(true);

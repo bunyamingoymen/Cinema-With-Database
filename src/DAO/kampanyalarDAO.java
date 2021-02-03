@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.kampanyalar;
@@ -17,10 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymen
- */
 public class kampanyalarDAO {
 
     public ObservableList<kampanyalar> kampanyalar_select(ObservableList<kampanyalar> data, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {

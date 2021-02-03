@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import Controller.app_standart_userController;
 import entity.satin_alinan_biletler;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,10 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymen
- */
 public class satin_alinan_biletlerDAO {
 
     public String[] satin_alinan_biletler_satyin_alinanlari_gonder(int seans_id) {
@@ -54,7 +44,7 @@ public class satin_alinan_biletlerDAO {
         return arr;
     }
 
-    public ObservableList<satin_alinan_biletler> satin_alinan_biletler_kullanicinin_biletlerini_goster(ObservableList<satin_alinan_biletler> data, int user_id, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi,  TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
+    public ObservableList<satin_alinan_biletler> satin_alinan_biletler_kullanicinin_biletlerini_goster(ObservableList<satin_alinan_biletler> data, int user_id, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi, TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
 
         try {
             DBConnector d = new DBConnector();
@@ -79,9 +69,8 @@ public class satin_alinan_biletlerDAO {
                 Button sil = new Button();
                 sil.setText("Sil");
                 sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
-                
 
-                data.addAll(FXCollections.observableArrayList(new satin_alinan_biletler(user_id, satin_alinan_bilet_id, film_name, salon_name, saat, ad, soyad, koltuk_name, sil, biletlerim_film_adi,  biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim)));
+                data.addAll(FXCollections.observableArrayList(new satin_alinan_biletler(user_id, satin_alinan_bilet_id, film_name, salon_name, saat, ad, soyad, koltuk_name, sil, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim)));
             }
 
             c.close();

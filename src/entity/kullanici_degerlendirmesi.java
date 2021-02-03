@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
-/**
- *
- * @author bgoym
- */
 public class kullanici_degerlendirmesi {
+
     private int kullanici_degerlendirme_id;
     private int user_id;
     private int film_id;
@@ -62,6 +54,5 @@ public class kullanici_degerlendirmesi {
     public void setDegerlendirme(int degerlendirme) {
         this.degerlendirme = degerlendirme;
     }
-    
-    
+
 }

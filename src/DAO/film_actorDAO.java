@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.film_actor;
@@ -17,10 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymen
- */
 public class film_actorDAO {
 
     public ObservableList<film_actor> film_actor_select(ObservableList<film_actor> data, int actor_id, Pane film_actor_sil_emin_misin_pane, Label film_actor_id_label) {
@@ -49,7 +40,7 @@ public class film_actorDAO {
 
                 data.addAll(FXCollections.observableArrayList(new film_actor(film_actor_id, film_id, actor_id, film_name, film_type, ad_soyad, sil, film_actor_sil_emin_misin_pane, film_actor_id_label)));
             }
-            
+
             c.close();
             st.close();
             rs.close();
@@ -69,7 +60,7 @@ public class film_actorDAO {
             Statement st = c.createStatement();
             String komut = "delete from film_actor where film_actor_id = " + id;
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
         } catch (SQLException e) {
@@ -84,9 +75,9 @@ public class film_actorDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into film_actor (film_id,actor_id) values ('"+fa.getFilm_id() +"','"+fa.getActor_id()+"')";
+            String komut = "insert into film_actor (film_id,actor_id) values ('" + fa.getFilm_id() + "','" + fa.getActor_id() + "')";
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
         } catch (SQLException e) {

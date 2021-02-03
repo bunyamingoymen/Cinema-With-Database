@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-/**
- *
- * @author bgoymen
- */
 public class haberler {
 
     private int haber_id;
@@ -64,8 +55,6 @@ public class haberler {
         this.Tarih = Tarih;
         this.Haber_Kategorisi = Haber_Kategorisi;
     }
-    
-    
 
     public int getHaber_id() {
         return haber_id;
@@ -122,7 +111,5 @@ public class haberler {
     public void setSil(Button sil) {
         this.sil = sil;
     }
-    
-    
 
 }

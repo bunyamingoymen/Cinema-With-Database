@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
-/**
- *
- * @author bgoymen
- */
 public class eski_filmler {
+
     private int eski_film_id;
     private int film_id;
     private String film_name;
@@ -36,7 +28,7 @@ public class eski_filmler {
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad,int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi) {
+    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi) {
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
@@ -44,8 +36,8 @@ public class eski_filmler {
         this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
-    
-    public eski_filmler(int eski_film_id,int film_id,String film_name, String film_type, int film_suresi, int aldigi_odul, int hangi_abone ,int yonetmen_id){
+
+    public eski_filmler(int eski_film_id, int film_id, String film_name, String film_type, int film_suresi, int aldigi_odul, int hangi_abone, int yonetmen_id) {
         this.eski_film_id = eski_film_id;
         this.film_id = film_id;
         this.film_name = film_name;
@@ -63,9 +55,6 @@ public class eski_filmler {
         this.yonetmen_ad_soyad = ad + " " + soyad;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
-    
-    
-    
 
     public int getEski_film_id() {
         return eski_film_id;
@@ -139,11 +128,4 @@ public class eski_filmler {
         this.yonetmen_id = yonetmen_id;
     }
 
-    
-    
-    
-    
-    
-    
-    
 }

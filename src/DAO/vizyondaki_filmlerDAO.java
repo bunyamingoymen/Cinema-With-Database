@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.filmler;
@@ -16,10 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymenen
- */
 public class vizyondaki_filmlerDAO {
 
     public vizyondaki_filmlerDAO() {
@@ -150,8 +141,8 @@ public class vizyondaki_filmlerDAO {
 
         return data;
     }
-    
-        public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data) {
+
+    public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data) {
 
         try {
             DBConnector d = new DBConnector();
@@ -169,10 +160,10 @@ public class vizyondaki_filmlerDAO {
                 String soyad = rs.getString("soyad");
                 String kalkis = rs.getString("vizyondan_kalkis_tarihi");
                 int kullanici_puani = rs.getInt("kullanici_puani");
-                
+
                 Button detay = new Button();
                 detay.setText("Detay");
-              
+
                 data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
             }
 
@@ -224,7 +215,7 @@ public class vizyondaki_filmlerDAO {
             filmlerDAO fdao = new filmlerDAO();
             yonetmenlerDAO ydao = new yonetmenlerDAO();
             while (rs.next()) {
-                String vizyondaki_filmler_combo = rs.getInt("vizyondaki_film_id") + " | "  + fdao.filmler_film_adi_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_type_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_suresi_getir(rs.getInt("film_id")) + " | " + ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(rs.getInt("film_id")));
+                String vizyondaki_filmler_combo = rs.getInt("vizyondaki_film_id") + " | " + fdao.filmler_film_adi_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_type_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_suresi_getir(rs.getInt("film_id")) + " | " + ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(rs.getInt("film_id")));
                 int id = rs.getInt("vizyondaki_film_id");
                 arr[i] = vizyondaki_filmler_combo;
                 i++;

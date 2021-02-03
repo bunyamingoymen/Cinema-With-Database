@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
-/**
- *
- * @author bgoymen
- */
 public class filmler {
-    
+
     private int film_id;
     private String film_name;
     private int film_suresi;
@@ -31,7 +22,6 @@ public class filmler {
         this.film_type = film_type;
         this.yonetmen_id = yonetmen_id;
     }
-    
 
     public filmler() {
     }
@@ -75,6 +65,5 @@ public class filmler {
     public void setYonetmen_id(int yonetmen_id) {
         this.yonetmen_id = yonetmen_id;
     }
-    
-    
+
 }

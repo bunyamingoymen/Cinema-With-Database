@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
-/**
- *
- * @author bgoymen
- */
 public class users {
 
     private int user_id;
@@ -31,8 +22,6 @@ public class users {
         this.user_password = user_password;
         this.user_type = user_type;
     }
-    
-    
 
     public users() {
     }
@@ -44,8 +33,6 @@ public class users {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
-    
-    
 
     public String getUser_name() {
         return user_name;

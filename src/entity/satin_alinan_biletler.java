@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
-import Controller.app_standart_userController;
 import DAO.satin_alinan_biletlerDAO;
-import DAO.usersDAO;
 import entity.satin_alinan_biletler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,10 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- *
- * @author bgoymen
- */
 public class satin_alinan_biletler {
 
     private int satin_alinan_bilet_id;
@@ -54,7 +43,7 @@ public class satin_alinan_biletler {
         this.koltuk_name = koltuk_name;
     }
 
-    public satin_alinan_biletler(int user_id,int satin_alinan_bilet_id, String film_name, String salon_name, String saat, String ad, String soyad, String koltuk_name, Button sil, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi,  TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
+    public satin_alinan_biletler(int user_id, int satin_alinan_bilet_id, String film_name, String salon_name, String saat, String ad, String soyad, String koltuk_name, Button sil, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi, TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
         this.koltuk_name = koltuk_name;
         this.film_name = film_name;
         this.salon_name = salon_name;
@@ -69,15 +58,15 @@ public class satin_alinan_biletler {
 
             if (sonuc == 1) {
                 biletlerim_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
-                biletlerim_table(user_id ,biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
+                biletlerim_table(user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
 
             } else {
                 biletlerim_uyari_mesaj.setText("Bir hata Meydana Geldi. (Hata Kodu: -23)");
             }
         });
     }
-    
-        public void biletlerim_table(int user_id, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi,  TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
+
+    public void biletlerim_table(int user_id, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi, TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
         satin_alinan_biletlerDAO edao = new satin_alinan_biletlerDAO();
 
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();

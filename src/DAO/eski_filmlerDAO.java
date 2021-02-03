@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.eski_filmler;
@@ -14,10 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymen
- */
 public class eski_filmlerDAO {
 
     public ObservableList<eski_filmler> eski_filmler_select(ObservableList<eski_filmler> data) {
@@ -49,8 +40,8 @@ public class eski_filmlerDAO {
 
         return data;
     }
-    
-        public ObservableList<eski_filmler> eski_filmler_select_abone_ozel(ObservableList<eski_filmler> data, int kullanici_turu) {
+
+    public ObservableList<eski_filmler> eski_filmler_select_abone_ozel(ObservableList<eski_filmler> data, int kullanici_turu) {
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
@@ -59,8 +50,8 @@ public class eski_filmlerDAO {
             ResultSet rs = st.executeQuery(komut);
 
             while (rs.next()) {
-                if(rs.getInt("hangi_aboneler_izleyebilir")<=kullanici_turu){
-                    
+                if (rs.getInt("hangi_aboneler_izleyebilir") <= kullanici_turu) {
+
                 }
                 String film_name = rs.getString("film_name");
                 String film_type = rs.getString("film_type");
@@ -314,7 +305,7 @@ public class eski_filmlerDAO {
             ResultSet rs = st.executeQuery(komut);
             rs.next();
             film_suresi = fdao.filmler_film_suresi_getir(rs.getInt("film_id"));
-            
+
             c.close();
             st.close();
             rs.close();
@@ -339,7 +330,7 @@ public class eski_filmlerDAO {
             ResultSet rs = st.executeQuery(komut);
             rs.next();
             yonetmen_id = fdao.filmler_yonetmen_id_getir(rs.getInt("film_id"));
-            
+
             c.close();
             st.close();
             rs.close();
@@ -363,7 +354,7 @@ public class eski_filmlerDAO {
             ResultSet rs = st.executeQuery(komut);
             rs.next();
             name_surname = ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(rs.getInt("film_id")));
-            
+
             c.close();
             st.close();
             rs.close();
@@ -387,7 +378,7 @@ public class eski_filmlerDAO {
             ResultSet rs = st.executeQuery(komut);
             rs.next();
             hangi_abone = rs.getInt("hangi_aboneler_izleyebilir");
-            
+
             c.close();
             st.close();
             rs.close();
@@ -411,7 +402,7 @@ public class eski_filmlerDAO {
             ResultSet rs = st.executeQuery(komut);
             rs.next();
             odul = rs.getInt("aldigi_odul_sayisi");
-            
+
             c.close();
             st.close();
             rs.close();
@@ -434,7 +425,7 @@ public class eski_filmlerDAO {
             rs.next();
             film_id = rs.getInt("film_id");
             System.out.println("film_id = " + film_id);
-            
+
             c.close();
             st.close();
             rs.close();

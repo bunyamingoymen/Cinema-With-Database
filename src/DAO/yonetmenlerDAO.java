@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.yonetmenler;
@@ -14,10 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.DBConnector;
 
-/**
- *
- * @author bgoymen
- */
 public class yonetmenlerDAO {
 
     public yonetmenlerDAO() {
@@ -227,7 +218,7 @@ public class yonetmenlerDAO {
             ResultSet rs = st.executeQuery(komut);
             rs.next();
             film_sayisi = rs.getInt("film_sayisi");
-            
+
             c.close();
             st.close();
             rs.close();
@@ -248,10 +239,10 @@ public class yonetmenlerDAO {
             Statement st = c.createStatement();
             String komut = "update yonetmenler set  ad = '" + y.getYonetmen_name() + "' , soyad = '" + y.getYonetmen_sur_name() + "' , film_sayisi = " + y.getFilm_sayisi() + " where yonetmen_id =" + y.getYonetmen_id();
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
-            
+
         } catch (SQLException e) {
             System.out.println("Hata kodu :157 - " + e.getMessage());
         }
@@ -266,7 +257,7 @@ public class yonetmenlerDAO {
             Statement st = c.createStatement();
             String komut = "delete from yonetmenler where yonetmen_id=" + id;
             sonuc = st.executeUpdate(komut);
-            
+
             c.close();
             st.close();
 

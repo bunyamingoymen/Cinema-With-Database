@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import Controller.appController;
@@ -22,10 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-/**
- *
- * @author bgoymen
- */
 public class actor {
 
     private int actor_id;
@@ -69,7 +60,7 @@ public class actor {
             lab3.setText(String.valueOf(actor_id));
             film_actor_ekle_pane.setVisible(false);
             film_actor_sil_emin_misin_pane.setVisible(false);
-            
+
             film_actor_table(aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_sil_emin_misin_pane, film_actor_id_label);
 
         });
@@ -80,7 +71,6 @@ public class actor {
         film_actor_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
         film_actor_yonetmen.setCellValueFactory(new PropertyValueFactory("ad_soyad"));
         film_actor_sil.setCellValueFactory(new PropertyValueFactory("sil"));
-        
 
         film_actorDAO fdao = new film_actorDAO();
         ObservableList<film_actor> data = FXCollections.observableArrayList();
