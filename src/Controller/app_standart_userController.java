@@ -122,7 +122,7 @@ public class app_standart_userController extends Center implements Initializable
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
 
-        data = vf.vizyondaki_filmler_select(data);
+        data = vf.vizyondaki_filmler_select_butonlu(data);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));

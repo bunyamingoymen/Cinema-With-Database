@@ -132,10 +132,10 @@ public class appController extends Center implements Initializable {
                     }
                 }
 
-                filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id);
+                filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id,0);
                 filmlerDAO fdao = new filmlerDAO();
                 int film_id = fdao.filmler_ekle_id_gonder(f);
-                vizyondaki_filmler v = new vizyondaki_filmler(film_id, kalkis, 0, 0);
+                vizyondaki_filmler v = new vizyondaki_filmler(film_id, kalkis, 0);
                 vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
                 int sonuc = vdao.vizyondaki_filmler_dao_ekle(v);
                 if (sonuc == 1) {
@@ -238,7 +238,7 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
             filmlerDAO fdao = new filmlerDAO();
 
-            vizyondaki_filmler v = new vizyondaki_filmler(Integer.valueOf(vizyondaki_film_id), Integer.valueOf(film_id), kalkis, vdao.kullanici_puani_getir(Integer.valueOf(vizyondaki_film_id)), vdao.seans_sayisi_getir(Integer.valueOf(vizyondaki_film_id)));
+            vizyondaki_filmler v = new vizyondaki_filmler(Integer.valueOf(vizyondaki_film_id), Integer.valueOf(film_id), kalkis, fdao.kullanici_puani_getir(Integer.valueOf(film_id)), vdao.seans_sayisi_getir(Integer.valueOf(vizyondaki_film_id)));
             filmler f = new filmler(Integer.valueOf(film_id), film_name, Integer.valueOf(film_suresi), film_type, secilen_yonetmen_id);
 
             int sonuc = vdao.vizyondaki_filmler_degistir(v, f);
@@ -827,7 +827,7 @@ public class appController extends Center implements Initializable {
                     }
                     int hangi_abone = Integer.valueOf(hangi);
 
-                    filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id);
+                    filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id,0);
                     filmlerDAO fdao = new filmlerDAO();
                     int film_id = fdao.filmler_ekle_id_gonder(f);
                     eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);

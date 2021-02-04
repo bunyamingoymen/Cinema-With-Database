@@ -11,6 +11,7 @@ public class eski_filmler {
     private int hangi_aboneler_izleyebilir;
     private int aldigi_odul_sayisi;
     private int yonetmen_id;
+    private float kullanici_puani;
 
     public eski_filmler() {
     }
@@ -28,13 +29,14 @@ public class eski_filmler {
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi) {
+    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani) {
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
         this.yonetmen_ad_soyad = yonetmen_ad + " " + yonetmen_soyad;
         this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
+        this.kullanici_puani = kullanici_puani;
     }
 
     public eski_filmler(int eski_film_id, int film_id, String film_name, String film_type, int film_suresi, int aldigi_odul, int hangi_abone, int yonetmen_id) {
@@ -55,6 +57,8 @@ public class eski_filmler {
         this.yonetmen_ad_soyad = ad + " " + soyad;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
+    
+    
 
     public int getEski_film_id() {
         return eski_film_id;
@@ -126,6 +130,14 @@ public class eski_filmler {
 
     public void setYonetmen_id(int yonetmen_id) {
         this.yonetmen_id = yonetmen_id;
+    }
+
+    public float getKullanici_puani() {
+        return kullanici_puani;
+    }
+
+    public void setKullanici_puani(float kullanici_puani) {
+        this.kullanici_puani = kullanici_puani;
     }
 
 }

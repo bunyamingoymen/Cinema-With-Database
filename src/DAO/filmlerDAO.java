@@ -17,7 +17,7 @@ public class filmlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into filmler (film_name,film_type,film_suresi,yonetmen_id) values ('" + f.getFilm_name() + "','" + f.getFilm_type() + "','" + f.getFilm_suresi() + "','" + f.getYonetmen_id() + "')";
+            String komut = "insert into filmler (film_name,film_type,film_suresi,yonetmen_id,kullanici_puani) values ('" + f.getFilm_name() + "','" + f.getFilm_type() + "','" + f.getFilm_suresi() + "','" + f.getYonetmen_id() + "',"+ f.getKullanici_puani() + ")";
             sonuc = st.executeUpdate(komut);
 
             if (sonuc != 1) {
@@ -203,5 +203,28 @@ public class filmlerDAO {
         }
 
         return sonuc;
+    }
+    
+        public float kullanici_puani_getir(int id) {
+        float kullanici_puani = (float) -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from filmler where film_id ='" + id + "'";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            kullanici_puani = rs.getFloat("kullanici_puani");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 177 - " + e.getMessage());
+        }
+
+        return kullanici_puani;
     }
 }

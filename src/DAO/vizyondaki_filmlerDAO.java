@@ -79,7 +79,7 @@ public class vizyondaki_filmlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into vizyondaki_filmler (film_id,vizyondan_kalkis_tarihi,kullanici_puani,seans_sayisi) values ('" + v.getFilm_id() + "','" + v.getVizyondan_kalkis_tarihi() + "','" + v.getKullanici_puani() + "','" + v.getSeans_sayisi() + "')";
+            String komut = "insert into vizyondaki_filmler (film_id,vizyondan_kalkis_tarihi,seans_sayisi) values ('" + v.getFilm_id() + "','" + v.getVizyondan_kalkis_tarihi() + "','" + v.getSeans_sayisi() + "')";
             sonuc = st.executeUpdate(komut);
 
             c.close();
@@ -395,27 +395,6 @@ public class vizyondaki_filmlerDAO {
         }
 
         return kalkis;
-    }
-
-    public int kullanici_puani_getir(int id) {
-        int kullanici_puani = 0;
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from vizyondaki_filmler where vizyondaki_film_id='" + id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            kullanici_puani = rs.getInt("kullanici_puani");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 177 - " + e.getMessage());
-        }
-        return kullanici_puani;
     }
 
     public int seans_sayisi_getir(int id) {

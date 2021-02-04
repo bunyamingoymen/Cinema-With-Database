@@ -27,7 +27,8 @@ public class eski_filmlerDAO {
                 String soyad = rs.getString("soyad");
                 int hangi = rs.getInt("hangi_aboneler_izleyebilir");
                 int aldigi_odul_sayisi = rs.getInt("aldigi_odul_sayisi");
-                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi)));
+                float kullanici_puani = rs.getFloat("kullanici_puani");
+                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani)));
             }
 
             c.close();
