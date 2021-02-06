@@ -128,7 +128,12 @@ public class vizyondaki_filmlerDAO {
                 String soyad = rs.getString("soyad");
                 String kalkis = rs.getString("vizyondan_kalkis_tarihi");
                 int kullanici_puani = rs.getInt("kullanici_puani");
-                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani)));
+
+                Button detay = new Button();
+                detay.setText("Detay");
+                detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
             }
 
             c.close();
@@ -163,6 +168,7 @@ public class vizyondaki_filmlerDAO {
 
                 Button detay = new Button();
                 detay.setText("Detay");
+                detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
                 data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
             }
@@ -216,7 +222,6 @@ public class vizyondaki_filmlerDAO {
             yonetmenlerDAO ydao = new yonetmenlerDAO();
             while (rs.next()) {
                 String vizyondaki_filmler_combo = rs.getInt("vizyondaki_film_id") + " | " + fdao.filmler_film_adi_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_type_getir(rs.getInt("film_id")) + " | " + fdao.filmler_film_suresi_getir(rs.getInt("film_id")) + " | " + ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(rs.getInt("film_id")));
-                int id = rs.getInt("vizyondaki_film_id");
                 arr[i] = vizyondaki_filmler_combo;
                 i++;
             }

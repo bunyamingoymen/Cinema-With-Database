@@ -142,9 +142,10 @@
                         <TableColumn fx:id="vizyondaki_filmler_film_adi" prefWidth="218.0" text="Film Adı" />
                         <TableColumn fx:id="vizyondaki_filmler_film_type" prefWidth="151.0" text="Film Türü" />
                         <TableColumn fx:id="vizyondaki_filmler_film_suresi" prefWidth="115.0" text="Film Suresi" />
-                        <TableColumn fx:id="vizyondaki_filmler_yonetmen" prefWidth="239.0" text="Yönetmen" />
-                        <TableColumn fx:id="vizyondaki_filmler_kalkis" prefWidth="140.0" text="Kalkış Tarihi" />
-                        <TableColumn fx:id="vizyondaki_filmler_kullanici_puani" prefWidth="127.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="vizyondaki_filmler_yonetmen" prefWidth="176.0" text="Yönetmen" />
+                        <TableColumn fx:id="vizyondaki_filmler_kalkis" prefWidth="138.0" text="Kalkış Tarihi" />
+                        <TableColumn fx:id="vizyondaki_filmler_kullanici_puani" prefWidth="123.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="vizyondaki_filmler_detay" prefWidth="69.0" text="Detay" />
                      </columns>
                   </TableView>
                </children>
@@ -6488,9 +6489,11 @@
                         <TableColumn fx:id="eski_filmler_film_adi" prefWidth="218.0" text="Film Adı" />
                         <TableColumn fx:id="eski_filmler_film_type" prefWidth="151.0" text="Film Türü" />
                         <TableColumn fx:id="eski_filmler_film_suresi" prefWidth="115.0" text="Film Suresi" />
-                        <TableColumn fx:id="eski_filmler_yonetmen" prefWidth="239.0" text="Yönetmen" />
-                        <TableColumn fx:id="eski_filmler_hangi_abone" prefWidth="140.0" text="Abone Türü" />
-                        <TableColumn fx:id="eski_filmler_aldigi_odul_sayisi" prefWidth="127.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="eski_filmler_yonetmen" prefWidth="127.0" text="Yönetmen" />
+                        <TableColumn fx:id="eski_filmler_hangi_abone" prefWidth="121.0" text="Abone Türü" />
+                        <TableColumn fx:id="eski_filmler_kullanici_puani" prefWidth="120.0" text="Kullanıcı Puanı" />
+                        <TableColumn fx:id="eski_filmler_aldigi_odul_sayisi" prefWidth="78.0" text="Ödüller" />
+                        <TableColumn fx:id="eski_filmler_detay" prefWidth="70.0" text="Detay" />
                      </columns>
                   </TableView>
                </children>

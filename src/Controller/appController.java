@@ -89,7 +89,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_geri_tusu.setVisible(true);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
 
-        vizyondaki_filmler_table();
+        vizyondaki_filmler_table_admin();
     }
 
     @FXML
@@ -132,7 +132,7 @@ public class appController extends Center implements Initializable {
                     }
                 }
 
-                filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id,0);
+                filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id, 0);
                 filmlerDAO fdao = new filmlerDAO();
                 int film_id = fdao.filmler_ekle_id_gonder(f);
                 vizyondaki_filmler v = new vizyondaki_filmler(film_id, kalkis, 0);
@@ -179,7 +179,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_geri_tusu.setVisible(true);
 
-        vizyondaki_filmler_table();
+        vizyondaki_filmler_table_admin();
 
     }
 
@@ -289,7 +289,7 @@ public class appController extends Center implements Initializable {
         }
     }
 
-    protected void vizyondaki_filmler_table() {
+    protected void vizyondaki_filmler_table_admin() {
         vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
@@ -302,6 +302,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
         vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
         vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+        vizyondaki_filmler_detay.setCellValueFactory(new PropertyValueFactory("film_detayi"));
 
         FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
 
@@ -827,7 +828,7 @@ public class appController extends Center implements Initializable {
                     }
                     int hangi_abone = Integer.valueOf(hangi);
 
-                    filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id,0);
+                    filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id, 0);
                     filmlerDAO fdao = new filmlerDAO();
                     int film_id = fdao.filmler_ekle_id_gonder(f);
                     eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);
@@ -1015,6 +1016,8 @@ public class appController extends Center implements Initializable {
         eski_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
         eski_filmler_hangi_abone.setCellValueFactory(new PropertyValueFactory("hangi_aboneler_izleyebilir"));
         eski_filmler_aldigi_odul_sayisi.setCellValueFactory(new PropertyValueFactory("aldigi_odul_sayisi"));
+        eski_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+        eski_filmler_detay.setCellValueFactory(new PropertyValueFactory("detay"));
 
         FilteredList<eski_filmler> filteredData = new FilteredList<>(data, b -> true);
         filterField_eski.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -1037,6 +1040,8 @@ public class appController extends Center implements Initializable {
                 } else if (String.valueOf(esk.getHangi_aboneler_izleyebilir()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (String.valueOf(esk.getAldigi_odul_sayisi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
@@ -2491,7 +2496,7 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmler_ekle_pane.setVisible(false);
             vizyondaki_filmler_degistir_pane.setVisible(false);
 
-            vizyondaki_filmler_table();
+            vizyondaki_filmler_table_admin();
 
         } else if (btn1.getText().equals("Kampanyalar")) {
 

@@ -6294,7 +6294,7 @@
             <Label fx:id="guncelle_mesaj" layoutX="293.0" layoutY="516.0" textFill="RED" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnl_abonelik" layoutX="324.0" layoutY="55.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
+      <AnchorPane fx:id="pnl_abonelik" layoutX="324.0" layoutY="55.0" prefHeight="711.0" prefWidth="1058.0" scaleShape="false" visible="false">
          <children>
             <Label fx:id="pnl_abonelik_uyari_mesaj" layoutX="265.0" layoutY="183.0" prefHeight="331.0" prefWidth="444.0" textAlignment="RIGHT" textFill="RED" visible="false">
                <font>
@@ -6583,10 +6583,12 @@
                         <TableView fx:id="table_eski_filmler" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <columns>
                               <TableColumn fx:id="eski_filmler_film_adi" prefWidth="269.0" text="Film Adı" />
-                              <TableColumn fx:id="eski_filmler_film_type" prefWidth="185.0" text="Film Türü" />
-                              <TableColumn fx:id="eski_filmler_film_suresi" prefWidth="139.0" text="Film Suresi" />
-                              <TableColumn fx:id="eski_filmler_yonetmen" prefWidth="249.0" text="Yönetmen" />
-                              <TableColumn fx:id="eski_filmler_aldigi_odul_sayisi" prefWidth="149.0" text="Kullanıcı Puanı" />
+                              <TableColumn fx:id="eski_filmler_film_type" prefWidth="134.0" text="Film Türü" />
+                              <TableColumn fx:id="eski_filmler_film_suresi" prefWidth="93.0" text="Film Suresi" />
+                              <TableColumn fx:id="eski_filmler_yonetmen" prefWidth="188.0" text="Yönetmen" />
+                              <TableColumn fx:id="eski_filmler_aldigi_odul_sayisi" prefWidth="99.0" text="Ödüller" />
+                              <TableColumn fx:id="eski_filmler_kullanici_puani" prefWidth="114.0" text="Kullanıcı Puanı" />
+                              <TableColumn fx:id="eski_filmler_detay" minWidth="0.0" prefWidth="93.0" text="Detay" />
                            </columns>
                         </TableView>
                      </children>

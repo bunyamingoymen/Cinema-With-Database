@@ -201,7 +201,11 @@ public class Center implements Initializable {
     protected TableColumn<vizyondaki_filmler, String> vizyondaki_filmler_film_adi, vizyondaki_filmler_film_type, vizyondaki_filmler_film_suresi, vizyondaki_filmler_yonetmen, vizyondaki_filmler_kalkis, vizyondaki_filmler_kullanici_puani;
 
     @FXML
+    protected TableColumn<vizyondaki_filmler, Button> vizyondaki_filmler_detay;
+
+    @FXML
     protected AnchorPane pnl_vizyondaki_filmler;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Eski Filmler için
@@ -215,7 +219,10 @@ public class Center implements Initializable {
     protected TextField filterField_eski;
 
     @FXML
-    protected TableColumn<eski_filmler, String> eski_filmler_film_adi, eski_filmler_film_type, eski_filmler_film_suresi, eski_filmler_yonetmen,eski_filmler_aldigi_odul_sayisi;
+    protected TableColumn<eski_filmler, String> eski_filmler_film_adi, eski_filmler_film_type, eski_filmler_film_suresi, eski_filmler_yonetmen, eski_filmler_aldigi_odul_sayisi, eski_filmler_kullanici_puani;
+
+    @FXML
+    protected TableColumn<eski_filmler, Button> eski_filmler_detay;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Haberler için ayrılmış kısım
@@ -262,10 +269,10 @@ public class Center implements Initializable {
     @FXML
     protected AnchorPane pnl_sinema_salonlari;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Bilet satın alma kısmı için
-        protected void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
+    protected void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
         vizyondaki_filmlerDAO vizyondaki_film_islemleri = new vizyondaki_filmlerDAO();
         String[] arr = vizyondaki_film_islemleri.vizyondaki_filmler_combo_doldur();
         combo.getItems().clear();

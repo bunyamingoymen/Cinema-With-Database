@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import util.DBConnector;
 
 public class eski_filmlerDAO {
@@ -28,7 +29,12 @@ public class eski_filmlerDAO {
                 int hangi = rs.getInt("hangi_aboneler_izleyebilir");
                 int aldigi_odul_sayisi = rs.getInt("aldigi_odul_sayisi");
                 float kullanici_puani = rs.getFloat("kullanici_puani");
-                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani)));
+
+                Button detay = new Button();
+                detay.setText("Detay");
+                detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani, detay)));
             }
 
             c.close();
@@ -60,7 +66,12 @@ public class eski_filmlerDAO {
                 String ad = rs.getString("ad");
                 String soyad = rs.getString("soyad");
                 int aldigi_odul_sayisi = rs.getInt("aldigi_odul_sayisi");
-                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, aldigi_odul_sayisi)));
+
+                Button detay = new Button();
+                detay.setText("Detay");
+                detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+                data.addAll(FXCollections.observableArrayList(new eski_filmler(film_name, film_type, film_suresi, ad, soyad, aldigi_odul_sayisi, detay)));
             }
 
             c.close();

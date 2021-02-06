@@ -67,9 +67,6 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private TableColumn<satin_alinan_biletler, Button> biletlerim_sil;
-    
-    @FXML
-    private TableColumn<vizyondaki_filmler, Button> vizyondaki_filmler_detay;
 
     @FXML
     private TextField filterField_biletlerim;
@@ -114,10 +111,10 @@ public class app_standart_userController extends Center implements Initializable
         pnl_sinema_salonlari.setVisible(false);
         home_page.setVisible(false);
 
-        vizyondaki_filmler_table_butonlu();
+        vizyondaki_filmler_table_normal_kullanici();
     }
-    
-        protected void vizyondaki_filmler_table_butonlu() {
+
+    protected void vizyondaki_filmler_table_normal_kullanici() {
         vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
@@ -568,6 +565,8 @@ public class app_standart_userController extends Center implements Initializable
         eski_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
         eski_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
         eski_filmler_aldigi_odul_sayisi.setCellValueFactory(new PropertyValueFactory("aldigi_odul_sayisi"));
+        eski_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+        eski_filmler_detay.setCellValueFactory(new PropertyValueFactory("detay"));
 
         FilteredList<eski_filmler> filteredData = new FilteredList<>(data, b -> true);
         filterField_eski.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -588,6 +587,8 @@ public class app_standart_userController extends Center implements Initializable
                 } else if (esk.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (String.valueOf(esk.getAldigi_odul_sayisi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(esk.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
@@ -648,7 +649,7 @@ public class app_standart_userController extends Center implements Initializable
 
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
 
-        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil,filterField_biletlerim,biletlerim_uyari_mesaj, table_biletlerim);
+        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
 
         biletlerim_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         biletlerim_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));

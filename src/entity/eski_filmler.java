@@ -1,5 +1,7 @@
 package entity;
 
+import javafx.scene.control.Button;
+
 public class eski_filmler {
 
     private int eski_film_id;
@@ -12,6 +14,7 @@ public class eski_filmler {
     private int aldigi_odul_sayisi;
     private int yonetmen_id;
     private float kullanici_puani;
+    private Button detay;
 
     public eski_filmler() {
     }
@@ -29,7 +32,7 @@ public class eski_filmler {
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani) {
+    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani, Button detay) {
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
@@ -37,6 +40,12 @@ public class eski_filmler {
         this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
         this.kullanici_puani = kullanici_puani;
+        this.detay = detay;
+
+        detay.setOnAction(e -> {
+            System.out.println("1");
+        });
+
     }
 
     public eski_filmler(int eski_film_id, int film_id, String film_name, String film_type, int film_suresi, int aldigi_odul, int hangi_abone, int yonetmen_id) {
@@ -50,15 +59,18 @@ public class eski_filmler {
         this.yonetmen_id = yonetmen_id;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String ad, String soyad, int aldigi_odul_sayisi) {
+    public eski_filmler(String film_name, String film_type, int film_suresi, String ad, String soyad, int aldigi_odul_sayisi, Button detay) {
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
         this.yonetmen_ad_soyad = ad + " " + soyad;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
+        this.detay = detay;
+
+        detay.setOnAction(e -> {
+            System.out.println("1");
+        });
     }
-    
-    
 
     public int getEski_film_id() {
         return eski_film_id;
@@ -138,6 +150,14 @@ public class eski_filmler {
 
     public void setKullanici_puani(float kullanici_puani) {
         this.kullanici_puani = kullanici_puani;
+    }
+
+    public Button getDetay() {
+        return detay;
+    }
+
+    public void setDetay(Button detay) {
+        this.detay = detay;
     }
 
 }
