@@ -314,7 +314,8 @@ CREATE TABLE public.filmler (
     film_name text,
     film_type text,
     film_suresi integer,
-    yonetmen_id integer
+    yonetmen_id integer,
+    kullanici_puani real DEFAULT 0 NOT NULL
 );
 
 
@@ -342,6 +343,7 @@ CREATE VIEW public.eski_filmler_tablo AS
  SELECT filmler.film_name,
     filmler.film_type,
     filmler.film_suresi,
+    filmler.kullanici_puani,
     yonetmenler.ad,
     yonetmenler.soyad,
     eski_filmler.hangi_aboneler_izleyebilir,
@@ -402,7 +404,7 @@ CREATE TABLE public.kullanici_degerlendirmesi (
     kullanici_degerlendirme_id integer NOT NULL,
     user_id integer,
     film_id integer,
-    degerlendirme integer
+    degerlendirme real
 );
 
 
@@ -488,13 +490,14 @@ ALTER TABLE public.seanslar_tablo OWNER TO postgres;
 --
 
 CREATE VIEW public.vizyondaki_filmler_tablo AS
- SELECT filmler.film_name,
+ SELECT vizyondaki_filmler.vizyondaki_film_id,
+    filmler.film_name,
     filmler.film_type,
     filmler.film_suresi,
     yonetmenler.ad,
     yonetmenler.soyad,
     vizyondaki_filmler.vizyondan_kalkis_tarihi,
-    vizyondaki_filmler.kullanici_puani
+    filmler.kullanici_puani
    FROM ((public.vizyondaki_filmler
      JOIN public.filmler ON ((vizyondaki_filmler.film_id = filmler.film_id)))
      JOIN public.yonetmenler ON ((filmler.yonetmen_id = yonetmenler.yonetmen_id)));
@@ -562,7 +565,7 @@ ALTER TABLE public.yonetmenler ALTER COLUMN yonetmen_id ADD GENERATED ALWAYS AS 
 
 COPY public.aboneler (abone_id, user_id, abone_type, kalan_ucretsiz_bilet_sayisi) FROM stdin;
 \.
-COPY public.aboneler (abone_id, user_id, abone_type, kalan_ucretsiz_bilet_sayisi) FROM '$$PATH$$/3140.dat';
+COPY public.aboneler (abone_id, user_id, abone_type, kalan_ucretsiz_bilet_sayisi) FROM '$$PATH$$/3141.dat';
 
 --
 -- Data for Name: actor; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -570,7 +573,7 @@ COPY public.aboneler (abone_id, user_id, abone_type, kalan_ucretsiz_bilet_sayisi
 
 COPY public.actor (actor_id, ad, soyad) FROM stdin;
 \.
-COPY public.actor (actor_id, ad, soyad) FROM '$$PATH$$/3153.dat';
+COPY public.actor (actor_id, ad, soyad) FROM '$$PATH$$/3154.dat';
 
 --
 -- Data for Name: bilgi; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -578,7 +581,7 @@ COPY public.actor (actor_id, ad, soyad) FROM '$$PATH$$/3153.dat';
 
 COPY public.bilgi (giren_user_id) FROM stdin;
 \.
-COPY public.bilgi (giren_user_id) FROM '$$PATH$$/3138.dat';
+COPY public.bilgi (giren_user_id) FROM '$$PATH$$/3139.dat';
 
 --
 -- Data for Name: eski_filmler; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -586,7 +589,7 @@ COPY public.bilgi (giren_user_id) FROM '$$PATH$$/3138.dat';
 
 COPY public.eski_filmler (eski_film_id, film_id, hangi_aboneler_izleyebilir, aldigi_odul_sayisi) FROM stdin;
 \.
-COPY public.eski_filmler (eski_film_id, film_id, hangi_aboneler_izleyebilir, aldigi_odul_sayisi) FROM '$$PATH$$/3159.dat';
+COPY public.eski_filmler (eski_film_id, film_id, hangi_aboneler_izleyebilir, aldigi_odul_sayisi) FROM '$$PATH$$/3160.dat';
 
 --
 -- Data for Name: film_actor; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -594,15 +597,15 @@ COPY public.eski_filmler (eski_film_id, film_id, hangi_aboneler_izleyebilir, ald
 
 COPY public.film_actor (film_actor_id, film_id, actor_id) FROM stdin;
 \.
-COPY public.film_actor (film_actor_id, film_id, actor_id) FROM '$$PATH$$/3155.dat';
+COPY public.film_actor (film_actor_id, film_id, actor_id) FROM '$$PATH$$/3156.dat';
 
 --
 -- Data for Name: filmler; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.filmler (film_id, film_name, film_type, film_suresi, yonetmen_id) FROM stdin;
+COPY public.filmler (film_id, film_name, film_type, film_suresi, yonetmen_id, kullanici_puani) FROM stdin;
 \.
-COPY public.filmler (film_id, film_name, film_type, film_suresi, yonetmen_id) FROM '$$PATH$$/3157.dat';
+COPY public.filmler (film_id, film_name, film_type, film_suresi, yonetmen_id, kullanici_puani) FROM '$$PATH$$/3158.dat';
 
 --
 -- Data for Name: haberler; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -610,7 +613,7 @@ COPY public.filmler (film_id, film_name, film_type, film_suresi, yonetmen_id) FR
 
 COPY public.haberler (haber_id, hangi_kullanici_turu, title, haber, tarih, haber_kategorisi) FROM stdin;
 \.
-COPY public.haberler (haber_id, hangi_kullanici_turu, title, haber, tarih, haber_kategorisi) FROM '$$PATH$$/3148.dat';
+COPY public.haberler (haber_id, hangi_kullanici_turu, title, haber, tarih, haber_kategorisi) FROM '$$PATH$$/3149.dat';
 
 --
 -- Data for Name: kampanyalar; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -618,7 +621,7 @@ COPY public.haberler (haber_id, hangi_kullanici_turu, title, haber, tarih, haber
 
 COPY public.kampanyalar (kampanya_id, hangi_kullanici_turu, title, kampanya, tarih, kampanya_kategorisi) FROM stdin;
 \.
-COPY public.kampanyalar (kampanya_id, hangi_kullanici_turu, title, kampanya, tarih, kampanya_kategorisi) FROM '$$PATH$$/3150.dat';
+COPY public.kampanyalar (kampanya_id, hangi_kullanici_turu, title, kampanya, tarih, kampanya_kategorisi) FROM '$$PATH$$/3151.dat';
 
 --
 -- Data for Name: kullanici_degerlendirmesi; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -626,7 +629,7 @@ COPY public.kampanyalar (kampanya_id, hangi_kullanici_turu, title, kampanya, tar
 
 COPY public.kullanici_degerlendirmesi (kullanici_degerlendirme_id, user_id, film_id, degerlendirme) FROM stdin;
 \.
-COPY public.kullanici_degerlendirmesi (kullanici_degerlendirme_id, user_id, film_id, degerlendirme) FROM '$$PATH$$/3167.dat';
+COPY public.kullanici_degerlendirmesi (kullanici_degerlendirme_id, user_id, film_id, degerlendirme) FROM '$$PATH$$/3168.dat';
 
 --
 -- Data for Name: satin_alinan_biletler; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -634,7 +637,7 @@ COPY public.kullanici_degerlendirmesi (kullanici_degerlendirme_id, user_id, film
 
 COPY public.satin_alinan_biletler (satin_alinan_bilet_id, user_id, seans_id, koltuk_name) FROM stdin;
 \.
-COPY public.satin_alinan_biletler (satin_alinan_bilet_id, user_id, seans_id, koltuk_name) FROM '$$PATH$$/3165.dat';
+COPY public.satin_alinan_biletler (satin_alinan_bilet_id, user_id, seans_id, koltuk_name) FROM '$$PATH$$/3166.dat';
 
 --
 -- Data for Name: seans; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -642,7 +645,7 @@ COPY public.satin_alinan_biletler (satin_alinan_bilet_id, user_id, seans_id, kol
 
 COPY public.seans (seans_id, salon_id, vizyondaki_film_id, saat) FROM stdin;
 \.
-COPY public.seans (seans_id, salon_id, vizyondaki_film_id, saat) FROM '$$PATH$$/3146.dat';
+COPY public.seans (seans_id, salon_id, vizyondaki_film_id, saat) FROM '$$PATH$$/3147.dat';
 
 --
 -- Data for Name: sinema_salonlari; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -650,7 +653,7 @@ COPY public.seans (seans_id, salon_id, vizyondaki_film_id, saat) FROM '$$PATH$$/
 
 COPY public.sinema_salonlari (salon_id, salon_name, koltuk_sayisi) FROM stdin;
 \.
-COPY public.sinema_salonlari (salon_id, salon_name, koltuk_sayisi) FROM '$$PATH$$/3144.dat';
+COPY public.sinema_salonlari (salon_id, salon_name, koltuk_sayisi) FROM '$$PATH$$/3145.dat';
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -658,7 +661,7 @@ COPY public.sinema_salonlari (salon_id, salon_name, koltuk_sayisi) FROM '$$PATH$
 
 COPY public.users (user_id, user_name, user_mail, user_password, user_type) FROM stdin;
 \.
-COPY public.users (user_id, user_name, user_mail, user_password, user_type) FROM '$$PATH$$/3137.dat';
+COPY public.users (user_id, user_name, user_mail, user_password, user_type) FROM '$$PATH$$/3138.dat';
 
 --
 -- Data for Name: vizyondaki_filmler; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -666,7 +669,7 @@ COPY public.users (user_id, user_name, user_mail, user_password, user_type) FROM
 
 COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, vizyondan_kalkis_tarihi, kullanici_puani, seans_sayisi) FROM stdin;
 \.
-COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, vizyondan_kalkis_tarihi, kullanici_puani, seans_sayisi) FROM '$$PATH$$/3161.dat';
+COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, vizyondan_kalkis_tarihi, kullanici_puani, seans_sayisi) FROM '$$PATH$$/3162.dat';
 
 --
 -- Data for Name: yesil_olan; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -674,7 +677,7 @@ COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, vizyondan_kalkis_ta
 
 COPY public.yesil_olan (yesil_olan_id, koltuk_adi) FROM stdin;
 \.
-COPY public.yesil_olan (yesil_olan_id, koltuk_adi) FROM '$$PATH$$/3163.dat';
+COPY public.yesil_olan (yesil_olan_id, koltuk_adi) FROM '$$PATH$$/3164.dat';
 
 --
 -- Data for Name: yonetmenler; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -682,13 +685,13 @@ COPY public.yesil_olan (yesil_olan_id, koltuk_adi) FROM '$$PATH$$/3163.dat';
 
 COPY public.yonetmenler (yonetmen_id, ad, soyad, film_sayisi) FROM stdin;
 \.
-COPY public.yonetmenler (yonetmen_id, ad, soyad, film_sayisi) FROM '$$PATH$$/3142.dat';
+COPY public.yonetmenler (yonetmen_id, ad, soyad, film_sayisi) FROM '$$PATH$$/3143.dat';
 
 --
 -- Name: Aboneler_abone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Aboneler_abone_id_seq"', 8, true);
+SELECT pg_catalog.setval('public."Aboneler_abone_id_seq"', 9, true);
 
 
 --
@@ -751,14 +754,14 @@ SELECT pg_catalog.setval('public.film_actor_film_actor_id_seq', 15, true);
 -- Name: filmler_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.filmler_film_id_seq', 28, true);
+SELECT pg_catalog.setval('public.filmler_film_id_seq', 34, true);
 
 
 --
 -- Name: kullanici_degerlendirmesi_kullanici_degerlendirme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kullanici_degerlendirmesi_kullanici_degerlendirme_id_seq', 1, false);
+SELECT pg_catalog.setval('public.kullanici_degerlendirmesi_kullanici_degerlendirme_id_seq', 2, true);
 
 
 --
@@ -772,7 +775,7 @@ SELECT pg_catalog.setval('public.satin_alinan_biletler_satin_alinan_bilet_id_seq
 -- Name: vizyondaki_filmler_vizyondaki_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 8, true);
+SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 9, true);
 
 
 --
