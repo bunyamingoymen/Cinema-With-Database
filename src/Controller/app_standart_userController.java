@@ -80,6 +80,15 @@ public class app_standart_userController extends Center implements Initializable
     @FXML
     private Label satin_al_filmler_uyari_mesaj, satin_al_koltuk_film_adi, satin_al_koltuk_seans_saati, satin_al_koltuk_salon_adi, satin_al_koltuk_seans_id, satin_al_kalan_ucretsiz_bilet_sayisi_hakki, satin_al_odeme_yontemi_uyari_mesaj, satin_al_uyari_mesaj;
 
+    @FXML
+    private AnchorPane pnl_film_detay;
+
+    @FXML
+    private Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan;
+
+    @FXML
+    private FontAwesomeIconView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, on_dolu;
+
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
         int abonelik = adao.abonelik_turu_bul(user_id_getir());
