@@ -32,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -87,7 +88,7 @@ public class app_standart_userController extends Center implements Initializable
     private Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan;
 
     @FXML
-    private FontAwesomeIconView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, on_dolu;
+    private ImageView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, on_dolu;
 
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
@@ -1000,4 +1001,105 @@ public class app_standart_userController extends Center implements Initializable
 
         home_page_icon.setVisible(false);
     }
+
+    @FXML
+    private void bir_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void iki_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void uc_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void dort_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void bes_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void alti_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void yedi_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void sekiz_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void dokuz_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void on_bos(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void bir_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void iki_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void uc_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void dort_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void bes_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void alti_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void yedi_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void sekiz_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void dokuz_dolu(MouseEvent event) {
+
+    }
+
+    @FXML
+    private void on_dolu(MouseEvent event) {
+
+    }
+
 }

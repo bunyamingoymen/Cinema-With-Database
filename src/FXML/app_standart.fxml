@@ -6772,102 +6772,102 @@
             <Label fx:id="film_detay_kullanici_puani" layoutX="398.0" layoutY="312.0" />
             <Pane layoutX="341.0" layoutY="259.0" prefHeight="187.0" prefWidth="426.0">
                <children>
-                  <ImageView fx:id="bir_bos" fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bir_bos" fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="87.0" onMouseClicked="#bir_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="iki_bos" fitHeight="30.0" fitWidth="31.0" layoutX="56.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iki_bos" fitHeight="30.0" fitWidth="31.0" layoutX="56.0" layoutY="85.0" onMouseClicked="#iki_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="uc_bos" fitHeight="30.0" fitWidth="31.0" layoutX="96.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="uc_bos" fitHeight="30.0" fitWidth="31.0" layoutX="96.0" layoutY="84.0" onMouseClicked="#uc_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="dort_bos" fitHeight="30.0" fitWidth="31.0" layoutX="136.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="dort_bos" fitHeight="30.0" fitWidth="31.0" layoutX="136.0" layoutY="83.0" onMouseClicked="#dort_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="bes_bos" fitHeight="30.0" fitWidth="31.0" layoutX="176.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="bes_bos" fitHeight="30.0" fitWidth="31.0" layoutX="176.0" layoutY="83.0" onMouseClicked="#bes_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="alti_bos" fitHeight="30.0" fitWidth="31.0" layoutX="216.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="alti_bos" fitHeight="30.0" fitWidth="31.0" layoutX="216.0" layoutY="83.0" onMouseClicked="#alti_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="yedi_bos" fitHeight="30.0" fitWidth="31.0" layoutX="256.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="yedi_bos" fitHeight="30.0" fitWidth="31.0" layoutX="256.0" layoutY="83.0" onMouseClicked="#yedi_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="sekiz_bos" fitHeight="30.0" fitWidth="31.0" layoutX="296.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="sekiz_bos" fitHeight="30.0" fitWidth="31.0" layoutX="296.0" layoutY="83.0" onMouseClicked="#sekiz_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="dokuz_bos" fitHeight="30.0" fitWidth="31.0" layoutX="337.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="dokuz_bos" fitHeight="30.0" fitWidth="31.0" layoutX="337.0" layoutY="83.0" onMouseClicked="#dokuz_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="on_bos" fitHeight="30.0" fitWidth="31.0" layoutX="377.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="on_bos" fitHeight="30.0" fitWidth="31.0" layoutX="377.0" layoutY="83.0" onMouseClicked="#on_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../lib/pic/star_empty.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="bir_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="16.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="bir_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="16.0" layoutY="85.0" onMouseClicked="#bir_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="iki_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="56.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="iki_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="56.0" layoutY="85.0" onMouseClicked="#iki_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="uc_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="96.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="uc_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="96.0" layoutY="85.0" onMouseClicked="#uc_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="dort_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="136.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="dort_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="136.0" layoutY="85.0" onMouseClicked="#dort_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="bes_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="176.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="bes_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="176.0" layoutY="85.0" onMouseClicked="#bes_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="alti_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="216.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="alti_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="216.0" layoutY="84.0" onMouseClicked="#alti_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="yedi_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="256.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="yedi_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="256.0" layoutY="85.0" onMouseClicked="#yedi_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="sekiz_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="296.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="sekiz_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="296.0" layoutY="84.0" onMouseClicked="#sekiz_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="dokuz_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="337.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="dokuz_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="337.0" layoutY="85.0" onMouseClicked="#dokuz_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="on_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="377.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="on_dolu" fitHeight="30.0" fitWidth="31.0" layoutX="377.0" layoutY="84.0" onMouseClicked="#on_dolu" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../lib/pic/star_Full.png" />
                      </image>
