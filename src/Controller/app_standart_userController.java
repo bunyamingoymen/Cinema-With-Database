@@ -85,10 +85,13 @@ public class app_standart_userController extends Center implements Initializable
     private AnchorPane pnl_film_detay;
 
     @FXML
-    private Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan;
+    private Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan, film_detay_kalkis_tarihi;
 
     @FXML
     private ImageView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, on_dolu;
+
+    @FXML
+    private Pane kullanici_degerlendirme_pane;
 
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
@@ -119,6 +122,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         vizyondaki_filmler_table_normal_kullanici();
@@ -129,7 +133,7 @@ public class app_standart_userController extends Center implements Initializable
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
 
-        data = vf.vizyondaki_filmler_select_butonlu(data);
+        data = vf.vizyondaki_filmler_select_butonlu(data, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
@@ -192,6 +196,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         usersDAO udao = new usersDAO();
@@ -269,6 +274,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         haberler_table_butonsuz(abonelik_turu_getir());
@@ -343,6 +349,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         kampanyalar_table_butonsuz(abonelik_turu_getir());
@@ -368,6 +375,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_haberler.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         abonelik_sahip_bir.setVisible(false);
@@ -649,6 +657,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_abonelik.setVisible(false);
         pnl_kampanyalar.setVisible(false);
         pnl_sinema_salonlari.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         biletlerim_table(user_id_getir());
@@ -722,6 +731,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_kampanyalar.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_settings.setVisible(false);
+        pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
         salon_bir_pane.setVisible(false);
@@ -998,6 +1008,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_sinema_salonlari.setVisible(false);
         pnl_biletlerim.setVisible(false);
         pnl_settings.setVisible(false);
+        pnl_film_detay.setVisible(false);
 
         home_page_icon.setVisible(false);
     }

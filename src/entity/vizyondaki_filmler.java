@@ -1,6 +1,8 @@
 package entity;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class vizyondaki_filmler {
 
@@ -45,7 +47,7 @@ public class vizyondaki_filmler {
 
     }
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, String film_name, String film_type, int film_suresi, String ad, String soyad, String vizyondan_kalkis_tarihi, float kullanici_puani, Button detay) {
+    public vizyondaki_filmler(int vizyondaki_filmler_id, String film_name, String film_type, int film_suresi, String ad, String soyad, String vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani ,AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.film_name = film_name;
         this.film_type = film_type;
@@ -56,7 +58,19 @@ public class vizyondaki_filmler {
         this.film_detayi = detay;
 
         detay.setOnAction(e -> {
-            System.out.println("1");
+            pnl_film_detayi.setVisible(true);
+            
+            pnl_vizyondaki_filmler.setVisible(false);
+            pnl_eski_filmler.setVisible(false);
+            
+            film_detay_film_id.setText(String.valueOf(this.vizyondaki_filmler_id));
+            film_detay_film_adi.setText(this.film_name);
+            film_detay_film_turu.setText(this.film_type);
+            film_detay_film_suresi.setText(String.valueOf(this.film_suresi));
+            film_detay_yonetmen.setText(this.yonetmen_ad_soyad);
+            film_detay_kalkis_tarihi.setText(String.valueOf(this.vizyondan_kalkis_tarihi));
+            film_detay_kullanici_puani.setText(String.valueOf(this.kullanici_puani));
+            
         });
     }
 
