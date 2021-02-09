@@ -6770,7 +6770,7 @@
             <Label fx:id="film_detay_kalkis_tarihi" layoutX="845.0" layoutY="218.0" />
             <Label layoutX="291.0" layoutY="312.0" text="Kullanıcı Puanı:" />
             <Label fx:id="film_detay_kullanici_puani" layoutX="398.0" layoutY="312.0" />
-            <Pane layoutX="341.0" layoutY="259.0" prefHeight="187.0" prefWidth="426.0">
+            <Pane fx:id="kullanici_degerlendirme_pane" layoutX="341.0" layoutY="259.0" prefHeight="187.0" prefWidth="426.0">
                <children>
                   <ImageView fx:id="bir_bos" fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="87.0" onMouseClicked="#bir_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
