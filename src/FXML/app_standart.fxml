@@ -6873,7 +6873,7 @@
                      </image>
                   </ImageView>
                   <Label layoutX="42.0" layoutY="138.0" text="Verdiğiniz Puan:" />
-                  <Label layoutX="159.0" layoutY="138.0" text="film_detay_verilen_puan" />
+                  <Label fx:id="film_detay_verilen_puan" layoutX="159.0" layoutY="138.0" />
                </children>
             </Pane>
          </children>

@@ -88,7 +88,7 @@ public class app_standart_userController extends Center implements Initializable
     private Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan, film_detay_kalkis_tarihi;
 
     @FXML
-    private ImageView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, on_dolu;
+    private ImageView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, dokuz_dolu, on_dolu;
 
     @FXML
     private Pane kullanici_degerlendirme_pane;
@@ -1015,102 +1015,362 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private void bir_bos(MouseEvent event) {
-
+        bir_ortak();
     }
 
     @FXML
     private void iki_bos(MouseEvent event) {
-
+        iki_ortak();
     }
 
     @FXML
     private void uc_bos(MouseEvent event) {
-
+        uc_ortak();
     }
 
     @FXML
     private void dort_bos(MouseEvent event) {
-
+        dort_ortak();
     }
 
     @FXML
     private void bes_bos(MouseEvent event) {
-
+        bes_ortak();
     }
 
     @FXML
     private void alti_bos(MouseEvent event) {
-
+        alti_ortak();
     }
 
     @FXML
     private void yedi_bos(MouseEvent event) {
-
+        yedi_ortak();
     }
 
     @FXML
     private void sekiz_bos(MouseEvent event) {
-
+        sekiz_ortak();
     }
 
     @FXML
     private void dokuz_bos(MouseEvent event) {
-
+        dokuz_ortak();
     }
 
     @FXML
     private void on_bos(MouseEvent event) {
-
+        on_ortak();
     }
 
     @FXML
     private void bir_dolu(MouseEvent event) {
-
+        bir_ortak();
     }
 
     @FXML
     private void iki_dolu(MouseEvent event) {
-
+        iki_ortak();
     }
 
     @FXML
     private void uc_dolu(MouseEvent event) {
-
+        uc_ortak();
     }
 
     @FXML
     private void dort_dolu(MouseEvent event) {
-
+        dort_ortak();
     }
 
     @FXML
     private void bes_dolu(MouseEvent event) {
-
+        bes_ortak();
     }
 
     @FXML
     private void alti_dolu(MouseEvent event) {
-
+        alti_ortak();
     }
 
     @FXML
     private void yedi_dolu(MouseEvent event) {
-
+        yedi_ortak();
     }
 
     @FXML
     private void sekiz_dolu(MouseEvent event) {
-
+        sekiz_ortak();
     }
 
     @FXML
     private void dokuz_dolu(MouseEvent event) {
-
+        dokuz_ortak();
     }
 
     @FXML
     private void on_dolu(MouseEvent event) {
+        on_ortak();
+    }
 
+    private void bir_ortak() {
+        bir_dolu.setVisible(true);
+        iki_bos.setVisible(true);
+        uc_bos.setVisible(true);
+        dort_bos.setVisible(true);
+        bes_bos.setVisible(true);
+        alti_bos.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_dolu.setVisible(false);
+        uc_dolu.setVisible(false);
+        dort_dolu.setVisible(false);
+        bes_dolu.setVisible(false);
+        alti_dolu.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("1");
+    }
+
+    private void iki_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_bos.setVisible(true);
+        dort_bos.setVisible(true);
+        bes_bos.setVisible(true);
+        alti_bos.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_dolu.setVisible(false);
+        dort_dolu.setVisible(false);
+        bes_dolu.setVisible(false);
+        alti_dolu.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("2");
+    }
+
+    private void uc_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_bos.setVisible(true);
+        bes_bos.setVisible(true);
+        alti_bos.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_dolu.setVisible(false);
+        bes_dolu.setVisible(false);
+        alti_dolu.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("3");
+    }
+
+    private void dort_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_bos.setVisible(true);
+        alti_bos.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_dolu.setVisible(false);
+        alti_dolu.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("4");
+    }
+
+    private void bes_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_dolu.setVisible(true);
+        alti_bos.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_bos.setVisible(false);
+        alti_dolu.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("5");
+    }
+
+    private void alti_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_dolu.setVisible(true);
+        alti_dolu.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_bos.setVisible(false);
+        alti_bos.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("6");
+    }
+
+    private void yedi_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_dolu.setVisible(true);
+        alti_dolu.setVisible(true);
+        yedi_dolu.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_bos.setVisible(false);
+        alti_bos.setVisible(false);
+        yedi_bos.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("7");
+    }
+
+    private void sekiz_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_dolu.setVisible(true);
+        alti_dolu.setVisible(true);
+        yedi_dolu.setVisible(true);
+        sekiz_dolu.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_bos.setVisible(false);
+        alti_bos.setVisible(false);
+        yedi_bos.setVisible(false);
+        sekiz_bos.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("8");
+    }
+
+    private void dokuz_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_dolu.setVisible(true);
+        alti_dolu.setVisible(true);
+        yedi_dolu.setVisible(true);
+        sekiz_dolu.setVisible(true);
+        dokuz_dolu.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_bos.setVisible(false);
+        alti_bos.setVisible(false);
+        yedi_bos.setVisible(false);
+        sekiz_bos.setVisible(false);
+        dokuz_bos.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("9");
+    }
+
+    private void on_ortak() {
+        bir_dolu.setVisible(true);
+        iki_dolu.setVisible(true);
+        uc_dolu.setVisible(true);
+        dort_dolu.setVisible(true);
+        bes_dolu.setVisible(true);
+        alti_dolu.setVisible(true);
+        yedi_dolu.setVisible(true);
+        sekiz_dolu.setVisible(true);
+        dokuz_dolu.setVisible(true);
+        on_dolu.setVisible(true);
+
+        bir_bos.setVisible(false);
+        iki_bos.setVisible(false);
+        uc_bos.setVisible(false);
+        dort_bos.setVisible(false);
+        bes_bos.setVisible(false);
+        alti_bos.setVisible(false);
+        yedi_bos.setVisible(false);
+        sekiz_bos.setVisible(false);
+        dokuz_bos.setVisible(false);
+        on_bos.setVisible(false);
+
+        film_detay_verilen_puan.setText("10");
     }
 
 }
