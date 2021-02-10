@@ -160,6 +160,7 @@ public class vizyondaki_filmlerDAO {
 
             while (rs.next()) {
                 int vizyondaki_film_id = rs.getInt("vizyondaki_film_id");
+                int film_id = rs.getInt("film_id");
                 String film_name = rs.getString("film_name");
                 String film_type = rs.getString("film_type");
                 int film_suresi = rs.getInt("film_suresi");
@@ -172,7 +173,7 @@ public class vizyondaki_filmlerDAO {
                 detay.setText("Detay");
                 detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani ,pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
+                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_id ,film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani ,pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
             }
 
             c.close();

@@ -6770,7 +6770,7 @@
             <Label fx:id="film_detay_kalkis_tarihi" layoutX="845.0" layoutY="218.0" />
             <Label layoutX="291.0" layoutY="312.0" text="Kullanıcı Puanı:" />
             <Label fx:id="film_detay_kullanici_puani" layoutX="398.0" layoutY="312.0" />
-            <Pane fx:id="kullanici_degerlendirme_pane" layoutX="341.0" layoutY="259.0" prefHeight="187.0" prefWidth="426.0">
+            <Pane fx:id="kullanici_degerlendirme_pane" layoutX="341.0" layoutY="259.0" prefHeight="226.0" prefWidth="426.0">
                <children>
                   <ImageView fx:id="bir_bos" fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="87.0" onMouseClicked="#bir_bos" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -6874,6 +6874,9 @@
                   </ImageView>
                   <Label layoutX="42.0" layoutY="138.0" text="Verdiğiniz Puan:" />
                   <Label fx:id="film_detay_verilen_puan" layoutX="159.0" layoutY="138.0" />
+                  <Button layoutX="219.0" layoutY="133.0" mnemonicParsing="false" onAction="#film_detay_sifirla" styleClass="button2" text="Sıfırla" textFill="WHITE" />
+                  <Button layoutX="313.0" layoutY="133.0" mnemonicParsing="false" onAction="#film_detay_puan_ver" styleClass="button2" text="Puan Ver" textFill="WHITE" />
+                  <Label fx:id="film_detay_uyari_mesaj" layoutX="87.0" layoutY="179.0" textFill="RED" />
                </children>
             </Pane>
          </children>

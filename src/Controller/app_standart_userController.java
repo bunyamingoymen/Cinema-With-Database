@@ -4,6 +4,7 @@ import DAO.abonelerDAO;
 import DAO.eski_filmlerDAO;
 import DAO.haberlerDAO;
 import DAO.kampanyalarDAO;
+import DAO.kullanici_degerlendirmesiDAO;
 import DAO.satin_alinan_biletlerDAO;
 import DAO.seansDAO;
 import DAO.sinema_salonlariDAO;
@@ -14,6 +15,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.eski_filmler;
 import entity.haberler;
 import entity.kampanyalar;
+import entity.kullanici_degerlendirmesi;
 import entity.satin_alinan_biletler;
 import entity.vizyondaki_filmler;
 import java.net.URL;
@@ -92,6 +94,9 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private Pane kullanici_degerlendirme_pane;
+
+    @FXML
+    private Label film_detay_uyari_mesaj;
 
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
@@ -1371,6 +1376,68 @@ public class app_standart_userController extends Center implements Initializable
         on_bos.setVisible(false);
 
         film_detay_verilen_puan.setText("10");
+    }
+
+    @FXML
+    private void film_detay_sifirla(ActionEvent event) {
+        bir_bos.setVisible(true);
+        iki_bos.setVisible(true);
+        uc_bos.setVisible(true);
+        dort_bos.setVisible(true);
+        bes_bos.setVisible(true);
+        alti_bos.setVisible(true);
+        yedi_bos.setVisible(true);
+        sekiz_bos.setVisible(true);
+        dokuz_bos.setVisible(true);
+        on_bos.setVisible(true);
+
+        bir_dolu.setVisible(false);
+        iki_dolu.setVisible(false);
+        uc_dolu.setVisible(false);
+        dort_dolu.setVisible(false);
+        bes_dolu.setVisible(false);
+        alti_dolu.setVisible(false);
+        yedi_dolu.setVisible(false);
+        sekiz_dolu.setVisible(false);
+        dokuz_dolu.setVisible(false);
+        on_dolu.setVisible(false);
+
+        film_detay_verilen_puan.setText("");
+
+    }
+
+    @FXML
+    private void film_detay_puan_ver(ActionEvent event) {
+        int film_id = Integer.parseInt(film_detay_film_id.getText());
+        int user_id = user_id_getir();
+        int degerlendirme = Integer.parseInt(film_detay_verilen_puan.getText());
+
+        kullanici_degerlendirmesi k = new kullanici_degerlendirmesi(user_id, film_id, degerlendirme);
+
+        kullanici_degerlendirmesiDAO kdao = new kullanici_degerlendirmesiDAO();
+
+        int sonuc = kdao.kullanici_degerlendirmesi_yeni_degerlendirme(k);
+        switch (sonuc) {
+            case 1:
+            case 2:
+                film_detay_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi.");
+                break;
+            case -1:
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -24)");
+                break;
+            case -2:
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -25)");
+                break;
+            case -3:
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -26)");
+                break;
+            case -4:
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -27)");
+                break;
+            default:
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -28)");
+                break;
+        }
     }
 
 }

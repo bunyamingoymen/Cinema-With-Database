@@ -47,8 +47,9 @@ public class vizyondaki_filmler {
 
     }
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, String film_name, String film_type, int film_suresi, String ad, String soyad, String vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani ,AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad, String soyad, String vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani ,AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
+        this.film_id = film_id;
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
@@ -63,7 +64,7 @@ public class vizyondaki_filmler {
             pnl_vizyondaki_filmler.setVisible(false);
             pnl_eski_filmler.setVisible(false);
             
-            film_detay_film_id.setText(String.valueOf(this.vizyondaki_filmler_id));
+            film_detay_film_id.setText(String.valueOf(this.film_id));
             film_detay_film_adi.setText(this.film_name);
             film_detay_film_turu.setText(this.film_type);
             film_detay_film_suresi.setText(String.valueOf(this.film_suresi));
