@@ -491,6 +491,7 @@ ALTER TABLE public.seanslar_tablo OWNER TO postgres;
 
 CREATE VIEW public.vizyondaki_filmler_tablo AS
  SELECT vizyondaki_filmler.vizyondaki_film_id,
+    filmler.film_id,
     filmler.film_name,
     filmler.film_type,
     filmler.film_suresi,
@@ -761,7 +762,7 @@ SELECT pg_catalog.setval('public.filmler_film_id_seq', 34, true);
 -- Name: kullanici_degerlendirmesi_kullanici_degerlendirme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kullanici_degerlendirmesi_kullanici_degerlendirme_id_seq', 2, true);
+SELECT pg_catalog.setval('public.kullanici_degerlendirmesi_kullanici_degerlendirme_id_seq', 5, true);
 
 
 --
