@@ -227,4 +227,21 @@ public class filmlerDAO {
 
         return kullanici_puani;
     }
+        
+        public int kullanici_puani_degsitir(int film_id,  float kullanici_puani){
+                    int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "update filmler set kullanici_puani = " + kullanici_puani + " where film_id =" + film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :239 - " + e.getMessage());
+        }
+        return sonuc;
+        }
 }

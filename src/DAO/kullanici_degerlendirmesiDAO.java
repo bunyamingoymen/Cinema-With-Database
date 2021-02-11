@@ -17,14 +17,16 @@ public class kullanici_degerlendirmesiDAO {
                 return -1;
             case 0:
                 int sonuc2 = kullanici_degerlendirmesi_ekle(k);
-                if (sonuc2 == 1) {
+                int sonuc3 = ortalama_yazdir(k.getFilm_id());
+                if (sonuc2 == 1 && sonuc3 ==1) {
                     return 1;
                 } else {
                     return -3;
                 }
             case 1:
-                int sonuc3 = kullanici_degerlendirmesi_guncelle(k);
-                if (sonuc3 == 1) {
+                int sonuc4 = kullanici_degerlendirmesi_guncelle(k);
+                int sonuc5 = ortalama_yazdir(k.getFilm_id());
+                if (sonuc4 == 1 && sonuc5 == 1) {
                     return 2;
                 } else {
                     return -4;
@@ -91,6 +93,43 @@ public class kullanici_degerlendirmesiDAO {
         } catch (SQLException e) {
             System.out.println("Hata kodu :237 - " + e.getMessage());
         }
+        return sonuc;
+    }
+
+    public float ortalama_hesapla(int film_id) {
+        float sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select degerlendirme from kullanici_degerlendirmesi where film_id = " + film_id;
+            ResultSet rs = st.executeQuery(komut);
+            int toplam = 0;
+            int sayac = 0;
+            while (rs.next()) {
+                toplam = toplam + rs.getInt("degerlendirme");
+                sayac++;
+            }
+
+            sonuc = toplam / sayac;
+
+            c.close();
+            st.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :238 - " + e.getMessage());
+        }
+        return sonuc;
+    }
+    
+    public int ortalama_yazdir(int film_id){
+        float ortalama = ortalama_hesapla(film_id);
+        
+        filmlerDAO fdao = new filmlerDAO();
+        
+        int sonuc = fdao.kullanici_puani_degsitir(film_id, ortalama);
+        
+        
         return sonuc;
     }
 }
