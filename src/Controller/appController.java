@@ -2449,7 +2449,20 @@ public class appController extends Center implements Initializable {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     */
+ /*
+    Kuşşanıcı İşlemleri
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     */
+    @FXML
+    private AnchorPane pnl_kullanici_islemleri;
+
+    private void users_tablo() {
+
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
     Ortak Alan
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2469,7 +2482,7 @@ public class appController extends Center implements Initializable {
     private FontAwesomeIconView home;
 
     @FXML
-    private void btn10(ActionEvent event) throws IOException, SQLException {
+    private void btn10(ActionEvent event) {
 
         if (btn1.getText().equals("Filmler")) {
             btn1.setText("Vizyondaki Filmler");
@@ -2488,6 +2501,7 @@ public class appController extends Center implements Initializable {
             pnl_seans.setVisible(false);
             home_pane.setVisible(false);
             pnl_settings.setVisible(false);
+            pnl_kullanici_islemleri.setVisible(false);
 
             vizyondaki_filmler_geri_tusu.setVisible(true);
             vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
@@ -2506,6 +2520,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
             pnl_settings.setVisible(false);
+            pnl_kullanici_islemleri.setVisible(false);
 
             kampanyalar_geri_tusu.setVisible(true);
             kampanyalar_ekle_geri_tusu.setVisible(false);
@@ -2524,6 +2539,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
             pnl_settings.setVisible(false);
+            pnl_kullanici_islemleri.setVisible(false);
 
             yonetmenler_geri_tusu.setVisible(true);
             yonetmenler_ekle_geri_tusu.setVisible(false);
@@ -2538,7 +2554,7 @@ public class appController extends Center implements Initializable {
     }
 
     @FXML
-    private void btn20(ActionEvent event) throws IOException {
+    private void btn20(ActionEvent event) {
         if (btn2.getText().equals("Duyurular")) {
 
             btn1.setText("Kampanyalar");
@@ -2557,6 +2573,7 @@ public class appController extends Center implements Initializable {
             pnl_seans.setVisible(false);
             home_pane.setVisible(false);
             pnl_settings.setVisible(false);
+            pnl_kullanici_islemleri.setVisible(false);
 
             eski_filmler_geri_tusu.setVisible(true);
             eski_filmler_ekle_geri_tusu.setVisible(false);
@@ -2575,6 +2592,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
             pnl_settings.setVisible(false);
+            pnl_kullanici_islemleri.setVisible(false);
 
             haberler_geri_tusu.setVisible(true);
             haberler_ekle_geri_tusu.setVisible(false);
@@ -2592,6 +2610,7 @@ public class appController extends Center implements Initializable {
             pnl_sinema_salonlari.setVisible(false);
             home_pane.setVisible(false);
             pnl_settings.setVisible(false);
+            pnl_kullanici_islemleri.setVisible(false);
 
             aktorler_geri_tusu.setVisible(true);
             aktorler_ekle_geri_tusu.setVisible(false);
@@ -2608,10 +2627,18 @@ public class appController extends Center implements Initializable {
     }
 
     @FXML
-    private void btn30(ActionEvent event) throws IOException {
+    private void btn30(ActionEvent event) {
         pnl_sinema_salonlari.setVisible(true);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_seans.setVisible(false);
+        pnl_eski_filmler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_yonetmenler.setVisible(false);
+        pnl_aktorler.setVisible(false);
         home_pane.setVisible(false);
         pnl_settings.setVisible(false);
+        pnl_kullanici_islemleri.setVisible(false);
 
         sinema_salonlari_home_pane.setVisible(true);
 
@@ -2628,7 +2655,7 @@ public class appController extends Center implements Initializable {
     }
 
     @FXML
-    private void btn40(ActionEvent event) throws IOException {
+    private void btn40(ActionEvent event) {
         btn1.setText("Yönetmenler");
         btn2.setText("Aktörler");
 
@@ -2638,10 +2665,26 @@ public class appController extends Center implements Initializable {
 
         home.setVisible(true);
     }
-    
+
     @FXML
-    private void btn50(ActionEvent event){
-        
+    private void btn50(ActionEvent event) {
+
+        pnl_kullanici_islemleri.setVisible(true);
+        pnl_sinema_salonlari.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_seans.setVisible(false);
+        pnl_eski_filmler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_yonetmenler.setVisible(false);
+        pnl_aktorler.setVisible(false);
+        home_pane.setVisible(false);
+        pnl_settings.setVisible(false);
+
+        home.setVisible(true);
+
+        users_tablo();
+
     }
 
     private void home_page() {
@@ -2692,6 +2735,7 @@ public class appController extends Center implements Initializable {
         pnl_haberler.setVisible(false);
         pnl_yonetmenler.setVisible(false);
         pnl_aktorler.setVisible(false);
+        pnl_kullanici_islemleri.setVisible(false);
 
         home_pane.setVisible(true);
         home_page();
@@ -2710,6 +2754,7 @@ public class appController extends Center implements Initializable {
         pnl_yonetmenler.setVisible(false);
         pnl_aktorler.setVisible(false);
         home_pane.setVisible(false);
+        pnl_kullanici_islemleri.setVisible(false);
 
         pnl_settings.setVisible(true);
 
