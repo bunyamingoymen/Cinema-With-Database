@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import util.DBConnector;
 
 /*
@@ -391,6 +394,48 @@ public class usersDAO {
         }
 
         return name;
+    }
+
+    public int abone_sorgula(int user_id) {
+        int abonelik_turu = -2;
+        abonelerDAO adao = new abonelerDAO();
+        abonelik_turu = adao.abonelik_turu_bul(user_id);
+        return abonelik_turu;
+    }
+    
+        public ObservableList<users> users_select(ObservableList<users> data) {
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from users";
+            ResultSet rs = st.executeQuery(komut);
+
+            while (rs.next()) {
+                int user_id = rs.getInt("user_id");
+                String user_name = rs.getString("user_name");
+                String user_mail = rs.getString("user_mail");
+                String user_password = rs.getString("user_password");
+                int user_type = rs.getInt("user_type");
+                int abone_type = abone_sorgula(user_id);
+
+                Button yonet = new Button();
+                yonet.setText("Yönet");
+                yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+                data.addAll(FXCollections.observableArrayList(new users(user_id, user_name, user_mail, user_password, user_type, abone_type, yonet)));
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 240 - " + e.getMessage());
+        }
+
+        return data;
     }
 
 }
