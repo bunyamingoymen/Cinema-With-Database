@@ -89,8 +89,19 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <FontAwesomeIconView fill="WHITE" glyphName="GEARS" onMouseClicked="#settings_giris" size="40.0" translateX="275.0" translateY="160.0" />
-            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" onMouseClicked="#cikis" rotate="180.0" size="40.0" translateX="10.0" translateY="120.0" />
+            <Button fx:id="btn5" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#btn50" prefHeight="89.0" prefWidth="328.0" styleClass="button6" text="Kullanıcı Yönetimi" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GEAR" size="20" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <FontAwesomeIconView fill="WHITE" glyphName="GEARS" onMouseClicked="#settings_giris" size="40.0" translateX="275.0" translateY="70.0" />
+            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" onMouseClicked="#cikis" rotate="180.0" size="40.0" translateX="10.0" translateY="30.0" />
             <FontAwesomeIconView fx:id="home" fill="WHITE" glyphName="HOME" onMouseClicked="#home_geri_gel" size="40.0" translateX="140.0" translateY="75.0" visible="false" />
          </children>
       </VBox>

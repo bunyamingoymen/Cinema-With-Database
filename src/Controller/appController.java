@@ -2457,7 +2457,7 @@ public class appController extends Center implements Initializable {
     private boolean a = false;
 
     @FXML
-    private Button btn1, btn2, btn3, btn4;
+    private Button btn1, btn2, btn3, btn4, btn5;
 
     @FXML
     private AnchorPane home_pane;
@@ -2477,6 +2477,7 @@ public class appController extends Center implements Initializable {
 
             btn3.setVisible(false);
             btn4.setVisible(false);
+            btn5.setVisible(false);
 
             home.setVisible(true);
         } else if (btn1.getText().equals("Vizyondaki Filmler")) {
@@ -2545,6 +2546,7 @@ public class appController extends Center implements Initializable {
 
             btn3.setVisible(false);
             btn4.setVisible(false);
+            btn5.setVisible(false);
 
             home.setVisible(true);
         } else if (btn2.getText().equals("Eski Filmler")) {
@@ -2632,8 +2634,14 @@ public class appController extends Center implements Initializable {
 
         btn3.setVisible(false);
         btn4.setVisible(false);
+        btn5.setVisible(false);
 
         home.setVisible(true);
+    }
+    
+    @FXML
+    private void btn50(ActionEvent event){
+        
     }
 
     private void home_page() {
@@ -2674,6 +2682,7 @@ public class appController extends Center implements Initializable {
 
         btn3.setVisible(true);
         btn4.setVisible(true);
+        btn5.setVisible(true);
 
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_seans.setVisible(false);
