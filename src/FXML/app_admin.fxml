@@ -7250,22 +7250,22 @@
                   <TextField fx:id="filterField_seans1" layoutX="87.0" layoutY="11.0" prefHeight="33.0" prefWidth="546.0" style="-fx-border-color: #3F2B63;" />
                </children>
             </Pane>
-            <Pane layoutY="166.0" prefHeight="546.0" prefWidth="1058.0" visible="false">
+            <Pane fx:id="kullanici_islemleri_yonet_pane" layoutY="166.0" prefHeight="546.0" prefWidth="1058.0" visible="false">
                <children>
                   <Label layoutX="176.0" layoutY="54.0" text="User id:" />
-                  <Label layoutX="232.0" layoutY="54.0" />
+                  <Label fx:id="kullanici_islemleri_user_id" layoutX="232.0" layoutY="54.0" />
                   <Label layoutX="503.0" layoutY="54.0" text="User Name:" />
-                  <TextField layoutX="592.0" layoutY="49.0" prefHeight="31.0" prefWidth="239.0" />
+                  <TextField fx:id="kullanici_islemleri_user_name" layoutX="592.0" layoutY="49.0" prefHeight="31.0" prefWidth="239.0" />
                   <Label layoutX="150.0" layoutY="123.0" text="User Mail:" />
-                  <TextField layoutX="228.0" layoutY="118.0" prefHeight="31.0" prefWidth="239.0" />
-                  <Pane layoutX="541.0" layoutY="107.0" prefHeight="58.0" prefWidth="391.0">
+                  <TextField fx:id="kullanici_islemleri_user_mail" layoutX="228.0" layoutY="118.0" prefHeight="31.0" prefWidth="239.0" />
+                  <Pane fx:id="kullanici_islemleri_gizli_pane" layoutX="541.0" layoutY="107.0" prefHeight="58.0" prefWidth="391.0">
                      <children>
                         <Label layoutX="14.0" layoutY="19.0" text="User Password:" />
                         <PasswordField layoutX="130.0" layoutY="14.0" prefHeight="31.0" prefWidth="228.0" />
                         <FontAwesomeIconView glyphName="EYE" layoutX="368.0" layoutY="33.0" />
                      </children>
                   </Pane>
-                  <Pane layoutX="540.0" layoutY="106.0" prefHeight="58.0" prefWidth="391.0" visible="false">
+                  <Pane fx:id="kullanici_islemleri_acik_pane" layoutX="540.0" layoutY="106.0" prefHeight="58.0" prefWidth="391.0" visible="false">
                      <children>
                         <Label layoutX="14.0" layoutY="19.0" text="User Password:" />
                         <FontAwesomeIconView glyphName="EYE_SLASH" layoutX="368.0" layoutY="33.0" />
@@ -7273,9 +7273,22 @@
                      </children>
                   </Pane>
                   <Label layoutX="150.0" layoutY="209.0" text="User Türü:" />
-                  <ComboBox layoutX="226.0" layoutY="204.0" prefHeight="31.0" prefWidth="228.0" />
+                  <ComboBox fx:id="kullanici_islemleri_user_turu" layoutX="226.0" layoutY="204.0" prefHeight="31.0" prefWidth="228.0" />
                   <Label layoutX="571.0" layoutY="209.0" text="Abonelik Türü:" />
-                  <ComboBox layoutX="675.0" layoutY="204.0" prefHeight="31.0" prefWidth="228.0" />
+                  <ComboBox fx:id="kullanici_islemleri_abone_turu" layoutX="675.0" layoutY="204.0" prefHeight="31.0" prefWidth="228.0" />
+                  <Button layoutX="789.0" layoutY="329.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" styleClass="button2" text="Güncelle" textFill="WHITE" />
+                  <Button layoutX="243.0" layoutY="329.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="125.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                  <Pane fx:id="seans_degistir_sil_silmekten_emin_pane1" layoutX="186.0" layoutY="26.0" prefHeight="368.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
+                     <children>
+                        <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="25.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="398.0" layoutY="254.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="287.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                        <Button layoutX="62.0" layoutY="253.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="267.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
+                     </children>
+                  </Pane>
                </children>
             </Pane>
          </children>

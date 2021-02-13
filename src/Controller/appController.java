@@ -2460,7 +2460,16 @@ public class appController extends Center implements Initializable {
     private AnchorPane pnl_kullanici_islemleri;
     
     @FXML
-    private Pane kullanici_islemleri_table_pane;
+    private Pane kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane;
+    
+    @FXML
+    private Label kullanici_islemleri_user_id;
+    
+    @FXML
+    private TextField kullanici_islemleri_user_name, kullanici_islemleri_user_mail;
+    
+    @FXML
+    private ComboBox<String> kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu;
     
 
     private void users_tablo() {
