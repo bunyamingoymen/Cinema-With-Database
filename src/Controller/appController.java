@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -287,7 +288,7 @@ public class appController extends Center implements Initializable {
         }
     }
 
-    protected void vizyondaki_filmler_table_admin() {
+    public void vizyondaki_filmler_table_admin() {
         vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
@@ -756,10 +757,6 @@ public class appController extends Center implements Initializable {
     }
 
     private void hangi_aboneler_combo(ComboBox<String> combo) {
-
-        yonetmenlerDAO yonetmen_islemleri = new yonetmenlerDAO();
-
-        String[][] arr = yonetmen_islemleri.yonetmen_combo_doldur();
 
         combo.getItems().clear();
 
@@ -2464,7 +2461,7 @@ public class appController extends Center implements Initializable {
     private Label kullanici_islemleri_user_id;
 
     @FXML
-    private TextField kullanici_islemleri_user_name, kullanici_islemleri_user_mail, filterField_users;
+    private TextField kullanici_islemleri_user_name, kullanici_islemleri_user_mail, filterField_users, kullanici_islemleri_acik_pf;
 
     @FXML
     private ComboBox<String> kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu;
@@ -2478,14 +2475,20 @@ public class appController extends Center implements Initializable {
     @FXML
     private TableColumn<users, Button> users_yonet;
 
+    @FXML
+    private PasswordField kullanici_islemleri_gizli_pf;
+
     private boolean a2 = false;
+
+    @FXML
+    private FontAwesomeIconView kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu;
 
     private void users_tablo() {
         usersDAO ud = new usersDAO();
 
         ObservableList<users> data = FXCollections.observableArrayList();
 
-        data = ud.users_select(data);
+        data = ud.users_select(data, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane, kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu);
 
         users_user_id.setCellValueFactory(new PropertyValueFactory("user_id"));
         users_user_name.setCellValueFactory(new PropertyValueFactory("user_name"));
@@ -2530,6 +2533,58 @@ public class appController extends Center implements Initializable {
         sortedData.comparatorProperty().bind(table_users.comparatorProperty());
 
         table_users.setItems(sortedData);
+    }
+
+    @FXML
+    private void kullanici_islemleri_yonet_geri(MouseEvent event) {
+        kullanici_islemleri_ortak_giris();
+    }
+
+    @FXML
+    private void kullanici_islemleri_geri(MouseEvent event) {
+        geri_don();
+    }
+
+    private void kullanici_islemleri_ortak_giris() {
+        pnl_kullanici_islemleri.setVisible(true);
+        pnl_sinema_salonlari.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
+        pnl_seans.setVisible(false);
+        pnl_eski_filmler.setVisible(false);
+        pnl_kampanyalar.setVisible(false);
+        pnl_haberler.setVisible(false);
+        pnl_yonetmenler.setVisible(false);
+        pnl_aktorler.setVisible(false);
+        home_pane.setVisible(false);
+        pnl_settings.setVisible(false);
+
+        kullanici_islemleri_table_pane.setVisible(true);
+        kullanici_islemleri_yonet_pane.setVisible(false);
+
+        kullanici_islemleri_yonet_geri_tusu.setVisible(false);
+        kullanici_islemleri_geri_tusu.setVisible(true);
+
+        home.setVisible(true);
+
+        users_tablo();
+    }
+
+    @FXML
+    private void kullanici_islemleri_sifre_goster(MouseEvent event) {
+        a2 = true;
+        kullanici_islemleri_acik_pf.setText(kullanici_islemleri_gizli_pf.getText());
+
+        kullanici_islemleri_acik_pane.setVisible(true);
+        kullanici_islemleri_gizli_pane.setVisible(false);
+    }
+
+    @FXML
+    private void kullanici_islemleri_sifre_gizle(MouseEvent event) {
+        a2 = false;
+        kullanici_islemleri_gizli_pf.setText(kullanici_islemleri_acik_pf.getText());
+
+        kullanici_islemleri_acik_pane.setVisible(false);
+        kullanici_islemleri_gizli_pane.setVisible(true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
@@ -2737,23 +2792,7 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void btn50(ActionEvent event) {
-
-        pnl_kullanici_islemleri.setVisible(true);
-        pnl_sinema_salonlari.setVisible(false);
-        pnl_vizyondaki_filmler.setVisible(false);
-        pnl_seans.setVisible(false);
-        pnl_eski_filmler.setVisible(false);
-        pnl_kampanyalar.setVisible(false);
-        pnl_haberler.setVisible(false);
-        pnl_yonetmenler.setVisible(false);
-        pnl_aktorler.setVisible(false);
-        home_pane.setVisible(false);
-        pnl_settings.setVisible(false);
-
-        home.setVisible(true);
-
-        users_tablo();
-
+        kullanici_islemleri_ortak_giris();
     }
 
     private void home_page() {

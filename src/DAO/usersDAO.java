@@ -1,5 +1,6 @@
 package DAO;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.users;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,6 +9,11 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import util.DBConnector;
 
 /*
@@ -403,7 +409,7 @@ public class usersDAO {
         return abonelik_turu;
     }
 
-    public ObservableList<users> users_select(ObservableList<users> data) {
+    public ObservableList<users> users_select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu) {
 
         try {
             DBConnector d = new DBConnector();
@@ -424,7 +430,7 @@ public class usersDAO {
                 yonet.setText("Yönet");
                 yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-                data.addAll(FXCollections.observableArrayList(new users(user_id, user_name, user_mail, user_password, user_type, abone_type, yonet)));
+                data.addAll(FXCollections.observableArrayList(new users(user_id, user_name, user_mail, user_password, user_type, abone_type, yonet, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu)));
             }
 
             c.close();
