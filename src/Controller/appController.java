@@ -2458,6 +2458,10 @@ public class appController extends Center implements Initializable {
      */
     @FXML
     private AnchorPane pnl_kullanici_islemleri;
+    
+    @FXML
+    private Pane kullanici_islemleri_table_pane;
+    
 
     private void users_tablo() {
 

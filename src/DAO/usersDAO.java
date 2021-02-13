@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import util.DBConnector;
 
 /*
-Bu sınıfın asıl amacı dosyada ki verileri okumak ve dosyaya yeni veri yazmak.
+Bu sınıfın asıl amacı veritabanındaki users tablosundaki verileri okumak, yeni veri yazmak ve gerekli olan başka işlemleri yapmak için tasarlandı.
  */
 public class usersDAO {
 
