@@ -36,6 +36,10 @@ public class users {
         this.user_type = user_type;
         this.abonelik_turu = abonelik_turu;
         this.yonet = yonet;
+
+        yonet.setOnAction(e -> {
+
+        });
     }
 
     public users() {

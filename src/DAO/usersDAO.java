@@ -402,8 +402,8 @@ public class usersDAO {
         abonelik_turu = adao.abonelik_turu_bul(user_id);
         return abonelik_turu;
     }
-    
-        public ObservableList<users> users_select(ObservableList<users> data) {
+
+    public ObservableList<users> users_select(ObservableList<users> data) {
 
         try {
             DBConnector d = new DBConnector();

@@ -4,9 +4,7 @@ import DAO.*;
 import entity.*;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -2458,22 +2456,80 @@ public class appController extends Center implements Initializable {
      */
     @FXML
     private AnchorPane pnl_kullanici_islemleri;
-    
+
     @FXML
     private Pane kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane;
-    
+
     @FXML
     private Label kullanici_islemleri_user_id;
-    
+
     @FXML
-    private TextField kullanici_islemleri_user_name, kullanici_islemleri_user_mail;
-    
+    private TextField kullanici_islemleri_user_name, kullanici_islemleri_user_mail, filterField_users;
+
     @FXML
     private ComboBox<String> kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu;
-    
+
+    @FXML
+    private TableView<users> table_users;
+
+    @FXML
+    private TableColumn<users, String> users_user_id, users_user_name, users_user_mail, users_user_password, users_user_type, users_abone_turu;
+
+    @FXML
+    private TableColumn<users, Button> users_yonet;
+
+    private boolean a2 = false;
 
     private void users_tablo() {
+        usersDAO ud = new usersDAO();
 
+        ObservableList<users> data = FXCollections.observableArrayList();
+
+        data = ud.users_select(data);
+
+        users_user_id.setCellValueFactory(new PropertyValueFactory("user_id"));
+        users_user_name.setCellValueFactory(new PropertyValueFactory("user_name"));
+        users_user_mail.setCellValueFactory(new PropertyValueFactory("user_mail"));
+        users_user_password.setCellValueFactory(new PropertyValueFactory("user_password"));
+        users_user_type.setCellValueFactory(new PropertyValueFactory("user_type"));
+        users_abone_turu.setCellValueFactory(new PropertyValueFactory("abonelik_turu"));
+        users_yonet.setCellValueFactory(new PropertyValueFactory("yonet"));
+
+        FilteredList<users> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField_users.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(us -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(us.getUser_id()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (us.getUser_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (us.getUser_mail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (us.getUser_password().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(us.getUser_type()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(us.getAbonelik_turu()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<users> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_users.comparatorProperty());
+
+        table_users.setItems(sortedData);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*
