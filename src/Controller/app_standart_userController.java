@@ -481,11 +481,6 @@ public class app_standart_userController extends Center implements Initializable
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     @FXML
     private void abonelik_degistir(ActionEvent event) {
         pnl_abonelik_0.setVisible(true);
@@ -648,7 +643,7 @@ public class app_standart_userController extends Center implements Initializable
     }
 
     @FXML
-    public void biletlerim_giris(ActionEvent event) {
+    private void biletlerim_giris(ActionEvent event) {
         biletlerim_giris_ortak();
     }
 
@@ -668,7 +663,7 @@ public class app_standart_userController extends Center implements Initializable
         biletlerim_table(user_id_getir());
     }
 
-    public void biletlerim_table(int user_id) {
+    private void biletlerim_table(int user_id) {
         satin_alinan_biletlerDAO edao = new satin_alinan_biletlerDAO();
 
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
@@ -1438,6 +1433,11 @@ public class app_standart_userController extends Center implements Initializable
                 film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -28)");
                 break;
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 }

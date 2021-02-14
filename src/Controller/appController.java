@@ -213,7 +213,7 @@ public class appController extends Center implements Initializable {
     }
 
     @FXML
-    public void vizyondaki_filmler_degistir_sil_degistir(ActionEvent event) {
+    private void vizyondaki_filmler_degistir_sil_degistir(ActionEvent event) {
         if ((vizyondaki_filmleri_degistir_sil_film_name.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_type.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_suresi.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_kalkis.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_yonetmen.getValue() == null)) {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri Doldurunuz.");
         } else {
@@ -251,11 +251,11 @@ public class appController extends Center implements Initializable {
     }
 
     @FXML
-    public void vizyondaki_filmler_degistir_sil_sil(ActionEvent event) {
+    private void vizyondaki_filmler_degistir_sil_sil(ActionEvent event) {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(true);
     }
 
-    public void vizyondaki_filmler_degistir_sil_tamamen_sil(ActionEvent event) {
+    private void vizyondaki_filmler_degistir_sil_tamamen_sil(ActionEvent event) {
         int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
         vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
         int sonuc = vdao.vizyondaki_filmler_tamamen_sil(vizyondaki_film_id);
@@ -269,11 +269,11 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
     }
 
-    public void vizyondaki_filmler_degistir_sil_vazgec(ActionEvent event) {
+    private void vizyondaki_filmler_degistir_sil_vazgec(ActionEvent event) {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
     }
 
-    public void vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil(ActionEvent event) {
+    private void vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil(ActionEvent event) {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
 
         int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
@@ -288,7 +288,7 @@ public class appController extends Center implements Initializable {
         }
     }
 
-    public void vizyondaki_filmler_table_admin() {
+    private void vizyondaki_filmler_table_admin() {
         vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
@@ -2249,7 +2249,7 @@ public class appController extends Center implements Initializable {
     }
 
     @FXML
-    public void aktorler_table() {
+    private void aktorler_table() {
 
         aktorler_aktor_id.setCellValueFactory(new PropertyValueFactory("actor_id"));
         aktorler_ad.setCellValueFactory(new PropertyValueFactory("ad"));
@@ -2649,12 +2649,12 @@ public class appController extends Center implements Initializable {
                 } else {
                     users u = new users(user_id, user_name, user_mail, user_password, user_turu);
                     usersDAO udao = new usersDAO();
-                    
+
                     int sonuc = udao.user_guncelle_aboneli(u, abone_turu);
-                    
-                    if(sonuc == 1){
+
+                    if (sonuc == 1) {
                         kullanici_islemleri_yonet_uyari_pane.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi.");
-                    }else{
+                    } else {
                         kullanici_islemleri_yonet_uyari_pane.setText("Bir hata meydana geldi. Hata kodu: -32.");
                     }
                 }
