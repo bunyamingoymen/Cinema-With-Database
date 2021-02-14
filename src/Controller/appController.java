@@ -2568,6 +2568,7 @@ public class appController extends Center implements Initializable {
 
         users_tablo();
     }
+    
 
     @FXML
     private void kullanici_islemleri_sifre_goster(MouseEvent event) {
