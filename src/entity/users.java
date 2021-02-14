@@ -34,7 +34,7 @@ public class users {
         this.user_type = user_type;
     }
 
-    public users(int user_id, String user_name, String user_mail, String user_password, int user_type, int abonelik_turu, Button yonet, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu) {
+    public users(int user_id, String user_name, String user_mail, String user_password, int user_type, int abonelik_turu, Button yonet, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_mail = user_mail;
@@ -59,6 +59,8 @@ public class users {
 
             yonet_geri_tusu.setVisible(true);
             geri_tusu.setVisible(false);
+            
+            sil_pane.setVisible(false);
         });
     }
 

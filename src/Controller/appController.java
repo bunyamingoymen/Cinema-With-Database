@@ -2448,17 +2448,17 @@ public class appController extends Center implements Initializable {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      */
  /*
-    Kuşşanıcı İşlemleri
+    Kullanıcı İşlemleri
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      */
     @FXML
     private AnchorPane pnl_kullanici_islemleri;
 
     @FXML
-    private Pane kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane;
+    private Pane kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane, kullanici_islemleri_silmekten_emin_misin_pane;
 
     @FXML
-    private Label kullanici_islemleri_user_id;
+    private Label kullanici_islemleri_user_id, kullanici_islemleri_yonet_uyari_pane;
 
     @FXML
     private TextField kullanici_islemleri_user_name, kullanici_islemleri_user_mail, filterField_users, kullanici_islemleri_acik_pf;
@@ -2488,7 +2488,7 @@ public class appController extends Center implements Initializable {
 
         ObservableList<users> data = FXCollections.observableArrayList();
 
-        data = ud.users_select(data, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane, kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu);
+        data = ud.user_select(data, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane, kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu, kullanici_islemleri_silmekten_emin_misin_pane);
 
         users_user_id.setCellValueFactory(new PropertyValueFactory("user_id"));
         users_user_name.setCellValueFactory(new PropertyValueFactory("user_name"));
@@ -2568,7 +2568,6 @@ public class appController extends Center implements Initializable {
 
         users_tablo();
     }
-    
 
     @FXML
     private void kullanici_islemleri_sifre_goster(MouseEvent event) {
@@ -2586,6 +2585,81 @@ public class appController extends Center implements Initializable {
 
         kullanici_islemleri_acik_pane.setVisible(false);
         kullanici_islemleri_gizli_pane.setVisible(true);
+    }
+
+    @FXML
+    private void kullanici_islemleri_sil_giris(ActionEvent event) {
+        kullanici_islemleri_silmekten_emin_misin_pane.setVisible(true);
+    }
+
+    @FXML
+    private void kullanici_islemleri_sil_sil(ActionEvent event) {
+        int user_id = Integer.parseInt(kullanici_islemleri_user_id.getText());
+
+        usersDAO udao = new usersDAO();
+
+        int sonuc = udao.user_dao_sil(user_id);
+
+        if (sonuc == 1) {
+            kullanici_islemleri_yonet_uyari_pane.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
+        } else {
+            kullanici_islemleri_yonet_uyari_pane.setText("Bir hata meydana geldi hata kodu: -30");
+        }
+
+        kullanici_islemleri_silmekten_emin_misin_pane.setVisible(false);
+    }
+
+    @FXML
+    private void kullanici_islemleri_sil_vazgec(ActionEvent event) {
+        kullanici_islemleri_silmekten_emin_misin_pane.setVisible(false);
+    }
+
+    @FXML
+    private void kullanici_islemleri_guncelle(ActionEvent event) {
+        if ((kullanici_islemleri_user_name.getText().length() == 0) || (kullanici_islemleri_user_mail.getText().length() == 0) || (kullanici_islemleri_user_turu.getValue() == null) || (kullanici_islemleri_abone_turu.getValue() == null)) {
+            kullanici_islemleri_yonet_uyari_pane.setText("Lütfen Gerekli Yerleri Doldurunuz.");
+        } else {
+            String user_password = null;
+            if (a2 == false) {
+                if (kullanici_islemleri_gizli_pf.getText().length() == 0) {
+                    kullanici_islemleri_yonet_uyari_pane.setText("Lütfen Gerekli Yerleri Doldurunuz.");
+                } else {
+                    user_password = kullanici_islemleri_gizli_pf.getText();
+                }
+            } else {
+                if (kullanici_islemleri_acik_pf.getText().length() == 0) {
+                    kullanici_islemleri_yonet_uyari_pane.setText("Lütfen Gerekli Yerleri Doldurunuz.");
+                } else {
+                    user_password = kullanici_islemleri_acik_pf.getText();
+                }
+            }
+            if (user_password != null) {
+                int user_id = Integer.parseInt(kullanici_islemleri_user_id.getText());
+                String user_name = kullanici_islemleri_user_name.getText();
+                String user_mail = kullanici_islemleri_user_mail.getText();
+                int abone_turu = Integer.parseInt(kullanici_islemleri_abone_turu.getValue());
+                int user_turu = -1;
+                if (kullanici_islemleri_user_turu.getValue().equals("Normal")) {
+                    user_turu = 0;
+                } else if (kullanici_islemleri_user_turu.getValue().equals("Admin")) {
+                    user_turu = 1;
+                }
+                if (user_turu == -1) {
+                    kullanici_islemleri_yonet_uyari_pane.setText("Bir hata meydana geldi. Hata kodu: -31.");
+                } else {
+                    users u = new users(user_id, user_name, user_mail, user_password, user_turu);
+                    usersDAO udao = new usersDAO();
+                    
+                    int sonuc = udao.user_guncelle_aboneli(u, abone_turu);
+                    
+                    if(sonuc == 1){
+                        kullanici_islemleri_yonet_uyari_pane.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi.");
+                    }else{
+                        kullanici_islemleri_yonet_uyari_pane.setText("Bir hata meydana geldi. Hata kodu: -32.");
+                    }
+                }
+            }
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*

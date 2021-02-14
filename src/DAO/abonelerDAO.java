@@ -151,6 +151,36 @@ public class abonelerDAO {
         return sonuc;
     }
 
+    public int abonelik_turu_guncelle_kullanici_yonetimi(int abonelik_turu, int user_id) {
+        int sonuc = 0;
+        int kalan_ucretsiz_bilet_sayisi = 0;
+        int eski_abonelik_turu = abonelik_turu_bul(user_id);
+        switch (abonelik_turu) {
+            case 0:
+                kalan_ucretsiz_bilet_sayisi = 0;
+                sonuc = aboneler_sil(user_id);
+                return sonuc;
+            case 1:
+                kalan_ucretsiz_bilet_sayisi = 2;
+                break;
+            case 2:
+                kalan_ucretsiz_bilet_sayisi = 3;
+                break;
+            case 3:
+                kalan_ucretsiz_bilet_sayisi = 6;
+                break;
+            default:
+                return 0;
+        }
+        if (eski_abonelik_turu == 0) {
+            sonuc = abonelik_turu_ekle(abonelik_turu, user_id);
+        } else if (eski_abonelik_turu == 1 || eski_abonelik_turu == 2 || eski_abonelik_turu == 3) {
+            sonuc = abonelik_turu_guncelle(abonelik_turu, user_id);
+        }
+
+        return sonuc;
+    }
+
     public int aboneler_sil(int user_id) {
         int sonuc = 0;
 

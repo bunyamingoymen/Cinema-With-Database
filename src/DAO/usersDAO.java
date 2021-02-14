@@ -313,6 +313,38 @@ public class usersDAO {
         return sonuc;
     }
 
+    public int user_guncelle_aboneli(users u, int abone_type) {
+        int sonuc = 0;
+        int sonuc2 = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+
+            String komut = "update users set user_name='" + u.getUser_name() + "', user_mail='" + u.getUser_mail() + "', user_password = '" + u.getUser_password() + "', user_type = '" + u.getUser_type() + "' where user_id = " + u.getUser_id();
+            sonuc = st.executeUpdate(komut);
+            if (abone_type != 0) {
+                abonelerDAO adao = new abonelerDAO();
+                sonuc2 = adao.abonelik_turu_guncelle_kullanici_yonetimi(abone_type, u.getUser_id());
+            } else {
+                sonuc2 = 1;
+            }
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 242 - " + e.getMessage());
+        }
+
+        if (sonuc == 1 && sonuc2 == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     public int kac_tane_user_var() {
         int sonuc = -1;
 
@@ -409,7 +441,7 @@ public class usersDAO {
         return abonelik_turu;
     }
 
-    public ObservableList<users> users_select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu) {
+    public ObservableList<users> user_select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
 
         try {
             DBConnector d = new DBConnector();
@@ -430,7 +462,7 @@ public class usersDAO {
                 yonet.setText("Yönet");
                 yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-                data.addAll(FXCollections.observableArrayList(new users(user_id, user_name, user_mail, user_password, user_type, abone_type, yonet, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu)));
+                data.addAll(FXCollections.observableArrayList(new users(user_id, user_name, user_mail, user_password, user_type, abone_type, yonet, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu, sil_pane)));
             }
 
             c.close();
@@ -442,6 +474,26 @@ public class usersDAO {
         }
 
         return data;
+    }
+
+    public int user_dao_sil(int user_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from users where user_id = " + user_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :241 - " + e.getMessage());
+        }
+
+        return sonuc;
     }
 
 }

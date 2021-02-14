@@ -7277,19 +7277,20 @@
                   <ComboBox fx:id="kullanici_islemleri_user_turu" layoutX="226.0" layoutY="204.0" prefHeight="31.0" prefWidth="228.0" />
                   <Label layoutX="571.0" layoutY="209.0" text="Abonelik Türü:" />
                   <ComboBox fx:id="kullanici_islemleri_abone_turu" layoutX="675.0" layoutY="204.0" prefHeight="31.0" prefWidth="228.0" />
-                  <Button layoutX="789.0" layoutY="329.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" styleClass="button2" text="Güncelle" textFill="WHITE" />
-                  <Button layoutX="243.0" layoutY="329.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="125.0" styleClass="button5" text="Sil" textFill="WHITE" />
-                  <Pane fx:id="seans_degistir_sil_silmekten_emin_pane1" layoutX="186.0" layoutY="26.0" prefHeight="368.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
+                  <Button layoutX="789.0" layoutY="329.0" mnemonicParsing="false" onAction="#kullanici_islemleri_guncelle" prefHeight="31.0" prefWidth="143.0" styleClass="button2" text="Güncelle" textFill="WHITE" />
+                  <Button layoutX="243.0" layoutY="329.0" mnemonicParsing="false" onAction="#kullanici_islemleri_sil_giris" prefHeight="31.0" prefWidth="125.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                  <Pane fx:id="kullanici_islemleri_silmekten_emin_misin_pane" layoutX="186.0" layoutY="26.0" prefHeight="368.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
                      <children>
                         <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
                            <font>
                               <Font name="Comic Sans MS" size="25.0" />
                            </font>
                         </Label>
-                        <Button layoutX="398.0" layoutY="254.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="287.0" styleClass="button5" text="Sil" textFill="WHITE" />
-                        <Button layoutX="62.0" layoutY="253.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="267.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
+                        <Button layoutX="398.0" layoutY="254.0" mnemonicParsing="false" onAction="#kullanici_islemleri_sil_sil" prefHeight="31.0" prefWidth="287.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                        <Button layoutX="62.0" layoutY="253.0" mnemonicParsing="false" onAction="#kullanici_islemleri_sil_vazgec" prefHeight="33.0" prefWidth="267.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
                      </children>
                   </Pane>
+                  <Label fx:id="kullanici_islemleri_yonet_uyari_pane" layoutX="431.0" layoutY="394.0" textFill="RED" />
                </children>
             </Pane>
          </children>
