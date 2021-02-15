@@ -692,7 +692,7 @@ COPY public.yonetmenler (yonetmen_id, ad, soyad, film_sayisi) FROM '$$PATH$$/314
 -- Name: Aboneler_abone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Aboneler_abone_id_seq"', 9, true);
+SELECT pg_catalog.setval('public."Aboneler_abone_id_seq"', 10, true);
 
 
 --
@@ -755,7 +755,7 @@ SELECT pg_catalog.setval('public.film_actor_film_actor_id_seq', 15, true);
 -- Name: filmler_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.filmler_film_id_seq', 34, true);
+SELECT pg_catalog.setval('public.filmler_film_id_seq', 36, true);
 
 
 --
@@ -776,7 +776,7 @@ SELECT pg_catalog.setval('public.satin_alinan_biletler_satin_alinan_bilet_id_seq
 -- Name: vizyondaki_filmler_vizyondaki_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 9, true);
+SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 11, true);
 
 
 --
