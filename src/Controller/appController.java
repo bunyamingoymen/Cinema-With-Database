@@ -255,7 +255,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(true);
     }
 
-    private void vizyondaki_filmler_degistir_sil_tamamen_sil(ActionEvent event) {
+    public void vizyondaki_filmler_degistir_sil_tamamen_sil(ActionEvent event) {
         int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
         vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
         int sonuc = vdao.vizyondaki_filmler_tamamen_sil(vizyondaki_film_id);
@@ -269,11 +269,11 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
     }
 
-    private void vizyondaki_filmler_degistir_sil_vazgec(ActionEvent event) {
+    public void vizyondaki_filmler_degistir_sil_vazgec(ActionEvent event) {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
     }
 
-    private void vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil(ActionEvent event) {
+    public void vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil(ActionEvent event) {
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
 
         int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
@@ -829,8 +829,8 @@ public class appController extends Center implements Initializable {
                     eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);
                     eski_filmlerDAO edao = new eski_filmlerDAO();
                     int sonuc = edao.eski_filmler_dao_ekle(ef);
-                    int sonuc2 = y.yonetmen_film_sayisi_arttir(yonetmen_id);
-                    if ((sonuc == 1) && (sonuc2 == 1)) {
+
+                    if ((sonuc == 1)) {
                         eski_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
                     }
 

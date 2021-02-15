@@ -86,29 +86,6 @@ public class yonetmenlerDAO {
         return sonuc;
     }
 
-    public int yonetmen_film_sayisi_arttir(int id) {
-        int sonuc = -1;
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from yonetmenler where yonetmen_id ='" + id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            int film_sayisi = rs.getInt("film_sayisi") + 1;
-            String komut2 = "update yonetmenler set film_sayisi = " + film_sayisi + " where yonetmen_id = '" + id + "'";
-            sonuc = st.executeUpdate(komut2);
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 151 - " + e.getMessage());
-        }
-        return sonuc;
-    }
-
     public String yonetmenler_yonetmen_getir(int id) {
         String name_surname = null;
 
@@ -263,6 +240,27 @@ public class yonetmenlerDAO {
 
         } catch (SQLException e) {
             System.out.println("Hata kodu :158 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    public int yonetmenler_film_sayisi_azalt(int id) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            int eski_film_sayisi = yonetmenler_film_sayisi_getir(id);
+            int yeni_film_sayisi = eski_film_sayisi - 1;
+            String komut = "update yonetmenler set film_sayisi =" + yeni_film_sayisi + "where yonetmen_id = " + id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :151 - " + e.getMessage());
         }
 
         return sonuc;

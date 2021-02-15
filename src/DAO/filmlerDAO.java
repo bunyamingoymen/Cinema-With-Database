@@ -17,7 +17,7 @@ public class filmlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into filmler (film_name,film_type,film_suresi,yonetmen_id,kullanici_puani) values ('" + f.getFilm_name() + "','" + f.getFilm_type() + "','" + f.getFilm_suresi() + "','" + f.getYonetmen_id() + "',"+ f.getKullanici_puani() + ")";
+            String komut = "insert into filmler (film_name,film_type,film_suresi,yonetmen_id,kullanici_puani) values ('" + f.getFilm_name() + "','" + f.getFilm_type() + "','" + f.getFilm_suresi() + "','" + f.getYonetmen_id() + "'," + f.getKullanici_puani() + ")";
             sonuc = st.executeUpdate(komut);
 
             if (sonuc != 1) {
@@ -134,21 +134,28 @@ public class filmlerDAO {
 
     public int filmler_dao_delete(int film_id) {
         int sonuc = 0;
+        int sonuc2 = 0;
 
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
+            int yonetmen_id = filmler_yonetmen_id_getir(film_id);
             String komut = "delete from filmler where film_id=" + film_id;
             sonuc = st.executeUpdate(komut);
-
+            yonetmenlerDAO ydao = new yonetmenlerDAO();
+            sonuc2 = ydao.yonetmenler_film_sayisi_azalt(yonetmen_id);
             c.close();
             st.close();
         } catch (SQLException e) {
             System.out.println("Hata kodu :133 - " + e.getMessage());
         }
 
-        return sonuc;
+        if (sonuc == 1 && sonuc2 == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public String[][] filmler_combo_doldur() {
@@ -204,8 +211,8 @@ public class filmlerDAO {
 
         return sonuc;
     }
-    
-        public float kullanici_puani_getir(int id) {
+
+    public float kullanici_puani_getir(int id) {
         float kullanici_puani = (float) -1;
 
         try {
@@ -227,9 +234,9 @@ public class filmlerDAO {
 
         return kullanici_puani;
     }
-        
-        public int kullanici_puani_degsitir(int film_id,  float kullanici_puani){
-                    int sonuc = 0;
+
+    public int kullanici_puani_degsitir(int film_id, float kullanici_puani) {
+        int sonuc = 0;
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
@@ -243,5 +250,5 @@ public class filmlerDAO {
             System.out.println("Hata kodu :239 - " + e.getMessage());
         }
         return sonuc;
-        }
+    }
 }
