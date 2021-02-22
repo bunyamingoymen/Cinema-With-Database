@@ -262,6 +262,7 @@ public class appController extends Center implements Initializable {
         if (sonuc == 1) {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Tamamiyle Silindi");
             vizyondaki_filmler_degistir_sil_filmler.getItems().clear();
+            vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
             vizyondaki_filmler_degistir_pane_2.setVisible(false);
         } else {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
@@ -283,6 +284,7 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Sadece Vizyonan Silindi");
             vizyondaki_filmler_degistir_sil_filmler.getItems().clear();
             vizyondaki_filmler_degistir_pane_2.setVisible(false);
+            vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
         } else {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
         }
