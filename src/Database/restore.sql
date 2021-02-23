@@ -459,9 +459,9 @@ ALTER TABLE public.satin_alinan_biletler ALTER COLUMN satin_alinan_bilet_id ADD 
 CREATE TABLE public.vizyondaki_filmler (
     vizyondaki_film_id integer NOT NULL,
     film_id integer,
-    vizyondan_kalkis_tarihi text,
     kullanici_puani integer,
-    seans_sayisi integer
+    seans_sayisi integer,
+    vizyondan_kalkis_tarihi date
 );
 
 
@@ -705,9 +705,9 @@ COPY public.users (user_id, user_name, user_mail, user_password, user_type) FROM
 -- Data for Name: vizyondaki_filmler; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, vizyondan_kalkis_tarihi, kullanici_puani, seans_sayisi) FROM stdin;
+COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, kullanici_puani, seans_sayisi, vizyondan_kalkis_tarihi) FROM stdin;
 \.
-COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, vizyondan_kalkis_tarihi, kullanici_puani, seans_sayisi) FROM '$$PATH$$/3172.dat';
+COPY public.vizyondaki_filmler (vizyondaki_film_id, film_id, kullanici_puani, seans_sayisi, vizyondan_kalkis_tarihi) FROM '$$PATH$$/3172.dat';
 
 --
 -- Data for Name: yesil_olan; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -792,7 +792,7 @@ SELECT pg_catalog.setval('public.film_actor_film_actor_id_seq', 15, true);
 -- Name: filmler_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.filmler_film_id_seq', 36, true);
+SELECT pg_catalog.setval('public.filmler_film_id_seq', 38, true);
 
 
 --
@@ -820,7 +820,7 @@ SELECT pg_catalog.setval('public.user_photos_user_photo_id_seq', 4, true);
 -- Name: vizyondaki_filmler_vizyondaki_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 11, true);
+SELECT pg_catalog.setval('public.vizyondaki_filmler_vizyondaki_film_id_seq', 13, true);
 
 
 --
