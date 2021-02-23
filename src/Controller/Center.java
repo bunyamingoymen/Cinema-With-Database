@@ -140,7 +140,6 @@ public class Center implements Initializable {
     //setting pane'in içinde bulunan Güncelle mbutonunun metodudur. Yaptığı şey kısaca kullanıcının verilerini textfield gibi yerlerden alıp dosyaya kaydetme işlevini görüyor.
     @FXML
     protected void guncelle(ActionEvent event) {
-        System.out.println("1");
         //Bu metot ayarlar kısmındaki Güncelle butonunun işlevini görmektedir. Yani kısacası Bu butona basıldığında kullanıcıların verileri isteklerine göre değişebiliyor.
 
         //Dosya işlemlerini yapabilmek adına bir dosya nesnesi oluşturuluyor.

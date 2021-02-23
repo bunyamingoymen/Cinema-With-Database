@@ -18,12 +18,17 @@ import entity.kampanyalar;
 import entity.kullanici_degerlendirmesi;
 import entity.satin_alinan_biletler;
 import entity.vizyondaki_filmler;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,10 +39,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 
 public class app_standart_userController extends Center implements Initializable {
 
@@ -97,6 +105,9 @@ public class app_standart_userController extends Center implements Initializable
 
     @FXML
     private Label film_detay_uyari_mesaj;
+
+    @FXML
+    private ImageView profile_photo;
 
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
@@ -1433,6 +1444,26 @@ public class app_standart_userController extends Center implements Initializable
                 film_detay_uyari_mesaj.setText("Bir hata meydana geldi (Hata kodu: -28)");
                 break;
         }
+    }
+
+    @FXML
+    private void user_profile_change(MouseEvent event) throws IOException {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.jpg", "*.jpeg", "*.png"));
+        File selectedFile = fc.showOpenDialog(null);
+        int user_id = user_id_getir();
+
+        File ada = new File("src/lib/pic/users/" + user_id + ".png");
+        ada.delete();
+
+        File ada2 = new File("src/lib/pic/users/" + user_id + ".png");
+        Files.copy(selectedFile.toPath(), ada2.toPath()); //dosyayı kopyalamyı sağlıyor. Ancak ya try catch içinde olacak yada throws olacak.
+        
+        BufferedImage bufferedImage = ImageIO.read(ada2);
+        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+
+        profile_photo.setImage(image);
+
     }
 
     @Override
