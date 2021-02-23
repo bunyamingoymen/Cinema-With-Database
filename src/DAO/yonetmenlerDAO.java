@@ -96,7 +96,7 @@ public class yonetmenlerDAO {
             String komut = "select * from yonetmenler where yonetmen_id ='" + id + "'";
             ResultSet rs = st.executeQuery(komut);
             rs.next();
-            name_surname = rs.getString("ad") + rs.getString("soyad");
+            name_surname = rs.getString("ad") + " " + rs.getString("soyad");
 
             c.close();
             st.close();

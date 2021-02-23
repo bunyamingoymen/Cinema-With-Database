@@ -5,6 +5,7 @@ import entity.*;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
@@ -61,7 +63,10 @@ public class appController extends Center implements Initializable {
     private Pane ust_pnl_vizyondaki_filmler, vizyondaki_filmler_ekle_pane, vizyondaki_filmler_degistir_pane, vizyondaki_filmler_degistir_pane_1, vizyondaki_filmler_degistir_pane_2, vizyondaki_filmler_degistir_sil_emin_misin;
 
     @FXML
-    private TextField vizyondaki_filmler_ekle_film_adi, vizyondaki_filmler_ekle_film_suresi, vizyondaki_filmler_ekle_film_type, vizyondaki_filmler_ekle_kalkis, vizyondaki_filmleri_degistir_sil_film_name, vizyondaki_filmleri_degistir_sil_film_suresi, vizyondaki_filmleri_degistir_sil_film_type, vizyondaki_filmleri_degistir_sil_kalkis;
+    private TextField vizyondaki_filmler_ekle_film_adi, vizyondaki_filmler_ekle_film_suresi, vizyondaki_filmler_ekle_film_type, vizyondaki_filmleri_degistir_sil_film_name, vizyondaki_filmleri_degistir_sil_film_suresi, vizyondaki_filmleri_degistir_sil_film_type;
+
+    @FXML
+    private DatePicker vizyondaki_filmler_ekle_kalkis, vizyondaki_filmleri_degistir_sil_kalkis;
 
     @FXML
     private ComboBox<String> vizyondaki_filmler_ekle_yonetmenler, vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmleri_degistir_sil_yonetmen;
@@ -116,11 +121,12 @@ public class appController extends Center implements Initializable {
         }
         if (control != -1) {
             String film_type = vizyondaki_filmler_ekle_film_type.getText();
-            String kalkis = vizyondaki_filmler_ekle_kalkis.getText();
+
             String yonetmen = vizyondaki_filmler_ekle_yonetmenler.getValue();
-            if ((film_name.length() == 0) || (vizyondaki_filmler_film_suresi.getText().length() == 0) || (film_type.length() == 0) || (kalkis.length() == 0) || (yonetmen == null)) {
+            if ((film_name.length() == 0) || (vizyondaki_filmler_film_suresi.getText().length() == 0) || (film_type.length() == 0) || (vizyondaki_filmler_ekle_kalkis.getValue() == null) || (yonetmen == null)) {
                 vizyondaki_filmler_ekle_uyari_mesaj.setText("Lütfen gerekli yerleri doldurunuz.");
             } else {
+                LocalDate kalkis = vizyondaki_filmler_ekle_kalkis.getValue();
                 yonetmenlerDAO y = new yonetmenlerDAO();
                 String[][] arr = y.yonetmen_combo_doldur();
                 int yonetmen_id = 0;
@@ -150,7 +156,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_ekle_film_adi.setText("");
         vizyondaki_filmler_ekle_film_suresi.setText("");
         vizyondaki_filmler_ekle_film_type.setText("");
-        vizyondaki_filmler_ekle_kalkis.setText("");
+        vizyondaki_filmler_ekle_kalkis.setValue(null);
         vizyondaki_filmler_ekle_yonetmenler.getItems().clear();
         vizyondaki_filmler_ekle_yonetmenler.setPromptText("İstediğiniz yönetmeni seçiniz.");
         yonetmen_combo(vizyondaki_filmler_ekle_yonetmenler, vizyondaki_filmler_ekle_uyari_mesaj);
@@ -198,12 +204,12 @@ public class appController extends Center implements Initializable {
             String film_type = vizyondaki_film_islemleri.film_type_getir(vizyondaki_film_id);
             int film_suresi = vizyondaki_film_islemleri.film_suresi_getir(vizyondaki_film_id);
             String yonetmen = fdao.filmler_yonetmen_id_getir(vizyondaki_film_islemleri.film_id_getir(vizyondaki_film_id)) + " " + vizyondaki_film_islemleri.yonetmen_getir(vizyondaki_film_id);
-            String kalkis = vizyondaki_film_islemleri.vizyondan_kalkis_tarihi_getir(vizyondaki_film_id);
+            LocalDate kalkis = vizyondaki_film_islemleri.vizyondan_kalkis_tarihi_getir(vizyondaki_film_id);
 
             vizyondaki_filmleri_degistir_sil_film_name.setText(film_name);
             vizyondaki_filmleri_degistir_sil_film_type.setText(film_type);
             vizyondaki_filmleri_degistir_sil_film_suresi.setText(String.valueOf(film_suresi));
-            vizyondaki_filmleri_degistir_sil_kalkis.setText(kalkis);
+            vizyondaki_filmleri_degistir_sil_kalkis.setValue(kalkis);
             yonetmen_combo(vizyondaki_filmleri_degistir_sil_yonetmen, vizyondaki_filmler_degistir_sil_uyari_mesaj_2);
             vizyondaki_filmleri_degistir_sil_yonetmen.setValue(yonetmen);
             vizyondaki_filmler_degistir_sil_vizyon_id.setText(String.valueOf(vizyondaki_film_id));
@@ -214,21 +220,21 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private void vizyondaki_filmler_degistir_sil_degistir(ActionEvent event) {
-        if ((vizyondaki_filmleri_degistir_sil_film_name.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_type.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_suresi.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_kalkis.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_yonetmen.getValue() == null)) {
+        if ((vizyondaki_filmleri_degistir_sil_film_name.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_type.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_suresi.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_kalkis.getValue() == null)) {
             vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri Doldurunuz.");
         } else {
             String film_name = vizyondaki_filmleri_degistir_sil_film_name.getText();
             String film_type = vizyondaki_filmleri_degistir_sil_film_type.getText();
             String film_suresi = vizyondaki_filmleri_degistir_sil_film_suresi.getText();
-            String kalkis = vizyondaki_filmleri_degistir_sil_kalkis.getText();
+            LocalDate kalkis = vizyondaki_filmleri_degistir_sil_kalkis.getValue();
             String yonetmen = vizyondaki_filmleri_degistir_sil_yonetmen.getValue();
             yonetmenlerDAO y = new yonetmenlerDAO();
-            int secilen_yonetmen_id = 0;
+            int yonetmen_id = 0;
             String[][] arr = y.yonetmen_combo_doldur();
 
-            for (int i = 0; i < arr.length; i++) {
-                if (yonetmen.equals(arr[i][0])) {
-                    secilen_yonetmen_id = Integer.valueOf(arr[i][1]);
+            for (String[] arr1 : arr) {
+                if (yonetmen.equals(arr1[0])) {
+                    yonetmen_id = Integer.valueOf(arr1[1]);
                 }
             }
 
@@ -238,7 +244,7 @@ public class appController extends Center implements Initializable {
             filmlerDAO fdao = new filmlerDAO();
 
             vizyondaki_filmler v = new vizyondaki_filmler(Integer.valueOf(vizyondaki_film_id), Integer.valueOf(film_id), kalkis, fdao.kullanici_puani_getir(Integer.valueOf(film_id)), vdao.seans_sayisi_getir(Integer.valueOf(vizyondaki_film_id)));
-            filmler f = new filmler(Integer.valueOf(film_id), film_name, Integer.valueOf(film_suresi), film_type, secilen_yonetmen_id);
+            filmler f = new filmler(Integer.valueOf(film_id), film_name, Integer.valueOf(film_suresi), film_type, yonetmen_id);
 
             int sonuc = vdao.vizyondaki_filmler_degistir(v, f);
             if (sonuc == 1) {
@@ -324,7 +330,7 @@ public class appController extends Center implements Initializable {
                     return true;
                 } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (viz.getVizyondan_kalkis_tarihi().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
                     return true;

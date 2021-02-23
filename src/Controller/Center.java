@@ -192,8 +192,11 @@ public class Center implements Initializable {
     protected TableView<vizyondaki_filmler> table_vizyondaki_filmler;
 
     @FXML
-    protected TableColumn<vizyondaki_filmler, String> vizyondaki_filmler_film_adi, vizyondaki_filmler_film_type, vizyondaki_filmler_film_suresi, vizyondaki_filmler_yonetmen, vizyondaki_filmler_kalkis, vizyondaki_filmler_kullanici_puani;
-
+    protected TableColumn<vizyondaki_filmler, String> vizyondaki_filmler_film_adi, vizyondaki_filmler_film_type, vizyondaki_filmler_film_suresi, vizyondaki_filmler_yonetmen, vizyondaki_filmler_kullanici_puani;
+    
+    @FXML
+    protected TableColumn<vizyondaki_filmler, DatePicker> vizyondaki_filmler_kalkis;
+ 
     @FXML
     protected TableColumn<vizyondaki_filmler, Button> vizyondaki_filmler_detay;
 

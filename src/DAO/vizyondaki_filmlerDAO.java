@@ -3,9 +3,12 @@ package DAO;
 import entity.filmler;
 import entity.vizyondaki_filmler;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -114,30 +117,30 @@ public class vizyondaki_filmlerDAO {
     }
 
     public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select(ObservableList<vizyondaki_filmler> data) {
-
+        
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
             String komut = "select * from vizyondaki_filmler_tablo";
             ResultSet rs = st.executeQuery(komut);
-
+            
             while (rs.next()) {
                 String film_name = rs.getString("film_name");
                 String film_type = rs.getString("film_type");
                 int film_suresi = rs.getInt("film_suresi");
                 String ad = rs.getString("ad");
                 String soyad = rs.getString("soyad");
-                String kalkis = rs.getString("vizyondan_kalkis_tarihi");
+                LocalDate kalkis = rs.getDate("vizyondan_kalkis_tarihi").toLocalDate();
                 int kullanici_puani = rs.getInt("kullanici_puani");
-
+                
                 Button detay = new Button();
                 detay.setText("Detay");
                 detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
                 data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
             }
-
+            
             c.close();
             st.close();
             rs.close();
@@ -166,7 +169,7 @@ public class vizyondaki_filmlerDAO {
                 int film_suresi = rs.getInt("film_suresi");
                 String ad = rs.getString("ad");
                 String soyad = rs.getString("soyad");
-                String kalkis = rs.getString("vizyondan_kalkis_tarihi");
+                LocalDate kalkis = rs.getDate("vizyondan_kalkis_tarihi").toLocalDate();
                 int kullanici_puani = rs.getInt("kullanici_puani");
 
                 Button detay = new Button();
@@ -383,8 +386,8 @@ public class vizyondaki_filmlerDAO {
         return name_surname;
     }
 
-    public String vizyondan_kalkis_tarihi_getir(int id) {
-        String kalkis = null;
+    public LocalDate vizyondan_kalkis_tarihi_getir(int id) {
+        LocalDate kalkis = null;
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
@@ -392,7 +395,7 @@ public class vizyondaki_filmlerDAO {
             String komut = "select *  from vizyondaki_filmler where vizyondaki_film_id='" + id + "'";
             ResultSet rs = st.executeQuery(komut);
             rs.next();
-            kalkis = rs.getString("vizyondan_kalkis_tarihi");
+            kalkis = rs.getDate("vizyondan_kalkis_tarihi").toLocalDate();
 
             c.close();
             st.close();

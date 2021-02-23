@@ -164,7 +164,7 @@ public class app_standart_userController extends Center implements Initializable
                     return true;
                 } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (viz.getVizyondan_kalkis_tarihi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (viz.getVizyondan_kalkis_tarihi().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
                     return true;

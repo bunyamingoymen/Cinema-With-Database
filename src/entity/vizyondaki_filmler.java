@@ -1,5 +1,6 @@
 package entity;
 
+import java.time.LocalDate;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -12,19 +13,19 @@ public class vizyondaki_filmler {
     private String film_type;
     private int film_suresi;
     private String yonetmen_ad_soyad;
-    private String vizyondan_kalkis_tarihi;
+    private LocalDate vizyondan_kalkis_tarihi;
     private float kullanici_puani;
     private int seans_sayisi;
     private Button film_detayi;
 
-    public vizyondaki_filmler(int film_id, String vizyondan_kalkis_tarihi, float kullanici_puani, int seans_sayisi) {
+    public vizyondaki_filmler(int film_id, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, int seans_sayisi) {
         this.film_id = film_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
         this.kullanici_puani = kullanici_puani;
         this.seans_sayisi = seans_sayisi;
     }
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String vizyondan_kalkis_tarihi, float kullanici_puani, int seans_sayisi) {
+    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, int seans_sayisi) {
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.film_id = film_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
@@ -32,7 +33,7 @@ public class vizyondaki_filmler {
         this.seans_sayisi = seans_sayisi;
     }
 
-    public vizyondaki_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, String vizyondan_kalkis_tarihi, float kullanici_puani, Button detay) {
+    public vizyondaki_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay) {
         this.film_name = film_name;
         this.film_type = film_type;
         this.film_suresi = film_suresi;
@@ -47,7 +48,7 @@ public class vizyondaki_filmler {
 
     }
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad, String soyad, String vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani ,AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad, String soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani ,AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.film_id = film_id;
         this.film_name = film_name;
@@ -75,7 +76,7 @@ public class vizyondaki_filmler {
         });
     }
 
-    public vizyondaki_filmler(int film_id, String vizyondan_kalkis_tarihi, int seans_sayisi) {
+    public vizyondaki_filmler(int film_id, LocalDate vizyondan_kalkis_tarihi, int seans_sayisi) {
         this.film_id = film_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
         this.seans_sayisi = seans_sayisi;
@@ -100,11 +101,11 @@ public class vizyondaki_filmler {
         this.film_id = film_id;
     }
 
-    public String getVizyondan_kalkis_tarihi() {
+    public LocalDate getVizyondan_kalkis_tarihi() {
         return vizyondan_kalkis_tarihi;
     }
 
-    public void setVizyondan_kalkis_tarihi(String vizyondan_kalkis_tarihi) {
+    public void setVizyondan_kalkis_tarihi(LocalDate vizyondan_kalkis_tarihi) {
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
     }
 
