@@ -107,7 +107,7 @@
             <FontAwesomeIconView fx:id="home" fill="WHITE" glyphName="HOME" onMouseClicked="#home_geri_gel" size="40.0" translateX="140.0" translateY="-10.0" visible="false" />
          </children>
       </VBox>
-      <AnchorPane fx:id="pnl_vizyondaki_filmler" layoutX="319.0" layoutY="57.0" prefHeight="711.0" prefWidth="1065.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="57.0">
+      <AnchorPane fx:id="pnl_vizyondaki_filmler" layoutX="319.0" layoutY="57.0" prefHeight="711.0" prefWidth="1065.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="57.0">
          <children>
             <Pane fx:id="ust_pnl_vizyondaki_filmler" layoutX="8.0" prefHeight="156.0" prefWidth="1058.0" style="-fx-background-color: #7156DD;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-1.0">
                <children>
@@ -7478,7 +7478,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="home_pane" layoutX="328.0" layoutY="65.0" prefHeight="705.0" prefWidth="1058.0" visible="false">
+      <AnchorPane fx:id="home_pane" layoutX="328.0" layoutY="65.0" prefHeight="705.0" prefWidth="1058.0">
          <children>
             <Pane layoutX="155.0" layoutY="22.0" prefHeight="116.0" prefWidth="309.0">
                <children>
