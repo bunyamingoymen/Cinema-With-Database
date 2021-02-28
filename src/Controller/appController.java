@@ -4,6 +4,9 @@ import DAO.*;
 import entity.*;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -11,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,9 +30,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javax.imageio.ImageIO;
 
 public class appController extends Center implements Initializable {
 
@@ -60,7 +67,7 @@ public class appController extends Center implements Initializable {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
      */
     @FXML
-    private Pane ust_pnl_vizyondaki_filmler, vizyondaki_filmler_ekle_pane, vizyondaki_filmler_degistir_pane, vizyondaki_filmler_degistir_pane_1, vizyondaki_filmler_degistir_pane_2, vizyondaki_filmler_degistir_sil_emin_misin;
+    private Pane ust_pnl_vizyondaki_filmler, vizyondaki_filmler_ekle_pane, vizyondaki_filmler_degistir_pane, vizyondaki_filmler_degistir_pane_1, vizyondaki_filmler_degistir_pane_2, vizyondaki_filmler_degistir_sil_emin_misin, vizyondaki_filmler_resimli_gosterim;
 
     @FXML
     private TextField vizyondaki_filmler_ekle_film_adi, vizyondaki_filmler_ekle_film_suresi, vizyondaki_filmler_ekle_film_type, vizyondaki_filmleri_degistir_sil_film_name, vizyondaki_filmleri_degistir_sil_film_suresi, vizyondaki_filmleri_degistir_sil_film_type;
@@ -81,13 +88,28 @@ public class appController extends Center implements Initializable {
     private FontAwesomeIconView vizyondaki_filmler_geri_tusu, vizyondaki_filmler_ekle_geri_tusu, vizyondaki_filmler_degistir_geri_tusu;
 
     @FXML
+    private ImageView vizyondaki_filmler_gosterim_bir, vizyondaki_filmler_gosterim_iki, vizyondaki_filmler_gosterim_uc, vizyondaki_filmler_gosterim_dort, vizyondaki_filmler_gosterim_bes, vizyondaki_filmler_gosterim_alti, vizyondaki_filmler_gosterim_yedi, vizyondaki_filmler_gosterim_sekiz, vizyondaki_filmler_gosterim_dokuz, vizyondaki_filmler_gosterim_on;
+
+    @FXML
+    private Label vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_id_on;
+
+    @FXML
+    private Label vizyondaki_filmler_gosterim_adi_bir, vizyondaki_filmler_gosterim_adi_iki, vizyondaki_filmler_gosterim_adi_uc, vizyondaki_filmler_gosterim_adi_dort, vizyondaki_filmler_gosterim_adi_bes, vizyondaki_filmler_gosterim_adi_alti, vizyondaki_filmler_gosterim_adi_yedi, vizyondaki_filmler_gosterim_adi_sekiz, vizyondaki_filmler_gosterim_adi_dokuz, vizyondaki_filmler_gosterim_adi_on;
+
+    @FXML
+    private Label vizyondaki_filmler_gosterim_sayfa_sayisi, vizyondaki_filmler_gosterim_uyari_mesaj;
+
+    @FXML
+    private Pane vizyondaki_filmler_gosterim_pane_bir, vizyondaki_filmler_gosterim_pane_iki, vizyondaki_filmler_gosterim_pane_uc, vizyondaki_filmler_gosterim_pane_dort, vizyondaki_filmler_gosterim_pane_bes, vizyondaki_filmler_gosterim_pane_alti, vizyondaki_filmler_gosterim_pane_yedi, vizyondaki_filmler_gosterim_pane_sekiz, vizyondaki_filmler_gosterim_pane_dokuz, vizyondaki_filmler_gosterim_pane_on, vizyondaki_filmler_gosterim_pane_sayfa;
+
+    @FXML
     private void vizyondaki_filmler_geri(MouseEvent event) {
         geri_don();
     }
 
     @FXML
     private void vizyondaki_filmler_ekle_geri(MouseEvent event) {
-        vizyondaki_filmler_grid.setVisible(true);
+        vizyondaki_filmler_resimli_gosterim.setVisible(true);
         vizyondaki_filmler_ekle_pane.setVisible(false);
 
         vizyondaki_filmler_geri_tusu.setVisible(true);
@@ -100,6 +122,7 @@ public class appController extends Center implements Initializable {
     private void vizyondaki_filmler_ekle_giris(ActionEvent event) {
 
         vizyondaki_filmler_grid.setVisible(false);
+        vizyondaki_filmler_resimli_gosterim.setVisible(false);
         vizyondaki_filmler_ekle_pane.setVisible(true);
         yonetmen_combo(vizyondaki_filmler_ekle_yonetmenler, vizyondaki_filmler_ekle_uyari_mesaj);
         vizyondaki_filmler_geri_tusu.setVisible(false);
@@ -346,6 +369,270 @@ public class appController extends Center implements Initializable {
         sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
 
         table_vizyondaki_filmler.setItems(sortedData);
+    }
+
+    /*
+    @FXML
+    private ImageView vizyondaki_filmler_gosterim_bir, vizyondaki_filmler_goserim_iki, vizyondaki_filmler_gosterim_uc, vizyondaki_filmler_gosterim_dort, vizyondaki_filmler_gosterim_bes, vizyondaki_filmler_gosterim_alti, vizyondaki_filmler_gosterim_yedi, vizyondaki_filmler_gosterim_sekiz, vizyondaki_filmler_gosterim_dokuz, vizyondaki_filmler_gosterim_on;
+
+    @FXML
+    private Label vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_id_on;
+
+    @FXML
+    private Label vizyondaki_filmler_gosterim_adi_bir, vizyondaki_filmler_gosterim_adi_iki, vizyondaki_filmler_gosterim_adi_uc, vizyondaki_filmler_gosterim_adi_dort, vizyondaki_filmler_gosterim_adi_bes, vizyondaki_filmler_gosterim_adi_alti, vizyondaki_filmler_gosterim_adi_yedi, vizyondaki_filmler_gosterim_adi_sekiz, vizyondaki_filmler_gosterim_adi_dokuz, vizyondaki_filmler_gosterim_adi_on;
+
+    @FXML
+    private Label vizyondaki_filmler_gosterim_sayfa_sayisi;
+
+    @FXML
+    private Pane vizyondaki_filmler_gosterim_pane_bir, vizyondaki_filmler_gosterim_pane_iki, vizyondaki_filmler_gosterim_pane_uc, vizyondaki_filmler_gosterim_pane_dort, vizyondaki_filmler_gosterim_pane_bes, vizyondaki_filmler_gosterim_pane_alti, vizyondaki_filmler_gosterim_pane_yedi, vizyondaki_filmler_gosterim_pane_sekiz, vizyondaki_filmler_gosterim_pane_dokuz, vizyondaki_filmler_gosterim_pane_on, vizyondaki_filmler_gosterim_pane_sayfa;
+
+     */
+    public void vizyondaki_filmler_gosterim() {
+        vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
+        int[] arr = vdao.vizyondaki_filmler_dizi_doldur();
+        if (arr.length <= 10) {
+            vizyondaki_filmler_gosterim_pane_sayfa.setVisible(false);
+            switch (arr.length) {
+                case 0:
+                    break;
+                case 1:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    break;
+                case 2:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    break;
+                case 3:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    break;
+                case 4:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    break;
+                case 5:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+                    break;
+                case 6:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_alti, vdao.film_id_getir(arr[5]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_adi_alti);
+                    break;
+                case 7:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_alti, vdao.film_id_getir(arr[5]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_adi_alti);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_yedi, vdao.film_id_getir(arr[6]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_adi_yedi);
+                    break;
+                case 8:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(false);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_alti, vdao.film_id_getir(arr[5]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_adi_alti);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_yedi, vdao.film_id_getir(arr[6]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_adi_yedi);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_sekiz, vdao.film_id_getir(arr[7]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_adi_sekiz);
+                    break;
+                case 9:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(false);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_alti, vdao.film_id_getir(arr[5]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_adi_alti);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_yedi, vdao.film_id_getir(arr[6]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_adi_yedi);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_sekiz, vdao.film_id_getir(arr[7]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_adi_sekiz);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dokuz, vdao.film_id_getir(arr[8]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_adi_dokuz);
+                    break;
+                case 10:
+                    vizyondaki_filmler_gosterim_pane_bir.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_iki.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_uc.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dort.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_bes.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_alti.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_yedi.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_sekiz.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_dokuz.setVisible(true);
+                    vizyondaki_filmler_gosterim_pane_on.setVisible(true);
+
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_alti, vdao.film_id_getir(arr[5]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_adi_alti);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_yedi, vdao.film_id_getir(arr[6]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_adi_yedi);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_sekiz, vdao.film_id_getir(arr[7]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_adi_sekiz);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dokuz, vdao.film_id_getir(arr[8]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_adi_dokuz);
+                    vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_on, vdao.film_id_getir(arr[9]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_on, vizyondaki_filmler_gosterim_adi_on);
+                    break;
+                default:
+                    break;
+            }
+
+        } else {
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bir, vdao.film_id_getir(arr[0]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bir, vizyondaki_filmler_gosterim_adi_bir);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_iki, vdao.film_id_getir(arr[1]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_iki, vizyondaki_filmler_gosterim_adi_iki);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_uc, vdao.film_id_getir(arr[2]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_uc, vizyondaki_filmler_gosterim_adi_uc);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dort, vdao.film_id_getir(arr[3]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dort, vizyondaki_filmler_gosterim_adi_dort);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_bes, vdao.film_id_getir(arr[4]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_bes, vizyondaki_filmler_gosterim_adi_bes);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_alti, vdao.film_id_getir(arr[5]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_alti, vizyondaki_filmler_gosterim_adi_alti);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_yedi, vdao.film_id_getir(arr[6]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_yedi, vizyondaki_filmler_gosterim_adi_yedi);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_sekiz, vdao.film_id_getir(arr[7]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_adi_sekiz);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dokuz, vdao.film_id_getir(arr[8]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_adi_dokuz);
+            vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_on, vdao.film_id_getir(arr[9]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_on, vizyondaki_filmler_gosterim_adi_on);
+
+        }
+    }
+
+    public void vizyondaki_filmler_gosterim_doldur(ImageView img, int film_id, Label msg, Label id, Label ad) {
+        vizyondaki_filmler_imageview_doldur(img, film_id, msg);
+        id.setText(String.valueOf(film_id));
+        ad.setText(new filmlerDAO().filmler_film_adi_getir(film_id));
+    }
+
+    public void vizyondaki_filmler_imageview_doldur(ImageView img, int film_id, Label msg) {
+        int control = new films_photosDAO().kac_tane_film_id_var(film_id);
+
+        if (control == 1) {
+            BufferedImage bufferedImage = null;
+            try {
+                String photo_path = new films_photosDAO().photo_path_getir(film_id);
+                bufferedImage = ImageIO.read(new File(photo_path));
+            } catch (IOException ex) {
+                System.out.println(ex);
+                msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -38)");
+            }
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            img.setImage(image);
+        } else if (control != 0) {
+            msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -39)");
+            System.out.println(control);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2714,11 +3001,12 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
             vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
 
-            vizyondaki_filmler_grid.setVisible(true);
+            vizyondaki_filmler_resimli_gosterim.setVisible(true);
+            vizyondaki_filmler_grid.setVisible(false);
             vizyondaki_filmler_ekle_pane.setVisible(false);
             vizyondaki_filmler_degistir_pane.setVisible(false);
 
-            vizyondaki_filmler_table_admin();
+            vizyondaki_filmler_gosterim();
 
         } else if (btn1.getText().equals("Kampanyalar")) {
 

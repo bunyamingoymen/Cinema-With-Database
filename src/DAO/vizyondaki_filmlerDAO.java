@@ -244,6 +244,36 @@ public class vizyondaki_filmlerDAO {
 
         return null;
     }
+    
+        public int[] vizyondaki_filmler_dizi_doldur() {
+        int[] arr = new int[kac_tane_vizyonda_film_var()];
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from vizyondaki_filmler ";
+            ResultSet rs = st.executeQuery(komut);
+            int i = 0;
+            filmlerDAO fdao = new filmlerDAO();
+            yonetmenlerDAO ydao = new yonetmenlerDAO();
+            while (rs.next()) {
+                int vizyondaki_filmler = rs.getInt("vizyondaki_film_id");
+                arr[i] = vizyondaki_filmler;
+                i++;
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return arr;
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 252 - " + e.getMessage());
+        }
+
+        return null;
+    }
 
     public int kac_tane_vizyonda_film_var() {
         int sonuc = -1;

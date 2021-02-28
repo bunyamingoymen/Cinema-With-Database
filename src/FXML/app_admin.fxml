@@ -147,7 +147,7 @@
                   </HBox>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Button layoutX="176.0" layoutY="14.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_ekle_giris" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Ekle" textFill="WHITE" />
+                        <Button layoutX="176.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Ekle" textFill="WHITE" />
                         <Button layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_giris" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Değiştir / Sil" textFill="WHITE" />
                         <Button layoutX="766.0" layoutY="14.0" mnemonicParsing="false" onAction="#seans_islemleri_giris" prefHeight="31.0" prefWidth="186.0" styleClass="button2" text="Seans İşlemleri" textFill="WHITE" />
                      </children>
@@ -226,167 +226,167 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane layoutX="14.0" layoutY="169.0" prefHeight="539.0" prefWidth="1038.0" visible="false">
+            <Pane fx:id="vizyondaki_filmler_resimli_gosterim" layoutX="14.0" layoutY="169.0" prefHeight="539.0" prefWidth="1038.0" visible="false">
                <children>
                   <ScrollPane layoutX="12.0" layoutY="44.0" prefHeight="478.0" prefWidth="1024.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="863.0" prefWidth="1008.0">
                            <children>
-                              <Pane layoutX="40.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_bir" layoutX="40.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_bir" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_bir" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_bir" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="301.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_iki" layoutX="301.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_iki" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_iki" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_iki" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="548.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_uc" layoutX="548.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_uc" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_uc" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_uc" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="781.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_dort" layoutX="781.0" layoutY="25.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_dort" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_dort" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_dort" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="39.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_bes" layoutX="39.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_bes" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_bes" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_bes" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="300.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_alti" layoutX="300.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_alti" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_alti" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_alti" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="547.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_yedi" layoutX="547.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_yedi" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_yedi" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_yedi" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="780.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_sekiz" layoutX="780.0" layoutY="292.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_sekiz" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_sekiz" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_sekiz" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="290.0" layoutY="547.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_dokuz" layoutX="290.0" layoutY="547.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_dokuz" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_dokuz" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_dokuz" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="551.0" layoutY="547.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_on" layoutX="551.0" layoutY="547.0" prefHeight="235.0" prefWidth="217.0" styleClass="fare1">
                                  <children>
-                                    <Label layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
-                                    <ImageView fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_id_on" layoutX="102.0" layoutY="84.0" style="-fx-text-fill: TRANSPARENT;" text="id" />
+                                    <ImageView fx:id="vizyondaki_filmler_gosterim_on" fitHeight="200.0" fitWidth="189.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../lib/pic/Movies.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="76.0" layoutY="194.0" text="Film Adı">
+                                    <Label fx:id="vizyondaki_filmler_gosterim_adi_on" layoutX="76.0" layoutY="194.0" text="Film Adı">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </Pane>
-                              <Pane layoutX="250.0" layoutY="780.0" prefHeight="87.0" prefWidth="537.0" styleClass="fare1">
+                              <Pane fx:id="vizyondaki_filmler_gosterim_pane_sayfa" layoutX="250.0" layoutY="780.0" prefHeight="87.0" prefWidth="537.0" styleClass="fare1">
                                  <children>
                                     <Button layoutX="158.0" layoutY="29.0" mnemonicParsing="false" styleClass="button2" text="Önceki" textFill="WHITE" />
                                     <Button layoutX="320.0" layoutY="29.0" mnemonicParsing="false" styleClass="button2" text="Sonraki" textFill="WHITE" />
-                                    <Label layoutX="264.0" layoutY="34.0" text="1" />
+                                    <Label fx:id="vizyondaki_filmler_gosterim_sayfa_sayisi" layoutX="264.0" layoutY="34.0" text="1" />
                                     <Button layoutX="53.0" layoutY="29.0" mnemonicParsing="false" styleClass="button2" text="Baş" textFill="WHITE" />
                                     <Button layoutX="452.0" layoutY="29.0" mnemonicParsing="false" styleClass="button2" text="Son" textFill="WHITE" />
                                  </children>
@@ -395,7 +395,7 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <Button layoutX="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" styleClass="button7">
+                  <Button layoutX="10.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_ekle_giris" prefHeight="31.0" prefWidth="51.0" styleClass="button7">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="20" />
                      </graphic>
@@ -405,6 +405,11 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="20" />
                      </graphic>
                   </Button>
+                  <Label fx:id="vizyondaki_filmler_gosterim_uyari_mesaj" layoutX="450.0" layoutY="200.0" textFill="RED">
+                     <font>
+                        <Font size="46.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
