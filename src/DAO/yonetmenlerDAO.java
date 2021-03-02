@@ -87,26 +87,7 @@ public class yonetmenlerDAO {
     }
 
     public String yonetmenler_yonetmen_getir(int id) {
-        String name_surname = null;
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from yonetmenler where yonetmen_id ='" + id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            name_surname = rs.getString("ad") + " " + rs.getString("soyad");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 152 - " + e.getMessage());
-        }
-
-        return name_surname;
+        return yonetmenler_ad_getir(id) + " " + yonetmenler_soyad_getir(id);
     }
 
     public ObservableList<yonetmenler> yonetmenler_select(ObservableList<yonetmenler> data) {

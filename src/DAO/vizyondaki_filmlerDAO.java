@@ -458,4 +458,25 @@ public class vizyondaki_filmlerDAO {
         }
         return seans_sayisi_getir;
     }
+    
+    public int film_id_ile_vizyondaki_film_id_getir(int film_id){
+                int vizyondaki_film_id = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from vizyondaki_filmler where film_id=" + film_id;
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            vizyondaki_film_id= rs.getInt("vizyondaki_film_id");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 152 - " + e.getMessage());
+        }
+        return vizyondaki_film_id;
+    }
 }

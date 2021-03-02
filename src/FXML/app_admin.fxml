@@ -415,23 +415,23 @@
                               <Font name="Comic Sans MS" size="35.0" />
                            </font>
                         </Text>
-                        <FontAwesomeIconView fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" rotate="180.0" size="40.0" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#film_detay_geri" rotate="180.0" size="40.0" />
                      </children>
                   </Pane>
                   <Label layoutX="306.0" layoutY="222.0" text="Film id:" />
-                  <Label layoutX="357.0" layoutY="222.0" text="1" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_id" layoutX="357.0" layoutY="222.0" text="1" />
                   <Label layoutX="307.0" layoutY="276.0" text="Film Adı:" />
-                  <Label layoutX="371.0" layoutY="276.0" text="2" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_adi" layoutX="371.0" layoutY="276.0" text="2" />
                   <Label layoutX="311.0" layoutY="332.0" text="Film Türü:" />
-                  <Label layoutX="384.0" layoutY="332.0" text="3" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_turu" layoutX="384.0" layoutY="332.0" text="3" />
                   <Label layoutX="310.0" layoutY="390.0" text="Film Süresi:" />
-                  <Label layoutX="390.0" layoutY="390.0" text="4" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_suresi" layoutX="390.0" layoutY="390.0" text="4" />
                   <Label layoutX="310.0" layoutY="438.0" text="Yönetmen:" />
-                  <Label layoutX="390.0" layoutY="438.0" text="5" />
+                  <Label fx:id="vizyondaki_filmler_detay_yonetmen" layoutX="390.0" layoutY="438.0" text="5" />
                   <Label layoutX="312.0" layoutY="487.0" text="Kalkış Tarihi:" />
-                  <Label layoutX="402.0" layoutY="487.0" text="6" />
+                  <Label fx:id="vizyondaki_filmler_detay_kalkis_tarihi" layoutX="402.0" layoutY="487.0" text="6" />
                   <Label layoutX="307.0" layoutY="538.0" text="Kullanıcı Puanı:" />
-                  <Label layoutX="414.0" layoutY="538.0" text="7" />
+                  <Label fx:id="vizyondaki_filmler_detay_kullanici_puani" layoutX="414.0" layoutY="538.0" text="7" />
                   <Button layoutX="633.0" layoutY="618.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="button2" text="Güncelle / Sil" textFill="WHITE" />
                   <ImageView fx:id="vizyondaki_filmler_gosterim_iki1" fitHeight="200.0" fitWidth="189.0" layoutX="38.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -106,6 +106,9 @@ public class appController extends Center implements Initializable {
     private Pane pnl_film_detay;
 
     @FXML
+    private Label vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani;
+
+    @FXML
     private void vizyondaki_filmler_geri(MouseEvent event) {
         geri_don();
     }
@@ -596,7 +599,7 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_sekiz, vdao.film_id_getir(arr[7]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_adi_sekiz);
             vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dokuz, vdao.film_id_getir(arr[8]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_adi_dokuz);
             vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_on, vdao.film_id_getir(arr[9]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_on, vizyondaki_filmler_gosterim_adi_on);
-            
+
         }
     }
 
@@ -628,52 +631,91 @@ public class appController extends Center implements Initializable {
 
     @FXML
     public void vizyondaki_filmler_imageview_bir(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_bir, Integer.parseInt(vizyondaki_filmler_gosterim_id_bir.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_iki(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_iki, Integer.parseInt(vizyondaki_filmler_gosterim_id_iki.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_uc(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_uc, Integer.parseInt(vizyondaki_filmler_gosterim_id_uc.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_dort(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_dort, Integer.parseInt(vizyondaki_filmler_gosterim_id_dort.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_bes(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_bes, Integer.parseInt(vizyondaki_filmler_gosterim_id_bes.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_alti(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_alti, Integer.parseInt(vizyondaki_filmler_gosterim_id_alti.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_yedi(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_yedi, Integer.parseInt(vizyondaki_filmler_gosterim_id_yedi.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_sekiz(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_sekiz, Integer.parseInt(vizyondaki_filmler_gosterim_id_sekiz.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_dokuz(MouseEvent event) {
-
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_dokuz, Integer.parseInt(vizyondaki_filmler_gosterim_id_dokuz.getText()));
     }
 
     @FXML
     public void vizyondaki_filmler_imageview_on(MouseEvent event) {
+        imageview_gosterim_ortak(vizyondaki_filmler_gosterim_on, Integer.parseInt(vizyondaki_filmler_gosterim_id_on.getText()));
+    }
 
+    public void imageview_gosterim_ortak(ImageView img, int film_id) {
+        vizyondaki_filmler_resimli_gosterim.setVisible(false);
+        pnl_film_detay.setVisible(true);
+
+        filmlerDAO fdao = new filmlerDAO();
+        vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
+        yonetmenlerDAO ydao = new yonetmenlerDAO();
+        int vizyondaki_film_id = vdao.film_id_ile_vizyondaki_film_id_getir(film_id);
+
+        vizyondaki_filmler_detay_film_id.setText(String.valueOf(film_id));
+        vizyondaki_filmler_detay_film_adi.setText(fdao.filmler_film_adi_getir(film_id));
+        vizyondaki_filmler_detay_film_turu.setText(fdao.filmler_film_type_getir(film_id));
+        vizyondaki_filmler_detay_film_suresi.setText(String.valueOf(fdao.filmler_film_suresi_getir(film_id)));
+        vizyondaki_filmler_detay_yonetmen.setText(ydao.yonetmenler_yonetmen_getir(fdao.filmler_yonetmen_id_getir(film_id)));
+        vizyondaki_filmler_detay_kalkis_tarihi.setText(vdao.vizyondan_kalkis_tarihi_getir(vizyondaki_film_id).toString());
+        vizyondaki_filmler_detay_kullanici_puani.setText(String.valueOf(fdao.kullanici_puani_getir(film_id)));
+
+        if (new films_photosDAO().kac_tane_film_id_var(film_id) == 1) {
+            BufferedImage bufferedImage = null;
+            try {
+                String photo_path = new films_photosDAO().photo_path_getir(film_id);
+                bufferedImage = ImageIO.read(new File(photo_path));
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                img.setImage(image);
+            } catch (IOException ex) {
+                System.out.println(ex);
+                guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -40)");
+            }
+        }
+    }
+
+    @FXML
+    public void film_detay_geri() {
+        vizyondaki_filmler_resimli_gosterim.setVisible(true);
+        pnl_film_detay.setVisible(false);
+        
+        vizyondaki_filmler_gosterim();
     }
 
     @FXML
@@ -683,7 +725,7 @@ public class appController extends Center implements Initializable {
 
         vizyondaki_filmler_geri_tusu.setVisible(false);
         vizyondaki_filmler_gosterim_geri_tusu.setVisible(true);
-        
+
         vizyondaki_filmler_table_admin();
     }
 
