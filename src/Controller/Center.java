@@ -1,5 +1,8 @@
 package Controller;
 
+import entity.*;
+import DAO.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,9 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import DAO.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import entity.*;
 import javafx.scene.layout.AnchorPane;
 
 public class Center implements Initializable {

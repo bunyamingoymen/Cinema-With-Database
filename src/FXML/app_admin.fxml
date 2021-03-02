@@ -119,6 +119,7 @@
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="30.0" layoutY="92.0" onMouseClicked="#vizyondaki_filmler_geri" rotate="180.0" size="40.0" />
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_ekle_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="32.0" layoutY="94.0" onMouseClicked="#vizyondaki_filmler_ekle_geri" rotate="180.0" size="40.0" visible="false" />
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_degistir_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#vizyondaki_filmler_degistir_geri" rotate="180.0" size="40.0" />
+                  <FontAwesomeIconView fx:id="vizyondaki_filmler_gosterim_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="32.0" layoutY="95.0" onMouseClicked="#vizyondaki_filmler_arama_geri" rotate="180.0" size="40.0" visible="false" />
                </children>
             </Pane>
             <GridPane fx:id="vizyondaki_filmler_grid" layoutX="22.0" layoutY="197.0" prefHeight="487.0" prefWidth="1006.0" visible="false" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="197.0">
@@ -392,7 +393,7 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="20" />
                      </graphic>
                   </Button>
-                  <Button layoutX="124.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="51.0" styleClass="button7">
+                  <Button layoutX="124.0" mnemonicParsing="false" onAction="#vizyondak_filmler_gosterim_arama" prefHeight="31.0" prefWidth="51.0" styleClass="button7">
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="20" />
                      </graphic>

@@ -85,7 +85,7 @@ public class appController extends Center implements Initializable {
     private Label vizyondaki_filmler_ekle_uyari_mesaj, vizyondaki_filmler_degistir_sil_uyari_mesaj_1, vizyondaki_filmler_degistir_sil_uyari_mesaj_2, vizyondaki_filmler_degistir_sil_vizyon_id, vizyondaki_filmler_degistir_sil_film_id;
 
     @FXML
-    private FontAwesomeIconView vizyondaki_filmler_geri_tusu, vizyondaki_filmler_ekle_geri_tusu, vizyondaki_filmler_degistir_geri_tusu;
+    private FontAwesomeIconView vizyondaki_filmler_geri_tusu, vizyondaki_filmler_ekle_geri_tusu, vizyondaki_filmler_degistir_geri_tusu, vizyondaki_filmler_gosterim_geri_tusu;
 
     @FXML
     private ImageView vizyondaki_filmler_gosterim_bir, vizyondaki_filmler_gosterim_iki, vizyondaki_filmler_gosterim_uc, vizyondaki_filmler_gosterim_dort, vizyondaki_filmler_gosterim_bes, vizyondaki_filmler_gosterim_alti, vizyondaki_filmler_gosterim_yedi, vizyondaki_filmler_gosterim_sekiz, vizyondaki_filmler_gosterim_dokuz, vizyondaki_filmler_gosterim_on;
@@ -101,7 +101,7 @@ public class appController extends Center implements Initializable {
 
     @FXML
     private Pane vizyondaki_filmler_gosterim_pane_bir, vizyondaki_filmler_gosterim_pane_iki, vizyondaki_filmler_gosterim_pane_uc, vizyondaki_filmler_gosterim_pane_dort, vizyondaki_filmler_gosterim_pane_bes, vizyondaki_filmler_gosterim_pane_alti, vizyondaki_filmler_gosterim_pane_yedi, vizyondaki_filmler_gosterim_pane_sekiz, vizyondaki_filmler_gosterim_pane_dokuz, vizyondaki_filmler_gosterim_pane_on, vizyondaki_filmler_gosterim_pane_sayfa;
-    
+
     @FXML
     private Pane pnl_film_detay;
 
@@ -131,6 +131,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_geri_tusu.setVisible(false);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(true);
         vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+        vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
         vizyondaki_filmler_degistir_pane.setVisible(false);
     }
 
@@ -197,6 +198,7 @@ public class appController extends Center implements Initializable {
         vizyondaki_filmler_degistir_pane_1.setVisible(true);
         vizyondaki_filmler_degistir_pane_2.setVisible(false);
         vizyondaki_filmler_degistir_geri_tusu.setVisible(true);
+        vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
         vizyondaki_filmler_geri_tusu.setVisible(false);
         vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
 
@@ -594,8 +596,7 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_sekiz, vdao.film_id_getir(arr[7]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_sekiz, vizyondaki_filmler_gosterim_adi_sekiz);
             vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_dokuz, vdao.film_id_getir(arr[8]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_dokuz, vizyondaki_filmler_gosterim_adi_dokuz);
             vizyondaki_filmler_gosterim_doldur(vizyondaki_filmler_gosterim_on, vdao.film_id_getir(arr[9]), vizyondaki_filmler_gosterim_uyari_mesaj, vizyondaki_filmler_gosterim_id_on, vizyondaki_filmler_gosterim_adi_on);
-
-            System.out.println("else girdi");
+            
         }
     }
 
@@ -673,6 +674,28 @@ public class appController extends Center implements Initializable {
     @FXML
     public void vizyondaki_filmler_imageview_on(MouseEvent event) {
 
+    }
+
+    @FXML
+    public void vizyondak_filmler_gosterim_arama(ActionEvent event) {
+        vizyondaki_filmler_grid.setVisible(true);
+        vizyondaki_filmler_resimli_gosterim.setVisible(false);
+
+        vizyondaki_filmler_geri_tusu.setVisible(false);
+        vizyondaki_filmler_gosterim_geri_tusu.setVisible(true);
+        
+        vizyondaki_filmler_table_admin();
+    }
+
+    @FXML
+    public void vizyondaki_filmler_arama_geri(MouseEvent event) {
+        vizyondaki_filmler_resimli_gosterim.setVisible(true);
+        vizyondaki_filmler_grid.setVisible(false);
+
+        vizyondaki_filmler_geri_tusu.setVisible(true);
+        vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
+
+        vizyondaki_filmler_gosterim();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3041,6 +3064,7 @@ public class appController extends Center implements Initializable {
             vizyondaki_filmler_geri_tusu.setVisible(true);
             vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
             vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+            vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
 
             vizyondaki_filmler_resimli_gosterim.setVisible(true);
             vizyondaki_filmler_grid.setVisible(false);
