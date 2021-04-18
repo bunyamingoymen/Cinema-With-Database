@@ -1,4 +1,4 @@
-package Controller;
+package Codes;
 
 import entity.*;
 import DAO.*;
@@ -22,7 +22,7 @@ import javafx.stage.StageStyle;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.scene.layout.AnchorPane;
 
-public class Center implements Initializable {
+public class Center extends Yonetmenler implements Initializable {
 
     //////////////////////////////////////////////////////////////////////////
     //hem appController da hem de appStandart_userController da karışık ve ortak olanlar için ayrılan alan
