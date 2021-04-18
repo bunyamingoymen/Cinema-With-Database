@@ -16,8 +16,14 @@ public class users {
     private String user_password;
     private int user_type;
 
+    private static users u = new users();
+
     private int abonelik_turu;
     private Button yonet;
+
+    private users() {
+
+    }
 
     public users(String user_name, String user_mail, String user_password, int user_type) {
         this.user_name = user_name;
@@ -59,7 +65,7 @@ public class users {
 
             yonet_geri_tusu.setVisible(true);
             geri_tusu.setVisible(false);
-            
+
             sil_pane.setVisible(false);
         });
     }
@@ -86,7 +92,6 @@ public class users {
         String a = "Normal";
         String b = "Admin";
 
-
         combo.getItems().addAll(a);
         combo.getItems().addAll(b);
 
@@ -101,9 +106,6 @@ public class users {
                 combo.setValue(String.valueOf("Hata Kodu: -29"));
                 break;
         }
-    }
-
-    public users() {
     }
 
     public int getUser_id() {
@@ -160,6 +162,14 @@ public class users {
 
     public void setYonet(Button yonet) {
         this.yonet = yonet;
+    }
+
+    public static users getU() {
+        return u;
+    }
+
+    public static void setU(users u) {
+        users.u = u;
     }
 
 }

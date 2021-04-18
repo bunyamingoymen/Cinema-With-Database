@@ -98,16 +98,9 @@ public class app_standart_userController extends Center implements Initializable
     
     private int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
-        int abonelik = adao.abonelik_turu_bul(user_id_getir());
+        int abonelik = adao.abonelik_turu_bul(users.getU().getUser_id());
         
         return abonelik;
-    }
-    
-    private int user_id_getir() {
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
-        
-        return user_id;
     }
     
     @FXML
@@ -204,7 +197,7 @@ public class app_standart_userController extends Center implements Initializable
         
         usersDAO udao = new usersDAO();
         
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         
         user_name.setText(udao.user_name_getir(user_id));
         
@@ -432,7 +425,7 @@ public class app_standart_userController extends Center implements Initializable
     
     @FXML
     private void abonelik_bir_satin_al(ActionEvent event) {
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         int abonelik_turu = 1;
         
         abonelerDAO adao = new abonelerDAO();
@@ -455,7 +448,7 @@ public class app_standart_userController extends Center implements Initializable
     
     @FXML
     private void abonelik_iki_satin_al(ActionEvent event) {
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         int abonelik_turu = 2;
         
         abonelerDAO adao = new abonelerDAO();
@@ -477,7 +470,7 @@ public class app_standart_userController extends Center implements Initializable
     
     @FXML
     private void abonelik_uc_satin_al(ActionEvent event) {
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         int abonelik_turu = 3;
         
         abonelerDAO adao = new abonelerDAO();
@@ -570,7 +563,7 @@ public class app_standart_userController extends Center implements Initializable
     
     @FXML
     private void abonelik_iptal_et(ActionEvent event) {
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         
         abonelerDAO adao = new abonelerDAO();
         
@@ -676,7 +669,7 @@ public class app_standart_userController extends Center implements Initializable
         pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
         
-        biletlerim_table(user_id_getir());
+        biletlerim_table(users.getU().getUser_id());
     }
     
     private void biletlerim_table(int user_id) {
@@ -896,7 +889,7 @@ public class app_standart_userController extends Center implements Initializable
         salon_uc_pane.setVisible(false);
         salon_dort_pane.setVisible(false);
         
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         
         abonelerDAO adao = new abonelerDAO();
         int kalan_ucretsiz_bilet_sayisi = adao.kalan_ucretsiz_bilet_sayisi(user_id);
@@ -919,7 +912,7 @@ public class app_standart_userController extends Center implements Initializable
         
         satin_alinan_biletlerDAO sdao = new satin_alinan_biletlerDAO();
         
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         int seans_id = Integer.parseInt(satin_al_koltuk_seans_id.getText());
         
         int sonuc = sdao.satin_alinan_bilet_satin_al(user_id, seans_id);
@@ -945,7 +938,7 @@ public class app_standart_userController extends Center implements Initializable
     private void satin_al_ucretsiz_bilet_hakki(ActionEvent event) {
         abonelerDAO adao = new abonelerDAO();
         
-        int sonuc = adao.ucretsiz_bilet_sayisi_dusur(user_id_getir());
+        int sonuc = adao.ucretsiz_bilet_sayisi_dusur(users.getU().getUser_id());
         
         switch (sonuc) {
             case -2:
@@ -1420,7 +1413,7 @@ public class app_standart_userController extends Center implements Initializable
     @FXML
     private void film_detay_puan_ver(ActionEvent event) {
         int film_id = Integer.parseInt(film_detay_film_id.getText());
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         int degerlendirme = Integer.parseInt(film_detay_verilen_puan.getText());
         
         kullanici_degerlendirmesi k = new kullanici_degerlendirmesi(user_id, film_id, degerlendirme);
@@ -1456,7 +1449,7 @@ public class app_standart_userController extends Center implements Initializable
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.jpg", "*.jpeg", "*.png"));
         File selectedFile = fc.showOpenDialog(null);
-        int user_id = user_id_getir();
+        int user_id = users.getU().getUser_id();
         
         if (selectedFile == null) {
             guncelle_mesaj.setText("Bir resim seçmediniz.");

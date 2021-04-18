@@ -79,7 +79,6 @@ public class Center extends Yonetmenler implements Initializable {
     @FXML
     protected void close(MouseEvent event) {
         usersDAO udao = new usersDAO();
-        udao.bilgi_sil();
 
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -120,7 +119,6 @@ public class Center extends Yonetmenler implements Initializable {
     protected void cikis(MouseEvent event) throws IOException {
 
         usersDAO udao = new usersDAO();
-        udao.bilgi_sil();
 
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
         Scene scene = new Scene(root);
@@ -148,7 +146,7 @@ public class Center extends Yonetmenler implements Initializable {
         usersDAO udao = new usersDAO();
 
         //Her giriş yapıldığında. Giriş yapan kullanıcının id'sini bir txt dosyasında tutuluyor(bilgi.txt) oradan en son giriş yapan kullanıcının id'sine erişiliyor. 
-        int user_id = udao.bilgi_oku();
+        int user_id = users.getU().getUser_id();
 
         //bu if ve else gerekli olan TextField ve PasswordField'lerin dolu olup olmadığını kontrol ediyor. Eğer doldurulması gereken bir yeri doldurmamışsa kullanıcı o zaman if'in içine giriyor ve bir uyarı veriyor. Doldurmuşsa da else'nin içine giriyor ve işlemleri yapyıor.
         if ((user_name.getText().length() == 0) || (user_mail.getText().length() == 0)) {

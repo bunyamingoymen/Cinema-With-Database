@@ -78,6 +78,14 @@ public class loginController implements Initializable {
             } else {
 
                 int authority = users_islemleri.user_type_getir(user_id);
+                String name = users_islemleri.user_name_getir(user_id);
+                String pass = users_islemleri.user_password_getir(user_id);
+                String mail = users_islemleri.user_mail_getir(user_id);
+                
+                users u = new users(user_id, name, mail, password, authority);
+                
+                users.setU(u);
+                
 
                 switch (authority) {
                     case 0: {

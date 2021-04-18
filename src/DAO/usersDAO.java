@@ -80,7 +80,6 @@ public class usersDAO {
         if (sql_password == null) {
             return -2; //kullanici adı 1 tane var ama kullanıcının şifesi Veri tabanında yok. Hata meydana geldi.
         } else if (sql_password.equals(password)) {
-            bilgi_ekle(user_id);
             return user_id; //girilen değerler doğru ve kullanının bilgilerini gönderiyoruz.
         } else {
             return 0; //girilen şifre yanlış
@@ -204,68 +203,6 @@ public class usersDAO {
         }
 
         return a;
-    }
-
-    public int bilgi_ekle(int id) {
-        int sonuc = -1;
-        bilgi_sil();
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "insert into bilgi (giren_user_id) values ('" + id + "')";
-            sonuc = st.executeUpdate(komut);
-
-            c.close();
-            st.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 184 - " + e.getMessage());
-        }
-
-        return sonuc;
-    }
-
-    public int bilgi_sil() {
-        int sonuc = 0;
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "delete from bilgi ";
-            sonuc = st.executeUpdate(komut);
-
-            c.close();
-            st.close();
-        } catch (SQLException e) {
-            System.out.println("Hata kodu :185 - " + e.getMessage());
-        }
-        return sonuc;
-    }
-
-    public int bilgi_oku() {
-        int bilgi = 0;
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from bilgi";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            bilgi = rs.getInt("giren_user_id");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 186 - " + e.getMessage());
-        }
-
-        return bilgi;
     }
 
     public int user_type_getir(int user_id) {

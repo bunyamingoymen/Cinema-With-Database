@@ -3344,13 +3344,12 @@ public class appController extends Center implements Initializable {
         pnl_kullanici_islemleri.setVisible(false);
 
         pnl_settings.setVisible(true);
+        
+        int user_id = users.getU().getUser_id();
 
-        usersDAO udao = new usersDAO();
-        int user_id = udao.bilgi_oku();
-
-        this.user_name.setText(udao.user_name_getir(user_id));
-        this.user_mail.setText(udao.user_mail_getir(user_id));
-        this.user_password.setText(udao.user_password(user_id));
+        this.user_name.setText(users.getU().getUser_name());
+        this.user_mail.setText(users.getU().getUser_mail());
+        this.user_password.setText(users.getU().getUser_password());
 
     }
 
