@@ -1,6 +1,6 @@
 package Controller;
 
-import Codes.Center;
+import Code_Standart_user.Center_Standart_User;
 import DAO.*;
 import entity.*;
 
@@ -34,10 +34,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 
-public class app_standart_userController extends Center implements Initializable {
+public class app_standart_userController extends Center_Standart_User implements Initializable {
 
     /*
-    Bunun devamı nerede ve neden Center diye bir şeyi extends ediyor?
+    Bunun devamı nerede ve neden Center_Standart_User diye bir şeyi extends ediyor?
     
     Bunun sebebi appController ve app_stanadart_userController sınıflarının ortak noktalarını kalıtım aracılığıyla başka sınıfta tanımlamamızdır..
     
@@ -177,7 +177,7 @@ public class app_standart_userController extends Center implements Initializable
     }
     
     @FXML
-    private void vizyondaki_filmler_geri(MouseEvent event) {
+    public void vizyondaki_filmler_geri(MouseEvent event) {
         home_giris_ortak();
     }
     

@@ -1,4 +1,4 @@
-package Codes;
+package Code_Standart_user;
 
 import entity.*;
 import DAO.*;
@@ -15,42 +15,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.scene.layout.AnchorPane;
 
-public class Center extends Yonetmenler implements Initializable {
+public class Center_Standart_User extends Par implements Initializable {
 
     //////////////////////////////////////////////////////////////////////////
     //hem appController da hem de appStandart_userController da karışık ve ortak olanlar için ayrılan alan
-    protected boolean sifre_gosterim = false;
-
-    protected boolean a = false;
-
-    @FXML
-    protected TextField user_name, user_mail;
-
-    @FXML
-    protected Pane home_page, settings_pane;
-
-    @FXML
-    protected TextField tf_user_password;
-
-    @FXML
-    protected PasswordField user_password;
-
-    @FXML
-    protected Pane gizli, acik;
-
-    @FXML
-    protected Label guncelle_mesaj;
-
-    @FXML
-    protected AnchorPane pnl_settings;
-
     //program da aktif olarak çalışan paneler
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -184,110 +156,21 @@ public class Center extends Yonetmenler implements Initializable {
     }
 
     // Vizyondaki Filmler için ayrılmış alan
-    @FXML
-    protected TextField filterField;
-
-    @FXML
-    protected TableView<vizyondaki_filmler> table_vizyondaki_filmler;
-
-    @FXML
-    protected TableColumn<vizyondaki_filmler, String> vizyondaki_filmler_film_adi, vizyondaki_filmler_film_type, vizyondaki_filmler_film_suresi, vizyondaki_filmler_yonetmen, vizyondaki_filmler_kullanici_puani;
-    
-    @FXML
-    protected TableColumn<vizyondaki_filmler, DatePicker> vizyondaki_filmler_kalkis;
- 
-    @FXML
-    protected TableColumn<vizyondaki_filmler, Button> vizyondaki_filmler_detay;
-
-    @FXML
-    protected AnchorPane pnl_vizyondaki_filmler;
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Eski Filmler için
-    @FXML
-    protected AnchorPane pnl_eski_filmler;
-
-    @FXML
-    protected TableView<eski_filmler> table_eski_filmler;
-
-    @FXML
-    protected TextField filterField_eski;
-
-    @FXML
-    protected TableColumn<eski_filmler, String> eski_filmler_film_adi, eski_filmler_film_type, eski_filmler_film_suresi, eski_filmler_yonetmen, eski_filmler_aldigi_odul_sayisi, eski_filmler_kullanici_puani;
-
-    @FXML
-    protected TableColumn<eski_filmler, Button> eski_filmler_detay;
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Haberler için ayrılmış kısım
-    @FXML
-    protected TextField filterField_haberler;
-
-    @FXML
-    protected TableColumn<haberler, String> haberler_title, haberler_haber, haberler_tarih, haberler_haber_kategorisi, haberler_hangi_kullanıcı;
-
-    @FXML
-    protected TableView<haberler> table_haberler;
-
-    @FXML
-    protected AnchorPane pnl_haberler;
-
-    @FXML
-    protected FontAwesomeIconView haberler_geri_tusu;
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Kampanyalar İçin
-    @FXML
-    protected TableView<kampanyalar> table_kampanyalar;
-
-    @FXML
-    protected TableColumn<kampanyalar, String> kampanyalar_title, kampanyalar_kampanya, kampanyalar_tarih, kampanyalar_kampanya_kategorisi;
-
-    @FXML
-    protected TextField filterField_kampanyalar;
-
-    @FXML
-    protected AnchorPane pnl_kampanyalar;
-
-    @FXML
-    protected FontAwesomeIconView kampanyalar_geri_tusu;
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Sinema Salnları için ortak olan değişkenler burada bulunuyor.
     //bu alanda sadece değişkenler tanımlanmıştır. Çünü hem appController'da hem de app_standart_userController'da ortak bir metot bulnmamaktadır ancka ortak değişkenler bulunmaktadır. 
-    @FXML
-    protected Pane salon_bir_pane, salon_iki_pane, salon_uc_pane, salon_dort_pane;
-
-    @FXML
-    protected AnchorPane pnl_sinema_salonlari;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Bilet satın alma kısmı için
-    protected void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        vizyondaki_filmlerDAO vizyondaki_film_islemleri = new vizyondaki_filmlerDAO();
-        String[] arr = vizyondaki_film_islemleri.vizyondaki_filmler_combo_doldur();
-        combo.getItems().clear();
-        if (arr.length == 0) {
-            uyari_mesaj.setText("Kayıtlı Vizyondaki Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
-
-        } else {
-            for (int i = 0; i < arr.length; i++) {
-                String v_filmler = arr[i];
-                combo.getItems().addAll(v_filmler);
-            }
-
-            combo.setPromptText("İstediğiniz filmi seçiniz.");
-        }
-    }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //bu alan scene builderdaki 1.salona denk gelmektedir. ve 129 tane koltuk bulunmaktadır.
     //Not: Sadece buradaki değişkenler ve metotların ne olduğu açıklanmıştır. Daha aşağıdaki salonlar buraya benzediği için açıklamalar bulunmamaktadır.
-
     //ilk başta tanımlamamız gereken butonları tanımlıyoruz (Her bir buton her bir koltuğu temsil etmekteidr.)
     @FXML
     protected Button a1_1, a2_1, a3_1, a4_1, a5_1, a6_1, a7_1, a8_1, a9_1, a10_1;

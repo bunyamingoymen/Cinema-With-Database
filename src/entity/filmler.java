@@ -8,6 +8,16 @@ public class filmler {
     private String film_type;
     private int yonetmen_id;
     private float kullanici_puani;
+    private String yonetmen_ad_soyad;
+
+    public filmler(int film_id) {
+        this.film_id = film_id;
+    }
+
+    public filmler(int film_id, float kullanici_puani) {
+        this.film_id = film_id;
+        this.kullanici_puani = kullanici_puani;
+    }
 
     public filmler(String film_name, int film_suresi, String film_type, int yonetmen_id) {
         this.film_name = film_name;
@@ -30,6 +40,30 @@ public class filmler {
         this.film_type = film_type;
         this.yonetmen_id = yonetmen_id;
         this.kullanici_puani = kullanici_puani;
+    }
+
+    public filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, float kullanici_puani) {
+        this.film_name = film_name;
+        this.film_suresi = film_suresi;
+        this.film_type = film_type;
+        this.kullanici_puani = kullanici_puani;
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
+    }
+
+    public filmler(int film_id, String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, float kullanici_puani) {
+        this.film_id = film_id;
+        this.film_name = film_name;
+        this.film_suresi = film_suresi;
+        this.film_type = film_type;
+        this.kullanici_puani = kullanici_puani;
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
+    }
+
+    public filmler(String film_name, int film_suresi, String film_type, String yonetmen_ad_soyad) {
+        this.film_name = film_name;
+        this.film_suresi = film_suresi;
+        this.film_type = film_type;
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
     }
 
     public filmler() {
@@ -81,6 +115,14 @@ public class filmler {
 
     public void setKullanici_puani(float kullanici_puani) {
         this.kullanici_puani = kullanici_puani;
+    }
+
+    public String getYonetmen_ad_soyad() {
+        return yonetmen_ad_soyad;
+    }
+
+    public void setYonetmen_ad_soyad(String yonetmen_ad_soyad) {
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
     }
 
 }
