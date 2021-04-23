@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 
-public class Aktorler extends Abonelik {
+public class Aktorler extends Par {
 
     @FXML
     public void aktorler_ekle_giris(ActionEvent event) {
