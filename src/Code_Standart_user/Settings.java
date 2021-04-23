@@ -77,15 +77,13 @@ public class Settings extends Kullanici_Islemleri {
         pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
-        usersDAO udao = new usersDAO();
-
         int user_id = users.getU().getUser_id();
 
-        user_name.setText(udao.user_name_getir(user_id));
+        user_name.setText(users.getU().getUser_name());
 
-        user_mail.setText(udao.user_mail_getir(user_id));
+        user_mail.setText(users.getU().getUser_mail());
 
-        user_password.setText(udao.user_password(user_id));
+        user_password.setText(users.getU().getUser_password());
 
         int control = new user_photosDAO().kac_tane_user_id_var(user_id);
 

@@ -1,5 +1,6 @@
 package Code_Standart_user;
 
+import Creator.Mediator;
 import DAO.vizyondaki_filmlerDAO;
 import entity.vizyondaki_filmler;
 import javafx.collections.FXCollections;
@@ -39,7 +40,7 @@ public class Vizyondaki_Filmler extends Kampanyalar {
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
 
-        data = vf.vizyondaki_filmler_select_butonlu(data, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+        data = Mediator.vizyondaki_filmler_bir(data, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));

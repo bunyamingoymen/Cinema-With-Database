@@ -8,6 +8,8 @@ import javafx.scene.input.MouseEvent;
 
 public class Abonelik extends Par {
 
+    abonelerDAO adao = new abonelerDAO();
+
     @FXML
     public void abonelik_giris(ActionEvent event) {
         abonelik_giris_ortak();
@@ -62,8 +64,6 @@ public class Abonelik extends Par {
         int user_id = users.getU().getUser_id();
         int abonelik_turu = 1;
 
-        abonelerDAO adao = new abonelerDAO();
-
         int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
 
         if (sonuc == 1) {
@@ -85,8 +85,6 @@ public class Abonelik extends Par {
         int user_id = users.getU().getUser_id();
         int abonelik_turu = 2;
 
-        abonelerDAO adao = new abonelerDAO();
-
         int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
 
         if (sonuc == 1) {
@@ -106,8 +104,6 @@ public class Abonelik extends Par {
     public void abonelik_uc_satin_al(ActionEvent event) {
         int user_id = users.getU().getUser_id();
         int abonelik_turu = 3;
-
-        abonelerDAO adao = new abonelerDAO();
 
         int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
 
@@ -198,8 +194,6 @@ public class Abonelik extends Par {
     @FXML
     private void abonelik_iptal_et(ActionEvent event) {
         int user_id = users.getU().getUser_id();
-
-        abonelerDAO adao = new abonelerDAO();
 
         int sonuc = adao.aboneler_sil(user_id);
 

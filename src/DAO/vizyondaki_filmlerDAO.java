@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -117,11 +119,8 @@ public class vizyondaki_filmlerDAO {
     public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select(ObservableList<vizyondaki_filmler> data) {
 
         try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from vizyondaki_filmler_tablo";
-            ResultSet rs = st.executeQuery(komut);
+
+            ResultSet rs = ort();
 
             while (rs.next()) {
                 String film_name = rs.getString("film_name");
@@ -139,8 +138,6 @@ public class vizyondaki_filmlerDAO {
                 data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
             }
 
-            c.close();
-            st.close();
             rs.close();
 
         } catch (SQLException e) {
@@ -150,14 +147,29 @@ public class vizyondaki_filmlerDAO {
         return data;
     }
 
-    public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
-
+    public ResultSet ort() {
+        ResultSet rs = null;
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
             String komut = "select * from vizyondaki_filmler_tablo";
-            ResultSet rs = st.executeQuery(komut);
+            rs = st.executeQuery(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException ex) {
+            System.out.println("Hata kodu: 254 - " + ex.getMessage());
+        }
+
+        return rs;
+
+    }
+
+    public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+
+        try {
+            ResultSet rs = ort();
 
             while (rs.next()) {
                 int vizyondaki_film_id = rs.getInt("vizyondaki_film_id");
@@ -176,9 +188,6 @@ public class vizyondaki_filmlerDAO {
 
                 data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_id, film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
             }
-
-            c.close();
-            st.close();
             rs.close();
 
         } catch (SQLException e) {
