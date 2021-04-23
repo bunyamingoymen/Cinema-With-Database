@@ -141,7 +141,7 @@ public class kampanyalarDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into kampanyalar (hangi_kullanici_turu, Title, Kampanya, Tarih, Kampanya_Kategorisi) values ('" + k.getHangi_kullanici_turu() + "','" + k.getTitle() + "','" + k.getKampanya() + "','" + k.getTarih() + "','" + k.getKampanya_Kategorisi() + "') ";
+            String komut = "insert into kampanyalar (hangi_kullanici_turu, Title, Kampanya, Tarih, Kampanya_Kategorisi) values ('" + k.getHangi_kullanici_turu() + "','" + k.getTitle() + "','" + k.getDuyuru() + "','" + k.getTarih() + "','" + k.getKategori() + "') ";
 
             sonuc = st.executeUpdate(komut);
 
@@ -161,7 +161,7 @@ public class kampanyalarDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "update kampanyalar set hangi_kullanici_turu = " + k.getHangi_kullanici_turu() + " , Title = '" + k.getTitle() + "', Kampanya = '" + k.getKampanya() + "', Tarih = '" + k.getTarih() + "', Kampanya_Kategorisi = '" + k.getKampanya_Kategorisi() + "' where kampanya_id =" + k.getKampanya_id();
+            String komut = "update kampanyalar set hangi_kullanici_turu = " + k.getHangi_kullanici_turu() + " , Title = '" + k.getTitle() + "', Kampanya = '" + k.getDuyuru() + "', Tarih = '" + k.getTarih() + "', Kampanya_Kategorisi = '" + k.getKategori() + "' where kampanya_id =" + k.getId();
             sonuc = st.executeUpdate(komut);
 
             c.close();

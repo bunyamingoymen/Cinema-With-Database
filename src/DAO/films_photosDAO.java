@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import entity.films_photos;
@@ -12,11 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import util.DBConnector;
 
-/**
- *
- * @author bgoym
- */
 public class films_photosDAO {
+
     public int kac_tane_film_id_var(int film_id) {
         int sonuc = -1;
 
@@ -113,5 +105,5 @@ public class films_photosDAO {
         }
         return path;
     }
-   
+
 }

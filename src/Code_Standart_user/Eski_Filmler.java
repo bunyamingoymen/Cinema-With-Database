@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Code_Standart_user;
 
 import DAO.eski_filmlerDAO;
@@ -15,10 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-/**
- *
- * @author bgoym
- */
 public class Eski_Filmler extends Satin_Al {
 
     public void eski_filmler_table_abonesiz(int kullanici_turu) {

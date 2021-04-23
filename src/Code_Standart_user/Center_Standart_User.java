@@ -171,6 +171,4 @@ public class Center_Standart_User extends Settings implements Initializable {
     //bu alan scene builderdaki 1.salona denk gelmektedir. ve 129 tane koltuk bulunmaktadır.
     //Not: Sadece buradaki değişkenler ve metotların ne olduğu açıklanmıştır. Daha aşağıdaki salonlar buraya benzediği için açıklamalar bulunmamaktadır.
     //ilk başta tanımlamamız gereken butonları tanımlıyoruz (Her bir buton her bir koltuğu temsil etmekteidr.)
-   
-
 }

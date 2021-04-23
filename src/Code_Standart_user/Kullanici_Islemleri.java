@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Code_Standart_user;
 
 import DAO.kullanici_degerlendirmesiDAO;
@@ -12,11 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
-/**
- *
- * @author bgoym
- */
-public class Kullanici_Islemleri extends Biletlerim{
+public class Kullanici_Islemleri extends Biletlerim {
+
     @FXML
     public void bir_bos(MouseEvent event) {
         bir_ortak();

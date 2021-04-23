@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Code_Standart_user;
 
 import DAO.satin_alinan_biletlerDAO;
@@ -11,10 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-/**
- *
- * @author bgoym
- */
 public class Sinema_Salonlari_Koltık_Dolu_Bos extends Variables {
 
     @FXML

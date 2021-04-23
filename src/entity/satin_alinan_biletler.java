@@ -1,7 +1,6 @@
 package entity;
 
 import DAO.satin_alinan_biletlerDAO;
-import entity.satin_alinan_biletler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

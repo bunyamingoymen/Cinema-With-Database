@@ -602,11 +602,11 @@ public class appController extends Center_Admin implements Initializable {
                     return true;
                 } else if (kam.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (kam.getKampanya().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (kam.getDuyuru().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (kam.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (kam.getKampanya_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (kam.getKategori().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
@@ -846,11 +846,11 @@ public class appController extends Center_Admin implements Initializable {
                     return true;
                 } else if (hab.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (hab.getHaber().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (hab.getDuyuru().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (hab.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (hab.getHaber_Kategorisi().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (hab.getKategori().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;

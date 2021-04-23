@@ -43,7 +43,7 @@ public class app_standart_userController extends Center_Standart_User implements
     private void home_giris(MouseEvent event) {
         home_giris_ortak();
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

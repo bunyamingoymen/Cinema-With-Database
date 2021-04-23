@@ -141,7 +141,7 @@ public class haberlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "insert into haberler (hangi_kullanici_turu, Title, Haber, Tarih, Haber_Kategorisi) values ('" + h.getHangi_kullanici_turu() + "','" + h.getTitle() + "','" + h.getHaber() + "','" + h.getTarih() + "','" + h.getHaber_Kategorisi() + "')";
+            String komut = "insert into haberler (hangi_kullanici_turu, Title, Haber, Tarih, Haber_Kategorisi) values ('" + h.getHangi_kullanici_turu() + "','" + h.getTitle() + "','" + h.getDuyuru() + "','" + h.getTarih() + "','" + h.getKategori() + "')";
 
             sonuc = st.executeUpdate(komut);
 
@@ -161,7 +161,7 @@ public class haberlerDAO {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
-            String komut = "update haberler set hangi_kullanici_turu = " + h.getHangi_kullanici_turu() + " , Title = '" + h.getTitle() + "', Haber = '" + h.getHaber() + "', Tarih = '" + h.getTarih() + "', Haber_Kategorisi = '" + h.getHaber_Kategorisi() + "' where haber_id =" + h.getHaber_id();
+            String komut = "update haberler set hangi_kullanici_turu = " + h.getHangi_kullanici_turu() + " , Title = '" + h.getTitle() + "', Haber = '" + h.getDuyuru() + "', Tarih = '" + h.getTarih() + "', Haber_Kategorisi = '" + h.getKategori() + "' where haber_id =" + h.getId();
             sonuc = st.executeUpdate(komut);
 
             c.close();

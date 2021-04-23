@@ -3,12 +3,10 @@ package DAO;
 import entity.filmler;
 import entity.vizyondaki_filmler;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -117,14 +115,14 @@ public class vizyondaki_filmlerDAO {
     }
 
     public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select(ObservableList<vizyondaki_filmler> data) {
-        
+
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
             Statement st = c.createStatement();
             String komut = "select * from vizyondaki_filmler_tablo";
             ResultSet rs = st.executeQuery(komut);
-            
+
             while (rs.next()) {
                 String film_name = rs.getString("film_name");
                 String film_type = rs.getString("film_type");
@@ -133,14 +131,14 @@ public class vizyondaki_filmlerDAO {
                 String soyad = rs.getString("soyad");
                 LocalDate kalkis = rs.getDate("vizyondan_kalkis_tarihi").toLocalDate();
                 int kullanici_puani = rs.getInt("kullanici_puani");
-                
+
                 Button detay = new Button();
                 detay.setText("Detay");
                 detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
                 data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay)));
             }
-            
+
             c.close();
             st.close();
             rs.close();
@@ -176,7 +174,7 @@ public class vizyondaki_filmlerDAO {
                 detay.setText("Detay");
                 detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_id ,film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani ,pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
+                data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(vizyondaki_film_id, film_id, film_name, film_type, film_suresi, ad, soyad, kalkis, kullanici_puani, detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
             }
 
             c.close();
@@ -244,8 +242,8 @@ public class vizyondaki_filmlerDAO {
 
         return null;
     }
-    
-        public int[] vizyondaki_filmler_dizi_doldur() {
+
+    public int[] vizyondaki_filmler_dizi_doldur() {
         int[] arr = new int[kac_tane_vizyonda_film_var()];
         try {
             DBConnector d = new DBConnector();
@@ -458,9 +456,9 @@ public class vizyondaki_filmlerDAO {
         }
         return seans_sayisi_getir;
     }
-    
-    public int film_id_ile_vizyondaki_film_id_getir(int film_id){
-                int vizyondaki_film_id = 0;
+
+    public int film_id_ile_vizyondaki_film_id_getir(int film_id) {
+        int vizyondaki_film_id = 0;
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();
@@ -468,7 +466,7 @@ public class vizyondaki_filmlerDAO {
             String komut = "select *  from vizyondaki_filmler where film_id=" + film_id;
             ResultSet rs = st.executeQuery(komut);
             rs.next();
-            vizyondaki_film_id= rs.getInt("vizyondaki_film_id");
+            vizyondaki_film_id = rs.getInt("vizyondaki_film_id");
 
             c.close();
             st.close();
