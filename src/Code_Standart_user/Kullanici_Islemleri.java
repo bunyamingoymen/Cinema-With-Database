@@ -1,9 +1,9 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import Creator.Mediator;
 import DAO.kullanici_degerlendirmesiDAO;
 import entity.kullanici_degerlendirmesi;
-import entity.users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -401,7 +401,7 @@ public class Kullanici_Islemleri extends Biletlerim {
     @FXML
     public void film_detay_puan_ver(ActionEvent event) {
         int film_id = Integer.parseInt(film_detay_film_id.getText());
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
         int degerlendirme = Integer.parseInt(film_detay_verilen_puan.getText());
 
         kullanici_degerlendirmesi k = new kullanici_degerlendirmesi(user_id, film_id, degerlendirme);

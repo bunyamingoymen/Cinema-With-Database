@@ -2,7 +2,8 @@ package Code_Admin;
 
 import DAO.yonetmenlerDAO;
 import entity.yonetmenler;
-import javafx.collections.FXCollections;
+import Creator.Creator;
+import Creator.Mediator;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -41,9 +42,8 @@ public class Yonetmenler extends Vizyondaki_Filmler {
             }
             if (control != -1) {
                 yonetmenler y = new yonetmenler(ad, soyad, film_sayisi);
-                yonetmenlerDAO ydao = new yonetmenlerDAO();
 
-                int sonuc = ydao.yonetmenler_dao_ekle(y);
+                int sonuc = Creator.yonetmenlerDao().yonetmenler_dao_ekle(y);
 
                 if (sonuc == 1) {
                     yonetmenler_ekle_uyari_mesaj.setText("İşlem Başarılı Bir şekilde gerçekleşti");
@@ -82,9 +82,8 @@ public class Yonetmenler extends Vizyondaki_Filmler {
         } else {
 
             String yonetmen = yonetmenler_degistir_sil_combo.getValue();
-            yonetmenlerDAO ydao = new yonetmenlerDAO();
 
-            String arr[][] = ydao.yonetmen_combo_doldur();
+            String arr[][] = Creator.yonetmenlerDao().yonetmen_combo_doldur();
 
             int yonetmen_id = 0;
             for (int i = 0; i < arr.length; i++) {
@@ -95,9 +94,9 @@ public class Yonetmenler extends Vizyondaki_Filmler {
             }
             if (yonetmen_id != 0) {
                 yonetmenler_degistir_pane_2.setVisible(true);
-                yonetmenler_degistir_sil_ad.setText(ydao.yonetmenler_ad_getir(yonetmen_id));
-                yonetmenler_degistir_sil_soyad.setText(ydao.yonetmenler_soyad_getir(yonetmen_id));
-                yonetmenler_degistir_sil_film_sayisi.setText(String.valueOf(ydao.yonetmenler_film_sayisi_getir(yonetmen_id)));
+                yonetmenler_degistir_sil_ad.setText(Creator.yonetmenlerDao().yonetmenler_ad_getir(yonetmen_id));
+                yonetmenler_degistir_sil_soyad.setText(Creator.yonetmenlerDao().yonetmenler_soyad_getir(yonetmen_id));
+                yonetmenler_degistir_sil_film_sayisi.setText(String.valueOf(Creator.yonetmenlerDao().yonetmenler_film_sayisi_getir(yonetmen_id)));
                 yonetmen_degistir_sil_yonetmen_id.setText(String.valueOf(yonetmen_id));
             } else {
                 yonetmenler_degistir_sil_uyari_mesaj_1.setText("Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz. ");
@@ -116,10 +115,9 @@ public class Yonetmenler extends Vizyondaki_Filmler {
                 String ad = yonetmenler_degistir_sil_ad.getText();
                 String soyad = yonetmenler_degistir_sil_soyad.getText();
                 int yonetmen_id = Integer.parseInt(yonetmen_degistir_sil_yonetmen_id.getText());
-                yonetmenlerDAO ydao = new yonetmenlerDAO();
                 yonetmenler y = new yonetmenler(yonetmen_id, ad, soyad, film_sayisi);
 
-                int sonuc = ydao.yonetmenler_dao_degistir(y);
+                int sonuc = Creator.yonetmenlerDao().yonetmenler_dao_degistir(y);
 
                 if (sonuc == 1) {
                     yonetmenler_degistir_sil_uyari_mesaj_2.setText("İşlem Başarılı bir şekilde gerçekleştirildi ");
@@ -147,9 +145,7 @@ public class Yonetmenler extends Vizyondaki_Filmler {
     public void yonetmenler_degistir_sil_emin_misin_sil(ActionEvent event) {
         int yonetmen_id = Integer.parseInt(yonetmen_degistir_sil_yonetmen_id.getText());
 
-        yonetmenlerDAO ydao = new yonetmenlerDAO();
-
-        int sonuc = ydao.yonetmenler_dao_sil(yonetmen_id);
+        int sonuc = Creator.yonetmenlerDao().yonetmenler_dao_sil(yonetmen_id);
 
         yonetmenler_degistir_sil_emin_misin.setVisible(false);
 
@@ -200,9 +196,7 @@ public class Yonetmenler extends Vizyondaki_Filmler {
 
         yonetmenlerDAO ydao = new yonetmenlerDAO();
 
-        ObservableList<yonetmenler> data = FXCollections.observableArrayList();
-
-        data = ydao.yonetmenler_select(data);
+        ObservableList<yonetmenler> data = Mediator.data_Yonetmenler();
 
         yonetmenler_yonetmen_id.setCellValueFactory(new PropertyValueFactory("yonetmen_id"));
         yonetmenler_ad.setCellValueFactory(new PropertyValueFactory("yonetmen_name"));

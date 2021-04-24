@@ -16,8 +16,6 @@ public class users {
     private String user_password;
     private int user_type;
 
-    private static users u = new users();
-
     private int abonelik_turu;
     private Button yonet;
 
@@ -162,14 +160,6 @@ public class users {
 
     public void setYonet(Button yonet) {
         this.yonet = yonet;
-    }
-
-    public static users getU() {
-        return u;
-    }
-
-    public static void setU(users u) {
-        users.u = u;
     }
 
 }

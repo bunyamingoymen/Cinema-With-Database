@@ -6,7 +6,8 @@ import DAO.sinema_salonlariDAO;
 import DAO.vizyondaki_filmlerDAO;
 import DAO.yonetmenlerDAO;
 import entity.seans;
-import javafx.collections.FXCollections;
+import Creator.Creator;
+import Creator.Mediator;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -33,8 +34,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     private void seans_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        seansDAO seans_islemleri = new seansDAO();
-        String[] arr = seans_islemleri.seans_combo_doldur();
+        String[] arr = Creator.seansDao().seans_combo_doldur();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Vizyondaki Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
@@ -61,11 +61,8 @@ public class Seans extends Kullanici_islemleri {
     }
 
     private void seans_table() {
-        seansDAO s = new seansDAO();
 
-        ObservableList<seans> data = FXCollections.observableArrayList();
-
-        data = s.seans_select(data);
+        ObservableList<seans> data = Mediator.data_Seans();
 
         seans_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         seans_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));

@@ -1,5 +1,6 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import entity.*;
 import DAO.*;
 
@@ -117,7 +118,7 @@ public class Center_Standart_User extends Settings implements Initializable {
         usersDAO udao = new usersDAO();
 
         //Her giriş yapıldığında. Giriş yapan kullanıcının id'sini bir txt dosyasında tutuluyor(bilgi.txt) oradan en son giriş yapan kullanıcının id'sine erişiliyor. 
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
         //bu if ve else gerekli olan TextField ve PasswordField'lerin dolu olup olmadığını kontrol ediyor. Eğer doldurulması gereken bir yeri doldurmamışsa kullanıcı o zaman if'in içine giriyor ve bir uyarı veriyor. Doldurmuşsa da else'nin içine giriyor ve işlemleri yapyıor.
         if ((user_name.getText().length() == 0) || (user_mail.getText().length() == 0)) {

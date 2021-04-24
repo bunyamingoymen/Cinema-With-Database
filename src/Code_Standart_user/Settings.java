@@ -1,9 +1,8 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import DAO.user_photosDAO;
-import DAO.usersDAO;
 import entity.user_photos;
-import entity.users;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class Settings extends Kullanici_Islemleri {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.jpg", "*.jpeg", "*.png"));
         File selectedFile = fc.showOpenDialog(null);
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
         if (selectedFile == null) {
             guncelle_mesaj.setText("Bir resim seçmediniz.");
@@ -77,13 +76,13 @@ public class Settings extends Kullanici_Islemleri {
         pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
-        user_name.setText(users.getU().getUser_name());
+        user_name.setText(Creator.getU().getUser_name());
 
-        user_mail.setText(users.getU().getUser_mail());
+        user_mail.setText(Creator.getU().getUser_mail());
 
-        user_password.setText(users.getU().getUser_password());
+        user_password.setText(Creator.getU().getUser_password());
 
         int control = new user_photosDAO().kac_tane_user_id_var(user_id);
 

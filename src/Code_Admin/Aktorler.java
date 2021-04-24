@@ -1,8 +1,8 @@
 package Code_Admin;
 
-import DAO.actorDAO;
+import Creator.Creator;
+import Creator.Mediator;
 import entity.actor;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -30,8 +30,7 @@ public class Aktorler extends Par {
     @FXML
     public void aktorler_degistir_sil_emin_misin_sil(ActionEvent event) {
         int id = Integer.parseInt(aktorler_silmekten_emin_id.getText());
-        actorDAO adao = new actorDAO();
-        adao.aktorler_sil(id);
+        Creator.actorDao().aktorler_sil(id);
         aktorler_sil_emin_misin.setVisible(false);
 
         aktorler_table();
@@ -47,8 +46,8 @@ public class Aktorler extends Par {
             String ad = aktorler_ekle_ad.getText();
             String soyad = aktorler_ekle_soyad.getText();
             actor a = new actor(ad, soyad);
-            actorDAO adao = new actorDAO();
-            int sonuc = adao.aktorler_ekle(a);
+            int sonuc = Creator.actorDao().aktorler_ekle(a);
+            
             if (sonuc == 1) {
                 aktorler_ekle_uyari_mesaj.setText("İşlem başarılı bir şekilde gerçekleitirldi.");
             } else {
@@ -90,17 +89,10 @@ public class Aktorler extends Par {
         aktorler_sil.setCellValueFactory(new PropertyValueFactory("sil"));
         aktorler_filmler.setCellValueFactory(new PropertyValueFactory("filmleri_goster"));
 
-        ObservableList<actor> data = actor_data();
+        ObservableList<actor> data = Mediator.data_Actor(aktorler_table_uyari_mesaj, aktorler_silmekten_emin_id, aktorler_sil_emin_misin, film_actor_table_actor_id, aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_pane, film_actor_ekle_pane, film_actor_sil_emin_misin_pane, film_actor_id);
 
         aktorler_table_edit();
         aktorler_table_filter(data);
-    }
-
-    public ObservableList<actor> actor_data() {
-        actorDAO adao = new actorDAO();
-        ObservableList<actor> data = FXCollections.observableArrayList();
-        data = adao.aktorler_select(data, aktorler_table_uyari_mesaj, aktorler_silmekten_emin_id, aktorler_sil_emin_misin, film_actor_table_actor_id, aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_pane, film_actor_ekle_pane, film_actor_sil_emin_misin_pane, film_actor_id);
-        return data;
     }
 
     public void aktorler_table_edit() {

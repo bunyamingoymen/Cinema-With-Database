@@ -1,5 +1,6 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import DAO.*;
 import entity.*;
 import javafx.collections.FXCollections;
@@ -46,7 +47,7 @@ public class Par extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     public int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
-        int abonelik = adao.abonelik_turu_bul(users.getU().getUser_id());
+        int abonelik = adao.abonelik_turu_bul(Creator.getU().getUser_id());
 
         return abonelik;
     }

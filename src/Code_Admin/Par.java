@@ -1,50 +1,33 @@
 package Code_Admin;
 
-import DAO.actorDAO;
-import DAO.eski_filmlerDAO;
-import DAO.haberlerDAO;
-import DAO.kampanyalarDAO;
-import DAO.sinema_salonlariDAO;
-import DAO.usersDAO;
-import DAO.vizyondaki_filmlerDAO;
-import DAO.yonetmenlerDAO;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import Creator.Creator;
 
 public class Par extends Variables {
 
     public void home_page() {
-        vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
-        vizyondaki_film_sayisi.setText(String.valueOf(vdao.kac_tane_vizyonda_film_var()));
+        vizyondaki_film_sayisi.setText(String.valueOf(Creator.vizyondaki_filmlerDao().kac_tane_vizyonda_film_var()));
 
-        eski_filmlerDAO edao = new eski_filmlerDAO();
-        eski_film_sayisi.setText(String.valueOf(edao.kac_tane_eski_film_var()));
+        eski_film_sayisi.setText(String.valueOf(Creator.eski_filmlerDao().kac_tane_eski_film_var()));
 
-        haberlerDAO hdao = new haberlerDAO();
-        haber_sayisi.setText(String.valueOf(hdao.kac_tane_haber_var()));
+        haber_sayisi.setText(String.valueOf(Creator.haberlerDao().kac_tane_haber_var()));
 
-        kampanyalarDAO kdao = new kampanyalarDAO();
-        kampanya_sayisi.setText(String.valueOf(kdao.kac_tane_kampanya_var()));
+        kampanya_sayisi.setText(String.valueOf(Creator.kampanyalarDao().kac_tane_kampanya_var()));
 
-        sinema_salonlariDAO sdao = new sinema_salonlariDAO();
-        sinema_salonu_sayisi.setText(String.valueOf(sdao.kac_tane_salon_var()));
+        sinema_salonu_sayisi.setText(String.valueOf(Creator.sinema_salonlariDao().kac_tane_salon_var()));
 
-        yonetmenlerDAO ydao = new yonetmenlerDAO();
-        yonetmen_sayisi.setText(String.valueOf(ydao.kac_tane_yonetmen_var()));
+        yonetmen_sayisi.setText(String.valueOf(Creator.yonetmenlerDao().kac_tane_yonetmen_var()));
 
-        actorDAO adao = new actorDAO();
-        aktor_sayisi.setText(String.valueOf(adao.kac_tane_actor_var()));
+        aktor_sayisi.setText(String.valueOf(Creator.actorDao().kac_tane_actor_var()));
 
-        usersDAO udao = new usersDAO();
-        kullanici_sayisi.setText(String.valueOf(udao.kac_tane_user_var()));
+        kullanici_sayisi.setText(String.valueOf(Creator.usersDao().kac_tane_user_var()));
 
     }
 
     public void yonetmen_combo(ComboBox<String> combo, Label uyari_mesaji) {
 
-        yonetmenlerDAO yonetmen_islemleri = new yonetmenlerDAO();
-
-        String[][] arr = yonetmen_islemleri.yonetmen_combo_doldur();
+        String[][] arr = Creator.yonetmenlerDao().yonetmen_combo_doldur();
 
         combo.getItems().clear();
 
@@ -89,8 +72,7 @@ public class Par extends Variables {
     }
 
     public void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        vizyondaki_filmlerDAO vizyondaki_film_islemleri = new vizyondaki_filmlerDAO();
-        String[] arr = vizyondaki_film_islemleri.vizyondaki_filmler_combo_doldur();
+        String[] arr = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_combo_doldur();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Vizyondaki Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
@@ -107,8 +89,7 @@ public class Par extends Variables {
 
     public void sinema_salonlari_goruntule_combo(ComboBox<String> combo, Label uyari_mesaj) {
 
-        sinema_salonlariDAO sdao = new sinema_salonlariDAO();
-        String[] arr = sdao.salonlar_combo_doldur();
+        String[] arr = Creator.sinema_salonlariDao().salonlar_combo_doldur();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Haber Bulunamadı. Lütfen Önce Bir Haber Ekleyiniz.");

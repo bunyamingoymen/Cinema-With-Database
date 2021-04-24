@@ -1,6 +1,7 @@
 package Controller;
 
 import Code_Admin.Center_Admin;
+import Creator.Creator;
 import DAO.*;
 import entity.*;
 
@@ -1524,11 +1525,11 @@ public class appController extends Center_Admin implements Initializable {
 
         pnl_settings.setVisible(true);
 
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
-        this.user_name.setText(users.getU().getUser_name());
-        this.user_mail.setText(users.getU().getUser_mail());
-        this.user_password.setText(users.getU().getUser_password());
+        this.user_name.setText(Creator.getU().getUser_name());
+        this.user_mail.setText(Creator.getU().getUser_mail());
+        this.user_password.setText(Creator.getU().getUser_password());
 
     }
 

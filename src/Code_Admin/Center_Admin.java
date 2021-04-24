@@ -1,7 +1,7 @@
 package Code_Admin;
 
+import Creator.Creator;
 import entity.*;
-import DAO.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,8 +49,6 @@ public class Center_Admin extends Yonetmenler implements Initializable {
 
     @FXML
     protected void close(MouseEvent event) {
-        usersDAO udao = new usersDAO();
-
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
@@ -89,8 +87,6 @@ public class Center_Admin extends Yonetmenler implements Initializable {
     @FXML
     protected void cikis(MouseEvent event) throws IOException {
 
-        usersDAO udao = new usersDAO();
-
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -114,10 +110,8 @@ public class Center_Admin extends Yonetmenler implements Initializable {
 
         //Dosya işlemlerini yapabilmek adına bir dosya nesnesi oluşturuluyor.
         //Bu 2 satır var olan kullanıcıları bir bağlı listeye aktarıyor (dosya işlemleri ile)
-        usersDAO udao = new usersDAO();
-
         //Her giriş yapıldığında. Giriş yapan kullanıcının id'sini bir txt dosyasında tutuluyor(bilgi.txt) oradan en son giriş yapan kullanıcının id'sine erişiliyor. 
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
         //bu if ve else gerekli olan TextField ve PasswordField'lerin dolu olup olmadığını kontrol ediyor. Eğer doldurulması gereken bir yeri doldurmamışsa kullanıcı o zaman if'in içine giriyor ve bir uyarı veriyor. Doldurmuşsa da else'nin içine giriyor ve işlemleri yapyıor.
         if ((user_name.getText().length() == 0) || (user_mail.getText().length() == 0)) {
@@ -138,11 +132,11 @@ public class Center_Admin extends Yonetmenler implements Initializable {
                 password = tf_user_password.getText();
             }
 
-            int user_type = udao.user_type_getir(user_id);
+            int user_type = Creator.usersDao().user_type_getir(user_id);
 
             //yukarıda aldığımız kullanıcının girdiği bilgileri User adlı sınıfın içindeki metoda yolluyor. Bu metodun yaptığı işlevi ksaca anlatmak gerekirse. Yapılan değiişikliği ilk önce bağlı listede değiştiriyor ardından ise bunu dosyaya yazıp kalıcı hale getiriyor. 
             users u = new users(user_id, name, mail, password, user_type);
-            int control = udao.user_guncelle(u);
+            int control = Creator.usersDao().user_guncelle(u);
 
             //Az önce gönderdiğimiz metot bir değer yolluyor bu değer 1 ise işlem herhangi bir hataya uğramadan başarılı bir şekilde gerçekleştiğini yazıyor. Eğer başarılı bir şekilde gerçekleşmiyor ise de Hata meydana gleidğini ekrana yazdırıyor.
             if (control == 1) {

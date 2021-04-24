@@ -1,11 +1,11 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import DAO.abonelerDAO;
 import DAO.satin_alinan_biletlerDAO;
 import DAO.seansDAO;
 import DAO.sinema_salonlariDAO;
 import DAO.yesil_olanDAO;
-import entity.users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -125,7 +125,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
         salon_uc_pane.setVisible(false);
         salon_dort_pane.setVisible(false);
 
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
         abonelerDAO adao = new abonelerDAO();
         int kalan_ucretsiz_bilet_sayisi = adao.kalan_ucretsiz_bilet_sayisi(user_id);
@@ -148,7 +148,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
 
         satin_alinan_biletlerDAO sdao = new satin_alinan_biletlerDAO();
 
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
         int seans_id = Integer.parseInt(satin_al_koltuk_seans_id.getText());
 
         int sonuc = sdao.satin_alinan_bilet_satin_al(user_id, seans_id);
@@ -174,7 +174,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
     public void satin_al_ucretsiz_bilet_hakki(ActionEvent event) {
         abonelerDAO adao = new abonelerDAO();
 
-        int sonuc = adao.ucretsiz_bilet_sayisi_dusur(users.getU().getUser_id());
+        int sonuc = adao.ucretsiz_bilet_sayisi_dusur(Creator.getU().getUser_id());
 
         switch (sonuc) {
             case -2:

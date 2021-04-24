@@ -1,5 +1,6 @@
 package Controller;
 
+import Creator.Creator;
 import DAO.usersDAO;
 import entity.users;
 import java.net.URL;
@@ -84,7 +85,7 @@ public class loginController implements Initializable {
                 
                 users u = new users(user_id, name, mail, password, authority);
                 
-                users.setU(u);
+                Creator.setU(u);
                 
 
                 switch (authority) {

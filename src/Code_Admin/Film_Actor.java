@@ -1,8 +1,6 @@
 package Code_Admin;
 
-import DAO.film_actorDAO;
-import DAO.filmlerDAO;
-import entity.actor;
+import Creator.Creator;
 import entity.film_actor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,8 +32,7 @@ public class Film_Actor extends Filmler {
         if (film_actor_ekle_filmler.getValue() == null) {
             film_actor_ekle_uyari_mesaj.setText("Lütfen önce bir film seçiniz");
         } else {
-            filmlerDAO film_islemleri = new filmlerDAO();
-            String[][] arr = film_islemleri.filmler_combo_doldur();
+            String[][] arr = Creator.filmlerDao().filmler_combo_doldur();
             String secilen = film_actor_ekle_filmler.getValue();
             int film_id = -1;
 
@@ -49,10 +46,9 @@ public class Film_Actor extends Filmler {
             if (film_id == -1) {
                 film_actor_ekle_uyari_mesaj.setText("Bir hata meydana geldi Lütfen daha sonra tekrar deneyiniz");
             } else {
-                film_actorDAO fadao = new film_actorDAO();
                 int actor_id = Integer.parseInt(film_actor_ekle_actor_id.getText());
                 film_actor fa = new film_actor(film_id, actor_id);
-                int sonuc = fadao.film_actor_insert(fa);
+                int sonuc = Creator.film_actorDao().film_actor_insert(fa);
                 if (sonuc == 1) {
                     film_actor_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
                 } else {
@@ -70,11 +66,9 @@ public class Film_Actor extends Filmler {
 
     @FXML
     public void film_actor_sil_silmekten_emin_sil(ActionEvent event) {
-        film_actorDAO fdao = new film_actorDAO();
-        fdao.film_actor_delete(Integer.parseInt(film_actor_id.getText()));
-
-        actor a = new actor();
-        a.film_actor_table(aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_sil_emin_misin_pane, film_actor_id);
+        Creator.film_actorDao().film_actor_delete(Integer.parseInt(film_actor_id.getText()));
+        
+        Creator.actor().film_actor_table(aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_sil_emin_misin_pane, film_actor_id);
 
         film_actor_sil_emin_misin_pane.setVisible(false);
 
@@ -96,8 +90,7 @@ public class Film_Actor extends Filmler {
         film_actor_grid.setVisible(true);
         film_actor_ekle_pane.setVisible(false);
 
-        actor a = new actor();
-        a.film_actor_table(aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_sil_emin_misin_pane, film_actor_id);
+        Creator.actor().film_actor_table(aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_sil_emin_misin_pane, film_actor_id);
 
         film_actor_ekle_geri_tusu.setVisible(false);
         film_actor_geri_tusu.setVisible(true);

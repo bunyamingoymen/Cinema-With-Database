@@ -1,7 +1,7 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import DAO.abonelerDAO;
-import entity.users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -61,7 +61,7 @@ public class Abonelik extends Par {
 
     @FXML
     public void abonelik_bir_satin_al(ActionEvent event) {
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
         int abonelik_turu = 1;
 
         int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
@@ -82,7 +82,7 @@ public class Abonelik extends Par {
 
     @FXML
     public void abonelik_iki_satin_al(ActionEvent event) {
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
         int abonelik_turu = 2;
 
         int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
@@ -102,7 +102,7 @@ public class Abonelik extends Par {
 
     @FXML
     public void abonelik_uc_satin_al(ActionEvent event) {
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
         int abonelik_turu = 3;
 
         int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
@@ -193,7 +193,7 @@ public class Abonelik extends Par {
 
     @FXML
     private void abonelik_iptal_et(ActionEvent event) {
-        int user_id = users.getU().getUser_id();
+        int user_id = Creator.getU().getUser_id();
 
         int sonuc = adao.aboneler_sil(user_id);
 

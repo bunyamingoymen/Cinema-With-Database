@@ -1,8 +1,8 @@
 package Code_Standart_user;
 
+import Creator.Creator;
 import DAO.satin_alinan_biletlerDAO;
 import entity.satin_alinan_biletler;
-import entity.users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -32,7 +32,7 @@ public class Biletlerim extends Eski_Filmler {
         pnl_film_detay.setVisible(false);
         home_page.setVisible(false);
 
-        biletlerim_table(users.getU().getUser_id());
+        biletlerim_table(Creator.getU().getUser_id());
     }
 
     public void biletlerim_table(int user_id) {
