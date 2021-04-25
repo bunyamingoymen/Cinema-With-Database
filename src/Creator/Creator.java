@@ -24,10 +24,16 @@ public class Creator {
     private static filmler filmler = null;
 
     private static eski_filmlerDAO efdao = null;
+    
+    private static eski_filmler eski_filmler = null;
 
     private static haberlerDAO hdao = null;
+    
+    private static haberler haberler = null;
 
     private static kampanyalarDAO kdao = null;
+    
+    private static kampanyalar kampanyalar = null;
 
     private static sinema_salonlariDAO ssdao = null;
 
@@ -98,6 +104,13 @@ public class Creator {
         }
         return efdao;
     }
+    
+    public static eski_filmler eski_filmler(){
+        if(eski_filmler == null){
+            eski_filmler = new eski_filmler();
+        }
+        return eski_filmler;
+    }
 
     public static haberlerDAO haberlerDao() {
         if (hdao == null) {
@@ -105,12 +118,26 @@ public class Creator {
         }
         return hdao;
     }
+    
+    public static haberler haberler() {
+        if (haberler == null) {
+            haberler = new haberler();
+        }
+        return haberler;
+    }
 
     public static kampanyalarDAO kampanyalarDao() {
         if (kdao == null) {
             kdao = new kampanyalarDAO();
         }
         return kdao;
+    }
+    
+    public static kampanyalar kampanyalar() {
+        if (kampanyalar == null) {
+            kampanyalar = new kampanyalar();
+        }
+        return kampanyalar;
     }
 
     public static sinema_salonlariDAO sinema_salonlariDao() {

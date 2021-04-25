@@ -1,11 +1,17 @@
 package Code_Admin;
 
 import Creator.Creator;
+import DAO.films_photosDAO;
+import DAO.user_photosDAO;
 import entity.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +19,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.imageio.ImageIO;
 
 public class Center_Admin extends Yonetmenler implements Initializable {
 
@@ -143,6 +152,68 @@ public class Center_Admin extends Yonetmenler implements Initializable {
                 guncelle_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
             } else {
                 guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata kodu = -12)");
+            }
+        }
+
+    }
+    
+    @FXML
+    private void film_photo_change(MouseEvent event) throws IOException {
+        System.out.println("1");
+        FileChooser fc = new FileChooser();
+        System.out.println("2");
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.jpg", "*.jpeg", "*.png"));
+        System.out.println("3");
+        File selectedFile = fc.showOpenDialog(null);
+        System.out.println("4");
+        int film_id = Integer.parseInt(vizyondaki_filmler_detay_film_id.getText());
+        System.out.println("5");
+
+        if (selectedFile == null) {
+            System.out.println("6");
+            film_detay_guncelle_mesaj.setText("Bir resim seçmediniz.");
+        } else {
+            System.out.println("7");
+            File ada = new File("src/lib/pic/films/" + film_id + ".png");
+            System.out.println("8");
+            ada.delete();
+            System.out.println("9");
+
+            File ada2 = new File("src/lib/pic/films/" + film_id + ".png");
+            System.out.println("10");
+            Files.copy(selectedFile.toPath(), ada2.toPath()); //dosyayı kopyalamyı sağlıyor. Ancak ya try catch içinde olacak yada throws olacak.
+            System.out.println("11");
+            
+            BufferedImage bufferedImage = ImageIO.read(ada2);
+            System.out.println("12");
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            System.out.println("13");
+
+            films_photos fp = new films_photos(film_id, ada2.getName(), ada2.getParent(), ada2.getPath());
+            System.out.println("14");
+            
+            films_photosDAO fpdao = new films_photosDAO();
+            System.out.println("15");
+
+            int sonuc = fpdao.film_photo_dao_ekle_veya_guncelle(fp);
+            System.out.println("16");
+
+            switch (sonuc) {
+                case 1:
+                    vizyondaki_filmler_film_detay_photo.setImage(image);
+                    break;
+                case 0:
+                    film_detay_guncelle_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -32)");
+                    break;
+                case -1:
+                    film_detay_guncelle_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -33)");
+                    break;
+                case -2:
+                    film_detay_guncelle_mesaj.setText("Bir hata meydana geldi. (Hata kodu: -34)");
+                    break;
+                default:
+                    film_detay_guncelle_mesaj.setText("Bir hata meydana geldi. (Hata Kodu: -35)");
+                    break;
             }
         }
 

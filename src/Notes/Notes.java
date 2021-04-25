@@ -1,7 +1,7 @@
 
 // DAO larda kullanılan en son hata kodu sayısı: 254
 
-// Controller larda kullanılan en son hata kodu sayısı: -41
+// Controller larda kullanılan en son hata kodu sayısı: -43
 
 /*
 Proje Hakkında:

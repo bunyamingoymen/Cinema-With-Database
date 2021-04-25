@@ -393,5 +393,11 @@ public class Variables {
 
     @FXML
     public FontAwesomeIconView kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu;
+    
+    @FXML
+    public Label film_detay_guncelle_mesaj;
+    
+    @FXML
+    public ImageView vizyondaki_filmler_film_detay_photo;
 
 }

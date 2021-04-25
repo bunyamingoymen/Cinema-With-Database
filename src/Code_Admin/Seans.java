@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
 
 public class Seans extends Kullanici_islemleri {
 
-    private void saat_combo(ComboBox<String> combo) {
+    public void saat_combo(ComboBox<String> combo) {
 
         combo.getItems().clear();
 
@@ -33,7 +33,7 @@ public class Seans extends Kullanici_islemleri {
         combo.setPromptText("İstediğiniz saati seçiniz.");
     }
 
-    private void seans_combo(ComboBox<String> combo, Label uyari_mesaj) {
+    public void seans_combo(ComboBox<String> combo, Label uyari_mesaj) {
         String[] arr = Creator.seansDao().seans_combo_doldur();
         combo.getItems().clear();
         if (arr.length == 0) {
@@ -49,7 +49,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_islemleri_giris(ActionEvent event) {
+    public void seans_islemleri_giris(ActionEvent event) {
         pnl_vizyondaki_filmler.setVisible(false);
         pnl_seans.setVisible(true);
 
@@ -60,7 +60,7 @@ public class Seans extends Kullanici_islemleri {
 
     }
 
-    private void seans_table() {
+    public void seans_table() {
 
         ObservableList<seans> data = Mediator.data_Seans();
 
@@ -100,7 +100,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_ekle_giris(ActionEvent event) {
+    public void seans_ekle_giris(ActionEvent event) {
         seans_grid.setVisible(false);
         seans_ekle_pane.setVisible(true);
         seans_degistir_sil_pane.setVisible(false);
@@ -115,7 +115,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_degistir_sil_giris(ActionEvent event) {
+    public void seans_degistir_sil_giris(ActionEvent event) {
         seans_grid.setVisible(false);
         seans_ekle_pane.setVisible(false);
         seans_degistir_sil_pane.setVisible(true);
@@ -135,7 +135,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_degistir_sil_seans_getir(ActionEvent event) {
+    public void seans_degistir_sil_seans_getir(ActionEvent event) {
         if (seans_degistir_seans_getir_combo.getValue() == null) {
             seans_degistir_sil_uyari_mesaj_1.setText("Lütfen bir seans seçiniz.");
         } else {
@@ -174,12 +174,12 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_degsitir_sil_sil(ActionEvent event) {
+    public void seans_degsitir_sil_sil(ActionEvent event) {
         seans_degistir_sil_silmekten_emin_pane.setVisible(true);
     }
 
     @FXML
-    private void seans_degistir_sil_silmekten_emin_sil(ActionEvent event) {
+    public void seans_degistir_sil_silmekten_emin_sil(ActionEvent event) {
         seansDAO sdao = new seansDAO();
         int sonuc = sdao.seans_dao_sil(Integer.parseInt(seans_degistir_sil_seans_id.getText()));
 
@@ -196,12 +196,12 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_degistir_sil_silmekten_emin_vazgec(ActionEvent event) {
+    public void seans_degistir_sil_silmekten_emin_vazgec(ActionEvent event) {
         seans_degistir_sil_silmekten_emin_pane.setVisible(false);
     }
 
     @FXML
-    private void seans_degistir_sil_degistir(ActionEvent event) {
+    public void seans_degistir_sil_degistir(ActionEvent event) {
         if ((seans_degistir_sil_film_combo.getValue().length() == 0) || (seans_degistir_sil_salon_combo.getValue().length() == 0) || (seans_degistir_sil_saat_combo.getValue().length() == 0)) {
             seans_degistir_sil_uyari_mesaj_2.setText("Lütfen gerekli yerleri doldurunuz.");
         } else {
@@ -236,7 +236,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_ekle_ekle(ActionEvent event) {
+    public void seans_ekle_ekle(ActionEvent event) {
         if ((seans_ekle_film_combo.getValue() == null) || (seans_ekle_salon_combo.getValue() == null) || (seans_ekle_saat_combo == null)) {
             seans_ekle_uyari_mesaj.setText("Lütfen gerekli bilgileir seçiniz.");
         } else {
@@ -273,14 +273,14 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_ekle_sifirla(ActionEvent event) {
+    public void seans_ekle_sifirla(ActionEvent event) {
         vizyondaki_filmler_combo(seans_ekle_film_combo, seans_ekle_uyari_mesaj);
         sinema_salonlari_goruntule_combo(seans_ekle_salon_combo, seans_ekle_uyari_mesaj);
         saat_combo(seans_ekle_saat_combo);
     }
 
     @FXML
-    private void seans_geri(MouseEvent event) {
+    public void seans_geri(MouseEvent event) {
         pnl_seans.setVisible(false);
         pnl_vizyondaki_filmler.setVisible(true);
 
@@ -296,7 +296,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_ekle_geri(MouseEvent event) {
+    public void seans_ekle_geri(MouseEvent event) {
         seans_grid.setVisible(true);
         seans_ekle_pane.setVisible(false);
 
@@ -307,7 +307,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     @FXML
-    private void seans_degistir_geri(MouseEvent event) {
+    public void seans_degistir_geri(MouseEvent event) {
         seans_grid.setVisible(true);
         seans_degistir_sil_pane.setVisible(false);
 

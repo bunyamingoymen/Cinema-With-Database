@@ -13,10 +13,14 @@ public class kampanyalar extends duyurular {
 
     public kampanyalar(int kampanya_id, int hangi_kullanici_turu, String Title, String Kampanya, String Tarih, String Kampanya_Kategorisi, Button sil, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
         super(kampanya_id, hangi_kullanici_turu, Title, Kampanya, Tarih, Kampanya_Kategorisi);
-        this.sil = sil;
+        kampanya_controller(sil, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
 
+    }
+
+    public void kampanya_controller(Button sil, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
+        this.sil = sil;
         sil.setOnAction(e -> {
-            kampanyalar_silmekten_emin_kampanya_id.setText(String.valueOf(kampanya_id));
+            kampanyalar_silmekten_emin_kampanya_id.setText(String.valueOf(super.getId()));
             kampanyalar_sil_emin_misin_pane.setVisible(true);
         });
     }

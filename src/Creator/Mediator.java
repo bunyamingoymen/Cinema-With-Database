@@ -2,7 +2,10 @@ package Creator;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.actor;
+import entity.eski_filmler;
 import entity.film_actor;
+import entity.haberler;
+import entity.kampanyalar;
 import entity.seans;
 import entity.vizyondaki_filmler;
 import entity.yonetmenler;
@@ -21,13 +24,19 @@ public class Mediator {
 
     private static ObservableList<vizyondaki_filmler> data_vizyondaki_filmler_bir;
 
-    public static int data_vizyondaki_filmler_bir_guncellendi_mi;
+    private static int data_vizyondaki_filmler_bir_guncellendi_mi;
 
-    public static ObservableList<actor> data_actor;
+    private static ObservableList<actor> data_actor;
+
+    private static ObservableList<seans> data_seans;
+
+    private static ObservableList<yonetmenler> data_yonetmenler;
+
+    private static ObservableList<eski_filmler> data_eski_filmler;
+
+    private static ObservableList<kampanyalar> data_kampanyalar;
     
-    public static ObservableList<seans> data_seans;
-    
-    public static ObservableList<yonetmenler> data_yonetmenler;
+     private static ObservableList<haberler> data_haberler;
 
     public Mediator() {
         data_vizyondaki_filmler_bir_guncellendi_mi = 1;
@@ -54,7 +63,6 @@ public class Mediator {
             data_actor = FXCollections.observableArrayList();
             data_actor = Creator.actorDao().aktorler_select(data_actor, lab, lab2, pan, lab3, aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_pane, film_actor_ekle_pane, film_actor_sil_emin_misin_pane, film_actor_id_label);
         } else {
-            vizyondaki_filmler v = new vizyondaki_filmler();
             Button guncelle = new Button();
             guncelle.setText("Güncelle");
             guncelle.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
@@ -72,21 +80,61 @@ public class Mediator {
         }
         return data_actor;
     }
-    
-    public static ObservableList<seans> data_Seans(){
-        if(data_seans == null){
+
+    public static ObservableList<seans> data_Seans() {
+        if (data_seans == null) {
             data_seans = FXCollections.observableArrayList();
             data_seans = Creator.seansDao().seans_select(data_seans);
         }
         return data_seans;
     }
-    
-    public static ObservableList<yonetmenler> data_Yonetmenler(){
-        if(data_yonetmenler == null){
+
+    public static ObservableList<yonetmenler> data_Yonetmenler() {
+        if (data_yonetmenler == null) {
             data_yonetmenler = FXCollections.observableArrayList();
             data_yonetmenler = Creator.yonetmenlerDao().yonetmenler_select(data_yonetmenler);
         }
         return data_yonetmenler;
+    }
+
+    public static ObservableList<eski_filmler> data_Eski_Filmler() {
+        if (data_eski_filmler == null) {
+            data_eski_filmler = FXCollections.observableArrayList();
+            data_eski_filmler = Creator.eski_filmlerDao().eski_filmler_select(data_eski_filmler);
+        }
+        return data_eski_filmler;
+    }
+
+    public static ObservableList<kampanyalar> data_Kampanyalar(Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
+        if (data_kampanyalar == null) {
+            data_kampanyalar = FXCollections.observableArrayList();
+            data_kampanyalar = Creator.kampanyalarDao().kampanyalar_select(data_kampanyalar, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
+        } else {
+            
+            Button sil = new Button();
+            sil.setText("Sil");
+            sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
+            
+            Creator.kampanyalar().kampanya_controller(sil, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
+
+        }
+        return data_kampanyalar;
+    }
+    
+     public static ObservableList<haberler> data_Haberler(Pane haberler_sil_emin_misin_pane, Label haberler_silmekten_emin_kampanya_id) {
+        if (data_haberler == null) {
+            data_haberler = FXCollections.observableArrayList();
+            data_haberler = Creator.haberlerDao().haberler_select(data_haberler, haberler_sil_emin_misin_pane, haberler_silmekten_emin_kampanya_id);
+        } else {
+            
+            Button sil = new Button();
+            sil.setText("Sil");
+            sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
+            
+            Creator.haberler().haber_controller(sil, haberler_sil_emin_misin_pane, haberler_silmekten_emin_kampanya_id);
+
+        }
+        return data_haberler;
     }
 
 }

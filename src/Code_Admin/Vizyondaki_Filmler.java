@@ -17,8 +17,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javax.imageio.ImageIO;
 import Creator.Creator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Vizyondaki_Filmler extends Sinema_Salonlari {
+public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     @FXML
     public void vizyondaki_filmler_geri(MouseEvent event) {
@@ -125,7 +127,6 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari {
         vizyondaki_filmler_geri_tusu.setVisible(true);
 
         //vizyondaki_filmler_table_admin();
-
     }
 
     @FXML
@@ -280,7 +281,6 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari {
 //
 //        table_vizyondaki_filmler.setItems(sortedData);
 //    }
-
     public void vizyondaki_filmler_gosterim() {
         int[] arr = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_dizi_doldur();
         if (arr.length <= 10) {
@@ -594,6 +594,10 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari {
         vizyondaki_filmler_detay_kalkis_tarihi.setText(Creator.vizyondaki_filmlerDao().vizyondan_kalkis_tarihi_getir(vizyondaki_film_id).toString());
         vizyondaki_filmler_detay_kullanici_puani.setText(String.valueOf(Creator.filmlerDao().kullanici_puani_getir(film_id)));
 
+        films_photosDAO fpdao = new films_photosDAO();
+
+        int control = fpdao.kac_tane_film_id_var(film_id);
+
         if (new films_photosDAO().kac_tane_film_id_var(film_id) == 1) {
             BufferedImage bufferedImage = null;
             try {
@@ -601,10 +605,24 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari {
                 bufferedImage = ImageIO.read(new File(photo_path));
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 img.setImage(image);
+                vizyondaki_filmler_film_detay_photo.setImage(image);
             } catch (IOException ex) {
                 System.out.println(ex);
                 guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -40)");
             }
+        } else if (control == 0) {
+            try {
+                BufferedImage bufferedImage = null;
+                String photo_path = "src/lib/pic/Movies.png";
+                bufferedImage = ImageIO.read(new File(photo_path));
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                vizyondaki_filmler_film_detay_photo.setImage(image);
+            } catch (IOException ex) {
+                System.out.println(ex);
+                guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -42)");
+            }
+        } else {
+guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -43)");
         }
     }
 
