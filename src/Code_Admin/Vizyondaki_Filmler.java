@@ -17,8 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javax.imageio.ImageIO;
 import Creator.Creator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 

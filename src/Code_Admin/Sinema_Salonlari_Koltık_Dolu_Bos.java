@@ -1,6 +1,5 @@
 package Code_Admin;
 
-import Code_Standart_user.*;
 import DAO.satin_alinan_biletlerDAO;
 import DAO.yesil_olanDAO;
 import javafx.event.ActionEvent;

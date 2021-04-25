@@ -1,18 +1,13 @@
 package Creator;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import entity.actor;
-import entity.eski_filmler;
-import entity.film_actor;
-import entity.haberler;
-import entity.kampanyalar;
-import entity.seans;
-import entity.vizyondaki_filmler;
-import entity.yonetmenler;
+import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,8 +30,10 @@ public class Mediator {
     private static ObservableList<eski_filmler> data_eski_filmler;
 
     private static ObservableList<kampanyalar> data_kampanyalar;
-    
-     private static ObservableList<haberler> data_haberler;
+
+    private static ObservableList<haberler> data_haberler;
+
+    private static ObservableList<users> data_users;
 
     public Mediator() {
         data_vizyondaki_filmler_bir_guncellendi_mi = 1;
@@ -110,31 +107,47 @@ public class Mediator {
             data_kampanyalar = FXCollections.observableArrayList();
             data_kampanyalar = Creator.kampanyalarDao().kampanyalar_select(data_kampanyalar, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
         } else {
-            
+
             Button sil = new Button();
             sil.setText("Sil");
             sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
-            
+
             Creator.kampanyalar().kampanya_controller(sil, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
 
         }
         return data_kampanyalar;
     }
-    
-     public static ObservableList<haberler> data_Haberler(Pane haberler_sil_emin_misin_pane, Label haberler_silmekten_emin_kampanya_id) {
+
+    public static ObservableList<haberler> data_Haberler(Pane haberler_sil_emin_misin_pane, Label haberler_silmekten_emin_kampanya_id) {
         if (data_haberler == null) {
             data_haberler = FXCollections.observableArrayList();
             data_haberler = Creator.haberlerDao().haberler_select(data_haberler, haberler_sil_emin_misin_pane, haberler_silmekten_emin_kampanya_id);
         } else {
-            
+
             Button sil = new Button();
             sil.setText("Sil");
             sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
-            
-            Creator.haberler().haber_controller(sil, haberler_sil_emin_misin_pane, haberler_silmekten_emin_kampanya_id);
+
+            Creator.haberler().haber_controller(sil, haberler_silmekten_emin_kampanya_id, haberler_sil_emin_misin_pane);
 
         }
         return data_haberler;
+    }
+
+    public static ObservableList<users> data_Users(Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
+        if (data_users == null) {
+            data_users = FXCollections.observableArrayList();
+            data_users = Creator.usersDao().user_select(data_users, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu, sil_pane);
+        } else {
+
+            Button yonet = new Button();
+            yonet.setText("Yönet");
+            yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+            
+            Creator.users().users_controller(yonet, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu, sil_pane);
+
+        }
+        return data_users;
     }
 
 }

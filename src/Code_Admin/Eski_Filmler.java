@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class Eski_Filmler extends Duyurular {
+public class Eski_Filmler extends Aktorler {
 public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
         String[][] arr = Creator.eski_filmlerDao().eski_filmler_combo_doldur();
         combo.getItems().clear();

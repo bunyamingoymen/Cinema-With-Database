@@ -101,5 +101,5 @@ public class Par extends Variables {
             combo.setPromptText("İstediğiniz Haberi seçiniz.");
         }
     }
-
+    
 }

@@ -3,7 +3,7 @@ package Code_Admin;
 import DAO.haberlerDAO;
 import entity.haberler;
 import Creator.Creator;
-import javafx.collections.FXCollections;
+import Creator.Mediator;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 
 public class Haberler extends Film_Actor {
     
-private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
+public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
         String[][] arr = Creator.haberlerDao().haberler_combo_doldur();
         combo.getItems().clear();
         if (arr.length == 0) {
@@ -32,7 +32,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_ekle_giris(ActionEvent event) {
+    public void haberler_ekle_giris(ActionEvent event) {
         haberler_grid.setVisible(false);
         haberler_ekle_pane.setVisible(true);
         haberler_degistir_pane.setVisible(false);
@@ -45,7 +45,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_degistir_giris(ActionEvent event) {
+    public void haberler_degistir_giris(ActionEvent event) {
         haberler_grid.setVisible(false);
         haberler_ekle_pane.setVisible(false);
         haberler_degistir_pane.setVisible(true);
@@ -60,7 +60,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_ekle_sifirla(ActionEvent event) {
+    public void haberler_ekle_sifirla(ActionEvent event) {
         haberler_ekle_title.setText("");
         haberler_ekle_tarih.setText("");
         haberler_ekle_kategori.setText("");
@@ -70,7 +70,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_ekle_ekle(ActionEvent event) {
+    public void haberler_ekle_ekle(ActionEvent event) {
         if ((haberler_ekle_title.getText().length() == 0) || (haberler_ekle_tarih.getText().length() == 0) || (haberler_ekle_kategori.getText().length() == 0)
                 || (haberler_ekle_haber.getText().length() == 0) || (haberler_ekle_hangi_kullanici.getValue() == null)) {
             haberler_ekle_uyari_mesaj.setText("Lütfen Gerekli Yerleri Doldurnuz.");
@@ -94,7 +94,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_degistir_haberi_getir(ActionEvent event) {
+    public void haberler_degistir_haberi_getir(ActionEvent event) {
         if (haberler_degistir_haberleri_getir.getValue() == null) {
             haberler_degistir_uyari_mesaj_1.setText("Lütfen bir Haber seçiniz.");
         } else {
@@ -126,7 +126,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_degistir_degistir(ActionEvent event) {
+    public void haberler_degistir_degistir(ActionEvent event) {
         if ((haberler_degistir_title.getText().length() == 0) || (haberler_degistir_haber.getText().length() == 0)
                 || (haberler_degistir_tarih.getText().length() == 0) || (haberler_degistir_kategori.getText().length() == 0)
                 || (haberler_degistir_hangi_kullanici.getValue() == null)) {
@@ -153,12 +153,12 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_sil_emin_misin_vazgec(ActionEvent event) {
+    public void haberler_sil_emin_misin_vazgec(ActionEvent event) {
         haberler_sil_emin_misin_pane.setVisible(false);
     }
 
     @FXML
-    private void haberler_sil_emin_misin_sil(ActionEvent event) {
+    public void haberler_sil_emin_misin_sil(ActionEvent event) {
         int haber_id = Integer.valueOf(haberler_silmekten_emin_haber_id.getText());
         haberlerDAO hdao = new haberlerDAO();
         int sonuc = hdao.haberler_sil(haber_id);
@@ -174,12 +174,12 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_geri(MouseEvent event) {
+    public void haberler_geri(MouseEvent event) {
         geri_don_admin();
     }
 
     @FXML
-    private void haberler_ekle_geri(MouseEvent event) {
+    public void haberler_ekle_geri(MouseEvent event) {
         haberler_grid.setVisible(true);
         haberler_ekle_pane.setVisible(false);
 
@@ -190,7 +190,7 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     }
 
     @FXML
-    private void haberler_degistir_geri(MouseEvent event) {
+    public void haberler_degistir_geri(MouseEvent event) {
         haberler_grid.setVisible(true);
         haberler_degistir_pane.setVisible(false);
 
@@ -200,11 +200,9 @@ private void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
         haberler_table_butonlu();
     }
 
-    private void haberler_table_butonlu() {
+    public void haberler_table_butonlu() {
 
-        ObservableList<haberler> data = FXCollections.observableArrayList();
-
-        data = Creator.haberlerDao().haberler_select(data, haberler_sil_emin_misin_pane, haberler_silmekten_emin_haber_id);
+        ObservableList<haberler> data = Mediator.data_Haberler(haberler_sil_emin_misin_pane, haberler_silmekten_emin_haber_id);
 
         haberler_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
         haberler_title.setCellValueFactory(new PropertyValueFactory("Title"));

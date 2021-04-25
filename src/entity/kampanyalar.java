@@ -19,7 +19,7 @@ public class kampanyalar extends duyurular {
 
     public void kampanya_controller(Button sil, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
         this.sil = sil;
-        sil.setOnAction(e -> {
+        this.sil.setOnAction(e -> {
             kampanyalar_silmekten_emin_kampanya_id.setText(String.valueOf(super.getId()));
             kampanyalar_sil_emin_misin_pane.setVisible(true);
         });

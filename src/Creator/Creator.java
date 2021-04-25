@@ -16,6 +16,8 @@ public class Creator {
     private static vizyondaki_filmler vizyondaki_filmler = null;
 
     private static usersDAO udao = null;
+    
+    private static users users = null;
 
     private static filmlerDAO fdao = null;
 
@@ -40,6 +42,8 @@ public class Creator {
     private static yonetmenlerDAO ydao = null;
 
     private static seansDAO sdao = null;
+    
+    private static yesil_olanDAO yodao = null;
 
     public static users getU() {
         return u;
@@ -82,6 +86,13 @@ public class Creator {
             udao = new usersDAO();
         }
         return udao;
+    }
+    
+    public static users users(){
+        if(users == null){
+            users = new  users();
+        }
+        return users;
     }
 
     public static filmlerDAO filmlerDao() {
@@ -159,6 +170,13 @@ public class Creator {
             sdao = new seansDAO();
         }
         return sdao;
+    }
+    
+    public static yesil_olanDAO yesil_olanDao() {
+        if (yodao == null) {
+            yodao = new yesil_olanDAO();
+        }
+        return yodao;
     }
 
     public duyurular duyurular(int secim) {

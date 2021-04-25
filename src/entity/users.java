@@ -19,7 +19,7 @@ public class users {
     private int abonelik_turu;
     private Button yonet;
 
-    private users() {
+    public users() {
 
     }
 
@@ -45,9 +45,14 @@ public class users {
         this.user_password = user_password;
         this.user_type = user_type;
         this.abonelik_turu = abonelik_turu;
-        this.yonet = yonet;
+        
+    }
 
-        yonet.setOnAction(e -> {
+    public void users_controller(Button yonet, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
+        
+        this.yonet = yonet;
+        
+        this.yonet.setOnAction(e -> {
             kullanici_islemleri_user_id.setText(String.valueOf(this.user_id));
             kullanici_islemleri_user_name.setText(this.user_name);
             kullanici_islemleri_user_mail.setText(this.user_mail);
