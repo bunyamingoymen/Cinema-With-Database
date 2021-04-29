@@ -17,6 +17,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javax.imageio.ImageIO;
 import Creator.Creator;
+import Creator.Mediator;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
@@ -228,57 +233,55 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         }
     }
 
-//    public void vizyondaki_filmler_table_admin() {
-//        vizyondaki_filmlerDAO vf = new vizyondaki_filmlerDAO();
-//
-//        ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
-//
-//        data = vf.vizyondaki_filmler_select(data);
-//
-//        vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
-//        vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
-//        vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
-//        vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
-//        vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
-//        vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
-//        vizyondaki_filmler_detay.setCellValueFactory(new PropertyValueFactory("film_detayi"));
-//
-//        FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
-//
-//        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-//            filteredData.setPredicate(viz -> {
-//
-//                if (newValue == null || newValue.isEmpty()) {
-//                    return true;
-//                }
-//
-//                String lowerCaseFilter = newValue.toLowerCase();
-//
-//                if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//                    return true;
-//                } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//                    return true;
-//                } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
-//                    return true;
-//                } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//                    return true;
-//                } else if (viz.getVizyondan_kalkis_tarihi().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//                    return true;
-//                } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//
-//            });
-//        });
-//
-//        SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
-//
-//        sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
-//
-//        table_vizyondaki_filmler.setItems(sortedData);
-//    }
+    public void vizyondaki_filmler_table_admin() {
+
+        ObservableList<vizyondaki_filmler> data = Mediator.data_vizyondaki_filmler_iki();
+
+        vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
+        vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
+        vizyondaki_filmler_film_suresi.setCellValueFactory(new PropertyValueFactory("film_suresi"));
+        vizyondaki_filmler_yonetmen.setCellValueFactory(new PropertyValueFactory("yonetmen_ad_soyad"));
+        vizyondaki_filmler_kalkis.setCellValueFactory(new PropertyValueFactory("vizyondan_kalkis_tarihi"));
+        vizyondaki_filmler_kullanici_puani.setCellValueFactory(new PropertyValueFactory("kullanici_puani"));
+        vizyondaki_filmler_detay.setCellValueFactory(new PropertyValueFactory("film_detayi"));
+
+        FilteredList<vizyondaki_filmler> filteredData = new FilteredList<>(data, b -> true);
+
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(viz -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (viz.getFilm_name().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getFilm_type().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getFilm_suresi()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getYonetmen_ad_soyad().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (viz.getVizyondan_kalkis_tarihi().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(viz.getKullanici_puani()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        });
+
+        SortedList<vizyondaki_filmler> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(table_vizyondaki_filmler.comparatorProperty());
+
+        table_vizyondaki_filmler.setItems(sortedData);
+    }
+
     public void vizyondaki_filmler_gosterim() {
         int[] arr = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_dizi_doldur();
         if (arr.length <= 10) {
@@ -620,7 +623,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
                 guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -42)");
             }
         } else {
-guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -43)");
+            guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -43)");
         }
     }
 
@@ -640,7 +643,7 @@ guncelle_mesaj.setText("Bir Hata Meydana Geldi (Hata Kodu: -43)");
         vizyondaki_filmler_geri_tusu.setVisible(false);
         vizyondaki_filmler_gosterim_geri_tusu.setVisible(true);
 
-        //vizyondaki_filmler_table_admin();
+        vizyondaki_filmler_table_admin();
     }
 
     @FXML

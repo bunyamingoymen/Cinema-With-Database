@@ -18,6 +18,8 @@ import javafx.scene.layout.Pane;
 public class Mediator {
 
     private static ObservableList<vizyondaki_filmler> data_vizyondaki_filmler_bir;
+    
+    private static ObservableList<vizyondaki_filmler> data_vizyondaki_filmler_iki;
 
     private static int data_vizyondaki_filmler_bir_guncellendi_mi;
 
@@ -34,6 +36,7 @@ public class Mediator {
     private static ObservableList<haberler> data_haberler;
 
     private static ObservableList<users> data_users;
+    
 
     public Mediator() {
         data_vizyondaki_filmler_bir_guncellendi_mi = 1;
@@ -53,6 +56,14 @@ public class Mediator {
 
         }
         return data_vizyondaki_filmler_bir;
+    }
+    
+    public static ObservableList<vizyondaki_filmler> data_vizyondaki_filmler_iki() {
+        if (data_vizyondaki_filmler_iki == null) {
+            data_vizyondaki_filmler_iki = FXCollections.observableArrayList();
+            data_vizyondaki_filmler_iki = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_select(data_vizyondaki_filmler_iki);
+        }
+        return data_vizyondaki_filmler_iki;
     }
 
     public static ObservableList<actor> data_Actor(Label lab, Label lab2, Pane pan, Label lab3, GridPane aktorler_grid, GridPane film_actor_grid, FontAwesomeIconView aktorler_geri_tusu, FontAwesomeIconView film_actor_geri_tusu, TableColumn<film_actor, String> film_actor_film_name, TableColumn<film_actor, String> film_actor_film_type, TableColumn<film_actor, String> film_actor_yonetmen, TableColumn<film_actor, Button> film_actor_sil, TableView<film_actor> table_film_actor, TextField filterField_film_actor, Pane film_actor_pane, Pane film_actor_ekle_pane, Pane film_actor_sil_emin_misin_pane, Label film_actor_id_label) {
