@@ -180,18 +180,23 @@ public class Creator {
     }
 
     public duyurular duyurular(int secim) {
+        duyurular duyurular = null;
         switch (secim) {
             case 1:
+                duyurular = new haberler();
                 break;
             case 0:
+                duyurular = new kampanyalar();
                 break;
             default:
+                System.out.println("Hata kodu: -44");
                 break;
         }
-        return null;
+        return duyurular;
     }
 
     public filmler filmler(int secim) {
+        filmler filmler = null;
         switch (secim) {
             case 1:
                 filmler = new vizyondaki_filmler();
