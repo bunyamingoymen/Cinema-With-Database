@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -162,9 +163,9 @@ public class eski_filmlerDAO {
         return sonuc;
     }
     
-    public void eski_filmler_toplu_sil(ResultSet rs) throws SQLException{
-        while(rs.next()){
-            eski_filmler_sil_vizyondaki_filmlere_ekleme(rs.getInt("film_id"));
+    public void eski_filmler_toplu_sil(LinkedList<Integer> list){
+        for(int i = 0; i<list.size();i++){
+            eski_filmler_sil_vizyondaki_filmlere_ekleme(list.get(i));
         }
     }
 

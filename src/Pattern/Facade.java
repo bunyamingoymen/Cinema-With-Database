@@ -8,6 +8,7 @@ import DAO.filmlerDAO;
 import DAO.vizyondaki_filmlerDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 public class Facade {
     
@@ -21,15 +22,16 @@ public class Facade {
         ResultSet rs = fadao.film_actor_film_id_yolla(aktor_id);
         
         if(rs!= null){
-            ResultSet rs2 = rs;
-            ResultSet rs3 = rs;
-            ResultSet rs4 = rs;
-            ResultSet rs5 = rs;
             
-            fadao.film_actor_toplu_sil_(rs2);
-            vfdao.vizyondaki_filmler_toplu_sil(rs3);
-            efdao.eski_filmler_toplu_sil(rs4);
-            fdao.filmler_toplu_sil(rs5);
+            LinkedList<Integer> list = new LinkedList<Integer>();
+            while(rs.next()){
+                list.add(rs.getInt("film_id"));
+            }
+            
+            fadao.film_actor_toplu_sil_(list);
+            vfdao.vizyondaki_filmler_toplu_sil(list);
+            efdao.eski_filmler_toplu_sil(list);
+            fdao.filmler_toplu_sil(list);
             adao.aktorler_sil(aktor_id);
             
             

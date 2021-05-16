@@ -40,6 +40,14 @@ public class vizyondaki_filmler extends filmler {
 
     }
 
+    public vizyondaki_filmler(int vizyondaki_filmler_id, LocalDate vizyondan_kalkis_tarihi, int film_id, String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, float kullanici_puani) {
+        super(film_id, film_name, film_type, film_suresi, yonetmen_ad_soyad, kullanici_puani);
+        this.vizyondaki_filmler_id = vizyondaki_filmler_id;
+        this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
+    }
+    
+    
+
     public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad, String soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
         super(film_id, film_name, film_type, film_suresi, ad + " " + soyad, kullanici_puani);
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
@@ -104,5 +112,12 @@ public class vizyondaki_filmler extends filmler {
     public void setFilm_detayi(Button film_detayi) {
         this.film_detayi = film_detayi;
     }
+
+    @Override
+    public String toString() {
+        return (getVizyondaki_filmler_id() + " " + getVizyondan_kalkis_tarihi() + " " + super.getFilm_id() + " " + super.getFilm_name() + " " + super.getFilm_type() + " " + super.getFilm_suresi() + " " + super.getYonetmen_ad_soyad() + " " + super.getKullanici_puani());
+    }
+    
+    
 
 }

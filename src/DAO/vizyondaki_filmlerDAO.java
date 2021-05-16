@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -78,6 +79,32 @@ public class vizyondaki_filmlerDAO {
 
     }
     
+    public LinkedList<vizyondaki_filmler> vizyondaki_filmler_hepsini_getir(){
+        LinkedList list = new LinkedList<vizyondaki_filmler>();
+        
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from vizyondaki_filmler_tablo";
+            ResultSet rs = st.executeQuery(komut);
+            while(rs.next()){
+                vizyondaki_filmler v = new vizyondaki_filmler( rs.getInt("vizyondaki_film_id"), rs.getDate("vizyondan_kalkis_tarihi").toLocalDate(), rs.getInt("film_id"), rs.getString("film_name"), rs.getString("film_type"), rs.getInt("film_suresi"), rs.getString("ad") + " " + rs.getString("soyad"), rs.getFloat("kullanici_puani"));
+                list.add(v);
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 260 - " + e.getMessage());
+        }
+        
+        
+        return list;
+    }
+    
     public int vizyondaki_filmler_sil_eski_filmlere_ekleme(int film_id){
         int sonuc = 0;
         try{
@@ -97,9 +124,9 @@ public class vizyondaki_filmlerDAO {
         return sonuc;
     }
     
-    public void vizyondaki_filmler_toplu_sil(ResultSet rs) throws SQLException{
-        while(rs.next()){
-            vizyondaki_filmler_sil_eski_filmlere_ekleme(rs.getInt("film_id"));
+    public void vizyondaki_filmler_toplu_sil(LinkedList<Integer> list){
+        for(int i = 0; i<list.size();i++){
+            vizyondaki_filmler_sil_eski_filmlere_ekleme(list.get(i));
         }
     }
 

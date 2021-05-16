@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import util.DBConnector;
 
 public class filmlerDAO {
@@ -158,9 +159,9 @@ public class filmlerDAO {
         }
     }
     
-    public void filmler_toplu_sil(ResultSet rs) throws SQLException{
-        while(rs.next()){
-            filmler_dao_delete(rs.getInt("film_id"));
+    public void filmler_toplu_sil(LinkedList<Integer> list){
+        for(int i = 0;i <list.size();i++){
+            filmler_dao_delete(list.get(i));
         }
     }
 
@@ -213,6 +214,29 @@ public class filmlerDAO {
 
         } catch (SQLException e) {
             System.out.println("Hata kodu: 135 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+    
+        public int film_id_var_mi(int film_id) {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (film_id) from filmler where film_id= " + film_id;
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 262 - " + e.getMessage());
         }
 
         return sonuc;

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -138,9 +139,9 @@ public class film_actorDAO {
         return sonuc;
     }
     
-    public void film_actor_toplu_sil_(ResultSet rs) throws SQLException{
-        while(rs.next()){
-            film_actor_film_id_sil(rs.getInt("film_id"));
+    public void film_actor_toplu_sil_(LinkedList<Integer> list){
+        for(int i =0; i<list.size(); i++){
+            film_actor_film_id_sil(list.get(i));
         }
     }
 }

@@ -136,4 +136,27 @@ public class actorDAO {
         return sonuc;
     }
 
+    public int son_actor_id_getir() {
+        int actor_id = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from actor";
+            ResultSet rs = st.executeQuery(komut);
+            while(rs.next()){
+                actor_id = rs.getInt("actor_id");
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 261 - " + e.getMessage());
+        }
+
+        return actor_id;
+    }
+
 }
