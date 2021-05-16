@@ -2,8 +2,8 @@ package Code_Admin;
 
 import entity.eski_filmler;
 import entity.filmler;
-import Creator.Creator;
-import Creator.Mediator;
+import Pattern.Creator;
+import Pattern.Mediator;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;

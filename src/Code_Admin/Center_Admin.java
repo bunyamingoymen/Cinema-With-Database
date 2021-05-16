@@ -1,6 +1,6 @@
 package Code_Admin;
 
-import Creator.Creator;
+import Pattern.Creator;
 import DAO.films_photosDAO;
 import entity.*;
 import java.awt.image.BufferedImage;

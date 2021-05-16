@@ -1,6 +1,6 @@
 package Code_Standart_user;
 
-import Creator.Creator;
+import Pattern.Creator;
 import DAO.satin_alinan_biletlerDAO;
 import entity.satin_alinan_biletler;
 import javafx.collections.FXCollections;

@@ -1,4 +1,4 @@
-package Creator;
+package Pattern;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.*;

@@ -1,7 +1,7 @@
 package Code_Admin;
 
 import entity.sinema_salonlari;
-import Creator.Creator;
+import Pattern.Creator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

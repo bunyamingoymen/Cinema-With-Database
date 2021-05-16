@@ -142,6 +142,32 @@ public class eski_filmlerDAO {
 
     }
 
+    public int eski_filmler_sil_vizyondaki_filmlere_ekleme(int film_id) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
+            String komut = "delete from eski_filmler where film_id=" + film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :257 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+    
+    public void eski_filmler_toplu_sil(ResultSet rs) throws SQLException{
+        while(rs.next()){
+            eski_filmler_sil_vizyondaki_filmlere_ekleme(rs.getInt("film_id"));
+        }
+    }
+
     public int eski_filmler_dao_ekle(eski_filmler ed) {
         int sonuc = 0;
         try {

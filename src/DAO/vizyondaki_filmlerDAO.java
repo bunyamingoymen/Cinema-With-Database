@@ -77,6 +77,31 @@ public class vizyondaki_filmlerDAO {
         }
 
     }
+    
+    public int vizyondaki_filmler_sil_eski_filmlere_ekleme(int film_id){
+        int sonuc = 0;
+        try{
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            eski_filmlerDAO edao = new eski_filmlerDAO();
+            String komut = "delete from vizyondaki_filmler where film_id=" + film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        }catch(SQLException e){
+            System.out.println("Hata kodu :256 - " + e.getMessage());
+        }
+        
+        return sonuc;
+    }
+    
+    public void vizyondaki_filmler_toplu_sil(ResultSet rs) throws SQLException{
+        while(rs.next()){
+            vizyondaki_filmler_sil_eski_filmlere_ekleme(rs.getInt("film_id"));
+        }
+    }
 
     public int vizyondaki_filmler_dao_ekle(vizyondaki_filmler v) {
         int sonuc = 0;

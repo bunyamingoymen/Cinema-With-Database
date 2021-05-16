@@ -2,7 +2,7 @@ package Code_Admin;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import Creator.Creator;
+import Pattern.Creator;
 
 public class Filmler extends Eski_Filmler {
 

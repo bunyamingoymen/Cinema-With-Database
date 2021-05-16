@@ -1,6 +1,6 @@
 package Code_Standart_user;
 
-import Creator.Mediator;
+import Pattern.Mediator;
 import entity.vizyondaki_filmler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

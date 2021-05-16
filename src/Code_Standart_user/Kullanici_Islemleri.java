@@ -1,7 +1,7 @@
 package Code_Standart_user;
 
-import Creator.Creator;
-import Creator.Mediator;
+import Pattern.Creator;
+import Pattern.Mediator;
 import DAO.kullanici_degerlendirmesiDAO;
 import entity.kullanici_degerlendirmesi;
 import javafx.event.ActionEvent;

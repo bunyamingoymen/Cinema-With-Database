@@ -1,7 +1,7 @@
 package Controller;
 
 import Code_Admin.Center_Admin;
-import Creator.Creator;
+import Pattern.Creator;
 
 import java.net.URL;
 import java.util.ResourceBundle;

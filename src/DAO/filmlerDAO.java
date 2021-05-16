@@ -157,6 +157,12 @@ public class filmlerDAO {
             return 0;
         }
     }
+    
+    public void filmler_toplu_sil(ResultSet rs) throws SQLException{
+        while(rs.next()){
+            filmler_dao_delete(rs.getInt("film_id"));
+        }
+    }
 
     public String[][] filmler_combo_doldur() {
         String[][] arr = new String[kac_tane_film_var()][2];

@@ -85,4 +85,62 @@ public class film_actorDAO {
         }
         return sonuc;
     }
+
+    public ResultSet film_actor_film_id_yolla(int actor_id) {
+        ResultSet rs = null;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select film_id from film_actor where actor_id = " + actor_id;
+            rs = st.executeQuery(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata Kodu: 255 - " + e.getMessage());
+        }
+        return rs;
+
+    }
+    
+    public int film_actor_actor_id_sil(int actor_id){
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from film_actor where actor_id = " + actor_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata Kodu: 258 - " + e.getMessage());
+        }
+        return sonuc;
+    }
+    
+    public int film_actor_film_id_sil(int film_id){
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from film_actor where film_id = " + film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata Kodu: 289 - " + e.getMessage());
+        }
+        return sonuc;
+    }
+    
+    public void film_actor_toplu_sil_(ResultSet rs) throws SQLException{
+        while(rs.next()){
+            film_actor_film_id_sil(rs.getInt("film_id"));
+        }
+    }
 }
