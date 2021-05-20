@@ -40,7 +40,7 @@ public class Facade_Test {
 
         f.aktorler_her_seyi_sil(actor_id);
         
-        System.out.println("Facade Çalıştı");
+        System.out.println("Facade Calisti");
     }
 
     @Before

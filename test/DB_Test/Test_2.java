@@ -40,7 +40,7 @@ public class Test_2 {
     
     @After
     public void test_after(){
-        System.out.println("Adter çalıştı");
+        System.out.println("After çalıştı");
     }
     
 }
