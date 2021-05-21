@@ -45,9 +45,9 @@ public class actor {
         this.filmleri_goster = filmleri_goster;
 
         guncelle.setOnAction(e -> {
-            actor a = new actor(this.actor_id, this.ad, this.soyad);
+            Center nw = new Center(this.actor_id, this.ad, this.soyad);
             actorDAO adao = new actorDAO();
-            adao.aktorler_degistir(a);
+            adao.update(nw);
 
             lab.setText("İşlem Başarılı bir şekilde gerçekleşti.");
         });

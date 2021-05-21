@@ -27,7 +27,7 @@ public class aboneler {
         this.abone_type = abone_type;
         this.kalan_ucretsiz_bilet_sayisi = kalan_ucretsiz_bilet_sayisi;
     }
-
+    
     public int getAbone_id() {
         return abone_id;
     }

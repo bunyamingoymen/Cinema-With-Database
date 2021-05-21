@@ -1,6 +1,7 @@
 package DAO;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import entity.Center;
 import entity.actor;
 import entity.film_actor;
 
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -19,7 +21,169 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import util.DBConnector;
 
-public class actorDAO {
+public class actorDAO implements IDAO {
+
+    @Override
+    public int create(Center nw) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "insert into actor (ad,soyad) values ('" + nw.getActor().getAd() + "','" + nw.getActor().getSoyad() + "')";
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata Kodu: 107 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public LinkedList read() {
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from actor";
+            ResultSet rs = st.executeQuery(komut);
+
+            LinkedList list = new LinkedList<Center>();
+
+            while (rs.next()) {
+
+                int actor_id = rs.getInt("actor_id");
+                String ad = rs.getString("ad");
+                String soyad = rs.getString("soyad");
+                actor a = new actor(actor_id, ad, soyad);
+                list.add(a);
+
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return list;
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 104 - " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public int update(Center nw) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "update actor set ad = '" + nw.getActor().getAd() + "' , soyad = '" + nw.getActor().getSoyad() + "' where actor_id =" + nw.getActor().getActor_id();
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :105 - " + e.getMessage());
+        }
+        return sonuc;
+    }
+
+    @Override
+    public int delete(int actor_id) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from actor where actor_id = " + actor_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :106 - " + e.getMessage());
+        }
+        return sonuc;
+    }
+
+    @Override
+    public int count() {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (actor_id) from actor";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 108 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    public ObservableList<actor> select(ObservableList<actor> data, Label lab, Label lab2, Pane pan, Label lab3, GridPane aktorler_grid, GridPane film_actor_grid, FontAwesomeIconView aktorler_geri_tusu, FontAwesomeIconView film_actor_geri_tusu, TableColumn<film_actor, String> film_actor_film_name, TableColumn<film_actor, String> film_actor_film_type, TableColumn<film_actor, String> film_actor_yonetmen, TableColumn<film_actor, Button> film_actor_sil, TableView<film_actor> table_film_actor, TextField filterField_film_actor, Pane film_actor_pane, Pane film_actor_ekle_pane, Pane film_actor_sil_emin_misin_pane, Label film_actor_id_label) {
+        LinkedList<actor> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            Button guncelle = new Button();
+            guncelle.setText("Güncelle");
+            guncelle.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+            Button filmleri_goster = new Button();
+            filmleri_goster.setText("Filmleri Göster");
+            filmleri_goster.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+            Button sil = new Button();
+            sil.setText("Sil");
+            sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
+
+            data.addAll(FXCollections.observableArrayList(new actor(list.get(i).getActor_id(), list.get(i).getAd(), list.get(i).getSoyad(), guncelle, sil, filmleri_goster, lab, lab2, pan, lab3, aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_pane, film_actor_ekle_pane, film_actor_sil_emin_misin_pane, film_actor_id_label)));
+        }
+
+        return data;
+    }
+
+    //son eklenen actor_id'yi getirir
+    public int search() {
+        int actor_id = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from actor";
+            ResultSet rs = st.executeQuery(komut);
+            while (rs.next()) {
+                actor_id = rs.getInt("actor_id");
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 261 - " + e.getMessage());
+        }
+
+        return actor_id;
+    }
+
+    /*
 
     public ObservableList<actor> aktorler_select(ObservableList<actor> data, Label lab, Label lab2, Pane pan, Label lab3, GridPane aktorler_grid, GridPane film_actor_grid, FontAwesomeIconView aktorler_geri_tusu, FontAwesomeIconView film_actor_geri_tusu, TableColumn<film_actor, String> film_actor_film_name, TableColumn<film_actor, String> film_actor_film_type, TableColumn<film_actor, String> film_actor_yonetmen, TableColumn<film_actor, Button> film_actor_sil, TableView<film_actor> table_film_actor, TextField filterField_film_actor, Pane film_actor_pane, Pane film_actor_ekle_pane, Pane film_actor_sil_emin_misin_pane, Label film_actor_id_label) {
         try {
@@ -159,4 +323,5 @@ public class actorDAO {
         return actor_id;
     }
 
+     */
 }
