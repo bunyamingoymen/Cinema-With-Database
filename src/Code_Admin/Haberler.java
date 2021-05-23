@@ -3,7 +3,7 @@ package Code_Admin;
 import DAO.haberlerDAO;
 import entity.haberler;
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -202,7 +202,7 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
 
     public void haberler_table_butonlu() {
 
-        ObservableList<haberler> data = Mediator.data_Haberler(haberler_sil_emin_misin_pane, haberler_silmekten_emin_haber_id);
+        ObservableList<haberler> data = Table.data_Haberler(haberler_sil_emin_misin_pane, haberler_silmekten_emin_haber_id);
 
         haberler_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
         haberler_title.setCellValueFactory(new PropertyValueFactory("Title"));

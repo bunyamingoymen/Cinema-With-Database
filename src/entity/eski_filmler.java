@@ -27,8 +27,16 @@ public class eski_filmler extends filmler {
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani, Button detay) {
-        super(film_name, film_type, film_suresi, yonetmen_ad + " " + yonetmen_soyad, kullanici_puani);
+    public eski_filmler(String film_name, String film_type, int film_suresi, String ad, String soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani) {
+        super(film_name, film_suresi, film_type, ad + " " + soyad, kullanici_puani);
+        this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
+        this.aldigi_odul_sayisi = aldigi_odul_sayisi;
+    }
+                
+                
+
+    public eski_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani, Button detay) {
+        super(film_name, film_type, film_suresi, yonetmen_ad_soyad, kullanici_puani);
         this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
         this.detay = detay;
@@ -46,8 +54,8 @@ public class eski_filmler extends filmler {
         this.hangi_aboneler_izleyebilir = hangi_abone;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String ad, String soyad, int aldigi_odul_sayisi, Button detay) {
-        super(film_name, film_suresi, film_type, ad + " " + soyad);
+    public eski_filmler(String film_name, String film_type, int film_suresi, String ad_soyad, int aldigi_odul_sayisi, Button detay) {
+        super(film_name, film_suresi, film_type, ad_soyad);
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
         this.detay = detay;
 

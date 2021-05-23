@@ -3,7 +3,7 @@ package Code_Admin;
 import DAO.yonetmenlerDAO;
 import entity.yonetmenler;
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -196,7 +196,7 @@ public class Yonetmenler extends Vizyondaki_Filmler {
 
         yonetmenlerDAO ydao = new yonetmenlerDAO();
 
-        ObservableList<yonetmenler> data = Mediator.data_Yonetmenler();
+        ObservableList<yonetmenler> data = Table.data_Yonetmenler();
 
         yonetmenler_yonetmen_id.setCellValueFactory(new PropertyValueFactory("yonetmen_id"));
         yonetmenler_ad.setCellValueFactory(new PropertyValueFactory("yonetmen_name"));

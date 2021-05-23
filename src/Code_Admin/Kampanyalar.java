@@ -2,7 +2,7 @@ package Code_Admin;
 
 import entity.kampanyalar;
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -200,7 +200,7 @@ public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) 
 
     public void kampanyalar_table_butonlu() {
 
-        ObservableList<kampanyalar> data = Mediator.data_Kampanyalar(kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
+        ObservableList<kampanyalar> data = Table.data_Kampanyalar(kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
 
         kampanyalar_hangi_kullanıcı.setCellValueFactory(new PropertyValueFactory("hangi_kullanici_turu"));
         kampanyalar_title.setCellValueFactory(new PropertyValueFactory("Title"));

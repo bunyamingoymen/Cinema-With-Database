@@ -3,7 +3,7 @@ package Code_Admin;
 import entity.eski_filmler;
 import entity.filmler;
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -306,7 +306,7 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
 
     public void eski_filmler_table_aboneli() {
 
-        ObservableList<eski_filmler> data = Mediator.data_Eski_Filmler();
+        ObservableList<eski_filmler> data = Table.data_Eski_Filmler();
 
         eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));

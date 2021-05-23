@@ -1,7 +1,7 @@
 package Code_Admin;
 
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import entity.actor;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -89,7 +89,7 @@ public class Aktorler extends Par {
         aktorler_sil.setCellValueFactory(new PropertyValueFactory("sil"));
         aktorler_filmler.setCellValueFactory(new PropertyValueFactory("filmleri_goster"));
 
-        ObservableList<actor> data = Mediator.data_Actor(aktorler_table_uyari_mesaj, aktorler_silmekten_emin_id, aktorler_sil_emin_misin, film_actor_table_actor_id, aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_pane, film_actor_ekle_pane, film_actor_sil_emin_misin_pane, film_actor_id);
+        ObservableList<actor> data = Table.data_Actor(aktorler_table_uyari_mesaj, aktorler_silmekten_emin_id, aktorler_sil_emin_misin, film_actor_table_actor_id, aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_pane, film_actor_ekle_pane, film_actor_sil_emin_misin_pane, film_actor_id);
 
         aktorler_table_edit();
         aktorler_table_filter(data);

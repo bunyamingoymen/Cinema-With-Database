@@ -7,7 +7,7 @@ import DAO.vizyondaki_filmlerDAO;
 import DAO.yonetmenlerDAO;
 import entity.seans;
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -62,7 +62,7 @@ public class Seans extends Kullanici_islemleri {
 
     public void seans_table() {
 
-        ObservableList<seans> data = Mediator.data_Seans();
+        ObservableList<seans> data = Table.data_Seans();
 
         seans_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         seans_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));

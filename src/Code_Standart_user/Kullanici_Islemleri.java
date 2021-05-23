@@ -1,7 +1,7 @@
 package Code_Standart_user;
 
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import DAO.kullanici_degerlendirmesiDAO;
 import entity.kullanici_degerlendirmesi;
 import javafx.event.ActionEvent;
@@ -409,7 +409,7 @@ public class Kullanici_Islemleri extends Biletlerim {
         kullanici_degerlendirmesiDAO kdao = new kullanici_degerlendirmesiDAO();
 
         int sonuc = kdao.kullanici_degerlendirmesi_yeni_degerlendirme(k);
-        Mediator m = new Mediator();
+        Table m = new Table();
         switch (sonuc) {
             case 1:
             case 2:

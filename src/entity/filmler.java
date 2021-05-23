@@ -66,7 +66,25 @@ public class filmler {
         this.yonetmen_ad_soyad = yonetmen_ad_soyad;
     }
 
+    public filmler(String film_name, int film_suresi, String film_type, String yonetmen_ad_soyad, float kullanici_puani) {
+        this.film_name = film_name;
+        this.film_suresi = film_suresi;
+        this.film_type = film_type;
+        this.kullanici_puani = kullanici_puani;
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
+    }
+
     public filmler() {
+    }
+
+    public filmler(int film_id, String film_name, String film_type, int film_suresi, int yonetmen_id, int kullanici_puani, String ad_soyad) {
+        this.film_id = film_id;
+        this.film_name = film_name;
+        this.film_type = film_type;
+        this.film_suresi = film_suresi;
+        this.yonetmen_id = yonetmen_id;
+        this.kullanici_puani = kullanici_puani;
+        this.yonetmen_ad_soyad = ad_soyad;
     }
 
     public int getFilm_id() {

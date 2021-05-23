@@ -1,7 +1,7 @@
 package Code_Admin;
 
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import entity.users;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,7 +15,7 @@ public class Kullanici_islemleri extends Kampanyalar {
 
     public void users_tablo() {
 
-        ObservableList<users> data = Mediator.data_Users(kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane, kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu, kullanici_islemleri_silmekten_emin_misin_pane);
+        ObservableList<users> data = Table.data_Users(kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, kullanici_islemleri_gizli_pane, kullanici_islemleri_acik_pane, kullanici_islemleri_table_pane, kullanici_islemleri_yonet_pane, kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu, kullanici_islemleri_silmekten_emin_misin_pane);
 
         users_user_id.setCellValueFactory(new PropertyValueFactory("user_id"));
         users_user_name.setCellValueFactory(new PropertyValueFactory("user_name"));

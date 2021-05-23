@@ -54,6 +54,14 @@ public class film_actor {
         this.actor_id = actor_id;
     }
 
+    public film_actor(int film_actor_id, int film_id, String film_name, String film_type, String ad_soyad) {
+        this.film_actor_id = film_actor_id;
+        this.film_id = film_id;
+        this.film_name = film_name;
+        this.film_type = film_type;
+        this.ad_soyad = ad_soyad;
+    }
+
     public int getFilm_actor_id() {
         return film_actor_id;
     }

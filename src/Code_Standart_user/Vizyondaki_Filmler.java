@@ -1,6 +1,6 @@
 package Code_Standart_user;
 
-import Pattern.Mediator;
+import Pattern.Table;
 import entity.vizyondaki_filmler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +38,7 @@ public class Vizyondaki_Filmler extends Kampanyalar {
 
         ObservableList<vizyondaki_filmler> data = FXCollections.observableArrayList();
 
-        data = Mediator.vizyondaki_filmler_bir(film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+        data = Table.vizyondaki_filmler_bir(film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));

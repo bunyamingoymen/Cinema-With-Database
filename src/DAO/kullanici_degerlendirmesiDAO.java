@@ -127,7 +127,7 @@ public class kullanici_degerlendirmesiDAO {
         
         filmlerDAO fdao = new filmlerDAO();
         
-        int sonuc = fdao.kullanici_puani_degsitir(film_id, ortalama);
+        int sonuc = fdao.update(film_id, ortalama);
         
         
         return sonuc;

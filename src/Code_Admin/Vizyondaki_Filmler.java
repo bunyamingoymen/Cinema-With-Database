@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javax.imageio.ImageIO;
 import Pattern.Creator;
-import Pattern.Mediator;
+import Pattern.Table;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -235,7 +235,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     public void vizyondaki_filmler_table_admin() {
 
-        ObservableList<vizyondaki_filmler> data = Mediator.data_vizyondaki_filmler_iki();
+        ObservableList<vizyondaki_filmler> data = Table.data_vizyondaki_filmler_iki();
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
