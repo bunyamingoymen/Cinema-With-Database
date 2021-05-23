@@ -1,10 +1,12 @@
 package DAO;
 
+import entity.Center;
 import entity.kampanyalar;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -12,9 +14,234 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import util.DBConnector;
 
-public class kampanyalarDAO {
+public class kampanyalarDAO implements IDAO {
 
-    public ObservableList<kampanyalar> kampanyalar_select(ObservableList<kampanyalar> data, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
+    @Override
+    public int create(Center nw) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "insert into kampanyalar (hangi_kullanici_turu, Title, Kampanya, Tarih, Kampanya_Kategorisi) values ('" + nw.getKampanyalar().getHangi_kullanici_turu() + "','" + nw.getKampanyalar().getTitle() + "','" + nw.getKampanyalar().getDuyuru() + "','" + nw.getKampanyalar().getTarih() + "','" + nw.getKampanyalar().getKategori() + "') ";
+
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :217" + e.getMessage());;
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public LinkedList read() {
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from kampanyalar";
+            ResultSet rs = st.executeQuery(komut);
+            LinkedList<kampanyalar> list = new LinkedList<>();
+
+            while (rs.next()) {
+
+                kampanyalar k = new kampanyalar(rs.getInt("kampanya_id"), rs.getInt("hangi_kullanici_turu"), rs.getString("Title"), rs.getString("Kampanya"), rs.getString("Tarih"), rs.getString("Kampanya_Kategorisi"));
+
+                list.add(k);
+
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 213  " + e.getMessage());;
+            return null;
+        }
+
+    }
+
+    @Override
+    public int update(Center nw) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "update kampanyalar set hangi_kullanici_turu = " + nw.getKampanyalar().getHangi_kullanici_turu() + " , Title = '" + nw.getKampanyalar().getTitle() + "', Kampanya = '" + nw.getKampanyalar().getDuyuru() + "', Tarih = '" + nw.getKampanyalar().getTarih() + "', Kampanya_Kategorisi = '" + nw.getKampanyalar().getKategori() + "' where kampanya_id =" + nw.getKampanyalar().getId();
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :218" + e.getMessage());;
+        }
+        return sonuc;
+    }
+
+    @Override
+    public int delete(int kampanya_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from kampanyalar where kampanya_id=" + kampanya_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :219" + e.getMessage());;
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public int count() {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (kampanya_id) from kampanyalar ";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 216  " + e.getMessage());;
+        }
+
+        return sonuc;
+    }
+
+    public ObservableList<kampanyalar> select(ObservableList<kampanyalar> data, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
+        LinkedList<kampanyalar> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            Button sil = new Button();
+            sil.setText("Sil");
+            sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
+
+            data.addAll(FXCollections.observableArrayList(new kampanyalar(list.get(i).getId(), list.get(i).getHangi_kullanici_turu(), list.get(i).getTitle(), list.get(i).getDuyuru(), list.get(i).getTarih(), list.get(i).getKategori(), sil, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id)));
+        }
+
+        return data;
+    }
+
+    public ObservableList<kampanyalar> select(ObservableList<kampanyalar> data, int kullanici_turu) {
+
+        LinkedList<kampanyalar> list = new LinkedList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            if (list.get(i).getHangi_kullanici_turu() <= kullanici_turu) {
+                data.addAll(FXCollections.observableArrayList(new kampanyalar(list.get(i).getTitle(), list.get(i).getDuyuru(), list.get(i).getTarih(), list.get(i).getKategori())));
+            }
+
+        }
+
+        return data;
+    }
+
+    //combo doldurmak için kullanılan select
+    public String[][] select() {
+
+        LinkedList<kampanyalar> list = read();
+        String[][] arr = new String[count()][2];
+
+        for (int i = 0; i < list.size(); i++) {
+            String kampanyalar_combo = list.get(i).getId() + " | " + list.get(i).getTitle() + " | " + list.get(i).getDuyuru();
+            int id = list.get(i).getId();
+            arr[i][0] = kampanyalar_combo;
+            arr[i][1] = String.valueOf(id);
+        }
+
+        return arr;
+    }
+
+    //Title, Kampanya, Tarih ve Kategori getirir
+    public String search_string(int kampanya_id, int secim) {
+        String sonuc = null;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from kampanyalar where kampanya_id=" + kampanya_id;
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            switch (secim) {
+                case 1:
+                    sonuc = rs.getString("Title");
+                    break;
+                case 2:
+                    sonuc = rs.getString("Kampanya");
+                    break;
+                case 3:
+                    sonuc = rs.getString("Tarih");
+                    break;
+                case 4:
+                    sonuc = rs.getString("Kampanya_Kategorisi");
+                    break;
+                default:
+                    System.out.println("Hata kodu: 204");
+                    return null;
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 221  " + e.getMessage());;
+        }
+
+        return sonuc;
+    }
+
+    //sadece hangi kullanıcı tüürnü getirir
+    public int searc_int(int kampanya_id) {
+        int hangi_kullanici = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from kampanyalar where kampanya_id=" + kampanya_id;
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            hangi_kullanici = rs.getInt("hangi_kullanici_turu");
+
+            c.close();
+            st.close();
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 220  " + e.getMessage());;
+        }
+
+        return hangi_kullanici;
+    }
+
+    /*
+
+    //public ObservableList<kampanyalar> kampanyalar_select(ObservableList<kampanyalar> data, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {
 
         try {
             DBConnector d = new DBConnector();
@@ -49,7 +276,7 @@ public class kampanyalarDAO {
         return data;
     }
 
-    public ObservableList<kampanyalar> kampanyalar_select(ObservableList<kampanyalar> data, int kullanici_turu) {
+    //public ObservableList<kampanyalar> kampanyalar_select(ObservableList<kampanyalar> data, int kullanici_turu) {
 
         try {
             DBConnector d = new DBConnector();
@@ -81,7 +308,7 @@ public class kampanyalarDAO {
         return data;
     }
 
-    public String[][] kampanyalar_combo_doldur() {
+    //public String[][] kampanyalar_combo_doldur() {
         String[][] arr = new String[kac_tane_kampanya_var()][2];
         try {
             DBConnector d = new DBConnector();
@@ -112,7 +339,7 @@ public class kampanyalarDAO {
         return null;
     }
 
-    public int kac_tane_kampanya_var() {
+    //public int kac_tane_kampanya_var() {
         int sonuc = -1;
 
         try {
@@ -135,7 +362,7 @@ public class kampanyalarDAO {
         return sonuc;
     }
 
-    public int kampanyalar_dao_ekle(kampanyalar k) {
+    //public int kampanyalar_dao_ekle(kampanyalar k) {
         int sonuc = 0;
         try {
             DBConnector d = new DBConnector();
@@ -155,7 +382,7 @@ public class kampanyalarDAO {
         return sonuc;
     }
 
-    public int kampanyalar_degistir(kampanyalar k) {
+    //public int kampanyalar_degistir(kampanyalar k) {
         int sonuc = 0;
         try {
             DBConnector d = new DBConnector();
@@ -173,7 +400,7 @@ public class kampanyalarDAO {
 
     }
 
-    public int kampanyalar_sil(int kampanya_id) {
+    //public int kampanyalar_sil(int kampanya_id) {
         int sonuc = 0;
 
         try {
@@ -194,7 +421,7 @@ public class kampanyalarDAO {
 
     }
 
-    public int kampanyalar_hangi_kullanici_getir(int kampanya_id) {
+    //public int kampanyalar_hangi_kullanici_getir(int kampanya_id) {
         int hangi_kullanici = -1;
 
         try {
@@ -216,7 +443,7 @@ public class kampanyalarDAO {
         return hangi_kullanici;
     }
 
-    public String kampanyalar_title_getir(int kampanya_id) {
+    //public String kampanyalar_title_getir(int kampanya_id) {
         String title = null;
 
         try {
@@ -238,7 +465,7 @@ public class kampanyalarDAO {
         return title;
     }
 
-    public String kampanyalar_kampanya_getir(int kampanya_id) {
+    //public String kampanyalar_kampanya_getir(int kampanya_id) {
         String kampanya = null;
 
         try {
@@ -260,7 +487,7 @@ public class kampanyalarDAO {
         return kampanya;
     }
 
-    public String kampanyalar_tarih_getir(int kampanya_id) {
+    //public String kampanyalar_tarih_getir(int kampanya_id) {
         String tarih = null;
 
         try {
@@ -282,7 +509,7 @@ public class kampanyalarDAO {
         return tarih;
     }
 
-    public String kampanyalar_kampanya_kategorisi_getir(int kampanya_id) {
+    //public String kampanyalar_kampanya_kategorisi_getir(int kampanya_id) {
         String kategori = null;
 
         try {
@@ -303,4 +530,6 @@ public class kampanyalarDAO {
 
         return kategori;
     }
+
+     */
 }
