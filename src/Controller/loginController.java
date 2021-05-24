@@ -2,6 +2,7 @@ package Controller;
 
 import Pattern.Creator;
 import DAO.usersDAO;
+import entity.Center;
 import entity.users;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,7 +65,7 @@ public class loginController implements Initializable {
         } else {
 
             usersDAO users_islemleri = new usersDAO();
-            int user_id = users_islemleri.user_giris_kontrol(user_name, password);
+            int user_id = users_islemleri.control_login(user_name, password);
 
             pf_password.setText("");
             tf_password.setText("");
@@ -78,15 +79,14 @@ public class loginController implements Initializable {
                 label.setText("Kullanıcı adı veya şifre hatalı");
             } else {
 
-                int authority = users_islemleri.user_type_getir(user_id);
-                String name = users_islemleri.user_name_getir(user_id);
-                String pass = users_islemleri.user_password_getir(user_id);
-                String mail = users_islemleri.user_mail_getir(user_id);
-                
+                int authority = users_islemleri.search_int(user_id);
+                String name = users_islemleri.search_string(user_id, 2);
+                String pass = users_islemleri.search_string(user_id, 1);
+                String mail = users_islemleri.search_string(user_id, 3);
+
                 users u = new users(user_id, name, mail, password, authority);
-                
+
                 Creator.setU(u);
-                
 
                 switch (authority) {
                     case 0: {
@@ -150,10 +150,11 @@ public class loginController implements Initializable {
 
         } else {
             usersDAO users_islemleri = new usersDAO();
-            if (users_islemleri.user_name_control(user_name)) {
-                if (users_islemleri.user_mail_control(user_mail)) {
+            if (users_islemleri.control_user_name(user_name)) {
+                if (users_islemleri.control_user_mail(user_mail)) {
                     users User = new users(user_name, user_mail, password, 0);
-                    int sonuc = users_islemleri.user_ekle(User);
+                    Center nw = new Center(User);
+                    int sonuc = users_islemleri.create(nw);
                     if (sonuc == 1) {
                         tf_username2.setText("");
                         tf_mail.setText("");

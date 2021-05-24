@@ -214,12 +214,18 @@ public class usersDAO implements IDAO {
         LinkedList<users> list = read();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUser_id() == user_id) {
-                if (secim == 1) {
-                    sonuc = list.get(i).getUser_password();
-                } else if (secim == 2) {
-                    sonuc = list.get(i).getUser_name();
-                } else if (secim == 3) {
-                    sonuc = list.get(i).getUser_mail();
+                switch (secim) {
+                    case 1:
+                        sonuc = list.get(i).getUser_password();
+                        break;
+                    case 2:
+                        sonuc = list.get(i).getUser_name();
+                        break;
+                    case 3:
+                        sonuc = list.get(i).getUser_mail();
+                        break;
+                    default:
+                        break;
                 }
                 break;
             }
