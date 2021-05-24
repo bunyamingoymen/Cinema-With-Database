@@ -29,4 +29,10 @@ public class Mediator {
         ardından yonetmenler tablosundaki gerekli metoda yollayarak film sayısını azalt
         */
     }
+    
+    public void user_guncelle_aboneli(){
+        /*
+        user bilgilerini güncellerken abone değişikliği olacak ise hem user sınıfında güncelleme olmalı hem de abone sınıfında güncelleme olmalı.
+        */
+    }
 }

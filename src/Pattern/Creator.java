@@ -6,6 +6,10 @@ import entity.*;
 public class Creator {
 
     private static users u = null;
+    
+    private static abonelerDAO abdao = null;
+    
+    private static aboneler aboneler = null;
 
     private static actorDAO adao = null;
 
@@ -51,6 +55,20 @@ public class Creator {
 
     public static void setU(users u) {
         Creator.u = u;
+    }
+    
+    public static abonelerDAO abonelerDao() {
+        if (abdao == null) {
+            abdao = new abonelerDAO();
+        }
+        return abdao;
+    }
+
+    public static aboneler aboneler() {
+        if (aboneler == null) {
+            aboneler = new aboneler();
+        }
+        return aboneler;
     }
 
     public static actorDAO actorDao() {

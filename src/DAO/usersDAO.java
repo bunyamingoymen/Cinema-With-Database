@@ -1,11 +1,14 @@
 package DAO;
 
+import Pattern.Creator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import entity.Center;
 import entity.users;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -19,14 +22,302 @@ import util.DBConnector;
 /*
 Bu sınıfın asıl amacı veritabanındaki users tablosundaki verileri okumak, yeni veri yazmak ve gerekli olan başka işlemleri yapmak için tasarlandı.
  */
-public class usersDAO {
+public class usersDAO implements IDAO {
 
-    public usersDAO() {
+    @Override
+    public int create(Center nw) {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "insert into users (user_name,user_mail,user_password,user_type) values ('" + nw.getUsers().getUser_name() + "','" + nw.getUsers().getUser_mail() + "','" + nw.getUsers().getUser_password() + "','" + nw.getUsers().getUser_type() + "')";
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 179 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public LinkedList read() {
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from users";
+            ResultSet rs = st.executeQuery(komut);
+            LinkedList<users> list = new LinkedList<>();
+
+            while (rs.next()) {
+
+                users u = new users(rs.getInt("user_id"), rs.getString("user_name"), rs.getString("user_mail"), rs.getString("user_password"), rs.getInt("user_type"), Creator.abonelerDao().search(rs.getInt("user_id")));
+
+                list.add(u);
+
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 240 - " + e.getMessage());
+            return null;
+        }
 
     }
 
+    @Override
+    public int update(Center nw) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+
+            String komut = "update users set user_name='" + nw.getUsers().getUser_name() + "', user_mail='" + nw.getUsers().getUser_mail() + "', user_password = '" + nw.getUsers().getUser_password() + "', user_type = '" + nw.getUsers().getUser_type() + "' where user_id = " + nw.getUsers().getUser_id();
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 188 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public int delete(int user_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from users where user_id = " + user_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :241 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public int count() {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (user_id) from users";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 189 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    public int count_user_name(String user_name) {
+
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (user_id) from users where user_name='" + user_name + "'";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 181 - " + e.getMessage());
+        }
+
+        return sonuc;
+
+    }
+
+    public int count_user_mail(String user_mail) {
+
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (user_id) from users where user_mail='" + user_mail + "'";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 182 - " + e.getMessage());
+        }
+
+        return sonuc;
+
+    }
+
+    public ObservableList<users> select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
+
+        LinkedList<users> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+            Button yonet = new Button();
+            yonet.setText("Yönet");
+            yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+            data.addAll(FXCollections.observableArrayList(new users(list.get(i).getUser_id(), list.get(i).getUser_name(), list.get(i).getUser_mail(), list.get(i).getUser_password(), list.get(i).getUser_type(), list.get(i).getAbonelik_turu(), yonet, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu, sil_pane)));
+
+        }
+
+        return data;
+    }
+
+    public String search_string(int user_id, int secim) {
+        String sonuc = null;
+
+        LinkedList<users> list = read();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUser_id() == user_id) {
+                if (secim == 1) {
+                    sonuc = list.get(i).getUser_password();
+                } else if (secim == 2) {
+                    sonuc = list.get(i).getUser_name();
+                } else if (secim == 3) {
+                    sonuc = list.get(i).getUser_mail();
+                }
+                break;
+            }
+        }
+
+        return sonuc;
+    }
+
+    public int search_int(int user_id) {
+        int sonuc = 0;
+        LinkedList<users> list = new LinkedList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUser_id() == user_id) {
+                sonuc = list.get(i).getUser_type();
+            }
+        }
+        return sonuc;
+    }
+
+    public int search_int(String user_name) {
+        int sonuc = -1;
+
+        LinkedList<users> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUser_name().equals(user_name)) {
+                sonuc = list.get(i).getUser_id();
+                break;
+            }
+        }
+
+        return sonuc;
+    }
+
+    public int control_login(String user_name, String password) {
+
+        int kullanici_adi_var_mi = count_user_name(user_name);
+
+        switch (kullanici_adi_var_mi) {
+
+            case 1: //girilen kullanıcı adından 1 tane var ve şifre kontrolü başlıyor.
+                return control_password(user_name, password);
+            case 0: //kullanıcı adı yok
+                int mail_var_mi = count_user_mail(user_name);//Kullanıcı adı yerine Mail adresi yazılmış olabilir. Bu sebeple maili de kullanıcı adı gibi kontrol edioyruz.
+                switch (mail_var_mi) {
+                    case 1:
+                        return control_password(user_name, password);
+                    case 0:
+                        return 0; //mail  yok
+                    default:
+                        return -1;  //birdem fazla mail var. Bu yüzden hata meydana geldi.
+
+                }
+            default:
+                return -1; //birdem fazla kullanıcı adı var. Bu yüzden hata meydana geldi.
+
+        }
+
+    }
+
+    public boolean control_user_name(String user_name) {
+        boolean a = false;
+        int sonuc = count_user_name(user_name);
+
+        if (sonuc == 0) {
+            a = true;
+        }
+
+        return a;
+    }
+
+    public boolean control_user_mail(String user_mail) {
+        boolean a = false;
+        int sonuc = count_user_mail(user_mail);
+
+        if (sonuc == 0) {
+            a = true;
+        }
+
+        return a;
+    }
+
+    public int control_password(String user_name, String password) {
+        int user_id = search_int(user_name);
+        String sql_password = search_string(user_id,1);
+        if (sql_password == null) {
+            return -2; //kullanici adı 1 tane var ama kullanıcının şifesi Veri tabanında yok. Hata meydana geldi.
+        } else if (sql_password.equals(password)) {
+            return user_id; //girilen değerler doğru ve kullanının bilgilerini gönderiyoruz.
+        } else {
+            return 0; //girilen şifre yanlış
+        }
+    }
+
+    /*
+
     //user tablosuna veri eklemek içim kullandığımız method
-    public int user_ekle(users User) {
+    //public int user_ekle(users User) {
 
         int sonuc = -1;
 
@@ -48,7 +339,7 @@ public class usersDAO {
     }
 
     //user tablosundan veri okumak için yazılan method
-    public int user_giris_kontrol(String user_name, String password) {
+    //public int user_giris_kontrol(String user_name, String password) {
 
         int kullanici_adi_var_mi = user_name_sayaci(user_name);
 
@@ -74,7 +365,7 @@ public class usersDAO {
 
     }
 
-    public int user_password_control(String user_name, String password) {
+    //public int user_password_control(String user_name, String password) {
         int user_id = user_id(user_name);
         String sql_password = user_password(user_id);
         if (sql_password == null) {
@@ -86,7 +377,7 @@ public class usersDAO {
         }
     }
 
-    public int user_id(String user_name) {
+    //public int user_id(String user_name) {
         int sonuc = -1;
 
         try {
@@ -109,7 +400,7 @@ public class usersDAO {
         return sonuc;
     }
 
-    public int user_name_sayaci(String user_name) {
+    //public int user_name_sayaci(String user_name) {
 
         int sonuc = -1;
 
@@ -134,7 +425,7 @@ public class usersDAO {
 
     }
 
-    public int user_mail_sayaci(String user_mail) {
+    //public int user_mail_sayaci(String user_mail) {
 
         int sonuc = -1;
 
@@ -159,7 +450,7 @@ public class usersDAO {
 
     }
 
-    public String user_password(int id) {
+    //public String user_password(int id) {
 
         String password = null;
 
@@ -183,7 +474,7 @@ public class usersDAO {
         return password;
     }
 
-    public boolean user_name_control(String user_name) {
+    //public boolean user_name_control(String user_name) {
         boolean a = false;
         int sonuc = user_name_sayaci(user_name);
 
@@ -194,7 +485,7 @@ public class usersDAO {
         return a;
     }
 
-    public boolean user_mail_control(String user_mail) {
+    //public boolean user_mail_control(String user_mail) {
         boolean a = false;
         int sonuc = user_mail_sayaci(user_mail);
 
@@ -205,7 +496,7 @@ public class usersDAO {
         return a;
     }
 
-    public int user_type_getir(int user_id) {
+    //public int user_type_getir(int user_id) {
         int user_type = 0;
 
         try {
@@ -229,7 +520,7 @@ public class usersDAO {
         return user_type;
     }
 
-    public int user_guncelle(users u) {
+    //public int user_guncelle(users u) {
         int sonuc = 0;
 
         try {
@@ -250,7 +541,7 @@ public class usersDAO {
         return sonuc;
     }
 
-    public int user_guncelle_aboneli(users u, int abone_type) {
+    //public int user_guncelle_aboneli(users u, int abone_type) {
         int sonuc = 0;
         int sonuc2 = 0;
 
@@ -267,6 +558,8 @@ public class usersDAO {
             } else {
                 sonuc2 = 1;
             }
+    
+    //Not: Bu metot biraz sıkjıntılı. Normalde abone 0 gelirse de aboneler tablosunda var ise oradan silinmeli. sıfırdan farklı geldniğinde de güncellenmeli.
 
             c.close();
             st.close();
@@ -282,7 +575,7 @@ public class usersDAO {
         }
     }
 
-    public int kac_tane_user_var() {
+    //public int kac_tane_user_var() {
         int sonuc = -1;
 
         try {
@@ -305,7 +598,7 @@ public class usersDAO {
         return sonuc;
     }
 
-    public String user_name_getir(int id) {
+    //public String user_name_getir(int id) {
         String name = null;
         try {
             DBConnector d = new DBConnector();
@@ -327,7 +620,7 @@ public class usersDAO {
         return name;
     }
 
-    public String user_mail_getir(int id) {
+    //public String user_mail_getir(int id) {
         String name = null;
         try {
             DBConnector d = new DBConnector();
@@ -349,7 +642,7 @@ public class usersDAO {
         return name;
     }
 
-    public String user_password_getir(int id) {
+    //public String user_password_getir(int id) {
         String name = null;
         try {
             DBConnector d = new DBConnector();
@@ -371,6 +664,7 @@ public class usersDAO {
         return name;
     }
 
+    //bu metot yerine abonelerDAO sınıfındaki search metodu kullanılabilir.
     public int abone_sorgula(int user_id) {
         int abonelik_turu = -2;
         abonelerDAO adao = new abonelerDAO();
@@ -378,7 +672,7 @@ public class usersDAO {
         return abonelik_turu;
     }
 
-    public ObservableList<users> user_select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
+    //public ObservableList<users> user_select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
 
         try {
             DBConnector d = new DBConnector();
@@ -413,7 +707,7 @@ public class usersDAO {
         return data;
     }
 
-    public int user_dao_sil(int user_id) {
+    //public int user_dao_sil(int user_id) {
         int sonuc = 0;
 
         try {
@@ -433,4 +727,5 @@ public class usersDAO {
         return sonuc;
     }
 
+     */
 }
