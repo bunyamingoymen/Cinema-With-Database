@@ -3,6 +3,7 @@ package Code_Standart_user;
 import Pattern.Creator;
 import Pattern.Table;
 import DAO.kullanici_degerlendirmesiDAO;
+import entity.Center;
 import entity.kullanici_degerlendirmesi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -408,8 +409,9 @@ public class Kullanici_Islemleri extends Biletlerim {
 
         kullanici_degerlendirmesiDAO kdao = new kullanici_degerlendirmesiDAO();
 
-        int sonuc = kdao.kullanici_degerlendirmesi_yeni_degerlendirme(k);
-        Table m = new Table();
+        Center nw = new Center(k);
+
+        int sonuc = kdao.new_rate(nw);
         switch (sonuc) {
             case 1:
             case 2:

@@ -139,11 +139,12 @@ public class Center_Standart_User extends Settings implements Initializable {
                 password = tf_user_password.getText();
             }
 
-            int user_type = udao.user_type_getir(user_id);
+            int user_type = udao.search_int(user_id);
 
             //yukarıda aldığımız kullanıcının girdiği bilgileri User adlı sınıfın içindeki metoda yolluyor. Bu metodun yaptığı işlevi ksaca anlatmak gerekirse. Yapılan değiişikliği ilk önce bağlı listede değiştiriyor ardından ise bunu dosyaya yazıp kalıcı hale getiriyor. 
             users u = new users(user_id, name, mail, password, user_type);
-            int control = udao.user_guncelle(u);
+            Center nw = new Center(u);
+            int control = udao.update(nw);
 
             //Az önce gönderdiğimiz metot bir değer yolluyor bu değer 1 ise işlem herhangi bir hataya uğramadan başarılı bir şekilde gerçekleştiğini yazıyor. Eğer başarılı bir şekilde gerçekleşmiyor ise de Hata meydana gleidğini ekrana yazdırıyor.
             if (control == 1) {

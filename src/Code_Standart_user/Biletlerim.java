@@ -40,7 +40,7 @@ public class Biletlerim extends Eski_Filmler {
 
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
 
-        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
+        data = edao.select(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
 
         biletlerim_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         biletlerim_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));

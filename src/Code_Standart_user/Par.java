@@ -15,7 +15,7 @@ public class Par extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     public void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
         vizyondaki_filmlerDAO vizyondaki_film_islemleri = new vizyondaki_filmlerDAO();
-        String[] arr = vizyondaki_film_islemleri.vizyondaki_filmler_combo_doldur();
+        String[] arr = vizyondaki_film_islemleri.select_string();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Vizyondaki Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
@@ -47,7 +47,7 @@ public class Par extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     public int abonelik_turu_getir() {
         abonelerDAO adao = new abonelerDAO();
-        int abonelik = adao.abonelik_turu_bul(Creator.getU().getUser_id());
+        int abonelik = adao.search(Creator.getU().getUser_id());
 
         return abonelik;
     }
@@ -57,7 +57,7 @@ public class Par extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
         ObservableList<haberler> data = FXCollections.observableArrayList();
 
-        data = hdao.haberler_select(data, kullanici_turu);
+        data = hdao.select(data, kullanici_turu);
 
         haberler_title.setCellValueFactory(new PropertyValueFactory("Title"));
         haberler_haber.setCellValueFactory(new PropertyValueFactory("Haber"));
@@ -118,7 +118,7 @@ public class Par extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
         ObservableList<kampanyalar> data = FXCollections.observableArrayList();
 
-        data = kdao.kampanyalar_select(data, kullanici_turu);
+        data = kdao.select(data, kullanici_turu);
 
         kampanyalar_title.setCellValueFactory(new PropertyValueFactory("Title"));
         kampanyalar_kampanya.setCellValueFactory(new PropertyValueFactory("Kampanya"));

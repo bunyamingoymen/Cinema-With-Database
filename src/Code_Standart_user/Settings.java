@@ -2,6 +2,7 @@ package Code_Standart_user;
 
 import Pattern.Creator;
 import DAO.user_photosDAO;
+import entity.Center;
 import entity.user_photos;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -39,7 +40,9 @@ public class Settings extends Kullanici_Islemleri {
 
             user_photosDAO updao = new user_photosDAO();
 
-            int sonuc = updao.user_photo_dao_ekle_veya_guncelle(up);
+            Center nw = new Center(up);
+
+            int sonuc = updao.create_or_update(nw);
 
             switch (sonuc) {
                 case 1:
@@ -84,12 +87,12 @@ public class Settings extends Kullanici_Islemleri {
 
         user_password.setText(Creator.getU().getUser_password());
 
-        int control = new user_photosDAO().kac_tane_user_id_var(user_id);
+        int control = new user_photosDAO().count(user_id);
 
         if (control == 1) {
             BufferedImage bufferedImage = null;
             try {
-                String photo_path = new user_photosDAO().photo_path_getir(user_id);
+                String photo_path = new user_photosDAO().search_string(user_id);
                 bufferedImage = ImageIO.read(new File(photo_path));
             } catch (IOException ex) {
                 System.out.println(ex);

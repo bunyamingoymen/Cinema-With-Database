@@ -17,7 +17,7 @@ public class Eski_Filmler extends Satin_Al {
 
         ObservableList<eski_filmler> data = FXCollections.observableArrayList();
 
-        data = edao.eski_filmler_select_abone_ozel(data, kullanici_turu);
+        data = edao.select(data, kullanici_turu);
 
         eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));

@@ -39,14 +39,14 @@ public class Satin_Al extends Vizyondaki_Filmler {
             int seans_id = Integer.parseInt(ab[0]);
 
             seansDAO sdao = new seansDAO();
-            int salon_id = sdao.salon_id_getir(seans_id);
+            int salon_id = sdao.search_int(seans_id,2);
 
             sinema_salonlariDAO sinema_dao = new sinema_salonlariDAO();
-            int koltuk_sayisi = sinema_dao.koltuk_sayisi_getir(salon_id);
+            int koltuk_sayisi = sinema_dao.search_int(salon_id);
 
-            String film_adi = sdao.film_adi_getir(seans_id);
-            String salon_adi = sdao.salon_adi_getir(seans_id);
-            String saat = sdao.saat_getir(seans_id);
+            String film_adi = sdao.search_string(seans_id,1);
+            String salon_adi = sdao.search_string(seans_id,2);
+            String saat = sdao.search_string(seans_id,3);
 
             satin_al_koltuk_film_adi.setText(film_adi);
             satin_al_koltuk_salon_adi.setText(salon_adi);
@@ -58,7 +58,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
             satin_al_filmler_pane.setVisible(false);
 
             yesil_olanDAO ydao = new yesil_olanDAO();
-            ydao.yesil_olan_dao_toplu_sil();
+            ydao.delete();
 
             switch (koltuk_sayisi) {
                 case 129:
@@ -128,7 +128,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
         int user_id = Creator.getU().getUser_id();
 
         abonelerDAO adao = new abonelerDAO();
-        int kalan_ucretsiz_bilet_sayisi = adao.kalan_ucretsiz_bilet_sayisi(user_id);
+        int kalan_ucretsiz_bilet_sayisi = adao.read_bilet_sayisi(user_id);
 
         if (kalan_ucretsiz_bilet_sayisi == -1) {
 
@@ -151,7 +151,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
         int user_id = Creator.getU().getUser_id();
         int seans_id = Integer.parseInt(satin_al_koltuk_seans_id.getText());
 
-        int sonuc = sdao.satin_alinan_bilet_satin_al(user_id, seans_id);
+        int sonuc = sdao.buy(user_id, seans_id);
 
         if (sonuc == 1) {
             satin_al_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti");
@@ -174,7 +174,7 @@ public class Satin_Al extends Vizyondaki_Filmler {
     public void satin_al_ucretsiz_bilet_hakki(ActionEvent event) {
         abonelerDAO adao = new abonelerDAO();
 
-        int sonuc = adao.ucretsiz_bilet_sayisi_dusur(Creator.getU().getUser_id());
+        int sonuc = adao.update(Creator.getU().getUser_id());
 
         switch (sonuc) {
             case -2:

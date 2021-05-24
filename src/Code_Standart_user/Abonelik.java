@@ -2,6 +2,8 @@ package Code_Standart_user;
 
 import Pattern.Creator;
 import DAO.abonelerDAO;
+import entity.Center;
+import entity.aboneler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -63,8 +65,9 @@ public class Abonelik extends Par {
     public void abonelik_bir_satin_al(ActionEvent event) {
         int user_id = Creator.getU().getUser_id();
         int abonelik_turu = 1;
-
-        int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
+        aboneler a = new aboneler(user_id, abonelik_turu);
+        Center nw = new Center(a);
+        int sonuc = adao.buy(nw);
 
         if (sonuc == 1) {
             pnl_abonelik_0.setVisible(false);
@@ -85,7 +88,10 @@ public class Abonelik extends Par {
         int user_id = Creator.getU().getUser_id();
         int abonelik_turu = 2;
 
-        int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
+        aboneler a = new aboneler(user_id, abonelik_turu);
+        Center nw = new Center(a);
+
+        int sonuc = adao.buy(nw);
 
         if (sonuc == 1) {
             pnl_abonelik_0.setVisible(false);
@@ -105,7 +111,10 @@ public class Abonelik extends Par {
         int user_id = Creator.getU().getUser_id();
         int abonelik_turu = 3;
 
-        int sonuc = adao.abonelik_turu_satin_al(abonelik_turu, user_id);
+        aboneler a = new aboneler(user_id, abonelik_turu);
+        Center nw = new Center(a);
+
+        int sonuc = adao.buy(nw);
 
         if (sonuc == 1) {
             pnl_abonelik_0.setVisible(false);
@@ -195,7 +204,7 @@ public class Abonelik extends Par {
     private void abonelik_iptal_et(ActionEvent event) {
         int user_id = Creator.getU().getUser_id();
 
-        int sonuc = adao.aboneler_sil(user_id);
+        int sonuc = adao.delete(user_id);
 
         pnl_abonelik_0.setVisible(false);
         pnl_abonelik_diger.setVisible(false);
