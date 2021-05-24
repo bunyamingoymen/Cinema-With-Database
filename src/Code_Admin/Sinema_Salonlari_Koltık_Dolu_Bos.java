@@ -2,6 +2,8 @@ package Code_Admin;
 
 import DAO.satin_alinan_biletlerDAO;
 import DAO.yesil_olanDAO;
+import entity.Center;
+import entity.yesil_olan;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -53,13 +55,15 @@ public class Sinema_Salonlari_Koltık_Dolu_Bos extends Sinema_Salonlari {
                 //buraya girilmiş ise bizim daha önceden belirlediğimiz renk olduğunu gösteriyor. (Bu renk o koltuğun boş olduğunu gösterir. ve bu butona basılırsa koltuk yeşil renk oluyor ve yeşil renk olduğu için yeşil dosyasına ekleme işlemi yapılıyor.) 
                 btn.styleProperty().set("-fx-background-color: green; -fx-text-fill: white");
                 yesil_olanDAO ydao = new yesil_olanDAO();
-                ydao.yesil_olan_dao_ekle(btn.getText());
+                yesil_olan ya = new yesil_olan(btn.getText());
+                Center nw = new Center(ya);
+                ydao.create(nw);
                 break;
             case "-fx-background-color: green; -fx-text-fill: white":
                 //buraya girilmişse koltuk daha önceden seçilmiş anlamına geliyor ve seçimi iptal etmek için butonu eski haline döndürüyor ve yeşil dosyasındaki veriyi de siliyor..
                 btn.styleProperty().set("-fx-background-color: #6fc3b9;");
                 yesil_olanDAO ydao2 = new yesil_olanDAO();
-                ydao2.yesil_olan_dao_sil(btn.getText());
+                ydao2.delete(btn.getText());
                 break;
             case "-fx-background-color: red":
                 //buryaa girilmiş ise seçilen koltuk daha önce satılmıştır anlamına geliyor ve kullanıcının herhangi bir işlem yapmasına izin vermiyor.
@@ -78,7 +82,7 @@ public class Sinema_Salonlari_Koltık_Dolu_Bos extends Sinema_Salonlari {
 
         //daha sonra parametre oalrak gelen sealon ve seans'lardaki dolu olan koltukları bu bağlı listeye ekliyoruz.
         satin_alinan_biletlerDAO sabdao = new satin_alinan_biletlerDAO();
-        String arr[] = sabdao.satin_alinan_biletler_satyin_alinanlari_gonder(seans_id);
+        String arr[] = sabdao.select(seans_id);
         //daha sonra da kaç tane satılan koltuk olduğunu bir integer değerde tutuyoruz.
         //kaç tane satılan koltuk var ise o kadar büyüklükte bir döngü oluşturuyoruz ve yine parametre olarak gelen koltuğu kontrol ediyoruz satılmış mı diye. eğer satılmış ise true dönüyor. satılmamış ise döngü bitiyor.
         for (int i = 0; i < arr.length; i++) {

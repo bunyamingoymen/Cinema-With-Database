@@ -2,6 +2,7 @@ package Code_Admin;
 
 import entity.sinema_salonlari;
 import Pattern.Creator;
+import entity.Center;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -54,7 +55,7 @@ public class Sinema_Salonlari extends Seans {
 
             String[] a = salonlar.split(" | ");
             int salon_id = Integer.valueOf(a[0]);
-            int koltuk_sayisi = Creator.sinema_salonlariDao().koltuk_sayisi_getir(salon_id);
+            int koltuk_sayisi = Creator.sinema_salonlariDao().search_int(salon_id);
             //daha sonra ise koltuk sayısına göre gerekli pane'i aktif hale getiriyoruz.
             switch (koltuk_sayisi) {
                 case 129:
@@ -107,7 +108,7 @@ public class Sinema_Salonlari extends Seans {
         salon_uc_pane.setVisible(false);
         salon_dort_pane.setVisible(false);
 
-        Creator.yesil_olanDao().yesil_olan_dao_toplu_sil();
+        Creator.yesil_olanDao().delete();
     }
 
     //sinema_Salonu_home_pane'in içinde bulunan yeni sinema salonu ekle butonunun metodudur. Yaptığı tek şey sinema_salonları için oluşturulmuş ekle pane'ini açıp home pane'ini kapatıyor. ve koltuk sayısını combobox'ın içine yazdırıyor.
@@ -127,7 +128,8 @@ public class Sinema_Salonlari extends Seans {
             sinema_salonu_ekle_uyari_mesaj.setText("Lütfen Gerekli Yerleri Doldurunuz.");
         } else {
             sinema_salonlari s = new sinema_salonlari(name, Integer.parseInt(koltuk_sayisi));
-            int sonuc = Creator.sinema_salonlariDao().sinema_salonlari_dao_ekle(s);
+            Center nw = new Center(s);
+            int sonuc = Creator.sinema_salonlariDao().create(nw);
 
             switch (sonuc) {
                 case 1:
@@ -172,10 +174,10 @@ public class Sinema_Salonlari extends Seans {
 
             sinema_salonunu_guncelle_id.setText(a[0]);
             int salon_id = Integer.parseInt(a[0]);
-            int koltuk_sayisi = Creator.sinema_salonlariDao().koltuk_sayisi_getir(salon_id);
+            int koltuk_sayisi = Creator.sinema_salonlariDao().search_int(salon_id);
             koltuk_sayisi_combo(sinema_salonlarini_duzenle_koltuk_sayisi, "");
             sinema_salonlarini_duzenle_koltuk_sayisi.setValue(String.valueOf(koltuk_sayisi));
-            sinema_salonu_guncelle_name.setText(Creator.sinema_salonlariDao().salon_adi_getir(salon_id));
+            sinema_salonu_guncelle_name.setText(Creator.sinema_salonlariDao().search_string(salon_id));
 
             sinema_salonu_duzenle_pane_2.setVisible(true);
         }
@@ -189,7 +191,7 @@ public class Sinema_Salonlari extends Seans {
             sinema_salonu_guncelle_uyari_mesaj.setText("Lütfen bir değer seçiniz.");
         } else {
             int salon_id = Integer.valueOf(sinema_salonunu_guncelle_id.getText());
-            int sonuc = Creator.sinema_salonlariDao().sinema_salonlari_dao_sil(salon_id);
+            int sonuc = Creator.sinema_salonlariDao().delete(salon_id);
 
             if (sonuc == 1) {
 
@@ -218,7 +220,8 @@ public class Sinema_Salonlari extends Seans {
             int koltuk_sayisi = Integer.valueOf(sinema_salonlarini_duzenle_koltuk_sayisi.getValue());
 
             sinema_salonlari s = new sinema_salonlari(Integer.valueOf(sinema_salonunu_guncelle_id.getText()), name, koltuk_sayisi);
-            int control = Creator.sinema_salonlariDao().sinema_salonlari_degistir(s);
+            Center nw = new Center(s);
+            int control = Creator.sinema_salonlariDao().update(nw);
 
             switch (control) {
                 case 1:
