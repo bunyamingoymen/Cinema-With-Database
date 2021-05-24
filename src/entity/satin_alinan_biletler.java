@@ -64,7 +64,7 @@ public class satin_alinan_biletler {
         sil.setOnAction(e -> {
             satin_alinan_biletlerDAO sdao = new satin_alinan_biletlerDAO();
 
-            int sonuc = sdao.satin_alinan_biletler_sil(satin_alinan_bilet_id);
+            int sonuc = sdao.delete(satin_alinan_bilet_id);
 
             if (sonuc == 1) {
                 biletlerim_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
@@ -81,7 +81,7 @@ public class satin_alinan_biletler {
 
         ObservableList<satin_alinan_biletler> data = FXCollections.observableArrayList();
 
-        data = edao.satin_alinan_biletler_kullanicinin_biletlerini_goster(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
+        data = edao.select(data, user_id, biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk, biletlerim_sil, filterField_biletlerim, biletlerim_uyari_mesaj, table_biletlerim);
 
         biletlerim_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         biletlerim_salon_adi.setCellValueFactory(new PropertyValueFactory("salon_name"));

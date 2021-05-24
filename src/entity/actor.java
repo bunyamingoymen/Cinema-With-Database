@@ -81,7 +81,7 @@ public class actor {
 
         film_actorDAO fdao = new film_actorDAO();
         ObservableList<film_actor> data = FXCollections.observableArrayList();
-        data = fdao.film_actor_select(data, actor_id, film_actor_sil_emin_misin_pane, film_actor_id_label);
+        data = fdao.select(data, actor_id, film_actor_sil_emin_misin_pane, film_actor_id_label);
 
         FilteredList<film_actor> filteredData = new FilteredList<>(data, b -> true);
         filterField_film_actor.textProperty().addListener((observable, oldValue, newValue) -> {
