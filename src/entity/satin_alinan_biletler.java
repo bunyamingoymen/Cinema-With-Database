@@ -36,18 +36,29 @@ public class satin_alinan_biletler {
         this.koltuk_name = koltuk_name;
     }
 
+    public satin_alinan_biletler(int satin_alinan_bilet_id, String film_name, String salon_name, String saat, String yonetmen_ad_soyad, String koltuk_name) {
+        this.satin_alinan_bilet_id = satin_alinan_bilet_id;
+        this.koltuk_name = koltuk_name;
+        this.film_name = film_name;
+        this.salon_name = salon_name;
+        this.saat = saat;
+        this.yonetmen_ad_soyad = yonetmen_ad_soyad;
+    }
+    
+    
+
     public satin_alinan_biletler(int seans_id, int user_id, String koltuk_name) {
         this.seans_id = seans_id;
         this.user_id = user_id;
         this.koltuk_name = koltuk_name;
     }
 
-    public satin_alinan_biletler(int user_id, int satin_alinan_bilet_id, String film_name, String salon_name, String saat, String ad, String soyad, String koltuk_name, Button sil, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi, TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
+    public satin_alinan_biletler(int user_id, int satin_alinan_bilet_id, String film_name, String salon_name, String saat, String ad_soyad, String koltuk_name, Button sil, TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, TableColumn<satin_alinan_biletler, String> biletlerim_salon_adi, TableColumn<satin_alinan_biletler, String> biletlerim_yonetmen, TableColumn<satin_alinan_biletler, String> biletlerim_saat, TableColumn<satin_alinan_biletler, String> biletlerim_koltuk, TableColumn<satin_alinan_biletler, Button> biletlerim_sil, TextField filterField_biletlerim, Label biletlerim_uyari_mesaj, TableView<satin_alinan_biletler> table_biletlerim) {
         this.koltuk_name = koltuk_name;
         this.film_name = film_name;
         this.salon_name = salon_name;
         this.saat = saat;
-        this.yonetmen_ad_soyad = ad + " " + soyad;
+        this.yonetmen_ad_soyad = ad_soyad;
         this.biletlerim_sil = sil;
 
         sil.setOnAction(e -> {

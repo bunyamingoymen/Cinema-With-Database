@@ -208,35 +208,22 @@ public class filmlerDAO implements IDAO {
     //film_id, film_type getirir
     public String search_string(int film_id, int secim) {
         String sonuc = null;
+        LinkedList<filmler> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from filmler where film_id ='" + film_id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-
+        for (int i = 0; i < list.size(); i++) {
             switch (secim) {
                 //film_adi getirir
                 case 1:
-                    sonuc = rs.getString("film_name");
+                    sonuc = list.get(i).getFilm_name();
                     break;
                 /*film_type getirir*/
                 case 2:
-                    sonuc = rs.getString("film_type");
+                    sonuc = list.get(i).getFilm_type();
                     break;
                 default:
                     System.out.println("Hata kodu: -202");
                     return null;
             }
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 129 - " + e.getMessage());
         }
 
         return sonuc;
@@ -246,33 +233,22 @@ public class filmlerDAO implements IDAO {
     public int search_int(int film_id, int secim) {
         int sonuc = 0;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from filmler where film_id ='" + film_id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
+        LinkedList<filmler> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
             switch (secim) {
                 //film_suresi getirir
                 case 1:
-                    sonuc = rs.getInt("film_suresi");
+                    sonuc = list.get(i).getFilm_suresi();
                     break;
-                //yonetmen_id etirir    
+                /*yonetmen_id getirir*/
                 case 2:
-                    sonuc = rs.getInt("yonetmen_id");
+                    sonuc = list.get(i).getYonetmen_id();
                     break;
                 default:
-                    System.out.println("Hata kodu: 203");
+                    System.out.println("Hata kodu: -202");
                     return -1;
             }
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 131 - " + e.getMessage());
         }
 
         return sonuc;

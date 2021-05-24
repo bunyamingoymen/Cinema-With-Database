@@ -181,38 +181,28 @@ public class haberlerDAO implements IDAO {
     //Title, Haber, Tarih, Haber Kategorisi getirir
     public String search_string(int haber_id, int secim) {
         String sonuc = null;
+        LinkedList<haberler> list = new LinkedList<>();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from haberler where haber_id=" + haber_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-
-            switch (secim) {
-                case 1:
-                    sonuc = rs.getString("Title");
-                    break;
-                case 2:
-                    sonuc = rs.getString("Haber");
-                    break;
-                case 3:
-                    sonuc = rs.getString("Tarih");
-                    break;
-                case 4:
-                    sonuc = rs.getString("Haber_Kategorisi");
-                    break;
-                default:
-                    System.out.println("Hata kodu: 203");
-                    return null;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == haber_id) {
+                switch (secim) {
+                    case 1:
+                        sonuc = list.get(i).getTitle();
+                        break;
+                    case 2:
+                        sonuc = list.get(i).getDuyuru();
+                        break;
+                    case 3:
+                        sonuc = list.get(i).getTarih();
+                        break;
+                    case 4:
+                        sonuc = list.get(i).getKategori();
+                        break;
+                    default:
+                        System.out.println("Hata kodu: 203");
+                        return null;
+                }
             }
-
-            c.close();
-            st.close();
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 144 - " + e.getMessage());
         }
 
         return sonuc;
@@ -222,20 +212,12 @@ public class haberlerDAO implements IDAO {
     public int search_int(int haber_id) {
         int hangi_kullanici = -1;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from haberler where haber_id=" + haber_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            hangi_kullanici = rs.getInt("hangi_kullanici_turu");
+        LinkedList<haberler> list = new LinkedList<>();
 
-            c.close();
-            st.close();
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 143 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == haber_id) {
+                hangi_kullanici = list.get(i).getHangi_kullanici_turu();
+            }
         }
 
         return hangi_kullanici;

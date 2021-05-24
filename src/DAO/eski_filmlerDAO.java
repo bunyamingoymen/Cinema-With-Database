@@ -217,41 +217,29 @@ public class eski_filmlerDAO implements IDAO {
 
     //film_adi, film_type, yonetmen getirir
     public String search_string(int eski_film_id, int secim) {
-        filmlerDAO fdao = new filmlerDAO();
-        yonetmenlerDAO ydao = new yonetmenlerDAO();
         String sonuc = null;
+        LinkedList<eski_filmler> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from eski_filmler_tablo where eski_film_id='" + eski_film_id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-
-            switch (secim) {
-                //film_adi_getirir
-                case 1:
-                    sonuc = rs.getString("film_name");
-                    break;
-                /*film_type getirir*/
-                case 2:
-                    sonuc = rs.getString("film_type");
-                    break;
-                /*yonetmen getirir*/
-                case 3:
-                    sonuc = rs.getString("ad") + " " + rs.getString("soyad");
-                    break;
-                default:
-                    System.out.println("Hata kodu: 201");
-                    return null;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getEski_film_id() == eski_film_id) {
+                switch (secim) {
+                    //film_adi_getirir
+                    case 1:
+                        sonuc = list.get(i).getFilm_name();
+                        break;
+                    /*film_type getirir*/
+                    case 2:
+                        sonuc = list.get(i).getFilm_type();
+                        break;
+                    /*yonetmen getirir*/
+                    case 3:
+                        sonuc = list.get(i).getYonetmen_ad_soyad();
+                        break;
+                    default:
+                        System.out.println("Hata kodu: 201");
+                        return null;
+                }
             }
-
-            c.close();
-            st.close();
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 117 - " + e.getMessage());
         }
 
         return sonuc;
@@ -259,8 +247,39 @@ public class eski_filmlerDAO implements IDAO {
 
     //yonetmen_id, film_suresi, hangi_abone, aldigi_odul_sayisi,film_id getirir
     public int search_int(int eski_film_id, int secim) {
-        filmlerDAO fdao = new filmlerDAO();
         int sonuc = -1;
+        LinkedList<eski_filmler> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getEski_film_id() == eski_film_id) {
+                switch (secim) {
+                    //yonetmen_id getirir
+                    case 1:
+                        sonuc = list.get(i).getYonetmen_id();
+                        break;
+                    /*film_suresi getirir*/
+                    case 2:
+                        sonuc = list.get(i).getFilm_suresi();
+                        break;
+                    /*hangi abone getirir*/
+                    case 3:
+                        sonuc = list.get(i).getHangi_aboneler_izleyebilir();
+                        break;
+                    /*aldigi_odul_sayisi getirir*/
+                    case 4:
+                        sonuc = list.get(i).getAldigi_odul_sayisi();
+                        break;
+                    /*film_id getirir*/
+                    case 5:
+                        sonuc = list.get(i).getFilm_id();
+                        break;
+                    default:
+                        sonuc = -1;
+                        System.out.println("Hata kodu: 200");
+                        break;
+                }
+            }
+        }
 
         try {
             DBConnector d = new DBConnector();

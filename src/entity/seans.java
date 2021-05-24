@@ -25,6 +25,16 @@ public class seans {
         this.saat = saat;
     }
 
+    public seans(int seans_id, int salon_id, int vizyondaki_film_id, String film_name, String salon_name, String saat) {
+        this.seans_id = seans_id;
+        this.salon_id = salon_id;
+        this.vizyondaki_film_id = vizyondaki_film_id;
+        this.film_name = film_name;
+        this.salon_name = salon_name;
+        this.saat = saat;
+    }
+
+
     public seans(String film_name, String salon_name, String saat) {
         this.film_name = film_name;
         this.salon_name = salon_name;
