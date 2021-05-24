@@ -133,7 +133,7 @@ public class eski_filmlerDAO implements IDAO {
         return sonuc;
     }
 
-    public void eski_filmler_toplu_sil(LinkedList<Integer> list) {
+    public void delete(LinkedList<Integer> list) {
         for (int i = 0; i < list.size(); i++) {
             delete(list.get(i));
         }

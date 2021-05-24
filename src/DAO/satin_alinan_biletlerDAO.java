@@ -174,7 +174,7 @@ public class satin_alinan_biletlerDAO implements IDAO {
 
     public int buy(int user_id, int seans_id) {
         yesil_olanDAO ydao = new yesil_olanDAO();
-        String arr[] = ydao.yesil_olanlar_toplu_gonder();
+        String arr[] = ydao.select();
 
         for (int i = 0; i < arr.length; i++) {
             satin_alinan_biletler sab = new satin_alinan_biletler(seans_id, user_id, arr[i]);

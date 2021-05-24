@@ -29,8 +29,8 @@ public class vizyondaki_filmler extends filmler {
         this.seans_sayisi = seans_sayisi;
     }
 
-    public vizyondaki_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad, String yonetmen_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay) {
-        super(film_name, film_type, film_suresi, yonetmen_ad + " " + yonetmen_soyad, kullanici_puani);
+    public vizyondaki_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay) {
+        super(film_name, film_type, film_suresi, yonetmen_ad_soyad, kullanici_puani);
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
         this.film_detayi = detay;
 
@@ -48,8 +48,8 @@ public class vizyondaki_filmler extends filmler {
     
     
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad, String soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
-        super(film_id, film_name, film_type, film_suresi, ad + " " + soyad, kullanici_puani);
+    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+        super(film_id, film_name, film_type, film_suresi, ad_soyad, kullanici_puani);
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
         vizyondaki_filmler_controller(detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi);

@@ -1,6 +1,6 @@
 package DAO;
 
-import entity.filmler;
+import entity.Center;
 import entity.vizyondaki_filmler;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -17,12 +15,289 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import util.DBConnector;
 
-public class vizyondaki_filmlerDAO {
+public class vizyondaki_filmlerDAO implements IDAO {
+
+    @Override
+    public int create(Center nw) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "insert into vizyondaki_filmler (film_id,vizyondan_kalkis_tarihi,seans_sayisi) values ('" + nw.getVizyondaki_filmler().getFilm_id() + "','" + nw.getVizyondaki_filmler().getVizyondan_kalkis_tarihi() + "','" + nw.getVizyondaki_filmler().getSeans_sayisi() + "')";
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :165 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    //sadece film_id ekler
+    public int create(int film_id) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "insert into vizyondaki_filmler (film_id) values ('" + film_id + "')";
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :166 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    @Override
+    public LinkedList read() {
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from vizyondaki_filmler_tablo";
+            ResultSet rs = st.executeQuery(komut);
+            LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+
+            while (rs.next()) {
+                vizyondaki_filmler v = new vizyondaki_filmler(rs.getInt("vizyondaki_film_id"), rs.getDate("vizyondan_kalkis_tarihi").toLocalDate(), rs.getInt("film_id"), rs.getString("film_name"), rs.getString("film_type"), rs.getInt("film_suresi"), rs.getString("ad") + " " + rs.getString("soyad"), rs.getFloat("kullanici_puani"));
+                list.add(v);
+            }
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 260 - " + e.getMessage());
+            return null;
+        }
+
+    }
+
+    @Override
+    public int update(Center nw) {
+        int sonuc = 0;
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "update vizyondaki_filmler set vizyondan_kalkis_tarihi = '" + nw.getVizyondaki_filmler().getVizyondan_kalkis_tarihi() + "' where vizyondaki_film_id =" + nw.getVizyondaki_filmler().getVizyondaki_filmler_id();
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :168 - " + e.getMessage());
+        }
+        return sonuc;
+    }
+
+    @Override
+    public int delete(int vizyondaki_film_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from vizyondaki_filmler where vizyondaki_film_id=" + vizyondaki_film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :163 - " + e.getMessage());
+        }
+
+        return sonuc;
+
+    }
+
+    public void delete(LinkedList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            delete(list.get(i));
+        }
+    }
+
+    @Override
+    public int count() {
+        int sonuc = -1;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select count (vizyondaki_film_id) from vizyondaki_filmler ";
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            sonuc = rs.getInt("count");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 170 - " + e.getMessage());
+        }
+
+        return sonuc;
+    }
+
+    public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data) {
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+        for (int i = 0; i < list.size(); i++) {
+
+            Button detay = new Button();
+            detay.setText("Detay");
+            detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+            data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getFilm_suresi(), list.get(i).getYonetmen_ad_soyad(), list.get(i).getVizyondan_kalkis_tarihi(), list.get(i).getKullanici_puani(), detay)));
+        }
+
+        return data;
+    }
+
+    public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            Button detay = new Button();
+            detay.setText("Detay");
+            detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
+
+            data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(list.get(i).getVizyondaki_filmler_id(), list.get(i).getFilm_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getFilm_suresi(), list.get(i).getYonetmen_ad_soyad(), list.get(i).getVizyondan_kalkis_tarihi(), list.get(i).getKullanici_puani(), detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
+
+        }
+
+        return data;
+    }
+
+    //combo doldurmak için kullanılan select
+    public String[] select_string() {
+        String[] arr = new String[count()];
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+        for (int i = 0; i < list.size(); i++) {
+            String vizyondaki_filmler_combo = list.get(i).getVizyondaki_filmler_id() + " | " + list.get(i).getFilm_name() + " | " + list.get(i).getFilm_type() + " | " + list.get(i).getFilm_suresi() + " | " + list.get(i).getYonetmen_ad_soyad();
+            arr[i] = vizyondaki_filmler_combo;
+        }
+
+        return arr;
+    }
+
+    //sadece vizyondaki_film_id'yi diziye aktarip gönderen metot
+    public int[] select_int() {
+        int[] arr = new int[count()];
+
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+        for (int i = 0; i < list.size(); i++) {
+            int vizyondaki_filmler = list.get(i).getVizyondaki_filmler_id();
+            arr[i] = vizyondaki_filmler;
+        }
+
+        return arr;
+    }
+
+    public String search_string(int vizyondaki_film_id, int secim) {
+        String sonuc = null;
+        filmlerDAO fdao = new filmlerDAO();
+
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getVizyondaki_filmler_id() == vizyondaki_film_id) {
+                if (secim == 1) {
+                    sonuc = list.get(i).getFilm_name();
+                } else if (secim == 2) {
+                    sonuc = list.get(i).getFilm_type();
+                } else if (secim == 3) {
+                    sonuc = list.get(i).getYonetmen_ad_soyad();
+                }
+                break;
+            }
+        }
+
+        return sonuc;
+    }
+
+    public int search_int(int id, int secim, int ust_secim) {
+        int sonuc = 0;
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+        OUTER:
+        for (int i = 0; i < list.size(); i++) {
+            switch (ust_secim) {
+                case 1:
+                    if (list.get(i).getVizyondaki_filmler_id() == id) {
+                        switch (secim) {
+                            //film_id'yi gönderir
+                            case 1:
+                                sonuc = list.get(i).getFilm_id();
+                                break;
+                            //film süesi gönderir
+                            case 2:
+                                sonuc = list.get(i).getFilm_suresi();
+                                break;
+                            //seans_sayisi_gonderir
+                            case 3:
+                                sonuc = list.get(i).getSeans_sayisi();
+                                break;
+                            default:
+                                System.out.println("Hata kodu: 206");
+                                return -1;
+                        }
+                        break OUTER;
+                    }
+                    break;
+                case 2:
+                    //film_id'ye göre vizyondaki filmi gönderir
+                    if (list.get(i).getFilm_id() == id) {
+                        sonuc = list.get(i).getVizyondaki_filmler_id();
+                        break;
+                    }
+                    break;
+                default:
+                    System.out.println("Hata kodu 207");
+                    return -1;
+            }
+        }
+
+        return sonuc;
+    }
+
+    //vizyondan_kalkis_tareihi ni gönderir
+    public LocalDate search_localdate(int vizyondaki_film_id) {
+        LocalDate kalkis = null;
+        LinkedList<vizyondaki_filmler> list = new LinkedList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getVizyondaki_filmler_id() == vizyondaki_film_id) {
+                kalkis = list.get(i).getVizyondan_kalkis_tarihi();
+                break;
+            }
+        }
+
+        return kalkis;
+    }
+
+    /*
 
     public vizyondaki_filmlerDAO() {
     }
 
-    public int vizyondaki_filmler_tamamen_sil(int id) {
+    //public int vizyondaki_filmler_tamamen_sil(int id) {
         int sonuc = 0;
         int sonuc2 = 0;
 
@@ -51,7 +326,7 @@ public class vizyondaki_filmlerDAO {
 
     }
 
-    public int vizyondaki_filmler_sadece_vizyondan_sil(int id) {
+    //public int vizyondaki_filmler_sadece_vizyondan_sil(int id) {
         int sonuc = 0;
         int sonuc_2 = 0;
         try {
@@ -79,7 +354,7 @@ public class vizyondaki_filmlerDAO {
 
     }
     
-    public LinkedList<vizyondaki_filmler> vizyondaki_filmler_hepsini_getir(){
+    //public LinkedList<vizyondaki_filmler> vizyondaki_filmler_hepsini_getir(){
         LinkedList list = new LinkedList<vizyondaki_filmler>();
         
         try {
@@ -105,12 +380,12 @@ public class vizyondaki_filmlerDAO {
         return list;
     }
     
-    public int vizyondaki_filmler_sil_eski_filmlere_ekleme(int film_id){
+    //public int vizyondaki_filmler_sil_eski_filmlere_ekleme(int film_id){
         int sonuc = 0;
         try{
             DBConnector d = new DBConnector();
             Connection c = d.connect();
-            Statement st = c.createStatement();
+            Statement sterDAO edao = new eski_filmlerDAO(); = c.createStatement();
             eski_filmlerDAO edao = new eski_filmlerDAO();
             String komut = "delete from vizyondaki_filmler where film_id=" + film_id;
             sonuc = st.executeUpdate(komut);
@@ -124,13 +399,13 @@ public class vizyondaki_filmlerDAO {
         return sonuc;
     }
     
-    public void vizyondaki_filmler_toplu_sil(LinkedList<Integer> list){
+    //public void vizyondaki_filmler_toplu_sil(LinkedList<Integer> list){
         for(int i = 0; i<list.size();i++){
             vizyondaki_filmler_sil_eski_filmlere_ekleme(list.get(i));
         }
     }
 
-    public int vizyondaki_filmler_dao_ekle(vizyondaki_filmler v) {
+    //public int vizyondaki_filmler_dao_ekle(vizyondaki_filmler v) {
         int sonuc = 0;
         try {
             DBConnector d = new DBConnector();
@@ -149,7 +424,7 @@ public class vizyondaki_filmlerDAO {
         return sonuc;
     }
 
-    public int vizyondaki_filmler_dao_sadece_film_id_ekle(int film_id) {
+    //public int vizyondaki_filmler_dao_sadece_film_id_ekle(int film_id) {
         int sonuc = 0;
         try {
             DBConnector d = new DBConnector();
@@ -168,7 +443,7 @@ public class vizyondaki_filmlerDAO {
         return sonuc;
     }
 
-    public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select(ObservableList<vizyondaki_filmler> data) {
+    //public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select(ObservableList<vizyondaki_filmler> data) {
 
         try {
 
@@ -198,8 +473,9 @@ public class vizyondaki_filmlerDAO {
 
         return data;
     }
-
-    public ResultSet ort() {
+    
+    //Bu metodun işini read metodu yapmaktadır.
+    //public ResultSet ort() {
         ResultSet rs = null;
         try {
             DBConnector d = new DBConnector();
@@ -218,7 +494,7 @@ public class vizyondaki_filmlerDAO {
 
     }
 
-    public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+    //public ObservableList<vizyondaki_filmler> vizyondaki_filmler_select_butonlu(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
 
         try {
             ResultSet rs = ort();
@@ -249,7 +525,7 @@ public class vizyondaki_filmlerDAO {
         return data;
     }
 
-    public int vizyondaki_filmler_degistir(vizyondaki_filmler v, filmler f) {
+    //public int vizyondaki_filmler_degistir(vizyondaki_filmler v, filmler f) {
         int sonuc1 = 0, sonuc2 = 0;
         try {
             DBConnector d = new DBConnector();
@@ -274,7 +550,7 @@ public class vizyondaki_filmlerDAO {
 
     }
 
-    public String[] vizyondaki_filmler_combo_doldur() {
+    //public String[] vizyondaki_filmler_combo_doldur() {
         String[] arr = new String[kac_tane_vizyonda_film_var()];
         try {
             DBConnector d = new DBConnector();
@@ -304,7 +580,7 @@ public class vizyondaki_filmlerDAO {
         return null;
     }
 
-    public int[] vizyondaki_filmler_dizi_doldur() {
+    //public int[] vizyondaki_filmler_dizi_doldur() {
         int[] arr = new int[kac_tane_vizyonda_film_var()];
         try {
             DBConnector d = new DBConnector();
@@ -334,7 +610,7 @@ public class vizyondaki_filmlerDAO {
         return null;
     }
 
-    public int kac_tane_vizyonda_film_var() {
+    //public int kac_tane_vizyonda_film_var() {
         int sonuc = -1;
 
         try {
@@ -357,7 +633,7 @@ public class vizyondaki_filmlerDAO {
         return sonuc;
     }
 
-    public String film_adi_getir(int id) {
+    //public String film_adi_getir(int id) {
         String film_adi = null;
         filmlerDAO fdao = new filmlerDAO();
 
@@ -381,7 +657,7 @@ public class vizyondaki_filmlerDAO {
         return film_adi;
     }
 
-    public int film_id_getir(int id) {
+    //public int film_id_getir(int id) {
         int film_id = 0;
         try {
             DBConnector d = new DBConnector();
@@ -402,7 +678,7 @@ public class vizyondaki_filmlerDAO {
         return film_id;
     }
 
-    public String film_type_getir(int id) {
+    //public String film_type_getir(int id) {
         String film_type = null;
         filmlerDAO fdao = new filmlerDAO();
 
@@ -426,7 +702,7 @@ public class vizyondaki_filmlerDAO {
         return film_type;
     }
 
-    public int film_suresi_getir(int id) {
+    //public int film_suresi_getir(int id) {
         int film_suresi = 0;
         filmlerDAO fdao = new filmlerDAO();
 
@@ -450,7 +726,7 @@ public class vizyondaki_filmlerDAO {
         return film_suresi;
     }
 
-    public String yonetmen_getir(int id) {
+    //public String yonetmen_getir(int id) {
         String name_surname = null;
         filmlerDAO fdao = new filmlerDAO();
         yonetmenlerDAO ydao = new yonetmenlerDAO();
@@ -475,7 +751,7 @@ public class vizyondaki_filmlerDAO {
         return name_surname;
     }
 
-    public LocalDate vizyondan_kalkis_tarihi_getir(int id) {
+    //public LocalDate vizyondan_kalkis_tarihi_getir(int id) {
         LocalDate kalkis = null;
         try {
             DBConnector d = new DBConnector();
@@ -497,7 +773,7 @@ public class vizyondaki_filmlerDAO {
         return kalkis;
     }
 
-    public int seans_sayisi_getir(int id) {
+    //public int seans_sayisi_getir(int id) {
         int seans_sayisi_getir = 0;
         try {
             DBConnector d = new DBConnector();
@@ -518,7 +794,7 @@ public class vizyondaki_filmlerDAO {
         return seans_sayisi_getir;
     }
 
-    public int film_id_ile_vizyondaki_film_id_getir(int film_id) {
+    //public int film_id_ile_vizyondaki_film_id_getir(int film_id) {
         int vizyondaki_film_id = 0;
         try {
             DBConnector d = new DBConnector();
@@ -538,4 +814,6 @@ public class vizyondaki_filmlerDAO {
         }
         return vizyondaki_film_id;
     }
+
+     */
 }
