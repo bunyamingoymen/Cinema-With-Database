@@ -4,6 +4,7 @@ import DAO.haberlerDAO;
 import entity.haberler;
 import Pattern.Creator;
 import Pattern.Table;
+import entity.Center;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -17,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 public class Haberler extends Film_Actor {
     
 public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
-        String[][] arr = Creator.haberlerDao().haberler_combo_doldur();
+        String[][] arr = Creator.haberlerDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Haber Bulunamadı. Lütfen Önce Bir Haber Ekleyiniz.");
@@ -82,8 +83,10 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
             String hangi = haberler_ekle_hangi_kullanici.getValue();
 
             haberler h = new haberler(Integer.parseInt(hangi), title, haber, tarih, kategori);
+            
+            Center nw = new Center(h);
 
-            int sonuc = Creator.haberlerDao().haberler_dao_ekle(h);
+            int sonuc = Creator.haberlerDao().create(nw);
 
             if (sonuc == 1) {
                 haberler_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti");
@@ -100,7 +103,7 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
         } else {
             String secilen = haberler_degistir_haberleri_getir.getValue();
             haberler_degistir_pane_2.setVisible(true);
-            String[][] arr = Creator.haberlerDao().haberler_combo_doldur();
+            String[][] arr = Creator.haberlerDao().select();
             int haber_id = 0;
             for (int i = 0; i < arr.length; i++) {
                 if (secilen.equals(arr[i][0])) {
@@ -142,7 +145,9 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
 
             haberler h = new haberler(haber_id, hangi, Title, Haber, Tarih, Haber_Kategorisi);
 
-            int sonuc = Creator.haberlerDao().haberler_degistir(h);
+            Center nw = new Center(h);
+            
+            int sonuc = Creator.haberlerDao().update(nw);
 
             if (sonuc == 1) {
                 haberler_degistir_uyari_mesaj_2.setText("İşlem Başarılı Bir Şekilde Gerçekleti.");
@@ -161,7 +166,7 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
     public void haberler_sil_emin_misin_sil(ActionEvent event) {
         int haber_id = Integer.valueOf(haberler_silmekten_emin_haber_id.getText());
         haberlerDAO hdao = new haberlerDAO();
-        int sonuc = hdao.haberler_sil(haber_id);
+        int sonuc = hdao.delete(haber_id);
 
         haberler_sil_emin_misin_pane.setVisible(false);
 

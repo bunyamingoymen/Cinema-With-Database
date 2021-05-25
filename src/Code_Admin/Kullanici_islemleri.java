@@ -1,7 +1,9 @@
 package Code_Admin;
 
 import Pattern.Creator;
+import Pattern.Mediator;
 import Pattern.Table;
+import entity.Center;
 import entity.users;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -123,7 +125,7 @@ public class Kullanici_islemleri extends Kampanyalar {
     public void kullanici_islemleri_sil_sil(ActionEvent event) {
         int user_id = Integer.parseInt(kullanici_islemleri_user_id.getText());
 
-        int sonuc = Creator.usersDao().user_dao_sil(user_id);
+        int sonuc = Creator.usersDao().delete(user_id);
 
         if (sonuc == 1) {
             kullanici_islemleri_yonet_uyari_pane.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
@@ -173,8 +175,12 @@ public class Kullanici_islemleri extends Kampanyalar {
                     kullanici_islemleri_yonet_uyari_pane.setText("Bir hata meydana geldi. Hata kodu: -31.");
                 } else {
                     users u = new users(user_id, user_name, user_mail, user_password, user_turu);
+                    
+                    Center nw = new Center(u);
+                    
+                    Mediator m = new Mediator();
 
-                    int sonuc = Creator.usersDao().user_guncelle_aboneli(u, abone_turu);
+                    int sonuc = m.user_guncelle_aboneli(nw, abone_turu);
 
                     if (sonuc == 1) {
                         kullanici_islemleri_yonet_uyari_pane.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi.");

@@ -1,6 +1,7 @@
 package Code_Admin;
 
 import Pattern.Creator;
+import entity.Center;
 import entity.film_actor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +33,7 @@ public class Film_Actor extends Filmler {
         if (film_actor_ekle_filmler.getValue() == null) {
             film_actor_ekle_uyari_mesaj.setText("Lütfen önce bir film seçiniz");
         } else {
-            String[][] arr = Creator.filmlerDao().filmler_combo_doldur();
+            String[][] arr = Creator.filmlerDao().select();
             String secilen = film_actor_ekle_filmler.getValue();
             int film_id = -1;
 
@@ -48,7 +49,8 @@ public class Film_Actor extends Filmler {
             } else {
                 int actor_id = Integer.parseInt(film_actor_ekle_actor_id.getText());
                 film_actor fa = new film_actor(film_id, actor_id);
-                int sonuc = Creator.film_actorDao().film_actor_insert(fa);
+                Center nw = new Center(fa);
+                int sonuc = Creator.film_actorDao().create(nw);
                 if (sonuc == 1) {
                     film_actor_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
                 } else {
@@ -66,7 +68,7 @@ public class Film_Actor extends Filmler {
 
     @FXML
     public void film_actor_sil_silmekten_emin_sil(ActionEvent event) {
-        Creator.film_actorDao().film_actor_delete(Integer.parseInt(film_actor_id.getText()));
+        Creator.film_actorDao().delete(Integer.parseInt(film_actor_id.getText()));
         
         Creator.actor().film_actor_table(aktorler_grid, film_actor_grid, aktorler_geri_tusu, film_actor_geri_tusu, film_actor_film_name, film_actor_film_type, film_actor_yonetmen, film_actor_sil, table_film_actor, filterField_film_actor, film_actor_sil_emin_misin_pane, film_actor_id);
 

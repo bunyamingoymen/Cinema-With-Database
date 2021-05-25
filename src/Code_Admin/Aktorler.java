@@ -2,6 +2,7 @@ package Code_Admin;
 
 import Pattern.Creator;
 import Pattern.Table;
+import entity.Center;
 import entity.actor;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -30,7 +31,7 @@ public class Aktorler extends Par {
     @FXML
     public void aktorler_degistir_sil_emin_misin_sil(ActionEvent event) {
         int id = Integer.parseInt(aktorler_silmekten_emin_id.getText());
-        Creator.actorDao().aktorler_sil(id);
+        Creator.actorDao().delete(id);
         aktorler_sil_emin_misin.setVisible(false);
 
         aktorler_table();
@@ -46,7 +47,8 @@ public class Aktorler extends Par {
             String ad = aktorler_ekle_ad.getText();
             String soyad = aktorler_ekle_soyad.getText();
             actor a = new actor(ad, soyad);
-            int sonuc = Creator.actorDao().aktorler_ekle(a);
+            Center nw = new Center(a);
+            int sonuc = Creator.actorDao().create(nw);
             
             if (sonuc == 1) {
                 aktorler_ekle_uyari_mesaj.setText("İşlem başarılı bir şekilde gerçekleitirldi.");

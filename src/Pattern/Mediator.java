@@ -1,5 +1,8 @@
 package Pattern;
 
+import entity.Center;
+import entity.aboneler;
+
 public class Mediator {
 
     public void eski_filmler_tamamen_sil() {
@@ -20,8 +23,8 @@ public class Mediator {
             burada ilk olarak filmler tablosunda değişim ardından da eski filmler tablosunda değişim olmalı
          */
     }
-    
-    public void eski_filmler_toplu_sil(){
+
+    public void eski_filmler_toplu_sil() {
         //sadece veski filmlerden silme işlemiş yapılacak
     }
 
@@ -34,27 +37,39 @@ public class Mediator {
          */
     }
 
-    public void user_guncelle_aboneli() {
+    public int user_guncelle_aboneli(Center nw, int abone_type) {
         /*
         user bilgilerini güncellerken abone değişikliği olacak ise hem user sınıfında güncelleme olmalı hem de abone sınıfında güncelleme olmalı.
          */
+        int sonuc = 0;
+        if (abone_type == 0) {
+            sonuc = Creator.abonelerDao().delete(nw.getUsers().getUser_id());
+        } else {
+
+            aboneler a = new aboneler(nw.getUsers().getUser_id(), abone_type);
+            Center nw2 = new Center(a);
+
+            sonuc = Creator.abonelerDao().buy(nw);
+        }
+
+        return sonuc;
     }
 
     public void vizyondaki_filmler_tamamen_sil() {
-/* Hem vizyondaki_filmlerden, hem filmlerden hem de film_actor den silmeli
-        */
+        /* Hem vizyondaki_filmlerden, hem filmlerden hem de film_actor den silmeli
+         */
     }
 
     public void vizyondaki_filmler_sadece_vziyodnan_sil() {
-/* Vizyondaki filmlerden silip eski filme eklemei
-        */
+        /* Vizyondaki filmlerden silip eski filme eklemei
+         */
     }
-    
-    public void vizyondaki_filmler_değiştir(){
+
+    public void vizyondaki_filmler_değiştir() {
         //hem vizyondaki bilgileri hemde eski filmlerdeki bilgileir değiştirir.
     }
-    
-    public void vizyondaki_filmler_toplu_sil(){
+
+    public void vizyondaki_filmler_toplu_sil() {
         //sadee vizyodnaki filmlerden toplu silme işlemi yapılacak
     }
 }
