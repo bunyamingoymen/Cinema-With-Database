@@ -135,12 +135,6 @@ public class filmlerDAO implements IDAO {
         return sonuc;
     }
 
-    public void filmler_toplu_sil(LinkedList<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            delete(list.get(i));
-        }
-    }
-
     @Override
     public int count() {
         int sonuc = -1;

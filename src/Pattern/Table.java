@@ -56,7 +56,7 @@ public class Table {
 //        }
 
         data_vizyondaki_filmler_bir = FXCollections.observableArrayList();
-        data_vizyondaki_filmler_bir = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_select_butonlu(data_vizyondaki_filmler_bir, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+        data_vizyondaki_filmler_bir = Creator.vizyondaki_filmlerDao().select(data_vizyondaki_filmler_bir, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
         data_vizyondaki_filmler_bir_guncellendi_mi = 0;
         return data_vizyondaki_filmler_bir;
     }
@@ -64,7 +64,7 @@ public class Table {
     public static ObservableList<vizyondaki_filmler> data_vizyondaki_filmler_iki() {
         if (data_vizyondaki_filmler_iki == null) {
             data_vizyondaki_filmler_iki = FXCollections.observableArrayList();
-            data_vizyondaki_filmler_iki = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_select(data_vizyondaki_filmler_iki);
+            data_vizyondaki_filmler_iki = Creator.vizyondaki_filmlerDao().select(data_vizyondaki_filmler_iki);
         }
         return data_vizyondaki_filmler_iki;
     }
@@ -103,7 +103,7 @@ public class Table {
 //        }
 
         data_seans = FXCollections.observableArrayList();
-        data_seans = Creator.seansDao().seans_select(data_seans);
+        data_seans = Creator.seansDao().select(data_seans);
         return data_seans;
     }
 
@@ -114,7 +114,7 @@ public class Table {
 //        }
 
         data_yonetmenler = FXCollections.observableArrayList();
-        data_yonetmenler = Creator.yonetmenlerDao().yonetmenler_select(data_yonetmenler);
+        data_yonetmenler = Creator.yonetmenlerDao().select(data_yonetmenler);
         return data_yonetmenler;
     }
 
@@ -125,7 +125,7 @@ public class Table {
 //        }
 
         data_eski_filmler = FXCollections.observableArrayList();
-        data_eski_filmler = Creator.eski_filmlerDao().eski_filmler_select(data_eski_filmler);
+        data_eski_filmler = Creator.eski_filmlerDao().select(data_eski_filmler);
         return data_eski_filmler;
     }
 
@@ -144,7 +144,7 @@ public class Table {
 //        }
 
         data_kampanyalar = FXCollections.observableArrayList();
-        data_kampanyalar = Creator.kampanyalarDao().kampanyalar_select(data_kampanyalar, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
+        data_kampanyalar = Creator.kampanyalarDao().select(data_kampanyalar, kampanyalar_sil_emin_misin_pane, kampanyalar_silmekten_emin_kampanya_id);
         return data_kampanyalar;
     }
 
@@ -163,7 +163,7 @@ public class Table {
 //        }
 
         data_haberler = FXCollections.observableArrayList();
-        data_haberler = Creator.haberlerDao().haberler_select(data_haberler, haberler_sil_emin_misin_pane, haberler_silmekten_emin_kampanya_id);
+        data_haberler = Creator.haberlerDao().select(data_haberler, haberler_sil_emin_misin_pane, haberler_silmekten_emin_kampanya_id);
         return data_haberler;
     }
 
@@ -182,7 +182,7 @@ public class Table {
 //        }
 
         data_users = FXCollections.observableArrayList();
-        data_users = Creator.usersDao().user_select(data_users, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu, sil_pane);
+        data_users = Creator.usersDao().select(data_users, kullanici_islemleri_user_id, kullanici_islemleri_user_name, kullanici_islemleri_user_mail, kullanici_islemleri_gizli_pf, kullanici_islemleri_user_turu, kullanici_islemleri_abone_turu, gizli_pane, acik_pane, tablo_pane, yonet_pane, geri_tusu, yonet_geri_tusu, sil_pane);
 
         return data_users;
     }

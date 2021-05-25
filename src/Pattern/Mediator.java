@@ -1,11 +1,13 @@
 package Pattern;
 
+import DAO.film_actorDAO;
 import entity.Center;
 import entity.aboneler;
 import entity.eski_filmler;
 import entity.filmler;
 import entity.vizyondaki_filmler;
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 public class Mediator {
 
@@ -53,21 +55,25 @@ public class Mediator {
         /*
             burada ilk olarak filmler tablosunda değişim ardından da eski filmler tablosunda değişim olmalı
          */
-        
+
         Center nw = new Center(f);
         int sonuc = Creator.filmlerDao().update(nw);
         Center nw2 = new Center(ef);
         int sonuc2 = Creator.eski_filmlerDao().update(nw2);
-        
-        if(sonuc == 1 && sonuc2== 1){
+
+        if (sonuc == 1 && sonuc2 == 1) {
             return 1;
         }
         return 0;
-        
+
     }
 
-    public void eski_filmler_toplu_sil() {
+    public void eski_filmler_toplu_sil(LinkedList<Integer> list) {
         //sadece veski filmlerden silme işlemiş yapılacak
+
+        for (int i = 0; i < list.size(); i++) {
+            Creator.eski_filmlerDao().delete(list.get(i));
+        }
     }
 
     public void filmler_film_sayisi_azalt() {
@@ -147,7 +153,22 @@ public class Mediator {
 
     }
 
-    public void vizyondaki_filmler_toplu_sil() {
+    public void vizyondaki_filmler_toplu_sil(LinkedList<Integer> list) {
         //sadee vizyodnaki filmlerden toplu silme işlemi yapılacak
+        for (int i = 0; i < list.size(); i++) {
+            Creator.vizyondaki_filmlerDao().delete(list.get(i));
+        }
+    }
+
+    public void filmler_toplu_sil(LinkedList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            Creator.filmlerDao().delete(list.get(i));
+        }
+    }
+
+    public void film_actor_toplu_sil_film_id_uzerinden(LinkedList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            Creator.film_actorDao().delete_film_id(list.get(i));
+        }
     }
 }

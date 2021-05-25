@@ -78,55 +78,15 @@ public class film_actorDAO implements IDAO {
 
     }
 
-    public LinkedList read(int actor_id) {
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select film_actor.film_actor_id, film_actor.film_id, filmler.film_name, filmler.film_type, yonetmenler.ad, "
-                    + "yonetmenler.soyad from film_actor inner join filmler on film_actor.film_id = filmler.film_id inner join "
-                    + "yonetmenler on filmler.yonetmen_id = yonetmenler.yonetmen_id inner join actor on film_actor.actor_id = "
-                    + "actor.actor_id where actor.actor_id = " + actor_id;
-            ResultSet rs = st.executeQuery(komut);
-
-            LinkedList<film_actor> list = new LinkedList<>();
-
-            while (rs.next()) {
-                int film_actor_id = rs.getInt("film_actor_id");
-                int film_id = rs.getInt("film_id");
-                String film_name = rs.getString("film_name");
-                String film_type = rs.getString("film_type");
-                String ad = rs.getString("ad");
-                String soyad = rs.getString("soyad");
-                String ad_soyad = ad + " " + soyad;
-
-                film_actor fa = new film_actor(film_actor_id, film_id, film_name, film_type, ad_soyad);
-
-                list.add(fa);
-            }
-
-            c.close();
-            st.close();
-            rs.close();
-
-            return list;
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 125 - " + e.getMessage());
-
-            return null;
-        }
-
-    }
-    
     //film_id listeler
     public LinkedList read_film_id(int actor_id) {
         ResultSet rs = null;
-        LinkedList<film_actor> list = read(actor_id);
+        LinkedList<film_actor> list = read();
         LinkedList<Integer> list2 = new LinkedList<>();
         for (int i = 0; i < list.size(); i++) {
-            list2.add(list.get(i).getFilm_id());
+            if (list.get(i).getActor_id() == actor_id) {
+                list2.add(list.get(i).getFilm_id());
+            }
         }
 
         return list2;
@@ -135,7 +95,7 @@ public class film_actorDAO implements IDAO {
 
     @Override
     public int update(Center nw) {
-       return -1;
+        return -1;
     }
 
     @Override
@@ -191,12 +151,6 @@ public class film_actorDAO implements IDAO {
         return sonuc;
     }
 
-    public void film_actor_toplu_sil_(LinkedList<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            delete_film_id(list.get(i));
-        }
-    }
-
     @Override
     public int count() {
         return -1;
@@ -204,15 +158,18 @@ public class film_actorDAO implements IDAO {
 
     public ObservableList<film_actor> select(ObservableList<film_actor> data, int actor_id, Pane film_actor_sil_emin_misin_pane, Label film_actor_id_label) {
 
-        LinkedList<film_actor> list = read(actor_id);
+        LinkedList<film_actor> list = read();
 
         for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getActor_id() == actor_id) {
 
-            Button sil = new Button();
-            sil.setText("Sil");
-            sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
+                Button sil = new Button();
+                sil.setText("Sil");
+                sil.setStyle("-fx-background-color : #FA2C56; -fx-background-radius :  20; -fx-text-fill: white");
 
-            data.addAll(FXCollections.observableArrayList(new film_actor(list.get(i).getFilm_actor_id(), list.get(i).getFilm_id(), list.get(i).getActor_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getAd_soyad(), sil, film_actor_sil_emin_misin_pane, film_actor_id_label)));
+                data.addAll(FXCollections.observableArrayList(new film_actor(list.get(i).getFilm_actor_id(), list.get(i).getFilm_id(), list.get(i).getActor_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getAd_soyad(), sil, film_actor_sil_emin_misin_pane, film_actor_id_label)));
+
+            }
         }
 
         return data;

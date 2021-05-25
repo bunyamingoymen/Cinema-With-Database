@@ -1,38 +1,25 @@
 
 package Pattern;
 
-import DAO.actorDAO;
-import DAO.eski_filmlerDAO;
-import DAO.film_actorDAO;
-import DAO.filmlerDAO;
-import DAO.vizyondaki_filmlerDAO;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 public class Facade {
     
     public void aktorler_her_seyi_sil(int aktor_id) throws SQLException{
-        actorDAO adao = new actorDAO();
-        film_actorDAO fadao = new film_actorDAO();
-        vizyondaki_filmlerDAO vfdao = new vizyondaki_filmlerDAO();
-        eski_filmlerDAO efdao = new eski_filmlerDAO();
-        filmlerDAO fdao = new filmlerDAO();
         
-        ResultSet rs = fadao.film_actor_film_id_yolla(aktor_id);
+        LinkedList<Integer> list = Creator.film_actorDao().read_film_id(aktor_id);
         
-        if(rs!= null){
+        if(list != null){
             
-            LinkedList<Integer> list = new LinkedList<Integer>();
-            while(rs.next()){
-                list.add(rs.getInt("film_id"));
-            }
+            LinkedList<Integer> list2 = list;
             
-            fadao.film_actor_toplu_sil_(list);
-            vfdao.vizyondaki_filmler_toplu_sil(list);
-            efdao.eski_filmler_toplu_sil(list);
-            fdao.filmler_toplu_sil(list);
-            adao.aktorler_sil(aktor_id);
+            Mediator m = new Mediator();
+            m.film_actor_toplu_sil_film_id_uzerinden(list2);
+            m.vizyondaki_filmler_toplu_sil(list2);
+            m.eski_filmler_toplu_sil(list2);
+            m.filmler_toplu_sil(list2);
+            Creator.actorDao().delete(aktor_id);
             
             
         }else{
