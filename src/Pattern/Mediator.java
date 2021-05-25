@@ -2,19 +2,48 @@ package Pattern;
 
 import entity.Center;
 import entity.aboneler;
+import entity.eski_filmler;
+import entity.filmler;
 
 public class Mediator {
 
-    public void eski_filmler_tamamen_sil() {
+    public int eski_filmler_vefilmler_ekle(String film_name, int film_suresi, String film_type, int yonetmen_id, int hangi_abone, int aldigi_odul) {
+        filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id, 0);
+        Center nw = new Center(f);
+        int film_id = Creator.filmlerDao().create(nw);
+
+        eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);
+        Center nw2 = new Center(ef);
+        int sonuc = Creator.eski_filmlerDao().create(nw);
+
+        return sonuc;
+    }
+
+    public int eski_filmler_tamamen_sil(int eski_film_id) {
         /*
         burası hem eski filmlerden hemde filmlerden silmeli
          */
+        int film_id = Creator.eski_filmlerDao().search_int(eski_film_id, 5);
+        int sonuc = Creator.eski_filmlerDao().delete(eski_film_id);
+        int sonuc2 = Creator.filmlerDao().delete(film_id);
+        if (sonuc == 1 && sonuc2 == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
-    public void eski_filmler_Sadece_eskiden_sil() {
+    public int eski_filmler_sadece_eskiden_sil(int eski_film_id) {
         /*
             burası eski filmlerden silip vizyondaki filmlere eklemeli
          */
+        int film_id = Creator.eski_filmlerDao().search_int(eski_film_id, 5);
+        int sonuc = Creator.vizyondaki_filmlerDao().create(film_id);
+        if(sonuc == 1){
+            int sonuc2 = Creator.eski_filmlerDao().delete(eski_film_id);
+            return sonuc2;
+        }
+        return sonuc;
 
     }
 

@@ -3,7 +3,9 @@ package Code_Admin;
 import entity.eski_filmler;
 import entity.filmler;
 import Pattern.Creator;
+import Pattern.Mediator;
 import Pattern.Table;
+import entity.Center;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -15,8 +17,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class Eski_Filmler extends Aktorler {
-public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        String[][] arr = Creator.eski_filmlerDao().eski_filmler_combo_doldur();
+
+    public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
+        String[][] arr = Creator.eski_filmlerDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Eski Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
@@ -128,7 +131,7 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
                 if ((film_name.length() == 0) || (eski_filmler_film_suresi.getText().length() == 0) || (film_type.length() == 0) || eski_aldigi_odul_sayisi.getLength() == 0 || (yonetmen == null) || (hangi == null)) {
                     eski_ekle_uyari_mesaj.setText("Lütfen gerekli yerleri doldurunuz.");
                 } else {
-                    String[][] arr = Creator.yonetmenlerDao().yonetmen_combo_doldur();
+                    String[][] arr = Creator.yonetmenlerDao().select();
                     int yonetmen_id = 0;
                     for (int i = 0; i < arr.length; i++) {
                         if (arr[i][0].equals(yonetmen)) {
@@ -138,10 +141,8 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
                     }
                     int hangi_abone = Integer.valueOf(hangi);
 
-                    filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id, 0);
-                    int film_id = Creator.filmlerDao().filmler_ekle_id_gonder(f);
-                    eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);
-                    int sonuc = Creator.eski_filmlerDao().eski_filmler_dao_ekle(ef);
+                    Mediator m = new Mediator();
+                    int sonuc = m.eski_filmler_vefilmler_ekle(film_name, film_suresi, film_type, yonetmen_id, hangi_abone, aldigi_odul);
 
                     if ((sonuc == 1)) {
                         eski_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
@@ -174,19 +175,19 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
         } else {
             String secilen = eski_degistir_sil_filmler.getValue();
             eski_filmler_degistir_pane_2.setVisible(true);
-            String[][] arr = Creator.eski_filmlerDao().eski_filmler_combo_doldur();
+            String[][] arr = Creator.eski_filmlerDao().select();
             int eski_film_id = 0;
             for (int i = 0; i < arr.length; i++) {
                 if (secilen.equals(arr[i][0])) {
                     eski_film_id = Integer.valueOf(arr[i][1]);
                 }
             }
-            String film_name = Creator.eski_filmlerDao().film_adi_getir(eski_film_id);
-            String film_type = Creator.eski_filmlerDao().film_type_getir(eski_film_id);
-            int film_suresi = Creator.eski_filmlerDao().film_suresi_getir(eski_film_id);
-            String yonetmen = Creator.eski_filmlerDao().yonetmen_id_getir(eski_film_id) + " " + Creator.eski_filmlerDao().yonetmen_getir(eski_film_id);
-            int hangi_abone = Creator.eski_filmlerDao().hangi_abone_getir(eski_film_id);
-            int aldigi_odul = Creator.eski_filmlerDao().aldigi_odul_sayisi_getir(eski_film_id);
+            String film_name = Creator.eski_filmlerDao().search_string(eski_film_id, 1);
+            String film_type = Creator.eski_filmlerDao().search_string(eski_film_id, 2);
+            int film_suresi = Creator.eski_filmlerDao().search_int(eski_film_id, 2);
+            String yonetmen = Creator.eski_filmlerDao().search_int(eski_film_id, 1) + " " + Creator.eski_filmlerDao().search_string(eski_film_id, 3);
+            int hangi_abone = Creator.eski_filmlerDao().search_int(eski_film_id, 3);
+            int aldigi_odul = Creator.eski_filmlerDao().search_int(eski_film_id, 4);
 
             eski_filmleri_degistir_sil_film_name.setText(film_name);
             eski_filmleri_degistir_sil_film_type.setText(film_type);
@@ -218,7 +219,7 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
                     int aldigi_odul = Integer.parseInt(eski_filmleri_degistir_sil_aldigi_odul.getText());
                     int hangi_abone = Integer.parseInt(eski_filmleri_degistir_sil_hangi_abone.getValue());
                     String yonetmen = eski_filmleri_degistir_sil_yonetmen.getValue();
-                    String[][] arr = Creator.yonetmenlerDao().yonetmen_combo_doldur();
+                    String[][] arr = Creator.yonetmenlerDao().select();
                     int yonetmen_id = 0;
                     for (int i = 0; i < arr.length; i++) {
                         if (arr[i][0].equals(yonetmen)) {
@@ -227,10 +228,12 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
                         }
                     }
                     int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-                    int film_id = Creator.eski_filmlerDao().film_id_getir(eski_film_id);
+                    int film_id = Creator.eski_filmlerDao().search_int(eski_film_id,5);
                     eski_filmler e = new eski_filmler(eski_film_id, film_id, film_name, film_type, film_suresi, aldigi_odul, hangi_abone, yonetmen_id);
+                    
+                    Center nw = new Center(e);
 
-                    int sonuc = Creator.eski_filmlerDao().eski_filmler_degistir(e);
+                    int sonuc = Creator.eski_filmlerDao().update(nw);
                     if (sonuc == 1) {
                         eski_filmler_degistir_sil_uyari_mesaj_2.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
                     } else {
@@ -259,8 +262,10 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
     @FXML
     public void eski_filmler_degistir_sil_silmekten_emin_tamamen_sil(ActionEvent event) {
         int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
+        
+        Mediator m = new Mediator();
 
-        int sonuc = Creator.eski_filmlerDao().eski_filmler_tamamen_sil(eski_film_id);
+        int sonuc = m.eski_filmler_tamamen_sil(eski_film_id);
 
         if (sonuc == 1) {
             eski_filmler_combo(eski_degistir_sil_filmler, eski_filmler_degistir_sil_uyari_mesaj_1);
@@ -283,8 +288,10 @@ public void eski_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
     @FXML
     public void eski_filmler_degistir_sil_silmekten_emin_sadece_eski_filmden_sil(ActionEvent event) {
         int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
+        
+        Mediator m = new Mediator();
 
-        int sonuc = Creator.eski_filmlerDao().eski_filmler_sadece_eskiden_sil(eski_film_id);
+        int sonuc = m.eski_filmler_sadece_eskiden_sil(eski_film_id);
 
         if (sonuc == 1) {
             eski_filmler_combo(eski_degistir_sil_filmler, eski_filmler_degistir_sil_uyari_mesaj_1);

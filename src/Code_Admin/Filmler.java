@@ -7,7 +7,7 @@ import Pattern.Creator;
 public class Filmler extends Eski_Filmler {
 
     public void filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        String[][] arr = Creator.filmlerDao().filmler_combo_doldur();
+        String[][] arr = Creator.filmlerDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Film Bulunamadı. Lütfen önce bir film ekleyiniz ekleyiniz.");

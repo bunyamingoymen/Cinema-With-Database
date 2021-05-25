@@ -208,7 +208,7 @@ public class haberlerDAO implements IDAO {
         return sonuc;
     }
 
-    //sadece hangi kukkanıcyı getirir
+    //sadece hangi kullanıcyı getirir
     public int search_int(int haber_id) {
         int hangi_kullanici = -1;
 

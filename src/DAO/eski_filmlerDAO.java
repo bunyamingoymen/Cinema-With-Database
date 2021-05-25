@@ -281,48 +281,6 @@ public class eski_filmlerDAO implements IDAO {
             }
         }
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from eski_filmler_tablo where eski_film_id='" + eski_film_id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-
-            switch (secim) {
-                //yonetmen_id getirir
-                case 1:
-                    sonuc = rs.getInt("yonetmen_id");
-                    break;
-                /*film_suresi getirir*/
-                case 2:
-                    sonuc = rs.getInt("film_suresi");
-                    break;
-                /*hangi abone getirir*/
-                case 3:
-                    sonuc = rs.getInt("hangi_aboneler_izleyebilir");
-                    break;
-                /*aldigi_odul_sayisi getirir*/
-                case 4:
-                    sonuc = rs.getInt("aldigi_odul_sayisi");
-                    break;
-                /*film_id getirir*/
-                case 5:
-                    sonuc = rs.getInt("film_id");
-                    break;
-                default:
-                    sonuc = -1;
-                    System.out.println("Hata kodu: 200");
-                    break;
-            }
-
-            c.close();
-            st.close();
-            rs.close();
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 120 - " + e.getMessage());
-        }
-
         return sonuc;
 
     }

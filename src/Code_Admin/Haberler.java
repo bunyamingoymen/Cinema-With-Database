@@ -16,8 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class Haberler extends Film_Actor {
-    
-public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
+
+    public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
         String[][] arr = Creator.haberlerDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
@@ -83,7 +83,7 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
             String hangi = haberler_ekle_hangi_kullanici.getValue();
 
             haberler h = new haberler(Integer.parseInt(hangi), title, haber, tarih, kategori);
-            
+
             Center nw = new Center(h);
 
             int sonuc = Creator.haberlerDao().create(nw);
@@ -110,11 +110,11 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
                     haber_id = Integer.valueOf(arr[i][1]);
                 }
             }
-            int hangi = Creator.haberlerDao().haberler_hangi_kullanici_getir(haber_id);
-            String Title = Creator.haberlerDao().haberler_title_getir(haber_id);
-            String Haber = Creator.haberlerDao().haberler_haber_getir(haber_id);
-            String Tarih = Creator.haberlerDao().haberler_tarih_getir(haber_id);
-            String Haber_Kategorisi = Creator.haberlerDao().haberler_haber_kategorisi_getir(haber_id);
+            int hangi = Creator.haberlerDao().search_int(haber_id);
+            String Title = Creator.haberlerDao().search_string(haber_id, 1);
+            String Haber = Creator.haberlerDao().search_string(haber_id, 2);
+            String Tarih = Creator.haberlerDao().search_string(haber_id, 3);
+            String Haber_Kategorisi = Creator.haberlerDao().search_string(haber_id, 4);
 
             haberler_degistir_title.setText(Title);
             haberler_degistir_haber.setText(Haber);
@@ -146,7 +146,7 @@ public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
             haberler h = new haberler(haber_id, hangi, Title, Haber, Tarih, Haber_Kategorisi);
 
             Center nw = new Center(h);
-            
+
             int sonuc = Creator.haberlerDao().update(nw);
 
             if (sonuc == 1) {

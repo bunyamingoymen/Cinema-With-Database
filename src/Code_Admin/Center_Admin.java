@@ -140,11 +140,12 @@ public class Center_Admin extends Yonetmenler implements Initializable {
                 password = tf_user_password.getText();
             }
 
-            int user_type = Creator.usersDao().user_type_getir(user_id);
+            int user_type = Creator.usersDao().search_int(user_id);
 
             //yukarıda aldığımız kullanıcının girdiği bilgileri User adlı sınıfın içindeki metoda yolluyor. Bu metodun yaptığı işlevi ksaca anlatmak gerekirse. Yapılan değiişikliği ilk önce bağlı listede değiştiriyor ardından ise bunu dosyaya yazıp kalıcı hale getiriyor. 
             users u = new users(user_id, name, mail, password, user_type);
-            int control = Creator.usersDao().user_guncelle(u);
+            Center nw = new Center(u);
+            int control = Creator.usersDao().update(nw);
 
             //Az önce gönderdiğimiz metot bir değer yolluyor bu değer 1 ise işlem herhangi bir hataya uğramadan başarılı bir şekilde gerçekleştiğini yazıyor. Eğer başarılı bir şekilde gerçekleşmiyor ise de Hata meydana gleidğini ekrana yazdırıyor.
             if (control == 1) {
@@ -179,7 +180,8 @@ public class Center_Admin extends Yonetmenler implements Initializable {
 
             films_photosDAO fpdao = new films_photosDAO();
 
-            int sonuc = fpdao.film_photo_dao_ekle_veya_guncelle(fp);
+            Center nw = new Center(fp);
+            int sonuc = fpdao.create_or_update(nw);
 
             switch (sonuc) {
                 case 1:
