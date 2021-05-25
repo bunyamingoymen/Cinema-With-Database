@@ -3,6 +3,7 @@ package Code_Admin;
 import entity.kampanyalar;
 import Pattern.Creator;
 import Pattern.Table;
+import entity.Center;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -14,8 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class Kampanyalar extends Haberler {
-public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
-        String[][] arr = Creator.kampanyalarDao().kampanyalar_combo_doldur();
+
+    public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
+        String[][] arr = Creator.kampanyalarDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Kampanya Bulunamadı. Lütfen Önce Bir Kampanya Ekleyiniz.");
@@ -80,8 +82,10 @@ public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) 
             String hangi = kampanyalar_ekle_hangi_kullanici.getValue();
 
             kampanyalar k = new kampanyalar(Integer.parseInt(hangi), title, kampanya, tarih, kategori);
-            
-            int sonuc = Creator.kampanyalarDao().kampanyalar_dao_ekle(k);
+
+            Center nw = new Center(k);
+
+            int sonuc = Creator.kampanyalarDao().create(nw);
 
             if (sonuc == 1) {
                 kampanyalar_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti");
@@ -98,18 +102,18 @@ public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) 
         } else {
             String secilen = kampanyalar_degistir_kampanyalari_getir.getValue();
             kampanyalar_degistir_pane_2.setVisible(true);
-            String[][] arr = Creator.kampanyalarDao().kampanyalar_combo_doldur();
+            String[][] arr = Creator.kampanyalarDao().select();
             int kampanya_id = 0;
             for (int i = 0; i < arr.length; i++) {
                 if (secilen.equals(arr[i][0])) {
                     kampanya_id = Integer.valueOf(arr[i][1]);
                 }
             }
-            int hangi = Creator.kampanyalarDao().kampanyalar_hangi_kullanici_getir(kampanya_id);
-            String Title = Creator.kampanyalarDao().kampanyalar_title_getir(kampanya_id);
-            String Kampanya = Creator.kampanyalarDao().kampanyalar_kampanya_getir(kampanya_id);
-            String Tarih = Creator.kampanyalarDao().kampanyalar_tarih_getir(kampanya_id);
-            String Kampanya_Kategorisi = Creator.kampanyalarDao().kampanyalar_kampanya_kategorisi_getir(kampanya_id);
+            int hangi = Creator.kampanyalarDao().searc_int(kampanya_id);
+            String Title = Creator.kampanyalarDao().search_string(kampanya_id, 1);
+            String Kampanya = Creator.kampanyalarDao().search_string(kampanya_id, 2);
+            String Tarih = Creator.kampanyalarDao().search_string(kampanya_id, 3);
+            String Kampanya_Kategorisi = Creator.kampanyalarDao().search_string(kampanya_id, 4);
 
             kampanyalar_degistir_title.setText(Title);
             kampanyalar_degistir_kampanya.setText(Kampanya);
@@ -140,7 +144,8 @@ public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) 
 
             kampanyalar k = new kampanyalar(kampanya_id, hangi, Title, Kampanya, Tarih, Kampanya_Kategorisi);
 
-            int sonuc = Creator.kampanyalarDao().kampanyalar_degistir(k);
+            Center nw = new Center(k);
+            int sonuc = Creator.kampanyalarDao().update(nw);
 
             if (sonuc == 1) {
                 kampanyalar_degistir_uyari_mesaj_2.setText("İşlem Başarılı Bir Şekilde Gerçekleti.");
@@ -159,7 +164,7 @@ public void kampanyalar_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) 
     public void kampanyalar_sil_emin_misin_sil(ActionEvent event) {
         int kampanya_id = Integer.valueOf(kampanyalar_silmekten_emin_kampanya_id.getText());
 
-        int sonuc = Creator.kampanyalarDao().kampanyalar_sil(kampanya_id);
+        int sonuc = Creator.kampanyalarDao().delete(kampanya_id);
 
         kampanyalar_sil_emin_misin_pane.setVisible(false);
 

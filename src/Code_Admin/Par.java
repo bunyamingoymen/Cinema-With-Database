@@ -7,27 +7,27 @@ import Pattern.Creator;
 public class Par extends Variables {
 
     public void home_page() {
-        vizyondaki_film_sayisi.setText(String.valueOf(Creator.vizyondaki_filmlerDao().kac_tane_vizyonda_film_var()));
+        vizyondaki_film_sayisi.setText(String.valueOf(Creator.vizyondaki_filmlerDao().count()));
 
-        eski_film_sayisi.setText(String.valueOf(Creator.eski_filmlerDao().kac_tane_eski_film_var()));
+        eski_film_sayisi.setText(String.valueOf(Creator.eski_filmlerDao().count()));
 
-        haber_sayisi.setText(String.valueOf(Creator.haberlerDao().kac_tane_haber_var()));
+        haber_sayisi.setText(String.valueOf(Creator.haberlerDao().count()));
 
-        kampanya_sayisi.setText(String.valueOf(Creator.kampanyalarDao().kac_tane_kampanya_var()));
+        kampanya_sayisi.setText(String.valueOf(Creator.kampanyalarDao().count()));
 
-        sinema_salonu_sayisi.setText(String.valueOf(Creator.sinema_salonlariDao().kac_tane_salon_var()));
+        sinema_salonu_sayisi.setText(String.valueOf(Creator.sinema_salonlariDao().count()));
 
-        yonetmen_sayisi.setText(String.valueOf(Creator.yonetmenlerDao().kac_tane_yonetmen_var()));
+        yonetmen_sayisi.setText(String.valueOf(Creator.yonetmenlerDao().count()));
 
-        aktor_sayisi.setText(String.valueOf(Creator.actorDao().kac_tane_actor_var()));
+        aktor_sayisi.setText(String.valueOf(Creator.actorDao().count()));
 
-        kullanici_sayisi.setText(String.valueOf(Creator.usersDao().kac_tane_user_var()));
+        kullanici_sayisi.setText(String.valueOf(Creator.usersDao().count()));
 
     }
 
     public void yonetmen_combo(ComboBox<String> combo, Label uyari_mesaji) {
 
-        String[][] arr = Creator.yonetmenlerDao().yonetmen_combo_doldur();
+        String[][] arr = Creator.yonetmenlerDao().select();
 
         combo.getItems().clear();
 
@@ -72,7 +72,7 @@ public class Par extends Variables {
     }
 
     public void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        String[] arr = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_combo_doldur();
+        String[] arr = Creator.vizyondaki_filmlerDao().select_string();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Vizyondaki Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
@@ -89,7 +89,7 @@ public class Par extends Variables {
 
     public void sinema_salonlari_goruntule_combo(ComboBox<String> combo, Label uyari_mesaj) {
 
-        String[] arr = Creator.sinema_salonlariDao().salonlar_combo_doldur();
+        String[] arr = Creator.sinema_salonlariDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Haber Bulunamadı. Lütfen Önce Bir Haber Ekleyiniz.");
