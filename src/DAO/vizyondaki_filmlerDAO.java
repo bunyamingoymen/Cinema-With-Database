@@ -220,12 +220,18 @@ public class vizyondaki_filmlerDAO implements IDAO {
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getVizyondaki_filmler_id() == vizyondaki_film_id) {
-                if (secim == 1) {
-                    sonuc = list.get(i).getFilm_name();
-                } else if (secim == 2) {
-                    sonuc = list.get(i).getFilm_type();
-                } else if (secim == 3) {
-                    sonuc = list.get(i).getYonetmen_ad_soyad();
+                switch (secim) {
+                    case 1:
+                        sonuc = list.get(i).getFilm_name();
+                        break;
+                    case 2:
+                        sonuc = list.get(i).getFilm_type();
+                        break;
+                    case 3:
+                        sonuc = list.get(i).getYonetmen_ad_soyad();
+                        break;
+                    default:
+                        break;
                 }
                 break;
             }
@@ -254,6 +260,9 @@ public class vizyondaki_filmlerDAO implements IDAO {
                             //seans_sayisi_gonderir
                             case 3:
                                 sonuc = list.get(i).getSeans_sayisi();
+                                break;
+                            case 4:
+                                sonuc = list.get(i).getYonetmen_id();
                                 break;
                             default:
                                 System.out.println("Hata kodu: 206");

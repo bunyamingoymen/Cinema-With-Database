@@ -257,22 +257,13 @@ public class filmlerDAO implements IDAO {
     //kullanici_puani getirir
     public float search_float(int film_id) {
         float kullanici_puani = (float) -1;
+        LinkedList<filmler> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select * from filmler where film_id ='" + film_id + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            kullanici_puani = rs.getFloat("kullanici_puani");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 177 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFilm_id() == film_id) {
+                kullanici_puani = (float) list.get(i).getKullanici_puani();
+                break;
+            }
         }
 
         return kullanici_puani;

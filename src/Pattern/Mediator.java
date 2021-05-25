@@ -4,10 +4,12 @@ import entity.Center;
 import entity.aboneler;
 import entity.eski_filmler;
 import entity.filmler;
+import entity.vizyondaki_filmler;
+import java.time.LocalDate;
 
 public class Mediator {
 
-    public int eski_filmler_vefilmler_ekle(String film_name, int film_suresi, String film_type, int yonetmen_id, int hangi_abone, int aldigi_odul) {
+    public int eski_filmler_ve_filmler_ekle(String film_name, int film_suresi, String film_type, int yonetmen_id, int hangi_abone, int aldigi_odul) {
         filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id, 0);
         Center nw = new Center(f);
         int film_id = Creator.filmlerDao().create(nw);
@@ -39,7 +41,7 @@ public class Mediator {
          */
         int film_id = Creator.eski_filmlerDao().search_int(eski_film_id, 5);
         int sonuc = Creator.vizyondaki_filmlerDao().create(film_id);
-        if(sonuc == 1){
+        if (sonuc == 1) {
             int sonuc2 = Creator.eski_filmlerDao().delete(eski_film_id);
             return sonuc2;
         }
@@ -47,10 +49,21 @@ public class Mediator {
 
     }
 
-    public void eski_filmler_degistir() {
+    public int eski_filmler_degistir(eski_filmler ef, filmler f) {
         /*
             burada ilk olarak filmler tablosunda değişim ardından da eski filmler tablosunda değişim olmalı
          */
+        
+        Center nw = new Center(f);
+        int sonuc = Creator.filmlerDao().update(nw);
+        Center nw2 = new Center(ef);
+        int sonuc2 = Creator.eski_filmlerDao().update(nw2);
+        
+        if(sonuc == 1 && sonuc2== 1){
+            return 1;
+        }
+        return 0;
+        
     }
 
     public void eski_filmler_toplu_sil() {
@@ -84,18 +97,54 @@ public class Mediator {
         return sonuc;
     }
 
-    public void vizyondaki_filmler_tamamen_sil() {
+    public int vizyondaki_filmler_ve_filmler_ekle(String film_name, int film_suresi, String film_type, int yonetmen_id, LocalDate kalkis) {
+        filmler f = new filmler(film_name, film_suresi, film_type, yonetmen_id, 0);
+        Center nw = new Center(f);
+        int film_id = Creator.filmlerDao().create(nw);
+
+        vizyondaki_filmler v = new vizyondaki_filmler(film_id, kalkis, 0);
+        Center nw2 = new Center(v);
+        int sonuc = Creator.vizyondaki_filmlerDao().create(nw);
+
+        return sonuc;
+    }
+
+    public int vizyondaki_filmler_tamamen_sil(int vizyondaki_film_id) {
         /* Hem vizyondaki_filmlerden, hem filmlerden hem de film_actor den silmeli
          */
+        int film_id = Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 1, 1);
+        int sonuc = Creator.vizyondaki_filmlerDao().delete(vizyondaki_film_id);
+        if (sonuc == 1) {
+            int sonuc2 = Creator.filmlerDao().delete(film_id);
+            return sonuc2;
+        }
+        return sonuc;
     }
 
-    public void vizyondaki_filmler_sadece_vziyodnan_sil() {
+    public int vizyondaki_filmler_sadece_vziyodnan_sil(int vizyondaki_film_id) {
         /* Vizyondaki filmlerden silip eski filme eklemei
          */
+        int film_id = Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 1, 1);
+        int sonuc = Creator.eski_filmlerDao().create(film_id);
+        if (sonuc == 1) {
+            int sonuc2 = Creator.vizyondaki_filmlerDao().delete(vizyondaki_film_id);
+            return sonuc2;
+        }
+        return sonuc;
     }
 
-    public void vizyondaki_filmler_değiştir() {
+    public int vizyondaki_filmler_degiştir(vizyondaki_filmler v, filmler f) {
         //hem vizyondaki bilgileri hemde eski filmlerdeki bilgileir değiştirir.
+        Center nw = new Center(f);
+        int sonuc = Creator.filmlerDao().update(nw);
+        Center nw2 = new Center(v);
+        int sonuc2 = Creator.vizyondaki_filmlerDao().update(nw2);
+
+        if (sonuc == 1 && sonuc2 == 1) {
+            return 1;
+        }
+        return 0;
+
     }
 
     public void vizyondaki_filmler_toplu_sil() {

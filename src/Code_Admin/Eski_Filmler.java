@@ -142,7 +142,7 @@ public class Eski_Filmler extends Aktorler {
                     int hangi_abone = Integer.valueOf(hangi);
 
                     Mediator m = new Mediator();
-                    int sonuc = m.eski_filmler_vefilmler_ekle(film_name, film_suresi, film_type, yonetmen_id, hangi_abone, aldigi_odul);
+                    int sonuc = m.eski_filmler_ve_filmler_ekle(film_name, film_suresi, film_type, yonetmen_id, hangi_abone, aldigi_odul);
 
                     if ((sonuc == 1)) {
                         eski_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
@@ -228,12 +228,13 @@ public class Eski_Filmler extends Aktorler {
                         }
                     }
                     int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-                    int film_id = Creator.eski_filmlerDao().search_int(eski_film_id,5);
-                    eski_filmler e = new eski_filmler(eski_film_id, film_id, film_name, film_type, film_suresi, aldigi_odul, hangi_abone, yonetmen_id);
-                    
-                    Center nw = new Center(e);
+                    int film_id = Creator.eski_filmlerDao().search_int(eski_film_id, 5);
+                    filmler f = new filmler(film_id, film_name, film_suresi, film_type, yonetmen_id);
+                    eski_filmler e = new eski_filmler(eski_film_id, aldigi_odul, hangi_abone);
 
-                    int sonuc = Creator.eski_filmlerDao().update(nw);
+                    Mediator m = new Mediator();
+
+                    int sonuc = m.eski_filmler_degistir(e, f);
                     if (sonuc == 1) {
                         eski_filmler_degistir_sil_uyari_mesaj_2.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
                     } else {
@@ -262,7 +263,7 @@ public class Eski_Filmler extends Aktorler {
     @FXML
     public void eski_filmler_degistir_sil_silmekten_emin_tamamen_sil(ActionEvent event) {
         int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-        
+
         Mediator m = new Mediator();
 
         int sonuc = m.eski_filmler_tamamen_sil(eski_film_id);
@@ -288,7 +289,7 @@ public class Eski_Filmler extends Aktorler {
     @FXML
     public void eski_filmler_degistir_sil_silmekten_emin_sadece_eski_filmden_sil(ActionEvent event) {
         int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-        
+
         Mediator m = new Mediator();
 
         int sonuc = m.eski_filmler_sadece_eskiden_sil(eski_film_id);

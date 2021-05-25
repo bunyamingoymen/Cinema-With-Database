@@ -297,13 +297,16 @@ public class seansDAO implements IDAO {
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getSeans_id() == seans_id) {
-                if (secim == 1) {
-                    sonuc = list.get(i).getVizyondaki_film_id();
-                } else if (secim == 2) {
-                    sonuc = list.get(i).getSalon_id();
-                } else {
-                    System.out.println("Hata: 204");
-                    return -1;
+                switch (secim) {
+                    case 1:
+                        sonuc = list.get(i).getVizyondaki_film_id();
+                        break;
+                    case 2:
+                        sonuc = list.get(i).getSalon_id();
+                        break;
+                    default:
+                        System.out.println("Hata: 204");
+                        return -1;
                 }
             }
         }

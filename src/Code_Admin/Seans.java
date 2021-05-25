@@ -8,6 +8,7 @@ import DAO.yonetmenlerDAO;
 import entity.seans;
 import Pattern.Creator;
 import Pattern.Table;
+import entity.Center;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -34,7 +35,7 @@ public class Seans extends Kullanici_islemleri {
     }
 
     public void seans_combo(ComboBox<String> combo, Label uyari_mesaj) {
-        String[] arr = Creator.seansDao().seans_combo_doldur();
+        String[] arr = Creator.seansDao().select();
         combo.getItems().clear();
         if (arr.length == 0) {
             uyari_mesaj.setText("Kayıtlı Vizyondaki Film Bulunamadı. Lütfen önce bir vizyona film ekleyiniz ekleyiniz.");
@@ -142,29 +143,22 @@ public class Seans extends Kullanici_islemleri {
             String[] secilen = seans_degistir_seans_getir_combo.getValue().split(" | ");
             int seans_id = Integer.parseInt(secilen[0]);
             seans_degistir_sil_seans_id.setText(String.valueOf(seans_id));
-            seansDAO sdao = new seansDAO();
-            int vizyondaki_film_id = sdao.vizyondaki_film_id_getir(seans_id);
-            vizyondaki_filmlerDAO vdao = new vizyondaki_filmlerDAO();
-            int film_id = vdao.film_id_getir(vizyondaki_film_id);
-            filmlerDAO fdao = new filmlerDAO();
-            yonetmenlerDAO ydao = new yonetmenlerDAO();
+            int vizyondaki_film_id = Creator.seansDao().search_int(seans_id, 1);
+            int film_id = Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 1, 1);
 
-            int yonetmen_id = fdao.filmler_yonetmen_id_getir(film_id);
-            String secilen_film = vizyondaki_film_id + " | " + vdao.film_adi_getir(vizyondaki_film_id) + " | " + fdao.filmler_film_type_getir(film_id) + " | " + fdao.filmler_film_suresi_getir(film_id) + " | " + ydao.yonetmenler_ad_getir(yonetmen_id);
+            String secilen_film = vizyondaki_film_id + " | " + Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 1) + " | " + Creator.vizyondaki_filmlerDao().search_string(film_id, 2) + " | " + Creator.vizyondaki_filmlerDao().search_int(film_id, 2,1) + " | " + Creator.vizyondaki_filmlerDao().search_string(Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 4,1), 3);
 
             vizyondaki_filmler_combo(seans_degistir_sil_film_combo, seans_degistir_sil_uyari_mesaj_2);
             seans_degistir_sil_film_combo.setValue(secilen_film);
 
-            int salon_id = sdao.salon_id_getir(seans_id);
+            int salon_id = Creator.seansDao().search_int(seans_id, 2);
 
-            sinema_salonlariDAO sinemadao = new sinema_salonlariDAO();
-
-            String secilen_salon = salon_id + " | " + sinemadao.salon_adi_getir(salon_id) + " | " + sinemadao.koltuk_sayisi_getir(salon_id);
+            String secilen_salon = salon_id + " | " + Creator.sinema_salonlariDao().search_string(salon_id) + " | " + Creator.sinema_salonlariDao().search_int(salon_id);
 
             sinema_salonlari_goruntule_combo(seans_degistir_sil_salon_combo, seans_degistir_sil_uyari_mesaj_2);
             seans_degistir_sil_salon_combo.setValue(secilen_salon);
 
-            String saat = sdao.saat_getir(seans_id);
+            String saat = Creator.seansDao().search_string(seans_id, 3);
 
             saat_combo(seans_degistir_sil_saat_combo);
             seans_degistir_sil_saat_combo.setValue(saat);
@@ -181,7 +175,7 @@ public class Seans extends Kullanici_islemleri {
     @FXML
     public void seans_degistir_sil_silmekten_emin_sil(ActionEvent event) {
         seansDAO sdao = new seansDAO();
-        int sonuc = sdao.seans_dao_sil(Integer.parseInt(seans_degistir_sil_seans_id.getText()));
+        int sonuc = sdao.delete(Integer.parseInt(seans_degistir_sil_seans_id.getText()));
 
         if (sonuc == 1) {
             seans_degistir_sil_pane_2.setVisible(false);
@@ -219,7 +213,9 @@ public class Seans extends Kullanici_islemleri {
 
             seansDAO sdao = new seansDAO();
 
-            int sonuc = sdao.seans_degistir(s);
+            Center nw = new Center(s);
+
+            int sonuc = sdao.update(nw);
 
             switch (sonuc) {
                 case 1:
@@ -250,7 +246,8 @@ public class Seans extends Kullanici_islemleri {
             String saat = seans_ekle_saat_combo.getValue();
 
             seans s = new seans(salon_id, vizyondaki_film_id, saat);
-            int sonuc = sdao.seans_dao_ekle(s);
+            Center nw = new Center(s);
+            int sonuc = sdao.create(nw);
             switch (sonuc) {
                 case 1:
 
