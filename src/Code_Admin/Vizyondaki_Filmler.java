@@ -70,7 +70,6 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         }
         if (control != -1) {
             String film_type = vizyondaki_filmler_ekle_film_type.getText();
-
             String yonetmen = vizyondaki_filmler_ekle_yonetmenler.getValue();
             if ((film_name.length() == 0) || (vizyondaki_filmler_film_suresi.getText().length() == 0) || (film_type.length() == 0) || (vizyondaki_filmler_ekle_kalkis.getValue() == null) || (yonetmen == null)) {
                 vizyondaki_filmler_ekle_uyari_mesaj.setText("Lütfen gerekli yerleri doldurunuz.");
@@ -84,11 +83,11 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
                         i = arr.length + 1;
                     }
                 }
-
+                
                 Mediator m = new Mediator();
-
+                
                 int sonuc = m.vizyondaki_filmler_ve_filmler_ekle(film_name, film_suresi, film_type, yonetmen_id, kalkis);
-
+                
                 if (sonuc == 1) {
                     vizyondaki_filmler_ekle_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleşti.");
                 }

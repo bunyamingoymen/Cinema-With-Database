@@ -44,7 +44,7 @@ public class appController extends Center_Admin implements Initializable {
             vizyondaki_filmler_ekle_pane.setVisible(false);
             vizyondaki_filmler_degistir_pane.setVisible(false);
             pnl_film_detay.setVisible(false);
-
+            
             vizyondaki_filmler_gosterim();
 
         } else if (btn1.getText().equals("Kampanyalar")) {

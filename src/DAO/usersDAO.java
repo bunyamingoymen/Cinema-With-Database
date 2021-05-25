@@ -236,7 +236,7 @@ public class usersDAO implements IDAO {
 
     public int search_int(int user_id) {
         int sonuc = 0;
-        LinkedList<users> list = new LinkedList<>();
+        LinkedList<users> list = read();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUser_id() == user_id) {
                 sonuc = list.get(i).getUser_type();

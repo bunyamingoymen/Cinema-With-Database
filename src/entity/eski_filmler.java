@@ -8,7 +8,7 @@ public class eski_filmler extends filmler {
 
     private int hangi_aboneler_izleyebilir;
     private int aldigi_odul_sayisi;
-
+    
     private Button detay;
 
     public eski_filmler() {
@@ -21,14 +21,15 @@ public class eski_filmler extends filmler {
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
 
-    public eski_filmler(int film_id, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi) {
-        super(film_id);
+    public eski_filmler(int eski_film_id, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi) {
+        this.eski_film_id = eski_film_id;
         this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
 
-    public eski_filmler(String film_name, String film_type, int film_suresi, String ad, String soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani) {
-        super(film_name, film_suresi, film_type, ad + " " + soyad, kullanici_puani);
+    public eski_filmler(int film_id, int eski_film_id, int yonetmen_id, String film_name, String film_type, int film_suresi, String ad, String soyad, int hangi_aboneler_izleyebilir, int aldigi_odul_sayisi, float kullanici_puani) {
+        super(film_id, film_name, film_type, film_suresi, yonetmen_id, kullanici_puani, ad + " " + soyad);
+        this.eski_film_id = eski_film_id;
         this.hangi_aboneler_izleyebilir = hangi_aboneler_izleyebilir;
         this.aldigi_odul_sayisi = aldigi_odul_sayisi;
     }
@@ -95,5 +96,5 @@ public class eski_filmler extends filmler {
     public void setDetay(Button detay) {
         this.detay = detay;
     }
-
+    
 }

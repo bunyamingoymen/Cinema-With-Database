@@ -66,6 +66,8 @@ public class eski_filmlerDAO implements IDAO {
             LinkedList<eski_filmler> list = new LinkedList<>();
 
             while (rs.next()) {
+                int film_id = rs.getInt("film_id");
+                int eski_film_id = rs.getInt("eski_film_id");
                 String film_name = rs.getString("film_name");
                 String film_type = rs.getString("film_type");
                 int film_suresi = rs.getInt("film_suresi");
@@ -74,8 +76,9 @@ public class eski_filmlerDAO implements IDAO {
                 int hangi = rs.getInt("hangi_aboneler_izleyebilir");
                 int aldigi_odul_sayisi = rs.getInt("aldigi_odul_sayisi");
                 float kullanici_puani = rs.getFloat("kullanici_puani");
+                int yonetmen_id = rs.getInt("yonetmen_id");
 
-                eski_filmler es = new eski_filmler(film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani);
+                eski_filmler es = new eski_filmler(film_id, eski_film_id, yonetmen_id,film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani);
 
                 list.add(es);
             }
@@ -202,9 +205,6 @@ public class eski_filmlerDAO implements IDAO {
         String[][] arr = new String[count()][2];
 
         LinkedList<eski_filmler> list = read();
-
-        filmlerDAO fdao = new filmlerDAO();
-        yonetmenlerDAO ydao = new yonetmenlerDAO();
 
         for (int i = 0; i < list.size(); i++) {
             String eski_filmler_combo = list.get(i).getFilm_name() + " | " + list.get(i).getFilm_type() + " | " + list.get(i).getFilm_suresi() + " | " + list.get(i).getYonetmen_ad_soyad();

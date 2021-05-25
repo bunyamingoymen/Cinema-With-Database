@@ -18,7 +18,7 @@ public class Mediator {
 
         eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);
         Center nw2 = new Center(ef);
-        int sonuc = Creator.eski_filmlerDao().create(nw);
+        int sonuc = Creator.eski_filmlerDao().create(nw2);
 
         return sonuc;
     }
@@ -55,12 +55,13 @@ public class Mediator {
         /*
             burada ilk olarak filmler tablosunda değişim ardından da eski filmler tablosunda değişim olmalı
          */
-
+        
         Center nw = new Center(f);
         int sonuc = Creator.filmlerDao().update(nw);
+        
         Center nw2 = new Center(ef);
         int sonuc2 = Creator.eski_filmlerDao().update(nw2);
-
+        
         if (sonuc == 1 && sonuc2 == 1) {
             return 1;
         }
@@ -97,7 +98,7 @@ public class Mediator {
             aboneler a = new aboneler(nw.getUsers().getUser_id(), abone_type);
             Center nw2 = new Center(a);
 
-            sonuc = Creator.abonelerDao().buy(nw);
+            sonuc = Creator.abonelerDao().buy(nw2);
         }
 
         return sonuc;
@@ -110,7 +111,7 @@ public class Mediator {
 
         vizyondaki_filmler v = new vizyondaki_filmler(film_id, kalkis, 0);
         Center nw2 = new Center(v);
-        int sonuc = Creator.vizyondaki_filmlerDao().create(nw);
+        int sonuc = Creator.vizyondaki_filmlerDao().create(nw2);
 
         return sonuc;
     }

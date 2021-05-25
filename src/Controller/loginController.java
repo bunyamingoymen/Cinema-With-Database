@@ -84,8 +84,8 @@ public class loginController implements Initializable {
                 String pass = users_islemleri.search_string(user_id, 1);
                 String mail = users_islemleri.search_string(user_id, 3);
 
-                users u = new users(user_id, name, mail, password, authority);
-
+                users u = new users(user_id, name, mail, pass, authority);
+                
                 Creator.setU(u);
 
                 switch (authority) {

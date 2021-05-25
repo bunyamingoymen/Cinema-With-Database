@@ -205,18 +205,20 @@ public class filmlerDAO implements IDAO {
         LinkedList<filmler> list = read();
 
         for (int i = 0; i < list.size(); i++) {
-            switch (secim) {
-                //film_adi getirir
-                case 1:
-                    sonuc = list.get(i).getFilm_name();
-                    break;
-                /*film_type getirir*/
-                case 2:
-                    sonuc = list.get(i).getFilm_type();
-                    break;
-                default:
-                    System.out.println("Hata kodu: -202");
-                    return null;
+            if (list.get(i).getFilm_id() == film_id) {
+                switch (secim) {
+                    //film_adi getirir
+                    case 1:
+                        sonuc = list.get(i).getFilm_name();
+                        break;
+                    /*film_type getirir*/
+                    case 2:
+                        sonuc = list.get(i).getFilm_type();
+                        break;
+                    default:
+                        System.out.println("Hata kodu: -202");
+                        return null;
+                }
             }
         }
 
