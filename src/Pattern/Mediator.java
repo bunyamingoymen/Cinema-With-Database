@@ -16,7 +16,7 @@ public class Mediator {
         Center nw = new Center(f);
         int film_id = Creator.filmlerDao().create(nw);
 
-        eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul);
+        eski_filmler ef = new eski_filmler(film_id, hangi_abone, aldigi_odul, (float) 0);
         Center nw2 = new Center(ef);
         int sonuc = Creator.eski_filmlerDao().create(nw2);
 
@@ -76,7 +76,7 @@ public class Mediator {
             Creator.eski_filmlerDao().delete(list.get(i));
         }
     }
-    
+
     public void eski_filmler_toplu_sil_film_id_ile(LinkedList<Integer> list) {
         //sadece veski filmlerden silme işlemiş yapılacak
 
