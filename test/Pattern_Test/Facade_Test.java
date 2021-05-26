@@ -11,6 +11,7 @@ import DAO.film_actorDAO;
 import DAO.filmlerDAO;
 import DAO.vizyondaki_filmlerDAO;
 import Pattern.Facade;
+import entity.Center;
 import entity.actor;
 import entity.eski_filmler;
 import entity.film_actor;
@@ -39,7 +40,7 @@ public class Facade_Test {
         Facade f = new Facade();
 
         f.aktorler_her_seyi_sil(actor_id);
-        
+
         System.out.println("Facade Calisti");
     }
 
@@ -47,10 +48,11 @@ public class Facade_Test {
     public void Before_Test_aktorler_her_seyi_sil() {
         actorDAO adao = new actorDAO();
         actor a = new actor("Test_ad", "Test_soyad");
+        Center actor = new Center(a);
 
-        adao.aktorler_ekle(a);
+        adao.create(actor);
         System.out.println("Aktör eklendi");
-        actor_id = adao.son_actor_id_getir();
+        actor_id = adao.search();
 
         filmlerDAO fdao = new filmlerDAO();
         filmler f = new filmler("Test_film_name_1", 120, "Aksiyon", 3981, 1);
@@ -64,18 +66,30 @@ public class Facade_Test {
         filmler f9 = new filmler("Test_film_name_9", 120, "Aksiyon", 3981, 1);
         filmler f10 = new filmler("Test_film_name_10", 120, "Aksiyon", 3981, 1);
 
-        film_id[0] = fdao.filmler_ekle_id_gonder(f);
-        film_id[1] = fdao.filmler_ekle_id_gonder(f2);
-        film_id[2] = fdao.filmler_ekle_id_gonder(f3);
-        film_id[3] = fdao.filmler_ekle_id_gonder(f4);
-        film_id[4] = fdao.filmler_ekle_id_gonder(f5);
-        film_id[5] = fdao.filmler_ekle_id_gonder(f6);
-        film_id[6] = fdao.filmler_ekle_id_gonder(f7);
-        film_id[7] = fdao.filmler_ekle_id_gonder(f8);
-        film_id[8] = fdao.filmler_ekle_id_gonder(f9);
-        film_id[9] = fdao.filmler_ekle_id_gonder(f10);
+        Center nw = new Center(f);
+        Center nw2 = new Center(f2);
+        Center nw3 = new Center(f3);
+        Center nw4 = new Center(f4);
+        Center nw5 = new Center(f5);
+        Center nw6 = new Center(f6);
+        Center nw7 = new Center(f7);
+        Center nw8 = new Center(f8);
+        Center nw9 = new Center(f9);
+        Center nw10 = new Center(f10);
+
+        film_id[0] = fdao.create(nw);
+        film_id[1] = fdao.create(nw2);
+        film_id[2] = fdao.create(nw3);
+        film_id[3] = fdao.create(nw4);
+        film_id[4] = fdao.create(nw5);
+        film_id[5] = fdao.create(nw6);
+        film_id[6] = fdao.create(nw7);
+        film_id[7] = fdao.create(nw8);
+        film_id[8] = fdao.create(nw9);
+        film_id[9] = fdao.create(nw10);
 
         System.out.println("Filmler eklendi");
+        
 
         vizyondaki_filmlerDAO vfdao = new vizyondaki_filmlerDAO();
         vizyondaki_filmler v = new vizyondaki_filmler(film_id[0], LocalDate.now(), 0);
@@ -84,26 +98,39 @@ public class Facade_Test {
         vizyondaki_filmler v4 = new vizyondaki_filmler(film_id[3], LocalDate.now(), 0);
         vizyondaki_filmler v5 = new vizyondaki_filmler(film_id[4], LocalDate.now(), 0);
 
-        vfdao.vizyondaki_filmler_dao_ekle(v);
-        vfdao.vizyondaki_filmler_dao_ekle(v2);
-        vfdao.vizyondaki_filmler_dao_ekle(v3);
-        vfdao.vizyondaki_filmler_dao_ekle(v4);
-        vfdao.vizyondaki_filmler_dao_ekle(v5);
+        Center nw11 = new Center(v);
+        Center nw12 = new Center(v2);
+        Center nw13 = new Center(v3);
+        Center nw14 = new Center(v4);
+        Center nw15 = new Center(v5);
+
+        vfdao.create(nw11);
+        vfdao.create(nw12);
+        vfdao.create(nw13);
+        vfdao.create(nw14);
+        vfdao.create(nw15);
 
         System.out.println("Vizyondaki Filmler Eklendi");
 
         eski_filmlerDAO efdao = new eski_filmlerDAO();
-        eski_filmler ed = new eski_filmler(film_id[5], 0, 1);
-        eski_filmler ed2 = new eski_filmler(film_id[6], 0, 1);
-        eski_filmler ed3 = new eski_filmler(film_id[7], 0, 1);
-        eski_filmler ed4 = new eski_filmler(film_id[8], 0, 1);
-        eski_filmler ed5 = new eski_filmler(film_id[9], 0, 1);
+        eski_filmler ed = new eski_filmler(film_id[5], 0, 1,(float)0);
+        eski_filmler ed2 = new eski_filmler(film_id[6], 0, 1,(float)0);
+        eski_filmler ed3 = new eski_filmler(film_id[7], 0, 1,(float)0);
+        eski_filmler ed4 = new eski_filmler(film_id[8], 0, 1,(float)0);
+        eski_filmler ed5 = new eski_filmler(film_id[9], 0, 1,(float)0);
+        
+        Center nw16 = new Center(ed);
+        Center nw17 = new Center(ed2);
+        Center nw18 = new Center(ed3);
+        Center nw19 = new Center(ed4);
+        Center nw20 = new Center(ed5);
 
-        efdao.eski_filmler_dao_ekle(ed);
-        efdao.eski_filmler_dao_ekle(ed2);
-        efdao.eski_filmler_dao_ekle(ed3);
-        efdao.eski_filmler_dao_ekle(ed4);
-        efdao.eski_filmler_dao_ekle(ed5);
+
+        efdao.create(nw16);
+        efdao.create(nw17);
+        efdao.create(nw18);
+        efdao.create(nw19);
+        efdao.create(nw20);
 
         System.out.println("Eski Filmler Eklendi");
 
@@ -119,16 +146,27 @@ public class Facade_Test {
         film_actor fa9 = new film_actor(film_id[8], actor_id);
         film_actor fa10 = new film_actor(film_id[9], actor_id);
 
-        fadao.film_actor_insert(fa);
-        fadao.film_actor_insert(fa2);
-        fadao.film_actor_insert(fa3);
-        fadao.film_actor_insert(fa4);
-        fadao.film_actor_insert(fa5);
-        fadao.film_actor_insert(fa6);
-        fadao.film_actor_insert(fa7);
-        fadao.film_actor_insert(fa8);
-        fadao.film_actor_insert(fa9);
-        fadao.film_actor_insert(fa10);
+        Center nw21 = new Center(fa);
+        Center nw22 = new Center(fa2);
+        Center nw23 = new Center(fa3);
+        Center nw24 = new Center(fa4);
+        Center nw25 = new Center(fa5);
+        Center nw26 = new Center(fa6);
+        Center nw27 = new Center(fa7);
+        Center nw28 = new Center(fa8);
+        Center nw29 = new Center(fa9);
+        Center nw30 = new Center(fa10);
+
+        fadao.create(nw21);
+        fadao.create(nw22);
+        fadao.create(nw23);
+        fadao.create(nw24);
+        fadao.create(nw25);
+        fadao.create(nw26);
+        fadao.create(nw27);
+        fadao.create(nw28);
+        fadao.create(nw29);
+        fadao.create(nw30);
 
         System.out.println("Film Actor Eklendi");
 
@@ -139,20 +177,20 @@ public class Facade_Test {
         int[] test = new int[10];
         filmlerDAO fdao = new filmlerDAO();
 
-        test[0] = fdao.film_id_var_mi(film_id[0]);
-        test[1] = fdao.film_id_var_mi(film_id[1]);
-        test[2] = fdao.film_id_var_mi(film_id[2]);
-        test[3] = fdao.film_id_var_mi(film_id[3]);
-        test[4] = fdao.film_id_var_mi(film_id[4]);
-        test[5] = fdao.film_id_var_mi(film_id[5]);
-        test[6] = fdao.film_id_var_mi(film_id[6]);
-        test[7] = fdao.film_id_var_mi(film_id[7]);
-        test[8] = fdao.film_id_var_mi(film_id[8]);
-        test[9] = fdao.film_id_var_mi(film_id[9]);
+        test[0] = fdao.count(film_id[0]);
+        test[1] = fdao.count(film_id[1]);
+        test[2] = fdao.count(film_id[2]);
+        test[3] = fdao.count(film_id[3]);
+        test[4] = fdao.count(film_id[4]);
+        test[5] = fdao.count(film_id[5]);
+        test[6] = fdao.count(film_id[6]);
+        test[7] = fdao.count(film_id[7]);
+        test[8] = fdao.count(film_id[8]);
+        test[9] = fdao.count(film_id[9]);
 
         if (test[0] == 0 && test[1] == 0 && test[2] == 0 && test[3] == 0 && test[4] == 0 && test[5] == 0 && test[6] == 0 && test[7] == 0 && test[8] == 0 && test[9] == 0) {
             System.out.println("Test Basarili");
-        }else{
+        } else {
             System.out.println("Test Basarisiz");
         }
     }

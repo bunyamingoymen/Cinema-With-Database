@@ -43,7 +43,7 @@ public class film_actorDAO implements IDAO {
             Connection c = d.connect();
             Statement st = c.createStatement();
             String komut = "select film_actor.film_actor_id, film_actor.film_id, filmler.film_name, filmler.film_type, yonetmenler.ad, "
-                    + "yonetmenler.soyad from film_actor inner join filmler on film_actor.film_id = filmler.film_id inner join "
+                    + "yonetmenler.soyad, actor.actor_id from film_actor inner join filmler on film_actor.film_id = filmler.film_id inner join "
                     + "yonetmenler on filmler.yonetmen_id = yonetmenler.yonetmen_id inner join actor on film_actor.actor_id = "
                     + "actor.actor_id";
             ResultSet rs = st.executeQuery(komut);
@@ -53,13 +53,14 @@ public class film_actorDAO implements IDAO {
             while (rs.next()) {
                 int film_actor_id = rs.getInt("film_actor_id");
                 int film_id = rs.getInt("film_id");
+                int actor_id = rs.getInt("actor_id");
                 String film_name = rs.getString("film_name");
                 String film_type = rs.getString("film_type");
                 String ad = rs.getString("ad");
                 String soyad = rs.getString("soyad");
                 String ad_soyad = ad + " " + soyad;
 
-                film_actor fa = new film_actor(film_actor_id, film_id, film_name, film_type, ad_soyad);
+                film_actor fa = new film_actor(film_actor_id, film_id, actor_id, film_name, film_type, ad_soyad);
 
                 list.add(fa);
             }

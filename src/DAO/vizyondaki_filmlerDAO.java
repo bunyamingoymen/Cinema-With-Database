@@ -127,10 +127,25 @@ public class vizyondaki_filmlerDAO implements IDAO {
 
     }
 
-    public void delete(LinkedList<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            delete(list.get(i));
+    public int delete_film_id(int film_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from vizyondaki_filmler where film_id=" + film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :163 - " + e.getMessage());
         }
+
+        return sonuc;
+
     }
 
     @Override

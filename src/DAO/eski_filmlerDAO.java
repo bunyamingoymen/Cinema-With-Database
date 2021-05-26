@@ -78,7 +78,7 @@ public class eski_filmlerDAO implements IDAO {
                 float kullanici_puani = rs.getFloat("kullanici_puani");
                 int yonetmen_id = rs.getInt("yonetmen_id");
 
-                eski_filmler es = new eski_filmler(film_id, eski_film_id, yonetmen_id,film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani);
+                eski_filmler es = new eski_filmler(film_id, eski_film_id, yonetmen_id, film_name, film_type, film_suresi, ad, soyad, hangi, aldigi_odul_sayisi, kullanici_puani);
 
                 list.add(es);
             }
@@ -136,10 +136,24 @@ public class eski_filmlerDAO implements IDAO {
         return sonuc;
     }
 
-    public void delete(LinkedList<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            delete(list.get(i));
+    public int delete_film_id(int film_id) {
+        int sonuc = 0;
+
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "delete from eski_filmler where film_id=" + film_id;
+            sonuc = st.executeUpdate(komut);
+
+            c.close();
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu :110 - " + e.getMessage());
         }
+
+        return sonuc;
     }
 
     @Override

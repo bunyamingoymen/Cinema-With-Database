@@ -25,7 +25,7 @@ public class Test_2 {
     public void baglanti(){
         vizyondaki_filmlerDAO vfdao = new vizyondaki_filmlerDAO();
         
-        LinkedList<vizyondaki_filmler> list = vfdao.vizyondaki_filmler_hepsini_getir();
+        LinkedList<vizyondaki_filmler> list = vfdao.read();
         
         for(int i= 0; i<list.size();i++){
             vizyondaki_filmler v = list.get(i);

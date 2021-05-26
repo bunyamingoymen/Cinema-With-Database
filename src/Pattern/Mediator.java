@@ -55,13 +55,13 @@ public class Mediator {
         /*
             burada ilk olarak filmler tablosunda değişim ardından da eski filmler tablosunda değişim olmalı
          */
-        
+
         Center nw = new Center(f);
         int sonuc = Creator.filmlerDao().update(nw);
-        
+
         Center nw2 = new Center(ef);
         int sonuc2 = Creator.eski_filmlerDao().update(nw2);
-        
+
         if (sonuc == 1 && sonuc2 == 1) {
             return 1;
         }
@@ -74,6 +74,14 @@ public class Mediator {
 
         for (int i = 0; i < list.size(); i++) {
             Creator.eski_filmlerDao().delete(list.get(i));
+        }
+    }
+    
+    public void eski_filmler_toplu_sil_film_id_ile(LinkedList<Integer> list) {
+        //sadece veski filmlerden silme işlemiş yapılacak
+
+        for (int i = 0; i < list.size(); i++) {
+            Creator.eski_filmlerDao().delete_film_id(list.get(i));
         }
     }
 
@@ -158,6 +166,13 @@ public class Mediator {
         //sadee vizyodnaki filmlerden toplu silme işlemi yapılacak
         for (int i = 0; i < list.size(); i++) {
             Creator.vizyondaki_filmlerDao().delete(list.get(i));
+        }
+    }
+
+    public void vizyondaki_filmler_toplu_sil_film_id_ile(LinkedList<Integer> list) {
+        //sadee vizyodnaki filmlerden toplu silme işlemi yapılacak
+        for (int i = 0; i < list.size(); i++) {
+            Creator.vizyondaki_filmlerDao().delete_film_id(list.get(i));
         }
     }
 
