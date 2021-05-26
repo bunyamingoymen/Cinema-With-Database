@@ -150,7 +150,7 @@ public class yonetmenlerDAO implements IDAO {
 
     public String search_string(int yonetmen_id, int secim) {
         String sonuc = null;
-        LinkedList<yonetmenler> list = new LinkedList<>();
+        LinkedList<yonetmenler> list = read();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getYonetmen_id() == yonetmen_id) {
                 if (secim == 1) {
@@ -172,7 +172,7 @@ public class yonetmenlerDAO implements IDAO {
 
     public int search_int(int yonetmen_id) {
         int film_sayisi = 0;
-        LinkedList<yonetmenler> list = new LinkedList<>();
+        LinkedList<yonetmenler> list = read();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getYonetmen_id() == yonetmen_id) {
                 film_sayisi = list.get(i).getFilm_sayisi();

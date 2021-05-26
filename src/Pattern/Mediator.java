@@ -1,6 +1,5 @@
 package Pattern;
 
-import DAO.film_actorDAO;
 import entity.Center;
 import entity.aboneler;
 import entity.eski_filmler;

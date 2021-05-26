@@ -181,7 +181,7 @@ public class haberlerDAO implements IDAO {
     //Title, Haber, Tarih, Haber Kategorisi getirir
     public String search_string(int haber_id, int secim) {
         String sonuc = null;
-        LinkedList<haberler> list = new LinkedList<>();
+        LinkedList<haberler> list = read();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == haber_id) {
@@ -212,7 +212,7 @@ public class haberlerDAO implements IDAO {
     public int search_int(int haber_id) {
         int hangi_kullanici = -1;
 
-        LinkedList<haberler> list = new LinkedList<>();
+        LinkedList<haberler> list =  read();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == haber_id) {

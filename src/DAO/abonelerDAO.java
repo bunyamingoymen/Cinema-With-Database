@@ -56,7 +56,7 @@ public class abonelerDAO implements IDAO {
             String komut = "select * from aboneler";
             ResultSet rs = st.executeQuery(komut);
 
-            LinkedList list = new LinkedList<aboneler>();
+            LinkedList<aboneler> list = new LinkedList<>();
 
             while (rs.next()) {
                 int abone_id = rs.getInt("abone_id");

@@ -148,7 +148,7 @@ public class kampanyalarDAO implements IDAO {
 
     public ObservableList<kampanyalar> select(ObservableList<kampanyalar> data, int kullanici_turu) {
 
-        LinkedList<kampanyalar> list = new LinkedList<>();
+        LinkedList<kampanyalar> list = read();
 
         for (int i = 0; i < list.size(); i++) {
 

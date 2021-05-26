@@ -234,7 +234,7 @@ public class seansDAO implements IDAO {
     //combo doldurmak için kullanılan select
     public String[] select() {
         String[] arr = new String[count()];
-        LinkedList<seans> list = new LinkedList<>();
+        LinkedList<seans> list = read();
 
         for (int i = 0; i < list.size(); i++) {
             String seans_combo = list.get(i).getSeans_id() + " | " + list.get(i).getFilm_name() + " | " + list.get(i).getSalon_name();
@@ -247,7 +247,7 @@ public class seansDAO implements IDAO {
 
     public String[] seans_combo_doldur(int vizyondaki_film_id) {
         String[] arr = new String[count(vizyondaki_film_id)];
-        LinkedList<seans> list = new LinkedList<>();
+        LinkedList<seans> list = read();
 
         for (int i = 0; i < list.size(); i++) {
             String seans_combo = list.get(i).getSeans_id() + " | " + list.get(i).getFilm_name() + " | " + list.get(i).getSalon_name() + " | " + list.get(i).getSaat();
@@ -293,7 +293,7 @@ public class seansDAO implements IDAO {
     public int search_int(int seans_id, int secim) {
         int sonuc = 0;
 
-        LinkedList<seans> list = new LinkedList<>();
+        LinkedList<seans> list = read();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getSeans_id() == seans_id) {
