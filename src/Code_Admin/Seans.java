@@ -57,6 +57,11 @@ public class Seans extends Kullanici_islemleri {
         seans_grid.setVisible(true);
         seans_ekle_pane.setVisible(false);
         seans_degistir_sil_pane.setVisible(false);
+
+        seans_geri_tusu.setVisible(true);
+        seans_ekle_geri_tusu.setVisible(false);
+        seans_degistir_geri_tusu.setVisible(false);
+        
         seans_table();
 
     }
@@ -146,7 +151,7 @@ public class Seans extends Kullanici_islemleri {
             int vizyondaki_film_id = Creator.seansDao().search_int(seans_id, 1);
             int film_id = Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 1, 1);
 
-            String secilen_film = vizyondaki_film_id + " | " + Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 1) + " | " + Creator.vizyondaki_filmlerDao().search_string(film_id, 2) + " | " + Creator.vizyondaki_filmlerDao().search_int(film_id, 2,1) + " | " + Creator.vizyondaki_filmlerDao().search_string(Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 4,1), 3);
+            String secilen_film = vizyondaki_film_id + " | " + Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 1) + " | " + Creator.vizyondaki_filmlerDao().search_string(film_id, 2) + " | " + Creator.vizyondaki_filmlerDao().search_int(film_id, 2, 1) + " | " + Creator.vizyondaki_filmlerDao().search_string(Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 4, 1), 3);
 
             vizyondaki_filmler_combo(seans_degistir_sil_film_combo, seans_degistir_sil_uyari_mesaj_2);
             seans_degistir_sil_film_combo.setValue(secilen_film);
