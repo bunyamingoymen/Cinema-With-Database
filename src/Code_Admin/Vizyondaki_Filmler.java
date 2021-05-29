@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
@@ -44,6 +45,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
     }
 
     public void vizyondaki_filmler_gosterim_oncesi_ortak() {
+        System.out.println("1");
         LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
 
         if (list.size() <= 10) {
@@ -55,6 +57,8 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
             }
             vizyondaki_filmler_gosterim(list2, 2);
         }
+
+        System.out.println("2");
     }
 
     @FXML
@@ -254,7 +258,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     public void vizyondaki_filmler_table_admin() {
 
-        ObservableList<vizyondaki_filmler> data = Table.data_vizyondaki_filmler_iki();
+        ObservableList<vizyondaki_filmler> data = Table.vizyondaki_filmler_bir(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
@@ -617,7 +621,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
     }
 
     public void imageview_gosterim_ortak(ImageView img, int film_id) {
-        vizyondaki_filmler_resimli_gosterim.setVisible(false);
+        pnl_vizyondaki_filmler.setVisible(false);
         pnl_film_detay.setVisible(true);
 
         int vizyondaki_film_id = Creator.vizyondaki_filmlerDao().search_int(film_id, 0, 2);
@@ -748,8 +752,18 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     @FXML
     public void film_detay_geri() {
-        vizyondaki_filmler_resimli_gosterim.setVisible(true);
+        pnl_vizyondaki_filmler.setVisible(true);
         pnl_film_detay.setVisible(false);
+
+        vizyondaki_filmler_geri_tusu.setVisible(true);
+        vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
+        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+        vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
+
+        vizyondaki_filmler_resimli_gosterim.setVisible(true);
+        vizyondaki_filmler_grid.setVisible(false);
+        vizyondaki_filmler_ekle_pane.setVisible(false);
+        vizyondaki_filmler_degistir_pane.setVisible(false);
 
         vizyondaki_filmler_gosterim_oncesi_ortak();
     }
@@ -760,6 +774,8 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         vizyondaki_filmler_resimli_gosterim.setVisible(false);
 
         vizyondaki_filmler_geri_tusu.setVisible(false);
+        vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
+        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_gosterim_geri_tusu.setVisible(true);
 
         vizyondaki_filmler_table_admin();

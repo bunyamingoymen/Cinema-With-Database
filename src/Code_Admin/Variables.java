@@ -305,7 +305,7 @@ public class Variables {
     public Pane vizyondaki_filmler_gosterim_pane_bir, vizyondaki_filmler_gosterim_pane_iki, vizyondaki_filmler_gosterim_pane_uc, vizyondaki_filmler_gosterim_pane_dort, vizyondaki_filmler_gosterim_pane_bes, vizyondaki_filmler_gosterim_pane_alti, vizyondaki_filmler_gosterim_pane_yedi, vizyondaki_filmler_gosterim_pane_sekiz, vizyondaki_filmler_gosterim_pane_dokuz, vizyondaki_filmler_gosterim_pane_on, vizyondaki_filmler_gosterim_pane_sayfa;
 
     @FXML
-    public Pane pnl_film_detay;
+    public AnchorPane pnl_film_detay;
 
     @FXML
     public Label vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani;

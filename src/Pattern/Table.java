@@ -42,22 +42,22 @@ public class Table {
     }
 
     public static ObservableList<vizyondaki_filmler> vizyondaki_filmler_bir(Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detay) {
-//        if (data_vizyondaki_filmler_bir == null || data_vizyondaki_filmler_bir_guncellendi_mi == 1) {
-//            data_vizyondaki_filmler_bir = FXCollections.observableArrayList();
-//            data_vizyondaki_filmler_bir = Creator.vizyondaki_filmlerDao().vizyondaki_filmler_select_butonlu(data_vizyondaki_filmler_bir, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
-//            data_vizyondaki_filmler_bir_guncellendi_mi = 0;
-//        } else {
-//            Button detay = new Button();
-//            detay.setText("Detay");
-//            detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
-//
-//            Creator.vizyondaki_filmler().vizyondaki_filmler_controller(detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
-//
-//        }
+        if (data_vizyondaki_filmler_bir == null || data_vizyondaki_filmler_bir_guncellendi_mi == 1) {
+            data_vizyondaki_filmler_bir = FXCollections.observableArrayList();
+            data_vizyondaki_filmler_bir = Creator.vizyondaki_filmlerDao().select(data_vizyondaki_filmler_bir, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+            data_vizyondaki_filmler_bir_guncellendi_mi = 0;
+        } else {
+            Button detay = new Button();
+            detay.setText("Detay");
+            detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-        data_vizyondaki_filmler_bir = FXCollections.observableArrayList();
-        data_vizyondaki_filmler_bir = Creator.vizyondaki_filmlerDao().select(data_vizyondaki_filmler_bir, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
-        data_vizyondaki_filmler_bir_guncellendi_mi = 0;
+            Creator.vizyondaki_filmler().vizyondaki_filmler_controller(detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+
+        }
+
+//        data_vizyondaki_filmler_bir = FXCollections.observableArrayList();
+//        data_vizyondaki_filmler_bir = Creator.vizyondaki_filmlerDao().select(data_vizyondaki_filmler_bir, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+//        data_vizyondaki_filmler_bir_guncellendi_mi = 0;
         return data_vizyondaki_filmler_bir;
     }
 
