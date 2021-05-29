@@ -128,6 +128,27 @@ public class films_photosDAO implements IDAO {
         return path;
     }
 
+    public String default_photo() {
+        String path = "";
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select *  from films_photos where film_photo_id=" + 9;
+            ResultSet rs = st.executeQuery(komut);
+            rs.next();
+            path = rs.getString("photo_path");
+
+            c.close();
+            st.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 251 - " + e.getMessage());
+        }
+        return path;
+    }
+
     /*
 
     //public int kac_tane_film_id_var(int film_id) {

@@ -24,6 +24,8 @@ public class Creator {
     private static users users = null;
 
     private static filmlerDAO fdao = null;
+    
+    private static films_photosDAO fpdao = null;
 
     private static film_actorDAO fadao = null;
 
@@ -118,6 +120,13 @@ public class Creator {
             fdao = new filmlerDAO();
         }
         return fdao;
+    }
+    
+    public static films_photosDAO films_photoDAO(){
+        if(fpdao == null){
+            fpdao = new films_photosDAO();
+        }
+        return fpdao;
     }
 
     public static film_actorDAO film_actorDao() {

@@ -297,6 +297,9 @@ public class Variables {
 
     @FXML
     public Label vizyondaki_filmler_gosterim_sayfa_sayisi, vizyondaki_filmler_gosterim_uyari_mesaj;
+    
+    @FXML
+    public Button vizyondaki_filmler_gosterim_sonraki, vizyondaki_filmler_gosterim_onceki;
 
     @FXML
     public Pane vizyondaki_filmler_gosterim_pane_bir, vizyondaki_filmler_gosterim_pane_iki, vizyondaki_filmler_gosterim_pane_uc, vizyondaki_filmler_gosterim_pane_dort, vizyondaki_filmler_gosterim_pane_bes, vizyondaki_filmler_gosterim_pane_alti, vizyondaki_filmler_gosterim_pane_yedi, vizyondaki_filmler_gosterim_pane_sekiz, vizyondaki_filmler_gosterim_pane_dokuz, vizyondaki_filmler_gosterim_pane_on, vizyondaki_filmler_gosterim_pane_sayfa;
