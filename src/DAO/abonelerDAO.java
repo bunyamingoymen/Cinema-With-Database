@@ -323,10 +323,13 @@ public class abonelerDAO implements IDAO {
 
         switch (user_id_sayisi) {
             case -1:
+                System.out.println("yanlis");
                 return 0;
             case 0:
+                System.out.println("yanlis");
                 return create(nw);
             case 1:
+                System.out.println("doğru");
                 return update(nw);
             default:
                 return 0;

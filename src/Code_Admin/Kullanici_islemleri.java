@@ -179,9 +179,9 @@ public class Kullanici_islemleri extends Kampanyalar {
                     Center nw = new Center(u);
                     
                     Mediator m = new Mediator();
-
+                    
                     int sonuc = m.user_guncelle_aboneli(nw, abone_turu);
-
+                    
                     if (sonuc == 1) {
                         kullanici_islemleri_yonet_uyari_pane.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi.");
                     } else {

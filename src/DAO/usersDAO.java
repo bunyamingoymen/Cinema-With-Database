@@ -197,6 +197,7 @@ public class usersDAO implements IDAO {
         LinkedList<users> list = read();
 
         for (int i = 0; i < list.size(); i++) {
+            
             Button yonet = new Button();
             yonet.setText("Yönet");
             yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");

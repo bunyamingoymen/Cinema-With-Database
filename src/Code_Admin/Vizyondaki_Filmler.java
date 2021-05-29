@@ -45,7 +45,6 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
     }
 
     public void vizyondaki_filmler_gosterim_oncesi_ortak() {
-        System.out.println("1");
         LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
 
         if (list.size() <= 10) {
@@ -58,7 +57,6 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
             vizyondaki_filmler_gosterim(list2, 2);
         }
 
-        System.out.println("2");
     }
 
     @FXML

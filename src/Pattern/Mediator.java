@@ -97,18 +97,29 @@ public class Mediator {
         /*
         user bilgilerini güncellerken abone değişikliği olacak ise hem user sınıfında güncelleme olmalı hem de abone sınıfında güncelleme olmalı.
          */
-        int sonuc = 0;
-        if (abone_type == 0) {
-            sonuc = Creator.abonelerDao().delete(nw.getUsers().getUser_id());
-        } else {
 
+        int sonuc = 0;
+
+        if (abone_type == 0 && Creator.abonelerDao().count(nw.getUsers().getUser_id()) != 0) {
+            sonuc = Creator.abonelerDao().delete(nw.getUsers().getUser_id());
+
+        } else if (abone_type == 0 && Creator.abonelerDao().count(nw.getUsers().getUser_id()) == 0) {
+            sonuc = 1;
+        } else {
             aboneler a = new aboneler(nw.getUsers().getUser_id(), abone_type);
             Center nw2 = new Center(a);
 
             sonuc = Creator.abonelerDao().buy(nw2);
         }
 
-        return sonuc;
+        int sonuc2 = Creator.usersDao().update(nw);
+
+        if (sonuc == 1 && sonuc2 == 1) {
+            return 1;
+        }
+        System.out.println("sonuc: " + sonuc + ", sonuc2: " + sonuc2);
+        return 0;
+
     }
 
     public int vizyondaki_filmler_ve_filmler_ekle(String film_name, int film_suresi, String film_type, int yonetmen_id, LocalDate kalkis) {
