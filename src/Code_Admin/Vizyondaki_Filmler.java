@@ -689,6 +689,30 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
     }
 
     @FXML
+    public void vizyondaki_filmler_gosterim_onceki(ActionEvent event) {
+        int kacinci_sayfa = Integer.parseInt(vizyondaki_filmler_gosterim_sayfa_sayisi.getText());
+        int onceki_sayfa = kacinci_sayfa - 1;
+
+        if (onceki_sayfa == 1) {
+            vizyondaki_filmler_gosterim_oncesi_ortak();
+        } else {
+            int minimum_gosterim = onceki_sayfa * 10;
+            int maksimum_gosteirm = minimum_gosterim + 10;
+
+            LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
+
+            LinkedList<vizyondaki_filmler> list2 = new LinkedList<>();
+
+            for (int i = minimum_gosterim; i < maksimum_gosteirm; i++) {
+                list2.add(list.get(i));
+            }
+            vizyondaki_filmler_gosterim(list2, -1);
+        }
+
+        vizyondaki_filmler_gosterim_sayfa_sayisi.setText(String.valueOf(onceki_sayfa));
+    }
+
+    @FXML
     public void film_detay_geri() {
         vizyondaki_filmler_resimli_gosterim.setVisible(true);
         pnl_film_detay.setVisible(false);

@@ -377,7 +377,7 @@
                               </Pane>
                               <Pane fx:id="vizyondaki_filmler_gosterim_pane_sayfa" layoutX="250.0" layoutY="780.0" prefHeight="87.0" prefWidth="537.0" styleClass="fare1">
                                  <children>
-                                    <Button fx:id="vizyondaki_filmler_gosterim_onceki" layoutX="158.0" layoutY="29.0" mnemonicParsing="false" styleClass="button2" text="Önceki" textFill="WHITE" />
+                                    <Button fx:id="vizyondaki_filmler_gosterim_onceki" layoutX="158.0" layoutY="29.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_gosterim_onceki" styleClass="button2" text="Önceki" textFill="WHITE" />
                                     <Button fx:id="vizyondaki_filmler_gosterim_sonraki" layoutX="320.0" layoutY="29.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_gosterim_sonraki" styleClass="button2" text="Sonraki" textFill="WHITE" />
                                     <Label fx:id="vizyondaki_filmler_gosterim_sayfa_sayisi" layoutX="264.0" layoutY="34.0" text="1" />
                                     <Button layoutX="53.0" layoutY="29.0" mnemonicParsing="false" styleClass="button2" text="Baş" textFill="WHITE" />
