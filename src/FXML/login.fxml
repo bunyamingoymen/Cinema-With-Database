@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: transparent;" stylesheets="@../Css/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.loginController">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" stylesheets="@../Css/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.loginController">
    <children>
       <Pane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-radius: 10;">
          <children>
@@ -152,6 +152,35 @@
                   </Pane>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="sifremi_unuttum_paneli" layoutX="5.0" layoutY="2.0" prefHeight="768.0" prefWidth="827.0" visible="false">
+               <children>
+                  <Pane layoutX="-4.0" layoutY="-10.0" prefHeight="778.0" prefWidth="827.0" style="-fx-background-color: white;">
+                     <children>
+                        <Text layoutX="272.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-size: 2em; -fx-font-weight: bold; -fx-fill: #2F2B43;" text="Şifremi Unuttum" />
+                        <HBox alignment="CENTER_RIGHT" layoutX="289.0" layoutY="294.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #a2a2a2; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <TextField fx:id="tf_username3" promptText="Kullanıcı adı" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <FontAwesomeIconView fill="#888888" glyphName="USER">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                           </children>
+                        </HBox>
+                        <Button layoutX="311.0" layoutY="427.0" mnemonicParsing="false" onAction="#sifremi_goster" prefWidth="193.0" style="-fx-text-fill: white;" styleClass="button2" text="Şifremi Göster" />
+                        <Label layoutX="335.0" layoutY="487.0" text="Şifreniz: " />
+                        <Label fx:id="label_password" layoutX="390.0" layoutY="487.0" textFill="#fe4451" />
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Pane>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="ortadaki_pane" layoutX="-6.0" layoutY="-8.0" prefHeight="778.0" prefWidth="547.0" style="-fx-background-color: #393351;">
                <children>
                   <Label fx:id="yazi1" layoutX="62.0" layoutY="148.0" text="Kayıtlı Üyemiz Değil misin?" textFill="WHITE">
@@ -160,7 +189,7 @@
                      </font>
                   </Label>
                   <Button fx:id="ortadaki_btn" layoutX="177.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#btn" prefWidth="193.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Kayıt Ol" />
-                  <Button fx:id="sifremi_unuttum" layoutX="178.0" layoutY="492.0" mnemonicParsing="false" prefWidth="193.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Şifremi Unuttum" />
+                  <Button fx:id="sifremi_unuttum" layoutX="178.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#btn_2" prefWidth="193.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Şifremi Unuttum" />
                   <Button fx:id="kayit_olmadan" layoutX="116.0" layoutY="659.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="316.0" style="-fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 20;" styleClass="button2" text="Kayıt Olmadan Vizyondaki Filmleri Gör" />
                   <Label fx:id="yazi2" layoutX="58.0" layoutY="226.0" text="Kayıt Ol Ve Sana Özel Fırsatlardan Yararlan" textFill="WHITE">
                      <font>
