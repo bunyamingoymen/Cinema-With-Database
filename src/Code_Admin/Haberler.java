@@ -172,6 +172,7 @@ public class Haberler extends Film_Actor {
 
         if (sonuc == 1) {
             haberler_table_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
+            haberler_table_butonlu();
         } else {
             haberler_table_uyari_mesaj.setText("Bir Hata Meydana geldi (Hata Kodu = -6)");
         }

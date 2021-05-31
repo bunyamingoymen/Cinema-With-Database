@@ -14,10 +14,13 @@ public class haberler extends duyurular {
     public haberler(int haber_id, int hangi_kullanici_turu, String Title, String Haber, String Tarih, String Haber_Kategorisi, Button sil, Label haberler_silmekten_emin_haber_id, Pane haberler_sil_emin_misin_pane) {
         super(haber_id, hangi_kullanici_turu, Title, Haber, Tarih, Haber_Kategorisi);
 
+        haber_controller(sil, haberler_silmekten_emin_haber_id, haberler_sil_emin_misin_pane);
+
     }
 
     public void haber_controller(Button sil, Label haberler_silmekten_emin_haber_id, Pane haberler_sil_emin_misin_pane) {
         this.sil = sil;
+
         this.sil.setOnAction(e -> {
             haberler_silmekten_emin_haber_id.setText(String.valueOf(super.getId()));
             haberler_sil_emin_misin_pane.setVisible(true);
