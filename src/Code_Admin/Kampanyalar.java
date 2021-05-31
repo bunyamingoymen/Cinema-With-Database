@@ -4,6 +4,7 @@ import entity.kampanyalar;
 import Pattern.Creator;
 import Pattern.Table;
 import entity.Center;
+import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -62,7 +63,7 @@ public class Kampanyalar extends Haberler {
     @FXML
     public void kampanyalar_ekle_sifirla(ActionEvent event) {
         kampanyalar_ekle_title.setText("");
-        kampanyalar_ekle_tarih.setText("");
+        kampanyalar_ekle_tarih.setValue(null);
         kampanyalar_ekle_kategori.setText("");
         kampanyalar_ekle_kampanya.setText("");
         hangi_aboneler_combo(kampanyalar_ekle_hangi_kullanici);
@@ -71,12 +72,12 @@ public class Kampanyalar extends Haberler {
 
     @FXML
     public void kampanyalar_ekle_ekle(ActionEvent event) {
-        if ((kampanyalar_ekle_title.getText().length() == 0) || (kampanyalar_ekle_tarih.getText().length() == 0) || (kampanyalar_ekle_kategori.getText().length() == 0)
+        if ((kampanyalar_ekle_title.getText().length() == 0) || (kampanyalar_ekle_tarih.getValue() == null) || (kampanyalar_ekle_kategori.getText().length() == 0)
                 || (kampanyalar_ekle_kampanya.getText().length() == 0) || (kampanyalar_ekle_hangi_kullanici.getValue() == null)) {
             kampanyalar_ekle_uyari_mesaj.setText("Lütfen Gerekli Yerleri Doldurnuz.");
         } else {
             String title = kampanyalar_ekle_title.getText();
-            String tarih = kampanyalar_ekle_tarih.getText();
+            LocalDate tarih = kampanyalar_ekle_tarih.getValue();
             String kategori = kampanyalar_ekle_kategori.getText();
             String kampanya = kampanyalar_ekle_kampanya.getText();
             String hangi = kampanyalar_ekle_hangi_kullanici.getValue();
@@ -109,15 +110,15 @@ public class Kampanyalar extends Haberler {
                     kampanya_id = Integer.valueOf(arr[i][1]);
                 }
             }
-            int hangi = Creator.kampanyalarDao().searc_int(kampanya_id);
+            int hangi = Creator.kampanyalarDao().search_int(kampanya_id);
             String Title = Creator.kampanyalarDao().search_string(kampanya_id, 1);
             String Kampanya = Creator.kampanyalarDao().search_string(kampanya_id, 2);
-            String Tarih = Creator.kampanyalarDao().search_string(kampanya_id, 3);
-            String Kampanya_Kategorisi = Creator.kampanyalarDao().search_string(kampanya_id, 4);
+            LocalDate Tarih = Creator.kampanyalarDao().search_LocalDate(kampanya_id);
+            String Kampanya_Kategorisi = Creator.kampanyalarDao().search_string(kampanya_id, 3);
 
             kampanyalar_degistir_title.setText(Title);
             kampanyalar_degistir_kampanya.setText(Kampanya);
-            kampanyalar_degistir_tarih.setText(Tarih);
+            kampanyalar_degistir_tarih.setValue(Tarih);
             kampanyalar_degistir_kategori.setText(Kampanya_Kategorisi);
 
             hangi_aboneler_combo(kampanyalar_degistir_hangi_kullanici);
@@ -130,14 +131,14 @@ public class Kampanyalar extends Haberler {
     @FXML
     public void kampanyalar_degistir_degistir(ActionEvent event) {
         if ((kampanyalar_degistir_title.getText().length() == 0) || (kampanyalar_degistir_kampanya.getText().length() == 0)
-                || (kampanyalar_degistir_tarih.getText().length() == 0) || (kampanyalar_degistir_kategori.getText().length() == 0)
+                || (kampanyalar_degistir_tarih.getValue() == null) || (kampanyalar_degistir_kategori.getText().length() == 0)
                 || (kampanyalar_degistir_hangi_kullanici.getValue() == null)) {
             kampanyalar_degistir_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri Degistiriniz.");
         } else {
             int hangi = Integer.parseInt(kampanyalar_degistir_hangi_kullanici.getValue());
             String Title = kampanyalar_degistir_title.getText();
             String Kampanya = kampanyalar_degistir_kampanya.getText();
-            String Tarih = kampanyalar_degistir_tarih.getText();
+            LocalDate Tarih = kampanyalar_degistir_tarih.getValue();
             String Kampanya_Kategorisi = kampanyalar_degistir_kategori.getText();
 
             int kampanya_id = Integer.parseInt(kampanyalar_degistir_kampanya_id.getText());
@@ -169,6 +170,7 @@ public class Kampanyalar extends Haberler {
         kampanyalar_sil_emin_misin_pane.setVisible(false);
 
         if (sonuc == 1) {
+            kampanyalar_table_butonlu();
             kampanyalar_table_uyari_mesaj.setText("İşlem Başarılı Bir Şekilde Gerçekleştirildi");
         } else {
             kampanyalar_table_uyari_mesaj.setText("Bir Hata Meydana geldi (Hata Kodu = -3)");
@@ -231,7 +233,7 @@ public class Kampanyalar extends Haberler {
                     return true;
                 } else if (kam.getDuyuru().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (kam.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (kam.getTarih().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (kam.getKategori().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;

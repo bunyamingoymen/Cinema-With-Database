@@ -347,7 +347,10 @@ public class Variables {
     public TableColumn<kampanyalar, Button> kampanyalar_sil;
 
     @FXML
-    public TextField kampanyalar_ekle_title, kampanyalar_ekle_tarih, kampanyalar_ekle_kategori, kampanyalar_degistir_title, kampanyalar_degistir_tarih, kampanyalar_degistir_kategori;
+    public TextField kampanyalar_ekle_title, kampanyalar_ekle_kategori, kampanyalar_degistir_title, kampanyalar_degistir_kategori;
+    
+    @FXML
+    public DatePicker kampanyalar_ekle_tarih, kampanyalar_degistir_tarih;
 
     @FXML
     public ComboBox<String> kampanyalar_ekle_hangi_kullanici, kampanyalar_degistir_hangi_kullanici, kampanyalar_degistir_kampanyalari_getir;
@@ -371,7 +374,13 @@ public class Variables {
     public TableColumn<haberler, Button> haberler_sil;
 
     @FXML
-    public TextField haberler_ekle_title, haberler_ekle_tarih, haberler_ekle_kategori, haberler_degistir_title, haberler_degistir_tarih, haberler_degistir_kategori;
+    public TextField haberler_ekle_title, haberler_ekle_kategori, haberler_degistir_title, haberler_degistir_kategori;
+    
+    @FXML
+    public DatePicker haberler_degistir_tarih;
+    
+    @FXML
+    public DatePicker haberler_ekle_tarih;
 
     @FXML
     public ComboBox<String> haberler_ekle_hangi_kullanici, haberler_degistir_hangi_kullanici, haberler_degistir_haberleri_getir;

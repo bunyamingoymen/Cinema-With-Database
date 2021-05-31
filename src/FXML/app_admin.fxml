@@ -6855,7 +6855,6 @@
                   <Button layoutX="777.0" layoutY="416.0" mnemonicParsing="false" onAction="#kampanyalar_ekle_ekle" prefHeight="31.0" prefWidth="135.0" styleClass="button2" text="Ekle" textFill="WHITE" />
                   <Label fx:id="kampanyalar_ekle_uyari_mesaj" layoutX="500.0" layoutY="375.0" textFill="RED" />
                   <TextField fx:id="kampanyalar_ekle_title" layoutX="167.0" layoutY="77.0" />
-                  <TextField fx:id="kampanyalar_ekle_tarih" layoutX="658.0" layoutY="77.0" />
                   <TextField fx:id="kampanyalar_ekle_kategori" layoutX="167.0" layoutY="172.0" />
                   <ComboBox fx:id="kampanyalar_ekle_hangi_kullanici" layoutX="658.0" layoutY="172.0" prefHeight="31.0" prefWidth="195.0" />
                   <TextArea fx:id="kampanyalar_ekle_kampanya" layoutX="187.0" layoutY="270.0" prefHeight="89.0" prefWidth="687.0" />
@@ -6864,6 +6863,7 @@
                   <Label layoutX="98.0" layoutY="177.0" text="Kategori:" />
                   <Label layoutX="478.0" layoutY="177.0" text="Hangi Kullanıcı Katılabilir:" />
                   <Label layoutX="104.0" layoutY="270.0" text="Kampanya:" />
+                  <DatePicker fx:id="kampanyalar_ekle_tarih" layoutX="658.0" layoutY="77.0" />
                </children>
             </Pane>
             <Pane fx:id="kampanyalar_sil_emin_misin_pane" layoutX="140.0" layoutY="221.0" prefHeight="288.0" prefWidth="727.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
@@ -6891,7 +6891,6 @@
                      <children>
                         <Button layoutX="686.0" layoutY="331.0" mnemonicParsing="false" onAction="#kampanyalar_degistir_degistir" prefHeight="31.0" prefWidth="125.0" styleClass="button2" text="Değistir" textFill="WHITE" />
                         <TextField fx:id="kampanyalar_degistir_title" layoutX="183.0" layoutY="54.0" />
-                        <TextField fx:id="kampanyalar_degistir_tarih" layoutX="674.0" layoutY="54.0" />
                         <TextField fx:id="kampanyalar_degistir_kategori" layoutX="183.0" layoutY="149.0" />
                         <ComboBox fx:id="kampanyalar_degistir_hangi_kullanici" layoutX="674.0" layoutY="149.0" prefHeight="31.0" prefWidth="195.0" />
                         <TextArea fx:id="kampanyalar_degistir_kampanya" layoutX="197.0" layoutY="214.0" prefHeight="89.0" prefWidth="687.0" />
@@ -6903,6 +6902,7 @@
                         <Label fx:id="kampanyalar_degistir_uyari_mesaj_2" layoutX="120.0" layoutY="336.0" textFill="RED" />
                         <Label layoutX="283.0" layoutY="24.0" text="Kampanya_id: " />
                         <Label fx:id="kampanyalar_degistir_kampanya_id" layoutX="378.0" layoutY="24.0" />
+                        <DatePicker fx:id="kampanyalar_degistir_tarih" layoutX="674.0" layoutY="54.0" />
                      </children>
                   </Pane>
                </children>
@@ -6972,7 +6972,6 @@
                   <Button layoutX="777.0" layoutY="416.0" mnemonicParsing="false" onAction="#haberler_ekle_ekle" prefHeight="31.0" prefWidth="135.0" styleClass="button2" text="Ekle" textFill="WHITE" />
                   <Label fx:id="haberler_ekle_uyari_mesaj" layoutX="500.0" layoutY="375.0" textFill="RED" />
                   <TextField fx:id="haberler_ekle_title" layoutX="167.0" layoutY="77.0" />
-                  <TextField fx:id="haberler_ekle_tarih" layoutX="658.0" layoutY="77.0" />
                   <TextField fx:id="haberler_ekle_kategori" layoutX="167.0" layoutY="172.0" />
                   <ComboBox fx:id="haberler_ekle_hangi_kullanici" layoutX="658.0" layoutY="172.0" prefHeight="31.0" prefWidth="195.0" />
                   <TextArea fx:id="haberler_ekle_haber" layoutX="187.0" layoutY="270.0" prefHeight="89.0" prefWidth="687.0" />
@@ -6981,6 +6980,7 @@
                   <Label layoutX="98.0" layoutY="177.0" text="Kategori:" />
                   <Label layoutX="478.0" layoutY="177.0" text="Hangi Kullanıcı Katılabilir:" />
                   <Label layoutX="104.0" layoutY="270.0" text="Haber:" />
+                  <DatePicker fx:id="haberler_ekle_tarih" layoutX="668.0" layoutY="77.0" />
                </children>
             </Pane>
             <Pane fx:id="haberler_sil_emin_misin_pane" layoutX="140.0" layoutY="221.0" prefHeight="288.0" prefWidth="727.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
@@ -7008,7 +7008,6 @@
                      <children>
                         <Button layoutX="686.0" layoutY="331.0" mnemonicParsing="false" onAction="#haberler_degistir_degistir" prefHeight="31.0" prefWidth="125.0" styleClass="button2" text="Değistir" textFill="WHITE" />
                         <TextField fx:id="haberler_degistir_title" layoutX="183.0" layoutY="54.0" />
-                        <TextField fx:id="haberler_degistir_tarih" layoutX="674.0" layoutY="54.0" />
                         <TextField fx:id="haberler_degistir_kategori" layoutX="183.0" layoutY="149.0" />
                         <ComboBox fx:id="haberler_degistir_hangi_kullanici" layoutX="674.0" layoutY="149.0" prefHeight="31.0" prefWidth="195.0" />
                         <TextArea fx:id="haberler_degistir_haber" layoutX="197.0" layoutY="214.0" prefHeight="89.0" prefWidth="687.0" />
@@ -7020,6 +7019,7 @@
                         <Label fx:id="haberler_degistir_uyari_mesaj_2" layoutX="120.0" layoutY="336.0" textFill="RED" />
                         <Label layoutX="283.0" layoutY="24.0" text="Haber_id: " />
                         <Label fx:id="haberler_degistir_haber_id" layoutX="378.0" layoutY="24.0" />
+                        <DatePicker fx:id="haberler_degistir_tarih" layoutX="674.0" layoutY="54.0" />
                      </children>
                   </Pane>
                </children>

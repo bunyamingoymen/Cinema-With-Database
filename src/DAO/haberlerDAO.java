@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,7 +54,7 @@ public class haberlerDAO implements IDAO {
                 int hangi_kullanıcı_turu = rs.getInt("hangi_kullanici_turu");
                 String Title = rs.getString("Title");
                 String Haber = rs.getString("Haber");
-                String Tarih = rs.getString("Tarih");
+                LocalDate Tarih = rs.getDate("Tarih").toLocalDate();
                 String Haber_Kategorisi = rs.getString("Haber_Kategorisi");
 
                 haberler h = new haberler(haber_id, hangi_kullanıcı_turu, Title, Haber, Tarih, Haber_Kategorisi);
@@ -178,7 +179,7 @@ public class haberlerDAO implements IDAO {
 
     }
 
-    //Title, Haber, Tarih, Haber Kategorisi getirir
+    //Title, Haber, Haber Kategorisi getirir
     public String search_string(int haber_id, int secim) {
         String sonuc = null;
         LinkedList<haberler> list = read();
@@ -193,9 +194,6 @@ public class haberlerDAO implements IDAO {
                         sonuc = list.get(i).getDuyuru();
                         break;
                     case 3:
-                        sonuc = list.get(i).getTarih();
-                        break;
-                    case 4:
                         sonuc = list.get(i).getKategori();
                         break;
                     default:
@@ -207,12 +205,12 @@ public class haberlerDAO implements IDAO {
 
         return sonuc;
     }
-
+    
     //sadece hangi kullanıcyı getirir
     public int search_int(int haber_id) {
         int hangi_kullanici = -1;
 
-        LinkedList<haberler> list =  read();
+        LinkedList<haberler> list = read();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == haber_id) {
@@ -221,6 +219,20 @@ public class haberlerDAO implements IDAO {
         }
 
         return hangi_kullanici;
+    }
+
+    public LocalDate search_LocalDate(int haber_id) {
+        LocalDate tarih = null;
+
+        LinkedList<haberler> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == haber_id) {
+                tarih = list.get(i).getTarih();
+            }
+        }
+
+        return tarih;
     }
 
 

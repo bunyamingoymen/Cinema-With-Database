@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,7 +50,7 @@ public class kampanyalarDAO implements IDAO {
 
             while (rs.next()) {
 
-                kampanyalar k = new kampanyalar(rs.getInt("kampanya_id"), rs.getInt("hangi_kullanici_turu"), rs.getString("Title"), rs.getString("Kampanya"), rs.getString("Tarih"), rs.getString("Kampanya_Kategorisi"));
+                kampanyalar k = new kampanyalar(rs.getInt("kampanya_id"), rs.getInt("hangi_kullanici_turu"), rs.getString("Title"), rs.getString("Kampanya"), rs.getDate("Tarih").toLocalDate(), rs.getString("Kampanya_Kategorisi"));
 
                 list.add(k);
 
@@ -191,9 +192,6 @@ public class kampanyalarDAO implements IDAO {
                         sonuc = list.get(i).getDuyuru();
                         break;
                     case 3:
-                        sonuc = list.get(i).getTarih();
-                        break;
-                    case 4:
                         sonuc = list.get(i).getKategori();
                         break;
                     default:
@@ -207,7 +205,7 @@ public class kampanyalarDAO implements IDAO {
     }
 
     //sadece hangi kullanıcı tüürnü getirir
-    public int searc_int(int kampanya_id) {
+    public int search_int(int kampanya_id) {
         int hangi_kullanici = -1;
 
         LinkedList<kampanyalar> list = read();
@@ -218,6 +216,20 @@ public class kampanyalarDAO implements IDAO {
         }
 
         return hangi_kullanici;
+    }
+
+    public LocalDate search_LocalDate(int kampanya_id) {
+        LocalDate tarih = null;
+
+        LinkedList<kampanyalar> list = read();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == kampanya_id) {
+                tarih = list.get(i).getTarih();
+            }
+        }
+
+        return tarih;
     }
 
     /*

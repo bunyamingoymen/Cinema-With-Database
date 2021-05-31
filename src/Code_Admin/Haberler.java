@@ -5,6 +5,7 @@ import entity.haberler;
 import Pattern.Creator;
 import Pattern.Table;
 import entity.Center;
+import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -63,7 +64,7 @@ public class Haberler extends Film_Actor {
     @FXML
     public void haberler_ekle_sifirla(ActionEvent event) {
         haberler_ekle_title.setText("");
-        haberler_ekle_tarih.setText("");
+        haberler_ekle_tarih.setValue(null);
         haberler_ekle_kategori.setText("");
         haberler_ekle_haber.setText("");
         hangi_aboneler_combo(haberler_ekle_hangi_kullanici);
@@ -72,12 +73,12 @@ public class Haberler extends Film_Actor {
 
     @FXML
     public void haberler_ekle_ekle(ActionEvent event) {
-        if ((haberler_ekle_title.getText().length() == 0) || (haberler_ekle_tarih.getText().length() == 0) || (haberler_ekle_kategori.getText().length() == 0)
+        if ((haberler_ekle_title.getText().length() == 0) || (haberler_ekle_tarih.getValue() == null) || (haberler_ekle_kategori.getText().length() == 0)
                 || (haberler_ekle_haber.getText().length() == 0) || (haberler_ekle_hangi_kullanici.getValue() == null)) {
             haberler_ekle_uyari_mesaj.setText("Lütfen Gerekli Yerleri Doldurnuz.");
         } else {
             String title = haberler_ekle_title.getText();
-            String tarih = haberler_ekle_tarih.getText();
+            LocalDate tarih = haberler_ekle_tarih.getValue();
             String kategori = haberler_ekle_kategori.getText();
             String haber = haberler_ekle_haber.getText();
             String hangi = haberler_ekle_hangi_kullanici.getValue();
@@ -113,12 +114,12 @@ public class Haberler extends Film_Actor {
             int hangi = Creator.haberlerDao().search_int(haber_id);
             String Title = Creator.haberlerDao().search_string(haber_id, 1);
             String Haber = Creator.haberlerDao().search_string(haber_id, 2);
-            String Tarih = Creator.haberlerDao().search_string(haber_id, 3);
-            String Haber_Kategorisi = Creator.haberlerDao().search_string(haber_id, 4);
+            LocalDate Tarih = Creator.haberlerDao().search_LocalDate(haber_id);
+            String Haber_Kategorisi = Creator.haberlerDao().search_string(haber_id, 3);
 
             haberler_degistir_title.setText(Title);
             haberler_degistir_haber.setText(Haber);
-            haberler_degistir_tarih.setText(Tarih);
+            haberler_degistir_tarih.setValue(Tarih);
             haberler_degistir_kategori.setText(Haber_Kategorisi);
 
             hangi_aboneler_combo(haberler_degistir_hangi_kullanici);
@@ -131,14 +132,14 @@ public class Haberler extends Film_Actor {
     @FXML
     public void haberler_degistir_degistir(ActionEvent event) {
         if ((haberler_degistir_title.getText().length() == 0) || (haberler_degistir_haber.getText().length() == 0)
-                || (haberler_degistir_tarih.getText().length() == 0) || (haberler_degistir_kategori.getText().length() == 0)
+                || (haberler_degistir_tarih.getValue() == null) || (haberler_degistir_kategori.getText().length() == 0)
                 || (haberler_degistir_hangi_kullanici.getValue() == null)) {
             haberler_degistir_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri Degistiriniz.");
         } else {
             int hangi = Integer.parseInt(haberler_degistir_hangi_kullanici.getValue());
             String Title = haberler_degistir_title.getText();
             String Haber = haberler_degistir_haber.getText();
-            String Tarih = haberler_degistir_tarih.getText();
+            LocalDate Tarih = haberler_degistir_tarih.getValue();
             String Haber_Kategorisi = haberler_degistir_kategori.getText();
 
             int haber_id = Integer.parseInt(haberler_degistir_haber_id.getText());
@@ -234,7 +235,7 @@ public class Haberler extends Film_Actor {
                     return true;
                 } else if (hab.getDuyuru().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (hab.getTarih().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (hab.getTarih().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (hab.getKategori().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
