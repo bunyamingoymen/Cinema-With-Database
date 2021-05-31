@@ -390,57 +390,59 @@ public class Variables {
 
     @FXML
     public FontAwesomeIconView kullanici_islemleri_geri_tusu, kullanici_islemleri_yonet_geri_tusu;
-    
+
     @FXML
     public AnchorPane pnl_abonelik_0, pnl_abonelik, pnl_abonelik_diger, pnl_biletlerim, home_page;
-    
+
     @FXML
     public Pane abonelik_sahip_bir, abonelik_sahip_iki, abonelik_sahip_uc;
-    
+
     @FXML
     public Label pnl_abonelik_uyari_mesaj, biletlerim_uyari_mesaj;
-    
+
     @FXML
     public FontAwesomeIconView sana_ozel_kampanyalar_geri_tusu, sana_ozel_haberler_geri_tusu, biletlerim_geri_tusu, home_page_icon;
-    
+
     @FXML
     public TableView<satin_alinan_biletler> table_biletlerim;
-    
+
     @FXML
     public TableColumn<satin_alinan_biletler, String> biletlerim_film_adi, biletlerim_salon_adi, biletlerim_yonetmen, biletlerim_saat, biletlerim_koltuk;
-    
+
     @FXML
     public TableColumn<satin_alinan_biletler, Button> biletlerim_sil;
-    
+
     @FXML
     public TextField filterField_biletlerim;
-    
+
     @FXML
     public Pane satin_al_filmler_pane, satin_al_filmler_seans_pane, satin_al_koltuk_ust_pane, satin_al_odeme_yontemi_pane;
-    
+
     @FXML
     public ComboBox<String> satin_al_filmler_como, satin_al_filmler_seans_combo;
-    
+
     @FXML
     public Label satin_al_filmler_uyari_mesaj, satin_al_koltuk_film_adi, satin_al_koltuk_seans_saati, satin_al_koltuk_salon_adi, satin_al_koltuk_seans_id, satin_al_kalan_ucretsiz_bilet_sayisi_hakki, satin_al_odeme_yontemi_uyari_mesaj, satin_al_uyari_mesaj;
-    
+
     @FXML
     public AnchorPane pnl_film_detay;
-    
+
+    @FXML
+    public Label film_detay_hangi_abone_turu, film_detay_aldigi_odul_sayisi, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi;
+
     @FXML
     public Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan, film_detay_kalkis_tarihi;
-    
+
     @FXML
     public ImageView bir_bos, iki_bos, uc_bos, dort_bos, bes_bos, alti_bos, yedi_bos, sekiz_bos, dokuz_bos, on_bos, bir_dolu, iki_dolu, uc_dolu, dort_dolu, bes_dolu, alti_dolu, yedi_dolu, sekiz_dolu, dokuz_dolu, on_dolu;
-    
+
     @FXML
     public Pane kullanici_degerlendirme_pane;
-    
+
     @FXML
     public Label film_detay_uyari_mesaj;
-    
+
     @FXML
     public ImageView profile_photo;
-    
 
 }

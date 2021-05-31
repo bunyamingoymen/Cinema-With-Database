@@ -6772,10 +6772,14 @@
             <Label fx:id="film_detay_film_suresi" layoutX="347.0" layoutY="218.0" />
             <Label layoutX="539.0" layoutY="218.0" text="Yönetmen:" />
             <Label fx:id="film_detay_yonetmen" layoutX="619.0" layoutY="218.0" />
-            <Label layoutX="755.0" layoutY="218.0" text="Kalkış Tarihi:" />
+            <Label fx:id="film_detay_kalksi_tarihi_oncesi" layoutX="755.0" layoutY="218.0" text="Kalkış Tarihi:" />
             <Label fx:id="film_detay_kalkis_tarihi" layoutX="845.0" layoutY="218.0" />
             <Label layoutX="291.0" layoutY="312.0" text="Kullanıcı Puanı:" />
             <Label fx:id="film_detay_kullanici_puani" layoutX="398.0" layoutY="312.0" />
+            <Label fx:id="film_detay_aldigi_odul_sayisi_oncesi" layoutX="269.0" layoutY="249.0" text="Aldığı Ödül Sayısı:" />
+            <Label fx:id="film_detay_aldigi_odul_sayisi" layoutX="398.0" layoutY="249.0" />
+            <Label fx:id="film_detay_hangi_abone_turu_oncesi" layoutX="529.0" layoutY="249.0" text="Hangi Kullanıcı Türü İzleyebilir: " />
+            <Label fx:id="film_detay_hangi_abone_turu" layoutX="738.0" layoutY="249.0" />
             <Pane fx:id="kullanici_degerlendirme_pane" layoutX="341.0" layoutY="259.0" prefHeight="226.0" prefWidth="426.0">
                <children>
                   <ImageView fx:id="bir_bos" fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="87.0" onMouseClicked="#bir_bos" pickOnBounds="true" preserveRatio="true">

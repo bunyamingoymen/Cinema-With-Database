@@ -23,7 +23,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 
 public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
@@ -256,7 +255,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     public void vizyondaki_filmler_table_admin() {
 
-        ObservableList<vizyondaki_filmler> data = Table.vizyondaki_filmler_bir(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay);
+        ObservableList<vizyondaki_filmler> data = Table.vizyondaki_filmler_bir(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
@@ -623,6 +622,14 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         pnl_film_detay.setVisible(true);
 
         int vizyondaki_film_id = Creator.vizyondaki_filmlerDao().search_int(film_id, 0, 2);
+
+        vizyondaki_filmler_detay_kalkis_tarihi.setVisible(true);
+        film_detay_aldigi_odul_sayisi.setVisible(false);
+        film_detay_hangi_abone_turu.setVisible(false);
+
+        film_detay_kalksi_tarihi_oncesi.setVisible(true);
+        film_detay_aldigi_odul_sayisi_oncesi.setVisible(false);
+        film_detay_hangi_abone_turu_oncesi.setVisible(false);
 
         vizyondaki_filmler_detay_film_id.setText(String.valueOf(film_id));
         vizyondaki_filmler_detay_film_adi.setText(Creator.filmlerDao().search_string(film_id, 1));

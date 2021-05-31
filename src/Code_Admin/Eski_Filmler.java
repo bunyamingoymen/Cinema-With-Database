@@ -314,7 +314,8 @@ public class Eski_Filmler extends Aktorler {
 
     public void eski_filmler_table_aboneli() {
 
-        ObservableList<eski_filmler> data = Table.data_Eski_Filmler();
+        ObservableList<eski_filmler> data = Table.data_Eski_Filmler(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_eski_filmler, pnl_vizyondaki_filmler, pnl_film_detay, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi);
+
 
         eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));

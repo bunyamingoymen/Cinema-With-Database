@@ -64,6 +64,7 @@ public class Par extends Variables {
         pnl_yonetmenler.setVisible(false);
         pnl_aktorler.setVisible(false);
         pnl_kullanici_islemleri.setVisible(false);
+        pnl_film_detay.setVisible(false);
 
         home_pane.setVisible(true);
         home_page();

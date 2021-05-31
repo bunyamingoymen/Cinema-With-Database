@@ -186,7 +186,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
         return data;
     }
 
-    public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi) {
+    public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi,Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi,  Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi) {
         LinkedList<vizyondaki_filmler> list = read();
 
         for (int i = 0; i < list.size(); i++) {
@@ -195,7 +195,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
             detay.setText("Detay");
             detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-            data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(list.get(i).getVizyondaki_filmler_id(), list.get(i).getFilm_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getFilm_suresi(), list.get(i).getYonetmen_ad_soyad(), list.get(i).getVizyondan_kalkis_tarihi(), list.get(i).getKullanici_puani(), detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi)));
+            data.addAll(FXCollections.observableArrayList(new vizyondaki_filmler(list.get(i).getVizyondaki_filmler_id(), list.get(i).getFilm_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getFilm_suresi(), list.get(i).getYonetmen_ad_soyad(), list.get(i).getVizyondan_kalkis_tarihi(), list.get(i).getKullanici_puani(), detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi,  film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi)));
 
         }
 

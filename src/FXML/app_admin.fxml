@@ -430,10 +430,10 @@
             <Label fx:id="vizyondaki_filmler_detay_film_suresi" layoutX="390.0" layoutY="390.0" text="4" />
             <Label layoutX="310.0" layoutY="438.0" text="Yönetmen:" />
             <Label fx:id="vizyondaki_filmler_detay_yonetmen" layoutX="390.0" layoutY="438.0" text="5" />
-            <Label layoutX="312.0" layoutY="487.0" text="Kalkış Tarihi:" />
-            <Label fx:id="vizyondaki_filmler_detay_kalkis_tarihi" layoutX="402.0" layoutY="487.0" text="6" />
-            <Label layoutX="307.0" layoutY="538.0" text="Kullanıcı Puanı:" />
-            <Label fx:id="vizyondaki_filmler_detay_kullanici_puani" layoutX="414.0" layoutY="538.0" text="7" />
+            <Label fx:id="film_detay_kalksi_tarihi_oncesi" layoutX="316.0" layoutY="539.0" text="Kalkış Tarihi:" />
+            <Label fx:id="vizyondaki_filmler_detay_kalkis_tarihi" layoutX="406.0" layoutY="539.0" text="7" />
+            <Label layoutX="313.0" layoutY="489.0" text="Kullanıcı Puanı:" />
+            <Label fx:id="vizyondaki_filmler_detay_kullanici_puani" layoutX="420.0" layoutY="489.0" text="6" />
             <Button layoutX="633.0" layoutY="618.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="button2" text="Güncelle / Sil" textFill="WHITE" />
             <ImageView fx:id="vizyondaki_filmler_film_detay_photo" fitHeight="200.0" fitWidth="189.0" layoutX="38.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -442,6 +442,10 @@
             </ImageView>
             <FontAwesomeIconView fill="#7156dd" glyphName="PENCIL" layoutX="218.0" layoutY="433.0" onMouseClicked="#film_photo_change" size="20" />
             <Label fx:id="film_detay_guncelle_mesaj" layoutX="824.0" layoutY="549.0" textFill="RED" />
+            <Label fx:id="film_detay_hangi_abone_turu_oncesi" layoutX="534.0" layoutY="518.0" text="Hangi Aboneler İzleyebilir:" />
+            <Label fx:id="film_detay_hangi_abone_turu" layoutX="708.0" layoutY="518.0" text="9" />
+            <Label fx:id="film_detay_aldigi_odul_sayisi_oncesi" layoutX="534.0" layoutY="478.0" text="Aldığı Ödül Sayıs:ı" />
+            <Label fx:id="film_detay_aldigi_odul_sayisi" layoutX="657.0" layoutY="478.0" text="8" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnl_seans" layoutX="328.0" layoutY="56.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
