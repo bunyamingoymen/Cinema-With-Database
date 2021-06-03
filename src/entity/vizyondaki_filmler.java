@@ -29,31 +29,20 @@ public class vizyondaki_filmler extends filmler {
         this.seans_sayisi = seans_sayisi;
     }
 
-    public vizyondaki_filmler(String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay) {
-        super(film_name, film_type, film_suresi, yonetmen_ad_soyad, kullanici_puani);
-        this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
-        this.film_detayi = detay;
-
-        detay.setOnAction(e -> {
-            System.out.println("1");
-        });
-
-    }
-
     public vizyondaki_filmler(int vizyondaki_filmler_id, LocalDate vizyondan_kalkis_tarihi, int film_id, String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, float kullanici_puani) {
         super(film_id, film_name, film_type, film_suresi, yonetmen_ad_soyad, kullanici_puani);
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
     }
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi,  Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi) {
+    public vizyondaki_filmler(int vizyondaki_filmler_id, int film_id, String film_name, String film_type, int film_suresi, String ad_soyad, LocalDate vizyondan_kalkis_tarihi, float kullanici_puani, Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi,  Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi, Label film_detay_id, Label film_detay_id_oncesi) {
         super(film_id, film_name, film_type, film_suresi, ad_soyad, kullanici_puani);
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
-        vizyondaki_filmler_controller(detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi);
+        vizyondaki_filmler_controller(detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detayi, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi);
     }
 
-    public void vizyondaki_filmler_controller(Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detay, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi, Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi) {
+    public void vizyondaki_filmler_controller(Button detay, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detay, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi, Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi, Label film_detay_id, Label film_detay_id_oncesi) {
         this.film_detayi = detay;
 
         detay.setOnAction(e -> {
@@ -69,6 +58,8 @@ public class vizyondaki_filmler extends filmler {
             film_detay_kalksi_tarihi_oncesi.setVisible(true);
             film_detay_aldigi_odul_sayisi_oncesi.setVisible(false);
             film_detay_hangi_abone_turu_oncesi.setVisible(false);
+            
+            film_detay_id_oncesi.setText("vizyon_id");
 
             film_detay_film_id.setText(String.valueOf(super.getFilm_id()));
             film_detay_film_adi.setText(super.getFilm_name());
@@ -77,6 +68,7 @@ public class vizyondaki_filmler extends filmler {
             film_detay_yonetmen.setText(super.getYonetmen_ad_soyad());
             film_detay_kalkis_tarihi.setText(String.valueOf(vizyondan_kalkis_tarihi));
             film_detay_kullanici_puani.setText(String.valueOf(super.getKullanici_puani()));
+            film_detay_id.setText(String.valueOf(this.vizyondaki_filmler_id));
 
         });
     }

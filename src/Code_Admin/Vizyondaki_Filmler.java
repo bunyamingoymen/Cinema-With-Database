@@ -67,9 +67,9 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         yonetmen_combo(vizyondaki_filmler_ekle_yonetmenler, vizyondaki_filmler_ekle_uyari_mesaj);
         vizyondaki_filmler_geri_tusu.setVisible(false);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(true);
-        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+        //vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
-        vizyondaki_filmler_degistir_pane.setVisible(false);
+        //vizyondaki_filmler_degistir_pane.setVisible(false);
     }
 
     @FXML
@@ -122,140 +122,140 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         yonetmen_combo(vizyondaki_filmler_ekle_yonetmenler, vizyondaki_filmler_ekle_uyari_mesaj);
     }
 
-    @FXML
-    public void vizyondaki_filmler_degistir_sil_giris(ActionEvent event) {
+//    @FXML
+//    public void vizyondaki_filmler_degistir_sil_giris(ActionEvent event) {
+//
+//        vizyondaki_filmler_grid.setVisible(false);
+//        vizyondaki_filmler_degistir_pane.setVisible(true);
+//        vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
+//        vizyondaki_filmler_degistir_pane_1.setVisible(true);
+//        vizyondaki_filmler_degistir_pane_2.setVisible(false);
+//        vizyondaki_filmler_degistir_geri_tusu.setVisible(true);
+//        vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
+//        vizyondaki_filmler_geri_tusu.setVisible(false);
+//        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
+//
+//    }
 
-        vizyondaki_filmler_grid.setVisible(false);
-        vizyondaki_filmler_degistir_pane.setVisible(true);
-        vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
-        vizyondaki_filmler_degistir_pane_1.setVisible(true);
-        vizyondaki_filmler_degistir_pane_2.setVisible(false);
-        vizyondaki_filmler_degistir_geri_tusu.setVisible(true);
-        vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
-        vizyondaki_filmler_geri_tusu.setVisible(false);
-        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
+//    @FXML
+//    public void vizyondaki_filmler_degistir_geri(MouseEvent event) {
+//        vizyondaki_filmler_grid.setVisible(true);
+//        vizyondaki_filmler_degistir_pane.setVisible(false);
+//
+//        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+//        vizyondaki_filmler_geri_tusu.setVisible(true);
+//
+//        //vizyondaki_filmler_table_admin();
+//    }
 
-    }
+//    @FXML
+//    public void vizyondaki_filmleri_degistir_sil_filmi_getir(ActionEvent event) {
+//
+//        if (vizyondaki_filmler_degistir_sil_filmler.getValue() == null) {
+//            vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("Lütfen bir film seçiniz.");
+//        } else {
+//            String[] secilen = vizyondaki_filmler_degistir_sil_filmler.getValue().split(" | ");
+//            vizyondaki_filmler_degistir_pane_2.setVisible(true);
+//            int vizyondaki_film_id = Integer.parseInt(secilen[0]);
+//
+//            String film_name = Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 1);
+//            String film_type = Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 2);
+//            int film_suresi = Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 2, 1);
+//            String yonetmen = Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 3);
+//            LocalDate kalkis = Creator.vizyondaki_filmlerDao().search_localdate(vizyondaki_film_id);
+//
+//            vizyondaki_filmleri_degistir_sil_film_name.setText(film_name);
+//            vizyondaki_filmleri_degistir_sil_film_type.setText(film_type);
+//            vizyondaki_filmleri_degistir_sil_film_suresi.setText(String.valueOf(film_suresi));
+//            vizyondaki_filmleri_degistir_sil_kalkis.setValue(kalkis);
+//            yonetmen_combo(vizyondaki_filmleri_degistir_sil_yonetmen, vizyondaki_filmler_degistir_sil_uyari_mesaj_2);
+//            vizyondaki_filmleri_degistir_sil_yonetmen.setValue(yonetmen);
+//            vizyondaki_filmler_degistir_sil_vizyon_id.setText(String.valueOf(vizyondaki_film_id));
+//            vizyondaki_filmler_degistir_sil_film_id.setText(String.valueOf(Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 0, 2)));
+//        }
+//
+//    }
 
-    @FXML
-    public void vizyondaki_filmler_degistir_geri(MouseEvent event) {
-        vizyondaki_filmler_grid.setVisible(true);
-        vizyondaki_filmler_degistir_pane.setVisible(false);
+//    @FXML
+//    public void vizyondaki_filmler_degistir_sil_degistir(ActionEvent event) {
+//        if ((vizyondaki_filmleri_degistir_sil_film_name.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_type.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_suresi.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_kalkis.getValue() == null)) {
+//            vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri Doldurunuz.");
+//        } else {
+//            String film_name = vizyondaki_filmleri_degistir_sil_film_name.getText();
+//            String film_type = vizyondaki_filmleri_degistir_sil_film_type.getText();
+//            String film_suresi = vizyondaki_filmleri_degistir_sil_film_suresi.getText();
+//            LocalDate kalkis = vizyondaki_filmleri_degistir_sil_kalkis.getValue();
+//            String yonetmen = vizyondaki_filmleri_degistir_sil_yonetmen.getValue();
+//            int yonetmen_id = 0;
+//            String[][] arr = Creator.yonetmenlerDao().select();
+//
+//            for (String[] arr1 : arr) {
+//                if (yonetmen.equals(arr1[0])) {
+//                    yonetmen_id = Integer.valueOf(arr1[1]);
+//                }
+//            }
+//
+//            String vizyondaki_film_id = vizyondaki_filmler_degistir_sil_vizyon_id.getText();
+//            String film_id = vizyondaki_filmler_degistir_sil_film_id.getText();
+//
+//            vizyondaki_filmler v = new vizyondaki_filmler(Integer.valueOf(vizyondaki_film_id), Integer.valueOf(film_id), kalkis, Creator.filmlerDao().search_float(Integer.valueOf(film_id)), Creator.vizyondaki_filmlerDao().search_int(Integer.valueOf(vizyondaki_film_id), 3, 1));
+//            filmler f = new filmler(Integer.valueOf(film_id), film_name, Integer.valueOf(film_suresi), film_type, yonetmen_id);
+//
+//            Mediator m = new Mediator();
+//
+//            int sonuc = m.vizyondaki_filmler_degiştir(v, f);
+//            if (sonuc == 1) {
+//                vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
+//
+//            } else {
+//                vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz.");
+//            }
+//        }
+//    }
 
-        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
-        vizyondaki_filmler_geri_tusu.setVisible(true);
+//    @FXML
+//    public void vizyondaki_filmler_degistir_sil_sil(ActionEvent event) {
+//        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(true);
+//    }
 
-        //vizyondaki_filmler_table_admin();
-    }
-
-    @FXML
-    public void vizyondaki_filmleri_degistir_sil_filmi_getir(ActionEvent event) {
-
-        if (vizyondaki_filmler_degistir_sil_filmler.getValue() == null) {
-            vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("Lütfen bir film seçiniz.");
-        } else {
-            String[] secilen = vizyondaki_filmler_degistir_sil_filmler.getValue().split(" | ");
-            vizyondaki_filmler_degistir_pane_2.setVisible(true);
-            int vizyondaki_film_id = Integer.parseInt(secilen[0]);
-
-            String film_name = Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 1);
-            String film_type = Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 2);
-            int film_suresi = Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 2, 1);
-            String yonetmen = Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 3);
-            LocalDate kalkis = Creator.vizyondaki_filmlerDao().search_localdate(vizyondaki_film_id);
-
-            vizyondaki_filmleri_degistir_sil_film_name.setText(film_name);
-            vizyondaki_filmleri_degistir_sil_film_type.setText(film_type);
-            vizyondaki_filmleri_degistir_sil_film_suresi.setText(String.valueOf(film_suresi));
-            vizyondaki_filmleri_degistir_sil_kalkis.setValue(kalkis);
-            yonetmen_combo(vizyondaki_filmleri_degistir_sil_yonetmen, vizyondaki_filmler_degistir_sil_uyari_mesaj_2);
-            vizyondaki_filmleri_degistir_sil_yonetmen.setValue(yonetmen);
-            vizyondaki_filmler_degistir_sil_vizyon_id.setText(String.valueOf(vizyondaki_film_id));
-            vizyondaki_filmler_degistir_sil_film_id.setText(String.valueOf(Creator.vizyondaki_filmlerDao().search_int(vizyondaki_film_id, 0, 2)));
-        }
-
-    }
-
-    @FXML
-    public void vizyondaki_filmler_degistir_sil_degistir(ActionEvent event) {
-        if ((vizyondaki_filmleri_degistir_sil_film_name.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_type.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_film_suresi.getText().length() == 0) || (vizyondaki_filmleri_degistir_sil_kalkis.getValue() == null)) {
-            vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri Doldurunuz.");
-        } else {
-            String film_name = vizyondaki_filmleri_degistir_sil_film_name.getText();
-            String film_type = vizyondaki_filmleri_degistir_sil_film_type.getText();
-            String film_suresi = vizyondaki_filmleri_degistir_sil_film_suresi.getText();
-            LocalDate kalkis = vizyondaki_filmleri_degistir_sil_kalkis.getValue();
-            String yonetmen = vizyondaki_filmleri_degistir_sil_yonetmen.getValue();
-            int yonetmen_id = 0;
-            String[][] arr = Creator.yonetmenlerDao().select();
-
-            for (String[] arr1 : arr) {
-                if (yonetmen.equals(arr1[0])) {
-                    yonetmen_id = Integer.valueOf(arr1[1]);
-                }
-            }
-
-            String vizyondaki_film_id = vizyondaki_filmler_degistir_sil_vizyon_id.getText();
-            String film_id = vizyondaki_filmler_degistir_sil_film_id.getText();
-
-            vizyondaki_filmler v = new vizyondaki_filmler(Integer.valueOf(vizyondaki_film_id), Integer.valueOf(film_id), kalkis, Creator.filmlerDao().search_float(Integer.valueOf(film_id)), Creator.vizyondaki_filmlerDao().search_int(Integer.valueOf(vizyondaki_film_id), 3, 1));
-            filmler f = new filmler(Integer.valueOf(film_id), film_name, Integer.valueOf(film_suresi), film_type, yonetmen_id);
-
-            Mediator m = new Mediator();
-
-            int sonuc = m.vizyondaki_filmler_degiştir(v, f);
-            if (sonuc == 1) {
-                vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
-
-            } else {
-                vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz.");
-            }
-        }
-    }
-
-    @FXML
-    public void vizyondaki_filmler_degistir_sil_sil(ActionEvent event) {
-        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(true);
-    }
-
-    public void vizyondaki_filmler_degistir_sil_tamamen_sil(ActionEvent event) {
-        int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
-        Mediator m = new Mediator();
-        int sonuc = m.vizyondaki_filmler_tamamen_sil(vizyondaki_film_id);
-        if (sonuc == 1) {
-            vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Tamamiyle Silindi");
-            vizyondaki_filmler_degistir_sil_filmler.getItems().clear();
-            vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
-            vizyondaki_filmler_degistir_pane_2.setVisible(false);
-        } else {
-            vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
-        }
-        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
-    }
-
-    public void vizyondaki_filmler_degistir_sil_vazgec(ActionEvent event) {
-        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
-    }
-
-    public void vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil(ActionEvent event) {
-        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
-
-        int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
-        Mediator m = new Mediator();
-        int sonuc = m.vizyondaki_filmler_sadece_vziyodnan_sil(vizyondaki_film_id);
-        if (sonuc == 1) {
-            vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Sadece Vizyonan Silindi");
-            vizyondaki_filmler_degistir_sil_filmler.getItems().clear();
-            vizyondaki_filmler_degistir_pane_2.setVisible(false);
-            vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
-        } else {
-            vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
-        }
-    }
+//    public void vizyondaki_filmler_degistir_sil_tamamen_sil(ActionEvent event) {
+//        int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
+//        Mediator m = new Mediator();
+//        int sonuc = m.vizyondaki_filmler_tamamen_sil(vizyondaki_film_id);
+//        if (sonuc == 1) {
+//            vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Tamamiyle Silindi");
+//            vizyondaki_filmler_degistir_sil_filmler.getItems().clear();
+//            vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
+//            vizyondaki_filmler_degistir_pane_2.setVisible(false);
+//        } else {
+//            vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
+//        }
+//        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
+//    }
+//
+//    public void vizyondaki_filmler_degistir_sil_vazgec(ActionEvent event) {
+//        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
+//    }
+//
+//    public void vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil(ActionEvent event) {
+//        vizyondaki_filmler_degistir_sil_emin_misin.setVisible(false);
+//
+//        int vizyondaki_film_id = Integer.valueOf(vizyondaki_filmler_degistir_sil_vizyon_id.getText());
+//        Mediator m = new Mediator();
+//        int sonuc = m.vizyondaki_filmler_sadece_vziyodnan_sil(vizyondaki_film_id);
+//        if (sonuc == 1) {
+//            vizyondaki_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Sadece Vizyonan Silindi");
+//            vizyondaki_filmler_degistir_sil_filmler.getItems().clear();
+//            vizyondaki_filmler_degistir_pane_2.setVisible(false);
+//            vizyondaki_filmler_combo(vizyondaki_filmler_degistir_sil_filmler, vizyondaki_filmler_degistir_sil_uyari_mesaj_1);
+//        } else {
+//            vizyondaki_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
+//        }
+//    }
 
     public void vizyondaki_filmler_table_admin() {
 
-        ObservableList<vizyondaki_filmler> data = Table.vizyondaki_filmler_bir(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi);
+        ObservableList<vizyondaki_filmler> data = Table.vizyondaki_filmler_bir(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_vizyondaki_filmler, pnl_eski_filmler, pnl_film_detay, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi);
 
         vizyondaki_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         vizyondaki_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
@@ -630,6 +630,8 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         film_detay_kalksi_tarihi_oncesi.setVisible(true);
         film_detay_aldigi_odul_sayisi_oncesi.setVisible(false);
         film_detay_hangi_abone_turu_oncesi.setVisible(false);
+        
+        film_detay_id_oncesi.setText("vizyon_id");
 
         vizyondaki_filmler_detay_film_id.setText(String.valueOf(film_id));
         vizyondaki_filmler_detay_film_adi.setText(Creator.filmlerDao().search_string(film_id, 1));
@@ -638,6 +640,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         vizyondaki_filmler_detay_yonetmen.setText(Creator.vizyondaki_filmlerDao().search_string(vizyondaki_film_id, 3));
         vizyondaki_filmler_detay_kalkis_tarihi.setText(Creator.vizyondaki_filmlerDao().search_localdate(vizyondaki_film_id).toString());
         vizyondaki_filmler_detay_kullanici_puani.setText(String.valueOf(Creator.filmlerDao().search_float(film_id)));
+        film_detay_id.setText(String.valueOf(vizyondaki_film_id));
 
         films_photosDAO fpdao = new films_photosDAO();
 
@@ -762,13 +765,13 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
         vizyondaki_filmler_geri_tusu.setVisible(true);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
-        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+        //vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
 
         vizyondaki_filmler_resimli_gosterim.setVisible(true);
         vizyondaki_filmler_grid.setVisible(false);
         vizyondaki_filmler_ekle_pane.setVisible(false);
-        vizyondaki_filmler_degistir_pane.setVisible(false);
+        //vizyondaki_filmler_degistir_pane.setVisible(false);
 
         vizyondaki_filmler_gosterim_oncesi_ortak();
     }
@@ -780,7 +783,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
         vizyondaki_filmler_geri_tusu.setVisible(false);
         vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
-        vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
+        //vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
         vizyondaki_filmler_gosterim_geri_tusu.setVisible(true);
 
         vizyondaki_filmler_table_admin();

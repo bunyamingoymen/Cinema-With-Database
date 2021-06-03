@@ -6889,6 +6889,8 @@
                   <Label fx:id="film_detay_uyari_mesaj" layoutX="87.0" layoutY="179.0" textFill="RED" />
                </children>
             </Pane>
+            <Label fx:id="film_detay_id_oncesi" layoutX="264.0" layoutY="508.0" text="id: " />
+            <Label fx:id="film_detay_id" layoutX="364.0" layoutY="508.0" text="0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="home_page" layoutX="329.0" layoutY="56.0" prefHeight="711.0" prefWidth="1056.0">

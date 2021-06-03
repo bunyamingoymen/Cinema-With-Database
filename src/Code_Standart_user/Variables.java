@@ -428,7 +428,7 @@ public class Variables {
     public AnchorPane pnl_film_detay;
 
     @FXML
-    public Label film_detay_hangi_abone_turu, film_detay_aldigi_odul_sayisi, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi;
+    public Label film_detay_hangi_abone_turu, film_detay_aldigi_odul_sayisi, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi;
 
     @FXML
     public Label film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kullanici_puani, film_detay_verilen_puan, film_detay_kalkis_tarihi;

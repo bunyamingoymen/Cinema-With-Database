@@ -118,7 +118,6 @@
                   </Text>
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="40.0" layoutY="102.0" onMouseClicked="#vizyondaki_filmler_geri" rotate="180.0" size="40.0" />
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_ekle_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="42.0" layoutY="104.0" onMouseClicked="#vizyondaki_filmler_ekle_geri" rotate="180.0" size="40.0" visible="false" />
-                  <FontAwesomeIconView fx:id="vizyondaki_filmler_degistir_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="41.0" layoutY="104.0" onMouseClicked="#vizyondaki_filmler_degistir_geri" rotate="180.0" size="40.0" visible="false" />
                   <FontAwesomeIconView fx:id="vizyondaki_filmler_gosterim_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="42.0" layoutY="105.0" onMouseClicked="#vizyondaki_filmler_arama_geri" rotate="180.0" size="40.0" visible="false" />
                </children>
             </Pane>
@@ -173,50 +172,6 @@
                   <Button layoutX="202.0" layoutY="354.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_ekle_sifirla" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Sıfırla" textFill="WHITE" />
                   <Label fx:id="vizyondaki_filmler_ekle_uyari_mesaj" layoutX="522.0" layoutY="292.0" textFill="RED" />
                   <DatePicker fx:id="vizyondaki_filmler_ekle_kalkis" layoutX="706.0" layoutY="129.0" />
-               </children>
-            </Pane>
-            <Pane fx:id="vizyondaki_filmler_degistir_pane" layoutX="8.0" layoutY="169.0" prefHeight="539.0" prefWidth="1058.0" visible="false">
-               <children>
-                  <Pane fx:id="vizyondaki_filmler_degistir_pane_1" layoutX="23.0" layoutY="14.0" prefHeight="101.0" prefWidth="1006.0">
-                     <children>
-                        <ComboBox fx:id="vizyondaki_filmler_degistir_sil_filmler" layoutX="226.0" layoutY="20.0" prefHeight="31.0" prefWidth="354.0" />
-                        <Button layoutX="674.0" layoutY="20.0" mnemonicParsing="false" onAction="#vizyondaki_filmleri_degistir_sil_filmi_getir" prefHeight="31.0" prefWidth="163.0" styleClass="button2" text="Filmi Getir" textFill="WHITE" />
-                        <Label fx:id="vizyondaki_filmler_degistir_sil_uyari_mesaj_1" layoutX="486.0" layoutY="66.0" textFill="RED" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="vizyondaki_filmler_degistir_pane_2" layoutY="115.0" prefHeight="427.0" prefWidth="1058.0" visible="false">
-                     <children>
-                        <Label layoutX="168.0" layoutY="58.0" text="Film Adı:" />
-                        <Label layoutX="164.0" layoutY="119.0" text="Film Türü:" />
-                        <Label layoutX="529.0" layoutY="58.0" text="Film Süresi:" />
-                        <Label layoutX="296.0" layoutY="179.0" text="Yönetmen:" />
-                        <Label layoutX="452.0" layoutY="119.0" text="Vizyondan Kalkış Tairih:" />
-                        <TextField fx:id="vizyondaki_filmleri_degistir_sil_film_name" layoutX="250.0" layoutY="53.0" />
-                        <TextField fx:id="vizyondaki_filmleri_degistir_sil_film_suresi" layoutX="626.0" layoutY="53.0" />
-                        <TextField fx:id="vizyondaki_filmleri_degistir_sil_film_type" layoutX="250.0" layoutY="114.0" />
-                        <ComboBox fx:id="vizyondaki_filmleri_degistir_sil_yonetmen" layoutX="402.0" layoutY="174.0" prefHeight="31.0" prefWidth="328.0" />
-                        <Button layoutX="669.0" layoutY="328.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_degistir" prefHeight="31.0" prefWidth="224.0" styleClass="button2" text="Değiştir" textFill="WHITE" />
-                        <Button layoutX="192.0" layoutY="328.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_sil" prefHeight="31.0" prefWidth="186.0" styleClass="button5" text="Sil" textFill="WHITE" />
-                        <Label fx:id="vizyondaki_filmler_degistir_sil_uyari_mesaj_2" layoutX="512.0" layoutY="262.0" textFill="RED" />
-                        <Label fx:id="vizyondaki_filmler_degistir_sil_film_id" layoutX="250.0" layoutY="14.0" />
-                        <Label fx:id="vizyondaki_filmler_degistir_sil_vizyon_id" layoutX="600.0" layoutY="14.0" />
-                        <Label layoutX="192.0" layoutY="14.0" text="Film id: " />
-                        <Label layoutX="529.0" layoutY="14.0" text="vizyon id: " />
-                        <DatePicker fx:id="vizyondaki_filmleri_degistir_sil_kalkis" layoutX="626.0" layoutY="114.0" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="vizyondaki_filmler_degistir_sil_emin_misin" layoutX="151.0" layoutY="82.0" prefHeight="288.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
-                     <children>
-                        <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
-                           <font>
-                              <Font name="Comic Sans MS" size="25.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="401.0" layoutY="196.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_sadece_vizyondan_sil" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Sadece Vizyondan Sil Ve Eski Filmlere Ekle" textFill="WHITE" />
-                        <Button layoutX="58.0" layoutY="196.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_tamamen_sil" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Filmi Tamamen Sil" textFill="WHITE" />
-                        <Button layoutX="291.0" layoutY="112.0" mnemonicParsing="false" onAction="#vizyondaki_filmler_degistir_sil_vazgec" prefHeight="31.0" prefWidth="163.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
-                     </children>
-                  </Pane>
                </children>
             </Pane>
             <Pane fx:id="vizyondaki_filmler_resimli_gosterim" layoutX="14.0" layoutY="169.0" prefHeight="539.0" prefWidth="1038.0">
@@ -420,32 +375,87 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#film_detay_geri" rotate="180.0" size="40.0" />
                </children>
             </Pane>
-            <Label layoutX="306.0" layoutY="222.0" text="Film id:" />
-            <Label fx:id="vizyondaki_filmler_detay_film_id" layoutX="357.0" layoutY="222.0" text="1" />
-            <Label layoutX="307.0" layoutY="276.0" text="Film Adı:" />
-            <Label fx:id="vizyondaki_filmler_detay_film_adi" layoutX="371.0" layoutY="276.0" text="2" />
-            <Label layoutX="311.0" layoutY="332.0" text="Film Türü:" />
-            <Label fx:id="vizyondaki_filmler_detay_film_turu" layoutX="384.0" layoutY="332.0" text="3" />
-            <Label layoutX="310.0" layoutY="390.0" text="Film Süresi:" />
-            <Label fx:id="vizyondaki_filmler_detay_film_suresi" layoutX="390.0" layoutY="390.0" text="4" />
-            <Label layoutX="310.0" layoutY="438.0" text="Yönetmen:" />
-            <Label fx:id="vizyondaki_filmler_detay_yonetmen" layoutX="390.0" layoutY="438.0" text="5" />
-            <Label fx:id="film_detay_kalksi_tarihi_oncesi" layoutX="316.0" layoutY="539.0" text="Kalkış Tarihi:" />
-            <Label fx:id="vizyondaki_filmler_detay_kalkis_tarihi" layoutX="406.0" layoutY="539.0" text="7" />
-            <Label layoutX="313.0" layoutY="489.0" text="Kullanıcı Puanı:" />
-            <Label fx:id="vizyondaki_filmler_detay_kullanici_puani" layoutX="420.0" layoutY="489.0" text="6" />
-            <Button layoutX="633.0" layoutY="618.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="button2" text="Güncelle / Sil" textFill="WHITE" />
-            <ImageView fx:id="vizyondaki_filmler_film_detay_photo" fitHeight="200.0" fitWidth="189.0" layoutX="38.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../lib/pic/Movies.png" />
-               </image>
-            </ImageView>
-            <FontAwesomeIconView fill="#7156dd" glyphName="PENCIL" layoutX="218.0" layoutY="433.0" onMouseClicked="#film_photo_change" size="20" />
-            <Label fx:id="film_detay_guncelle_mesaj" layoutX="824.0" layoutY="549.0" textFill="RED" />
-            <Label fx:id="film_detay_hangi_abone_turu_oncesi" layoutX="534.0" layoutY="518.0" text="Hangi Aboneler İzleyebilir:" />
-            <Label fx:id="film_detay_hangi_abone_turu" layoutX="708.0" layoutY="518.0" text="9" />
-            <Label fx:id="film_detay_aldigi_odul_sayisi_oncesi" layoutX="534.0" layoutY="478.0" text="Aldığı Ödül Sayıs:ı" />
-            <Label fx:id="film_detay_aldigi_odul_sayisi" layoutX="657.0" layoutY="478.0" text="8" />
+            <Pane layoutX="5.0" layoutY="156.0" prefHeight="539.0" prefWidth="1058.0" visible="false">
+               <children>
+                  <Pane layoutX="23.0" layoutY="14.0" prefHeight="101.0" prefWidth="1006.0">
+                     <children>
+                        <ComboBox layoutX="226.0" layoutY="20.0" prefHeight="31.0" prefWidth="354.0" />
+                        <Button layoutX="674.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="163.0" styleClass="button2" text="Filmi Getir" textFill="WHITE" />
+                        <Label layoutX="486.0" layoutY="66.0" textFill="RED" />
+                     </children>
+                  </Pane>
+                  <Pane layoutY="115.0" prefHeight="427.0" prefWidth="1058.0">
+                     <children>
+                        <Label layoutX="168.0" layoutY="58.0" text="Film Adı:" />
+                        <Label layoutX="164.0" layoutY="119.0" text="Film Türü:" />
+                        <Label layoutX="529.0" layoutY="58.0" text="Film Süresi:" />
+                        <Label layoutX="296.0" layoutY="179.0" text="Yönetmen:" />
+                        <Label layoutX="452.0" layoutY="119.0" text="Vizyondan Kalkış Tairih:" />
+                        <TextField layoutX="250.0" layoutY="53.0" />
+                        <TextField layoutX="626.0" layoutY="53.0" />
+                        <TextField layoutX="250.0" layoutY="114.0" />
+                        <ComboBox layoutX="402.0" layoutY="174.0" prefHeight="31.0" prefWidth="328.0" />
+                        <Button layoutX="669.0" layoutY="328.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="224.0" styleClass="button2" text="Değiştir" textFill="WHITE" />
+                        <Button layoutX="192.0" layoutY="328.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="186.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                        <Label layoutX="512.0" layoutY="262.0" textFill="RED" />
+                        <Label layoutX="250.0" layoutY="14.0" />
+                        <Label layoutX="600.0" layoutY="14.0" />
+                        <Label layoutX="192.0" layoutY="14.0" text="Film id: " />
+                        <Label layoutX="529.0" layoutY="14.0" text="vizyon id: " />
+                        <DatePicker layoutX="626.0" layoutY="114.0" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="151.0" layoutY="82.0" prefHeight="288.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
+                     <children>
+                        <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="25.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="401.0" layoutY="196.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Sadece Vizyondan Sil Ve Eski Filmlere Ekle" textFill="WHITE" />
+                        <Button layoutX="58.0" layoutY="196.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Filmi Tamamen Sil" textFill="WHITE" />
+                        <Button layoutX="291.0" layoutY="112.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="163.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="9.0" layoutY="156.0" prefHeight="554.0" prefWidth="1058.0">
+               <children>
+                  <Label layoutX="481.0" layoutY="105.0" text="Film id:" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_id" layoutX="536.0" layoutY="105.0" text="1" />
+                  <Label layoutX="481.0" layoutY="158.0" text="Film Adı:" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_adi" layoutX="544.0" layoutY="158.0" text="2" />
+                  <Label layoutX="481.0" layoutY="210.0" text="Film Türü:" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_turu" layoutX="552.0" layoutY="210.0" text="3" />
+                  <Label layoutX="481.0" layoutY="256.0" text="Film Süresi:" />
+                  <Label fx:id="vizyondaki_filmler_detay_film_suresi" layoutX="560.0" layoutY="256.0" text="4" />
+                  <Label layoutX="477.0" layoutY="299.0" text="Yönetmen:" />
+                  <Label fx:id="vizyondaki_filmler_detay_yonetmen" layoutX="564.0" layoutY="299.0" text="5" />
+                  <Label fx:id="film_detay_kalksi_tarihi_oncesi" layoutX="472.0" layoutY="389.0" text="Kalkış Tarihi:" />
+                  <Label fx:id="vizyondaki_filmler_detay_kalkis_tarihi" layoutX="560.0" layoutY="390.0" text="7" />
+                  <Label layoutX="469.0" layoutY="345.0" text="Kullanıcı Puanı:" />
+                  <Label fx:id="vizyondaki_filmler_detay_kullanici_puani" layoutX="581.0" layoutY="345.0" text="6" />
+                  <Button layoutX="695.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="button2" text="Güncelle" textFill="WHITE" />
+                  <Label fx:id="film_detay_guncelle_mesaj" textFill="RED" />
+                  <Label fx:id="film_detay_hangi_abone_turu_oncesi" layoutX="683.0" layoutY="345.0" text="Hangi Aboneler İzleyebilir:" />
+                  <Label fx:id="film_detay_hangi_abone_turu" layoutX="868.0" layoutY="345.0" text="9" />
+                  <Label fx:id="film_detay_aldigi_odul_sayisi_oncesi" layoutX="683.0" layoutY="389.0" text="Aldığı Ödül Sayıs:ı" />
+                  <Label fx:id="film_detay_aldigi_odul_sayisi" layoutX="809.0" layoutY="389.0" text="8" />
+                  <Pane layoutX="89.0" layoutY="99.0" prefHeight="256.0" prefWidth="213.0">
+                     <children>
+                        <ImageView fx:id="vizyondaki_filmler_film_detay_photo" fitHeight="200.0" fitWidth="189.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../lib/pic/Movies.png" />
+                           </image>
+                        </ImageView>
+                        <FontAwesomeIconView fill="#7156dd" glyphName="PENCIL" layoutX="180.0" layoutY="220.0" onMouseClicked="#film_photo_change" size="20" />
+                     </children>
+                  </Pane>
+                  <Button layoutX="910.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                  <Label fx:id="film_detay_id_oncesi" layoutX="477.0" layoutY="69.0" text="id: " />
+                  <Label fx:id="film_detay_id" layoutX="577.0" layoutY="69.0" text="0" />
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnl_seans" layoutX="328.0" layoutY="56.0" prefHeight="711.0" prefWidth="1058.0" visible="false">
