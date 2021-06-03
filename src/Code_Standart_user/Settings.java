@@ -15,10 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 
-public class Settings extends Kullanici_Islemleri {
+public class Settings extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     @FXML
-    private void user_profile_change(MouseEvent event) throws IOException {
+    protected void user_profile_change(MouseEvent event) throws IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.jpg", "*.jpeg", "*.png"));
         File selectedFile = fc.showOpenDialog(null);

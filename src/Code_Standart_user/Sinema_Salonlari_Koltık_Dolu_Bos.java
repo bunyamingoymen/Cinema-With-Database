@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class Sinema_Salonlari_Koltık_Dolu_Bos extends Variables {
+public class Sinema_Salonlari_Koltık_Dolu_Bos extends Vizyondaki_Filmler {
 
     @FXML
     protected Button a1_1, a2_1, a3_1, a4_1, a5_1, a6_1, a7_1, a8_1, a9_1, a10_1;

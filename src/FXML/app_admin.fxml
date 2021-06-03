@@ -6693,7 +6693,6 @@
                   </Text>
                   <FontAwesomeIconView fx:id="eski_filmler_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="30.0" layoutY="92.0" onMouseClicked="#eski_filmler_geri" rotate="180.0" size="40.0" />
                   <FontAwesomeIconView fx:id="eski_filmler_ekle_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="32.0" layoutY="94.0" onMouseClicked="#eski_filmler_ekle_geri" rotate="180.0" size="40.0" visible="false" />
-                  <FontAwesomeIconView fx:id="eski_filmler_degistir_geri_tusu" fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#eski_filmler_degistir_geri" rotate="180.0" size="40.0" />
                </children>
             </Pane>
             <GridPane fx:id="eski_filmler_grid" layoutX="22.0" layoutY="197.0" prefHeight="487.0" prefWidth="991.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="197.0">
@@ -6723,7 +6722,6 @@
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
                         <Button layoutX="176.0" layoutY="14.0" mnemonicParsing="false" onAction="#eski_filmler_ekle_giris" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Ekle" textFill="WHITE" />
-                        <Button layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_giris" prefHeight="31.0" prefWidth="116.0" styleClass="button2" text="Değiştir / Sil" textFill="WHITE" />
                      </children>
                   </Pane>
                   <TableView fx:id="table_eski_filmler" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -6757,48 +6755,6 @@
                   <Button layoutX="248.0" layoutY="416.0" mnemonicParsing="false" onAction="#eski_filmler_ekle_sifirla" prefHeight="31.0" prefWidth="125.0" styleClass="button2" text="Sıfırla" textFill="WHITE" />
                   <Button layoutX="777.0" layoutY="416.0" mnemonicParsing="false" onAction="#eski_filmler_ekle" prefHeight="31.0" prefWidth="135.0" styleClass="button2" text="Ekle" textFill="WHITE" />
                   <Label fx:id="eski_ekle_uyari_mesaj" layoutX="520.0" layoutY="315.0" textFill="RED" />
-               </children>
-            </Pane>
-            <Pane fx:id="eski_filmler_degistir_pane" layoutX="8.0" layoutY="169.0" prefHeight="539.0" prefWidth="1058.0" visible="false">
-               <children>
-                  <Pane fx:id="eski_filmler_degistir_pane_1" layoutX="23.0" layoutY="14.0" prefHeight="101.0" prefWidth="1006.0">
-                     <children>
-                        <ComboBox fx:id="eski_degistir_sil_filmler" layoutX="226.0" layoutY="20.0" prefHeight="31.0" prefWidth="354.0" />
-                        <Button layoutX="674.0" layoutY="20.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_filmi_getir" prefHeight="31.0" prefWidth="163.0" styleClass="button2" text="Filmi Getir" textFill="WHITE" />
-                        <Label fx:id="eski_filmler_degistir_sil_uyari_mesaj_1" layoutX="486.0" layoutY="66.0" textFill="RED" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="eski_filmler_degistir_pane_2" layoutY="115.0" prefHeight="427.0" prefWidth="1058.0" visible="false">
-                     <children>
-                        <TextField fx:id="eski_filmleri_degistir_sil_film_name" layoutX="181.0" layoutY="104.0" />
-                        <TextField fx:id="eski_filmleri_degistir_sil_film_type" layoutX="584.0" layoutY="104.0" />
-                        <TextField fx:id="eski_filmleri_degistir_sil_film_suresi" layoutX="181.0" layoutY="183.0" />
-                        <TextField fx:id="eski_filmleri_degistir_sil_aldigi_odul" layoutX="584.0" layoutY="183.0" />
-                        <ComboBox fx:id="eski_filmleri_degistir_sil_hangi_abone" layoutX="247.0" layoutY="241.0" prefWidth="150.0" />
-                        <ComboBox fx:id="eski_filmleri_degistir_sil_yonetmen" layoutX="584.0" layoutY="241.0" prefHeight="31.0" prefWidth="275.0" />
-                        <Label fx:id="eski_filmler_degistir_sil_eski_id" layoutX="615.0" layoutY="35.0" />
-                        <Label fx:id="eski_filmler_degistir_sil_uyari_mesaj_2" layoutX="450.0" layoutY="283.0" textFill="RED" />
-                        <Label layoutX="105.0" layoutY="109.0" text="Film Adı:" />
-                        <Label layoutX="94.0" layoutY="188.0" text="Film Süresi: " />
-                        <Label layoutX="36.0" layoutY="246.0" text="Hangi Abone Türü İzleyebilir: " />
-                        <Label layoutX="501.0" layoutY="109.0" text="Film Türü: " />
-                        <Label layoutX="450.0" layoutY="188.0" text="Aldığı Ödül Sayısı: " />
-                        <Label layoutX="498.0" layoutY="246.0" text="Yönetmen: " />
-                        <Label layoutX="530.0" layoutY="35.0" text="Eski Film id: " />
-                        <Button layoutX="173.0" layoutY="331.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_sil" prefHeight="31.0" prefWidth="125.0" styleClass="button5" text="Sil" textFill="WHITE" />
-                        <Button layoutX="686.0" layoutY="331.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_degistir" prefHeight="31.0" prefWidth="125.0" styleClass="button2" text="Değistir" textFill="WHITE" />
-                     </children></Pane>
-                  <Pane fx:id="eski_filmler_degistir_sil_emin_misin" layoutX="151.0" layoutY="82.0" prefHeight="288.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
-                     <children>
-                        <Label layoutX="169.0" layoutY="42.0" prefHeight="51.0" prefWidth="450.0" text="Silmekten Emin Misin!" textFill="WHITE">
-                           <font>
-                              <Font size="39.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="313.0" layoutY="172.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_silmekten_emin_vazgec" prefHeight="31.0" prefWidth="125.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
-                        <Button layoutX="69.0" layoutY="218.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_silmekten_emin_sadece_eski_filmden_sil" prefHeight="33.0" prefWidth="287.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button5" text="Eski Filmden Silip Vizyona Ekle" textFill="WHITE" />
-                        <Button layoutX="405.0" layoutY="218.0" mnemonicParsing="false" onAction="#eski_filmler_degistir_sil_silmekten_emin_tamamen_sil" prefHeight="33.0" prefWidth="287.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button5" text="Tamamiyle Sil" textFill="WHITE" />
-                     </children></Pane>
                </children>
             </Pane>
          </children>

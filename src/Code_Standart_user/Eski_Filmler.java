@@ -7,12 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
-public class Eski_Filmler extends Satin_Al {
+public class Eski_Filmler extends Haberler{
 
     public void eski_filmler_table_abonesiz(int kullanici_turu) {
         eski_filmlerDAO edao = new eski_filmlerDAO();

@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class Vizyondaki_Filmler extends Kampanyalar {
+public class Vizyondaki_Filmler extends Par {
 
     @FXML
     public void vizyondaki_filmler_giris(ActionEvent event) {

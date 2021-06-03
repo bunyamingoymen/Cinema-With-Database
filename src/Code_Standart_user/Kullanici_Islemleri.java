@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
-public class Kullanici_Islemleri extends Biletlerim {
+public class Kullanici_Islemleri extends Satin_Al {
 
     @FXML
     public void bir_bos(MouseEvent event) {

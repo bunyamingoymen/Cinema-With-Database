@@ -158,7 +158,7 @@ public class Center_Admin extends Yonetmenler implements Initializable {
     }
 
     @FXML
-    private void film_photo_change(MouseEvent event) throws IOException {
+    protected void film_photo_change() throws IOException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.jpg", "*.jpeg", "*.png"));
         File selectedFile = fc.showOpenDialog(null);

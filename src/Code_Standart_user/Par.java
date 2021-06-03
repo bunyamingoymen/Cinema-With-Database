@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class Par extends Sinema_Salonlari_Koltık_Dolu_Bos {
+public class Par extends Variables {
 
     public void vizyondaki_filmler_combo(ComboBox<String> combo, Label uyari_mesaj) {
         vizyondaki_filmlerDAO vizyondaki_film_islemleri = new vizyondaki_filmlerDAO();

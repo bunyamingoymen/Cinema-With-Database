@@ -37,13 +37,11 @@ public class appController extends Center_Admin implements Initializable {
             
             vizyondaki_filmler_geri_tusu.setVisible(true);
             vizyondaki_filmler_ekle_geri_tusu.setVisible(false);
-            //vizyondaki_filmler_degistir_geri_tusu.setVisible(false);
             vizyondaki_filmler_gosterim_geri_tusu.setVisible(false);
             
             vizyondaki_filmler_resimli_gosterim.setVisible(true);
             vizyondaki_filmler_grid.setVisible(false);
             vizyondaki_filmler_ekle_pane.setVisible(false);
-            //vizyondaki_filmler_degistir_pane.setVisible(false);
             
             vizyondaki_filmler_gosterim_oncesi_ortak();
             
@@ -112,11 +110,9 @@ public class appController extends Center_Admin implements Initializable {
             
             eski_filmler_geri_tusu.setVisible(true);
             eski_filmler_ekle_geri_tusu.setVisible(false);
-            eski_filmler_degistir_geri_tusu.setVisible(false);
             
             eski_filmler_grid.setVisible(true);
             eski_filmler_ekle_pane.setVisible(false);
-            eski_filmler_degistir_pane.setVisible(false);
             
             eski_filmler_table_aboneli();
             

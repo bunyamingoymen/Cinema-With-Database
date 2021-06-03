@@ -9,7 +9,7 @@ import DAO.yesil_olanDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class Satin_Al extends Vizyondaki_Filmler {
+public class Satin_Al extends Settings{
 
     @FXML
     public void satin_al_filmler_filmi_getir(ActionEvent event) {

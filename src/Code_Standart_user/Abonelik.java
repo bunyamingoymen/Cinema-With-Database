@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
-public class Abonelik extends Par {
+public class Abonelik extends Biletlerim{
 
     abonelerDAO adao = new abonelerDAO();
 
@@ -174,7 +174,7 @@ public class Abonelik extends Par {
     }
 
     @FXML
-    private void sana_ozel_kampanyalar_giris(ActionEvent event) {
+    protected void sana_ozel_kampanyalar_giris(ActionEvent event) {
         kampanyalar_giris_ortak();
 
         kampanyalar_geri_tusu.setVisible(false);
@@ -183,12 +183,12 @@ public class Abonelik extends Par {
     }
 
     @FXML
-    private void sana_ozel_kampanyalar_geri(MouseEvent event) {
+    protected void sana_ozel_kampanyalar_geri(MouseEvent event) {
         abonelik_giris_ortak();
     }
 
     @FXML
-    private void sana_ozel_haberler_giris(ActionEvent event) {
+    protected void sana_ozel_haberler_giris(ActionEvent event) {
         haberler_giris_ortak();
 
         haberler_geri_tusu.setVisible(false);
@@ -196,12 +196,12 @@ public class Abonelik extends Par {
     }
 
     @FXML
-    private void sana_ozel_haberler_geri(MouseEvent event) {
+    protected void sana_ozel_haberler_geri(MouseEvent event) {
         abonelik_giris_ortak();
     }
 
     @FXML
-    private void abonelik_iptal_et(ActionEvent event) {
+    protected void abonelik_iptal_et(ActionEvent event) {
         int user_id = Creator.getU().getUser_id();
 
         int sonuc = adao.delete(user_id);

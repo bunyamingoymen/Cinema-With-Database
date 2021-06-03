@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
-public class Kampanyalar extends Haberler {
+public class Kampanyalar extends Kullanici_Islemleri {
 
     @FXML
     public void kampanyalar_giris(ActionEvent event) {

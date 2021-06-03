@@ -27,6 +27,7 @@ public class app_standart_userController extends Center_Standart_User implements
     @FXML
     private void home_haberler_giris(MouseEvent event) {
         haberler_giris_ortak();
+        
     }
 
     @FXML

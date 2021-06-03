@@ -266,25 +266,25 @@ public class Variables {
     public FontAwesomeIconView film_actor_geri_tusu, film_actor_ekle_geri_tusu;
 
     @FXML
-    public Pane ust_pnl_vizyondaki_filmler, vizyondaki_filmler_ekle_pane, /*vizyondaki_filmler_degistir_pane,*/ /*vizyondaki_filmler_degistir_pane_1,*/ /*vizyondaki_filmler_degistir_pane_2,*/ /*vizyondaki_filmler_degistir_sil_emin_misin,*/ vizyondaki_filmler_resimli_gosterim;
+    public Pane ust_pnl_vizyondaki_filmler, vizyondaki_filmler_ekle_pane, vizyondaki_filmler_resimli_gosterim;
 
     @FXML
-    public TextField vizyondaki_filmler_ekle_film_adi, vizyondaki_filmler_ekle_film_suresi, vizyondaki_filmler_ekle_film_type /*,*/ /*vizyondaki_filmleri_degistir_sil_film_name,*/ /*vizyondaki_filmleri_degistir_sil_film_suresi,*/ /*vizyondaki_filmleri_degistir_sil_film_type*/;
+    public TextField vizyondaki_filmler_ekle_film_adi, vizyondaki_filmler_ekle_film_suresi, vizyondaki_filmler_ekle_film_type;
 
     @FXML
-    public DatePicker vizyondaki_filmler_ekle_kalkis/*, vizyondaki_filmleri_degistir_sil_kalkis*/;
+    public DatePicker vizyondaki_filmler_ekle_kalkis;
 
     @FXML
-    public ComboBox<String> vizyondaki_filmler_ekle_yonetmenler /*,*/ /*vizyondaki_filmler_degistir_sil_filmler,*/ /*vizyondaki_filmleri_degistir_sil_yonetmen*/;
+    public ComboBox<String> vizyondaki_filmler_ekle_yonetmenler;
 
     @FXML
     public GridPane vizyondaki_filmler_grid;
 
     @FXML
-    public Label vizyondaki_filmler_ekle_uyari_mesaj /*,*/ /*vizyondaki_filmler_degistir_sil_uyari_mesaj_1,*/ /*vizyondaki_filmler_degistir_sil_uyari_mesaj_2,*/  /*vizyondaki_filmler_degistir_sil_vizyon_id*/ /*, vizyondaki_filmler_degistir_sil_film_id*/;
+    public Label vizyondaki_filmler_ekle_uyari_mesaj;
 
     @FXML
-    public FontAwesomeIconView vizyondaki_filmler_geri_tusu, vizyondaki_filmler_ekle_geri_tusu, /*vizyondaki_filmler_degistir_geri_tusu,*/ vizyondaki_filmler_gosterim_geri_tusu;
+    public FontAwesomeIconView vizyondaki_filmler_geri_tusu, vizyondaki_filmler_ekle_geri_tusu, vizyondaki_filmler_gosterim_geri_tusu;
 
     @FXML
     public ImageView vizyondaki_filmler_gosterim_bir, vizyondaki_filmler_gosterim_iki, vizyondaki_filmler_gosterim_uc, vizyondaki_filmler_gosterim_dort, vizyondaki_filmler_gosterim_bes, vizyondaki_filmler_gosterim_alti, vizyondaki_filmler_gosterim_yedi, vizyondaki_filmler_gosterim_sekiz, vizyondaki_filmler_gosterim_dokuz, vizyondaki_filmler_gosterim_on;
@@ -329,25 +329,25 @@ public class Variables {
     public ComboBox<String> film_detay_degistir_hangi_aboneler, film_detay_degistir_yonetmenler;
 
     @FXML
-    public Pane ust_pnl_eski_filmler, eski_filmler_ekle_pane, eski_filmler_degistir_pane, eski_filmler_degistir_pane_1, eski_filmler_degistir_pane_2, eski_filmler_degistir_sil_emin_misin;
+    public Pane ust_pnl_eski_filmler, eski_filmler_ekle_pane;
 
     @FXML
     public TableColumn<eski_filmler, String> eski_filmler_hangi_abone;
 
     @FXML
-    public TextField eski_film_name, eski_film_type, eski_film_suresi, eski_aldigi_odul_sayisi, eski_filmleri_degistir_sil_film_name, eski_filmleri_degistir_sil_film_type, eski_filmleri_degistir_sil_film_suresi, eski_filmleri_degistir_sil_aldigi_odul;
+    public TextField eski_film_name, eski_film_type, eski_film_suresi, eski_aldigi_odul_sayisi;
 
     @FXML
-    public ComboBox<String> eski_hangi_aboneler, eski_ekle_yonetmenler, eski_degistir_sil_filmler, eski_filmleri_degistir_sil_yonetmen, eski_filmleri_degistir_sil_hangi_abone;
+    public ComboBox<String> eski_hangi_aboneler, eski_ekle_yonetmenler;
 
     @FXML
     public GridPane eski_filmler_grid;
 
     @FXML
-    public Label eski_ekle_uyari_mesaj, eski_filmler_degistir_sil_uyari_mesaj_1, eski_filmler_degistir_sil_uyari_mesaj_2, eski_filmler_degistir_sil_eski_id;
+    public Label eski_ekle_uyari_mesaj;
 
     @FXML
-    public FontAwesomeIconView eski_filmler_geri_tusu, eski_filmler_ekle_geri_tusu, eski_filmler_degistir_geri_tusu;
+    public FontAwesomeIconView eski_filmler_geri_tusu, eski_filmler_ekle_geri_tusu;
 
     @FXML
     public Pane ust_pnl_kampanyalar, kampanyalar_ekle_pane, kampanyalar_degistir_pane, kampanyalar_degistir_pane_1, kampanyalar_degistir_pane_2, kampanyalar_sil_emin_misin_pane;

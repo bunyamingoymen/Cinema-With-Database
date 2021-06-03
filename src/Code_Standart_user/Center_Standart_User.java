@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Center_Standart_User extends Settings implements Initializable {
+public class Center_Standart_User extends Abonelik implements Initializable {
 
     //////////////////////////////////////////////////////////////////////////
     //hem appController da hem de appStandart_userController da karışık ve ortak olanlar için ayrılan alan

@@ -1,11 +1,9 @@
 package Code_Admin;
 
 import entity.eski_filmler;
-import entity.filmler;
 import Pattern.Creator;
 import Pattern.Mediator;
 import Pattern.Table;
-import entity.Center;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -51,18 +49,6 @@ public class Eski_Filmler extends Aktorler {
     }
 
     @FXML
-    public void eski_filmler_degistir_geri(MouseEvent event) {
-        eski_filmler_grid.setVisible(true);
-        eski_filmler_degistir_pane.setVisible(false);
-
-        eski_filmler_degistir_geri_tusu.setVisible(false);
-        eski_filmler_geri_tusu.setVisible(true);
-
-        eski_filmler_table_aboneli();
-
-    }
-
-    @FXML
     public void eski_filmler_ekle_giris(ActionEvent event) {
 
         eski_filmler_grid.setVisible(false);
@@ -71,8 +57,6 @@ public class Eski_Filmler extends Aktorler {
         hangi_aboneler_combo(eski_hangi_aboneler);
         eski_filmler_geri_tusu.setVisible(false);
         eski_filmler_ekle_geri_tusu.setVisible(true);
-        eski_filmler_degistir_geri_tusu.setVisible(false);
-        eski_filmler_degistir_pane.setVisible(false);
     }
 
     public void hangi_aboneler_combo(ComboBox<String> combo) {
@@ -153,169 +137,9 @@ public class Eski_Filmler extends Aktorler {
         }
     }
 
-    @FXML
-    public void eski_filmler_degistir_sil_giris(ActionEvent event) {
-
-        eski_filmler_grid.setVisible(false);
-        eski_filmler_degistir_pane.setVisible(true);
-        eski_filmler_combo(eski_degistir_sil_filmler, eski_filmler_degistir_sil_uyari_mesaj_1);
-        eski_filmler_degistir_pane_1.setVisible(true);
-        eski_filmler_degistir_pane_2.setVisible(false);
-        eski_filmler_degistir_geri_tusu.setVisible(true);
-        eski_filmler_geri_tusu.setVisible(false);
-        eski_filmler_degistir_sil_emin_misin.setVisible(false);
-
-    }
-
-    @FXML
-    public void eski_filmler_degistir_sil_filmi_getir(ActionEvent event) {
-
-        if (eski_degistir_sil_filmler.getValue() == null) {
-            eski_filmler_degistir_sil_uyari_mesaj_1.setText("Lütfen bir film seçiniz.");
-        } else {
-            String secilen = eski_degistir_sil_filmler.getValue();
-            eski_filmler_degistir_pane_2.setVisible(true);
-            String[][] arr = Creator.eski_filmlerDao().select();
-            int eski_film_id = 0;
-            for (int i = 0; i < arr.length; i++) {
-                if (secilen.equals(arr[i][0])) {
-                    eski_film_id = Integer.valueOf(arr[i][1]);
-                }
-            }
-            String film_name = Creator.eski_filmlerDao().search_string(eski_film_id, 1);
-            String film_type = Creator.eski_filmlerDao().search_string(eski_film_id, 2);
-            int film_suresi = Creator.eski_filmlerDao().search_int(eski_film_id, 2);
-            String yonetmen = Creator.eski_filmlerDao().search_int(eski_film_id, 1) + " " + Creator.eski_filmlerDao().search_string(eski_film_id, 3);
-            int hangi_abone = Creator.eski_filmlerDao().search_int(eski_film_id, 3);
-            int aldigi_odul = Creator.eski_filmlerDao().search_int(eski_film_id, 4);
-
-            eski_filmleri_degistir_sil_film_name.setText(film_name);
-            eski_filmleri_degistir_sil_film_type.setText(film_type);
-            eski_filmleri_degistir_sil_film_suresi.setText(String.valueOf(film_suresi));
-            eski_filmleri_degistir_sil_aldigi_odul.setText(String.valueOf(aldigi_odul));
-
-            yonetmen_combo(eski_filmleri_degistir_sil_yonetmen, eski_filmler_degistir_sil_uyari_mesaj_2);
-            eski_filmleri_degistir_sil_yonetmen.setValue(yonetmen);
-
-            hangi_aboneler_combo(eski_filmleri_degistir_sil_hangi_abone);
-            eski_filmleri_degistir_sil_hangi_abone.setValue(String.valueOf(hangi_abone));
-
-            eski_filmler_degistir_sil_eski_id.setText(String.valueOf(eski_film_id));
-        }
-
-    }
-
-    @FXML
-    public void eski_filmler_degistir_sil_degistir(ActionEvent event) {
-        if ((eski_filmleri_degistir_sil_film_name.getText().length() == 0) || (eski_filmleri_degistir_sil_film_type.getText().length() == 0) || (eski_filmleri_degistir_sil_film_suresi.getText().length() == 0) || (eski_filmleri_degistir_sil_aldigi_odul.getText().length() == 0)
-                || (eski_filmleri_degistir_sil_hangi_abone.getValue() == null) || (eski_filmleri_degistir_sil_yonetmen.getValue() == null)) {
-            eski_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen Gerekli Yerleri doldurunuz.");
-        } else {
-            String film_name = eski_filmleri_degistir_sil_film_name.getText();
-            String film_type = eski_filmleri_degistir_sil_film_type.getText();
-            try {
-                int film_suresi = Integer.parseInt(eski_filmleri_degistir_sil_film_suresi.getText());
-                try {
-                    int aldigi_odul = Integer.parseInt(eski_filmleri_degistir_sil_aldigi_odul.getText());
-                    int hangi_abone = Integer.parseInt(eski_filmleri_degistir_sil_hangi_abone.getValue());
-                    String yonetmen = eski_filmleri_degistir_sil_yonetmen.getValue();
-                    String[][] arr = Creator.yonetmenlerDao().select();
-                    int yonetmen_id = 0;
-                    for (int i = 0; i < arr.length; i++) {
-                        if (arr[i][0].equals(yonetmen)) {
-                            yonetmen_id = Integer.valueOf(arr[i][1]);
-                            break;
-                        }
-                    }
-                    int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-                    int film_id = Creator.eski_filmlerDao().search_int(eski_film_id, 5);
-                    filmler f = new filmler(film_id, film_name, film_suresi, film_type, yonetmen_id);
-                    eski_filmler e = new eski_filmler(eski_film_id, aldigi_odul, hangi_abone);
-
-                    Mediator m = new Mediator();
-
-                    int sonuc = m.eski_filmler_degistir(e, f);
-                    if (sonuc == 1) {
-                        eski_filmler_degistir_sil_uyari_mesaj_2.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
-                    } else {
-                        eski_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi lütfen daha sonra tekrar deneyiniz..");
-                    }
-
-                } catch (NumberFormatException e) {
-                    eski_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen aldığı ödülleri sadece sayı olarak giriniz.");
-                }
-            } catch (NumberFormatException e) {
-                eski_filmler_degistir_sil_uyari_mesaj_2.setText("Lütfen Süreyi sadece sayı olarak giriniz (dk olarak).");
-            }
-        }
-    }
-
-    @FXML
-    public void eski_filmler_degistir_sil_sil(ActionEvent event) {
-        eski_filmler_degistir_sil_emin_misin.setVisible(true);
-    }
-
-    @FXML
-    public void eski_filmler_degistir_sil_silmekten_emin_vazgec(ActionEvent event) {
-        eski_filmler_degistir_sil_emin_misin.setVisible(false);
-    }
-
-    @FXML
-    public void eski_filmler_degistir_sil_silmekten_emin_tamamen_sil(ActionEvent event) {
-        int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-
-        Mediator m = new Mediator();
-
-        int sonuc = m.eski_filmler_tamamen_sil(eski_film_id);
-
-        if (sonuc == 1) {
-            eski_filmler_combo(eski_degistir_sil_filmler, eski_filmler_degistir_sil_uyari_mesaj_1);
-            eski_filmleri_degistir_sil_film_name.setText("");
-            eski_filmleri_degistir_sil_film_type.setText("");
-            eski_filmleri_degistir_sil_film_suresi.setText("");
-            eski_filmleri_degistir_sil_aldigi_odul.setText("");
-            hangi_aboneler_combo(eski_filmleri_degistir_sil_hangi_abone);
-            yonetmen_combo(eski_filmleri_degistir_sil_yonetmen, eski_filmler_degistir_sil_uyari_mesaj_2);
-
-            eski_filmler_degistir_pane_2.setVisible(false);
-            eski_filmler_degistir_sil_emin_misin.setVisible(false);
-
-            eski_filmler_degistir_sil_uyari_mesaj_1.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
-        } else {
-            eski_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi.Lütfen daha sonra tekrar deneyiniz.");
-        }
-    }
-
-    @FXML
-    public void eski_filmler_degistir_sil_silmekten_emin_sadece_eski_filmden_sil(ActionEvent event) {
-        int eski_film_id = Integer.parseInt(eski_filmler_degistir_sil_eski_id.getText());
-
-        Mediator m = new Mediator();
-
-        int sonuc = m.eski_filmler_sadece_eskiden_sil(eski_film_id);
-
-        if (sonuc == 1) {
-            eski_filmler_combo(eski_degistir_sil_filmler, eski_filmler_degistir_sil_uyari_mesaj_1);
-            eski_filmleri_degistir_sil_film_name.setText("");
-            eski_filmleri_degistir_sil_film_type.setText("");
-            eski_filmleri_degistir_sil_film_suresi.setText("");
-            eski_filmleri_degistir_sil_aldigi_odul.setText("");
-            hangi_aboneler_combo(eski_filmleri_degistir_sil_hangi_abone);
-            yonetmen_combo(eski_filmleri_degistir_sil_yonetmen, eski_filmler_degistir_sil_uyari_mesaj_2);
-
-            eski_filmler_degistir_pane_2.setVisible(false);
-            eski_filmler_degistir_sil_emin_misin.setVisible(false);
-
-            eski_filmler_degistir_sil_uyari_mesaj_1.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
-        } else {
-            eski_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi.Lütfen daha sonra tekrar deneyiniz.");
-        }
-    }
-
     public void eski_filmler_table_aboneli() {
 
         ObservableList<eski_filmler> data = Table.data_Eski_Filmler(vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani, pnl_eski_filmler, pnl_vizyondaki_filmler, pnl_film_detay, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi, film_detay_ana_pane, film_detay_sil_emin_misin_pane, film_detay_guncelle_pane);
-
 
         eski_filmler_film_adi.setCellValueFactory(new PropertyValueFactory("film_name"));
         eski_filmler_film_type.setCellValueFactory(new PropertyValueFactory("film_type"));
