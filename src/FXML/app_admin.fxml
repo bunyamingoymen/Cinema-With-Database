@@ -388,7 +388,7 @@
                         <TextField fx:id="film_detay_degistir_film_suresi" layoutX="644.0" layoutY="137.0" />
                         <TextField fx:id="film_detay_degistir_film_turu" layoutX="245.0" layoutY="220.0" />
                         <ComboBox fx:id="film_detay_degistir_yonetmenler" layoutX="409.0" layoutY="357.0" prefHeight="31.0" prefWidth="328.0" />
-                        <Button layoutX="735.0" layoutY="445.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="224.0" styleClass="button2" text="Değiştir" textFill="WHITE" />
+                        <Button layoutX="735.0" layoutY="445.0" mnemonicParsing="false" onAction="#film_detay_guncelle_guncelle" prefHeight="31.0" prefWidth="224.0" styleClass="button2" text="Değiştir" textFill="WHITE" />
                         <Label fx:id="film_detay_degistir_uyari_mesaj" layoutX="657.0" layoutY="495.0" textFill="RED" />
                         <Label fx:id="film_detay_degistir_film_id" layoutX="218.0" layoutY="81.0" />
                         <Label fx:id="film_detay_degistir_id" layoutX="607.0" layoutY="81.0" />

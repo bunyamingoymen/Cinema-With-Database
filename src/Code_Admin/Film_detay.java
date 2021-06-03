@@ -7,6 +7,10 @@ package Code_Admin;
 
 import Pattern.Creator;
 import Pattern.Mediator;
+import entity.eski_filmler;
+import entity.filmler;
+import entity.vizyondaki_filmler;
+import java.time.LocalDate;
 import javafx.fxml.FXML;
 
 /**
@@ -195,7 +199,7 @@ public class Film_detay extends Film_Actor {
             film_detay_degistir_aldigi_odul_sayisi.setText(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 4)));
 
             hangi_aboneler_combo(film_detay_degistir_hangi_aboneler);
-            eski_filmleri_degistir_sil_hangi_abone.setValue(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 3)));
+            film_detay_degistir_hangi_aboneler.setValue(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 3)));
 
             film_detay_degistir_yonetmenler.setValue(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 1)) + " " + Creator.eski_filmlerDao().search_string(Integer.parseInt(film_detay_id.getText()), 3));
 
@@ -206,10 +210,99 @@ public class Film_detay extends Film_Actor {
         }
 
     }
-    
+
     @FXML
-    public void film_detay_guncelle_guncelle(){
-        
+    public void film_detay_guncelle_guncelle() {
+
+        if (film_detay_id_oncesi.getText().equals("vizyon_id")) {
+
+            if ((film_detay_degistir_film_adi.getText().length() == 0) || (film_detay_degistir_film_turu.getText().length() == 0) || (film_detay_degistir_film_suresi.getText().length() == 0) || (film_detay_degistir_vizyondan_kalkis_tarihi.getValue() == null) || (film_detay_degistir_vizyondan_kalkis_tarihi.getValue() == null)) {
+                film_detay_degistir_uyari_mesaj.setText("Lütfen Gerekli Yerleri Doldurunuz.");
+            } else {
+                String film_name = film_detay_degistir_film_adi.getText();
+                String film_type = film_detay_degistir_film_turu.getText();
+
+                try {
+                    int film_suresi = Integer.parseInt(film_detay_degistir_film_suresi.getText());
+                    LocalDate kalkis = film_detay_degistir_vizyondan_kalkis_tarihi.getValue();
+                    String yonetmen = film_detay_degistir_yonetmenler.getValue();
+                    int yonetmen_id = 0;
+                    String[][] arr = Creator.yonetmenlerDao().select();
+
+                    for (String[] arr1 : arr) {
+                        if (yonetmen.equals(arr1[0])) {
+                            yonetmen_id = Integer.valueOf(arr1[1]);
+                        }
+                    }
+
+                    String vizyondaki_film_id = film_detay_degistir_id.getText();
+                    String film_id = film_detay_degistir_film_id.getText();
+
+                    vizyondaki_filmler v = new vizyondaki_filmler(Integer.valueOf(vizyondaki_film_id), Integer.valueOf(film_id), kalkis, Creator.filmlerDao().search_float(Integer.valueOf(film_id)), Creator.vizyondaki_filmlerDao().search_int(Integer.valueOf(vizyondaki_film_id), 3, 1));
+                    filmler f = new filmler(Integer.valueOf(film_id), film_name, Integer.valueOf(film_suresi), film_type, yonetmen_id);
+
+                    Mediator m = new Mediator();
+
+                    int sonuc = m.vizyondaki_filmler_degiştir(v, f);
+                    if (sonuc == 1) {
+                        film_detay_degistir_uyari_mesaj.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
+
+                    } else {
+                        film_detay_degistir_uyari_mesaj.setText("Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz.");
+                    }
+                } catch (NumberFormatException e) {
+                    film_detay_degistir_uyari_mesaj.setText("Lütfen Film Süresini sayı giriniz (dk olarak)");
+                }
+            }
+
+        } else if (film_detay_id_oncesi.getText().equals("eski_id")) {
+
+            if ((film_detay_degistir_film_adi.getText().length() == 0) || (film_detay_degistir_film_turu.getText().length() == 0) || (film_detay_degistir_film_suresi.getText().length() == 0) || (film_detay_degistir_aldigi_odul_sayisi.getText().length() == 0)
+                    || (film_detay_degistir_hangi_aboneler.getValue() == null) || (film_detay_degistir_yonetmenler.getValue() == null)) {
+                film_detay_degistir_uyari_mesaj.setText("Lütfen Gerekli Yerleri doldurunuz.");
+            } else {
+                String film_name = film_detay_degistir_film_adi.getText();
+                String film_type = film_detay_degistir_film_turu.getText();
+                try {
+                    int film_suresi = Integer.parseInt(film_detay_degistir_film_suresi.getText());
+                    try {
+                        int aldigi_odul = Integer.parseInt(film_detay_degistir_aldigi_odul_sayisi.getText());
+                        int hangi_abone = Integer.parseInt(film_detay_degistir_hangi_aboneler.getValue());
+                        String yonetmen = film_detay_degistir_yonetmenler.getValue();
+                        String[][] arr = Creator.yonetmenlerDao().select();
+                        int yonetmen_id = 0;
+                        for (int i = 0; i < arr.length; i++) {
+                            if (arr[i][0].equals(yonetmen)) {
+                                yonetmen_id = Integer.valueOf(arr[i][1]);
+                                break;
+                            }
+                        }
+                        int eski_film_id = Integer.parseInt(film_detay_degistir_id.getText());
+                        int film_id = Integer.parseInt(film_detay_degistir_film_id.getText());
+                        filmler f = new filmler(film_id, film_name, film_suresi, film_type, yonetmen_id);
+                        eski_filmler e = new eski_filmler(eski_film_id, hangi_abone, aldigi_odul);
+
+                        Mediator m = new Mediator();
+
+                        int sonuc = m.eski_filmler_degistir(e, f);
+
+                        if (sonuc == 1) {
+                            film_detay_degistir_uyari_mesaj.setText("İşlem başarılı bir şekilde gerçekleştirildi.");
+                        } else {
+                            film_detay_degistir_uyari_mesaj.setText("Bir hata meydana geldi lütfen daha sonra tekrar deneyiniz..");
+                        }
+
+                    } catch (NumberFormatException e) {
+                        film_detay_degistir_uyari_mesaj.setText("Lütfen aldığı ödülleri sadece sayı olarak giriniz.");
+                    }
+                } catch (NumberFormatException e) {
+                    film_detay_degistir_uyari_mesaj.setText("Lütfen Süreyi sadece sayı olarak giriniz (dk olarak).");
+                }
+            }
+
+        } else {
+            System.out.println("Hata");
+        }
     }
 
 }
