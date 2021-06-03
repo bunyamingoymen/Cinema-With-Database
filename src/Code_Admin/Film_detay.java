@@ -5,6 +5,7 @@
  */
 package Code_Admin;
 
+import Pattern.Mediator;
 import javafx.fxml.FXML;
 
 /**
@@ -53,7 +54,7 @@ public class Film_detay extends Film_Actor {
     }
 
     @FXML
-    public void film_detay_sil() {
+    public void film_detay_sil_giris() {
         film_detay_sil_emin_misin_pane.setVisible(true);
         if (film_detay_id_oncesi.getText().equals("vizyon_id")) {
 
@@ -77,22 +78,64 @@ public class Film_detay extends Film_Actor {
 
     @FXML
     public void film_detay_sil_sadece_sil() {
+
+        film_detay_sil_emin_misin_pane.setVisible(false);
+
+        int id = Integer.parseInt(film_detay_id.getText());
+
+        Mediator m = new Mediator();
+
         if (film_detay_id_oncesi.getText().equals("vizyon_id")) {
+
+            int sonuc = m.vizyondaki_filmler_sadece_vziyodnan_sil(id);
+            if (sonuc == 1) {
+                film_detay_uyari_mesaj.setText("İstenilen Veri Sadece Vizyonan Silindi. Geri Dönembilirsiniz");
+            } else {
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
+            }
 
         } else if (film_detay_id_oncesi.getText().equals("eski_id")) {
 
+            int sonuc = m.eski_filmler_sadece_eskiden_sil(id);
+
+            if (sonuc == 1) {
+                film_detay_uyari_mesaj.setText("İşlem Veri Sadece Eskilerden Silindş. Geri Dönebilirsiniz,");
+            } else {
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi.Lütfen daha sonra tekrar deneyiniz.");
+            }
+
         } else {
-
             System.out.println("Hata");
-
         }
     }
 
     @FXML
     public void film_detay_sil_tamamen_sil() {
+
+        film_detay_sil_emin_misin_pane.setVisible(false);
+
+        int id = Integer.parseInt(film_detay_id.getText());
+
+        Mediator m = new Mediator();
+
         if (film_detay_id_oncesi.getText().equals("vizyon_id")) {
 
+            int sonuc = m.vizyondaki_filmler_tamamen_sil(id);
+            if (sonuc == 1) {
+                film_detay_uyari_mesaj.setText("İstenilen Veri Tamamiyle Silindi. Geri Dönebilrsiniz");
+            } else {
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi lütfen daha sonra tekrar denetyiniz.");
+            }
+
         } else if (film_detay_id_oncesi.getText().equals("eski_id")) {
+
+            int sonuc = m.eski_filmler_tamamen_sil(id);
+
+            if (sonuc == 1) {
+                eski_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Tamamiyle Silindi. Geri Dönebilrsiniz");
+            } else {
+                eski_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi.Lütfen daha sonra tekrar deneyiniz.");
+            }
 
         } else {
 
