@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class Haberler extends Film_Actor {
+public class Haberler extends Film_detay {
 
     public void haberler_combo_doldur(ComboBox<String> combo, Label uyari_mesaj) {
         String[][] arr = Creator.haberlerDao().select();

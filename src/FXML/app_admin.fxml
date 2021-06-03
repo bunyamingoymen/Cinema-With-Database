@@ -375,7 +375,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="SHARE" layoutX="31.0" layoutY="94.0" onMouseClicked="#film_detay_geri" rotate="180.0" size="40.0" />
                </children>
             </Pane>
-            <Pane layoutX="5.0" layoutY="156.0" prefHeight="539.0" prefWidth="1058.0" visible="false">
+            <Pane fx:id="film_detay_guncelle_pane" layoutX="5.0" layoutY="156.0" prefHeight="539.0" prefWidth="1058.0" visible="false">
                <children>
                   <Pane layoutX="23.0" layoutY="14.0" prefHeight="101.0" prefWidth="1006.0">
                      <children>
@@ -405,21 +405,9 @@
                         <DatePicker layoutX="626.0" layoutY="114.0" />
                      </children>
                   </Pane>
-                  <Pane layoutX="151.0" layoutY="82.0" prefHeight="288.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
-                     <children>
-                        <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
-                           <font>
-                              <Font name="Comic Sans MS" size="25.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="401.0" layoutY="196.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Sadece Vizyondan Sil Ve Eski Filmlere Ekle" textFill="WHITE" />
-                        <Button layoutX="58.0" layoutY="196.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Filmi Tamamen Sil" textFill="WHITE" />
-                        <Button layoutX="291.0" layoutY="112.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="163.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
-                     </children>
-                  </Pane>
                </children>
             </Pane>
-            <Pane layoutX="9.0" layoutY="156.0" prefHeight="554.0" prefWidth="1058.0">
+            <Pane fx:id="film_detay_ana_pane" layoutX="9.0" layoutY="156.0" prefHeight="554.0" prefWidth="1058.0">
                <children>
                   <Label layoutX="481.0" layoutY="105.0" text="Film id:" />
                   <Label fx:id="vizyondaki_filmler_detay_film_id" layoutX="536.0" layoutY="105.0" text="1" />
@@ -451,9 +439,21 @@
                         <FontAwesomeIconView fill="#7156dd" glyphName="PENCIL" layoutX="180.0" layoutY="220.0" onMouseClicked="#film_photo_change" size="20" />
                      </children>
                   </Pane>
-                  <Button layoutX="910.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" styleClass="button5" text="Sil" textFill="WHITE" />
+                  <Button layoutX="910.0" layoutY="462.0" mnemonicParsing="false" onAction="#film_detay_sil" prefHeight="31.0" prefWidth="100.0" styleClass="button5" text="Sil" textFill="WHITE" />
                   <Label fx:id="film_detay_id_oncesi" layoutX="477.0" layoutY="69.0" text="id: " />
                   <Label fx:id="film_detay_id" layoutX="577.0" layoutY="69.0" text="0" />
+               </children>
+            </Pane>
+            <Pane fx:id="film_detay_sil_emin_misin_pane" layoutX="145.0" layoutY="243.0" prefHeight="288.0" prefWidth="771.0" style="-fx-background-color: #3F2B63; -fx-background-radius: 100;" visible="false">
+               <children>
+                  <Label layoutX="181.0" layoutY="48.0" text="Silmek İstediğinize Emin Misiniz?" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="25.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="film_detay_sadece_sil_butonu" layoutX="401.0" layoutY="196.0" mnemonicParsing="false" onAction="#film_detay_sil_sadece_sil" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Sadece Vizyondan Sil Ve Eski Filmlere Ekle" textFill="WHITE" />
+                  <Button layoutX="58.0" layoutY="196.0" mnemonicParsing="false" onAction="#film_detay_sil_tamamen_sil" prefHeight="31.0" prefWidth="318.0" styleClass="button5" text="Filmi Tamamen Sil" textFill="WHITE" />
+                  <Button layoutX="291.0" layoutY="112.0" mnemonicParsing="false" onAction="#film_detay_sil_vazgec" prefHeight="31.0" prefWidth="163.0" style="-fx-border-color: white; -fx-border-radius: 100;" styleClass="button2" text="Vazgeç" textFill="WHITE" />
                </children>
             </Pane>
          </children>

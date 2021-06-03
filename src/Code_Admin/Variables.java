@@ -306,6 +306,12 @@ public class Variables {
 
     @FXML
     public AnchorPane pnl_film_detay;
+    
+    @FXML
+    public Pane film_detay_ana_pane, film_detay_sil_emin_misin_pane, film_detay_guncelle_pane;
+    
+    @FXML
+    public Button film_detay_sadece_sil_butonu;
 
     @FXML
     public Label vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani;
