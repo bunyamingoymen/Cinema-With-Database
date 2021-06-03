@@ -70,7 +70,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
             LinkedList<vizyondaki_filmler> list = new LinkedList<>();
 
             while (rs.next()) {
-                vizyondaki_filmler v = new vizyondaki_filmler(rs.getInt("vizyondaki_film_id"), rs.getDate("vizyondan_kalkis_tarihi").toLocalDate(), rs.getInt("film_id"), rs.getString("film_name"), rs.getString("film_type"), rs.getInt("film_suresi"), rs.getString("ad") + " " + rs.getString("soyad"), rs.getFloat("kullanici_puani"));
+                vizyondaki_filmler v = new vizyondaki_filmler(rs.getInt("vizyondaki_film_id"), rs.getDate("vizyondan_kalkis_tarihi").toLocalDate(), rs.getInt("film_id"), rs.getString("film_name"), rs.getString("film_type"), rs.getInt("film_suresi"), rs.getString("ad") + " " + rs.getString("soyad"), rs.getFloat("kullanici_puani"), rs.getInt("yonetmen_id"));
                 list.add(v);
             }
 

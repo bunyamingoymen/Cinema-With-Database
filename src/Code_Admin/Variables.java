@@ -317,7 +317,16 @@ public class Variables {
     public Label vizyondaki_filmler_detay_film_id, vizyondaki_filmler_detay_film_adi, vizyondaki_filmler_detay_film_turu, vizyondaki_filmler_detay_film_suresi, vizyondaki_filmler_detay_yonetmen, vizyondaki_filmler_detay_kalkis_tarihi, vizyondaki_filmler_detay_kullanici_puani;
     
     @FXML
-    public Label film_detay_hangi_abone_turu, film_detay_aldigi_odul_sayisi, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi, film_detay_uyari_mesaj;
+    public Label film_detay_hangi_abone_turu, film_detay_aldigi_odul_sayisi, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi, film_detay_uyari_mesaj, film_detay_degistir_id, film_detay_degistir_id_oncesi, film_detay_degistir_film_id, film_detay_degistir_uyari_mesaj, film_detay_degistir_vizyondan_kalkis_tarihi_oncesi, film_detay_degistir_aldigi_odul_sayisi_oncesi, film_detay_degistir_hangi_aboneler_izleyebilir_oncesi;
+    
+    @FXML
+    public TextField film_detay_degistir_film_adi, film_detay_degistir_film_suresi, film_detay_degistir_film_turu, film_detay_degistir_aldigi_odul_sayisi;
+    
+    @FXML
+    public DatePicker film_detay_degistir_vizyondan_kalkis_tarihi;
+    
+    @FXML
+    public ComboBox<String> film_detay_degistir_hangi_aboneler, film_detay_degistir_yonetmenler;
 
     @FXML
     public Pane ust_pnl_eski_filmler, eski_filmler_ekle_pane, eski_filmler_degistir_pane, eski_filmler_degistir_pane_1, eski_filmler_degistir_pane_2, eski_filmler_degistir_sil_emin_misin;

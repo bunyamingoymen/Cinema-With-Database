@@ -30,8 +30,8 @@ public class vizyondaki_filmler extends filmler {
         this.seans_sayisi = seans_sayisi;
     }
 
-    public vizyondaki_filmler(int vizyondaki_filmler_id, LocalDate vizyondan_kalkis_tarihi, int film_id, String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, float kullanici_puani) {
-        super(film_id, film_name, film_type, film_suresi, yonetmen_ad_soyad, kullanici_puani);
+    public vizyondaki_filmler(int vizyondaki_filmler_id, LocalDate vizyondan_kalkis_tarihi, int film_id, String film_name, String film_type, int film_suresi, String yonetmen_ad_soyad, float kullanici_puani, int yonetmen_id) {
+        super( film_id, film_name, film_type, film_suresi, yonetmen_id, kullanici_puani, yonetmen_ad_soyad);
         this.vizyondaki_filmler_id = vizyondaki_filmler_id;
         this.vizyondan_kalkis_tarihi = vizyondan_kalkis_tarihi;
     }

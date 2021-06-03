@@ -5,6 +5,7 @@
  */
 package Code_Admin;
 
+import Pattern.Creator;
 import Pattern.Mediator;
 import javafx.fxml.FXML;
 
@@ -132,9 +133,9 @@ public class Film_detay extends Film_Actor {
             int sonuc = m.eski_filmler_tamamen_sil(id);
 
             if (sonuc == 1) {
-                eski_filmler_degistir_sil_uyari_mesaj_1.setText("İstenilen Veri Tamamiyle Silindi. Geri Dönebilrsiniz");
+                film_detay_uyari_mesaj.setText("İstenilen Veri Tamamiyle Silindi. Geri Dönebilrsiniz");
             } else {
-                eski_filmler_degistir_sil_uyari_mesaj_2.setText("Bir hata meydana geldi.Lütfen daha sonra tekrar deneyiniz.");
+                film_detay_uyari_mesaj.setText("Bir hata meydana geldi.Lütfen daha sonra tekrar deneyiniz.");
             }
 
         } else {
@@ -142,6 +143,73 @@ public class Film_detay extends Film_Actor {
             System.out.println("Hata");
 
         }
+    }
+
+    @FXML
+    public void film_detay_guncelle_giris() {
+
+        film_detay_guncelle_pane.setVisible(true);
+        film_detay_ana_pane.setVisible(false);
+        film_detay_sil_emin_misin_pane.setVisible(false);
+
+        film_detay_degistir_film_id.setText(vizyondaki_filmler_detay_film_id.getText());
+
+        film_detay_degistir_film_adi.setText(Creator.filmlerDao().search_string(Integer.parseInt(film_detay_degistir_film_id.getText()), 1));
+
+        film_detay_degistir_film_turu.setText(Creator.filmlerDao().search_string(Integer.parseInt(film_detay_degistir_film_id.getText()), 2));
+
+        film_detay_degistir_film_suresi.setText(String.valueOf(Creator.filmlerDao().search_int(Integer.parseInt(film_detay_degistir_film_id.getText()), 1)));
+
+        yonetmen_combo(film_detay_degistir_yonetmenler, film_detay_degistir_uyari_mesaj);
+
+        film_detay_degistir_id.setText(film_detay_id.getText());
+
+        if (film_detay_id_oncesi.getText().equals("vizyon_id")) {
+
+            film_detay_degistir_vizyondan_kalkis_tarihi.setVisible(true);
+            film_detay_degistir_aldigi_odul_sayisi.setVisible(false);
+            film_detay_degistir_hangi_aboneler.setVisible(false);
+
+            film_detay_degistir_vizyondan_kalkis_tarihi_oncesi.setVisible(true);
+            film_detay_degistir_aldigi_odul_sayisi_oncesi.setVisible(false);
+            film_detay_degistir_hangi_aboneler_izleyebilir_oncesi.setVisible(false);
+
+            film_detay_degistir_id_oncesi.setText("vizyon_id");
+
+            film_detay_degistir_vizyondan_kalkis_tarihi.setValue(Creator.vizyondaki_filmlerDao().search_localdate(Integer.parseInt(film_detay_id.getText())));
+
+            film_detay_degistir_yonetmenler.setValue(String.valueOf(Creator.vizyondaki_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 4, 1)) + " " + Creator.vizyondaki_filmlerDao().search_string(Integer.parseInt(film_detay_id.getText()), 3));
+
+        } else if (film_detay_id_oncesi.getText().equals("eski_id")) {
+
+            film_detay_degistir_aldigi_odul_sayisi.setVisible(true);
+            film_detay_degistir_hangi_aboneler.setVisible(true);
+            film_detay_degistir_vizyondan_kalkis_tarihi.setVisible(false);
+
+            film_detay_degistir_aldigi_odul_sayisi_oncesi.setVisible(true);
+            film_detay_degistir_hangi_aboneler_izleyebilir_oncesi.setVisible(true);
+            film_detay_degistir_vizyondan_kalkis_tarihi_oncesi.setVisible(false);
+
+            film_detay_degistir_id_oncesi.setText("eski_id");
+
+            film_detay_degistir_aldigi_odul_sayisi.setText(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 4)));
+
+            hangi_aboneler_combo(film_detay_degistir_hangi_aboneler);
+            eski_filmleri_degistir_sil_hangi_abone.setValue(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 3)));
+
+            film_detay_degistir_yonetmenler.setValue(String.valueOf(Creator.eski_filmlerDao().search_int(Integer.parseInt(film_detay_degistir_id.getText()), 1)) + " " + Creator.eski_filmlerDao().search_string(Integer.parseInt(film_detay_id.getText()), 3));
+
+        } else {
+
+            System.out.println("Hata");
+
+        }
+
+    }
+    
+    @FXML
+    public void film_detay_guncelle_guncelle(){
+        
     }
 
 }
