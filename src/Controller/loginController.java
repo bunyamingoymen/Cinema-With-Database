@@ -21,87 +21,88 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class loginController implements Initializable {
-    
-    private boolean a = false;
-    
+
     private boolean sifre_gosterim = false;
-    
+
     private boolean sifre_gosterim2 = false;
-    
+
+    @FXML
+    private AnchorPane login_pane;
+
     @FXML
     private TextField tf_username, tf_password, tf_username2, tf_password2, tf_mail, tf_username3;
-    
+
     @FXML
     private PasswordField pf_password, pf_password2;
-    
+
     @FXML
     private Label label, label2, yazi1, yazi2, label_password;
-    
+
     @FXML
     private HBox gizli, acik, gizli2, acik2;
-    
+
     @FXML
     private Button ortadaki_btn, sifremi_unuttum, kayit_olmadan;
-    
+
     @FXML
     private AnchorPane ortadaki_pane, kayit_ol_paneli, oturum_ac_paneli, sifremi_unuttum_paneli;
-    
+
     @FXML
     private void login(ActionEvent event) throws IOException {
-        
+
         String user_name = tf_username.getText();
         String password = null;
-        
+
         if (sifre_gosterim == false) {
             password = pf_password.getText();
         } else {
             password = tf_password.getText();
         }
-        
+
         if ((password.length() == 0) || (user_name.length() == 0)) {
-            
+
             label.setText("Lütfen Gerekli Yerleri Doldurunuz.");
-            
+
         } else {
-            
+
             usersDAO users_islemleri = new usersDAO();
             int user_id = users_islemleri.control_login(user_name, password);
-            
+
             pf_password.setText("");
             tf_password.setText("");
             tf_username.setText("");
-            
+
             if ((user_id == -1) || (user_id == -2)) {
-                
+
                 label.setText("Bir hata meydana geldi.Hata Kodu= -13");
-                
+
             } else if (user_id == 0) {
                 label.setText("Kullanıcı adı veya şifre hatalı");
             } else {
-                
+
                 int authority = users_islemleri.search_int(user_id);
                 String name = users_islemleri.search_string(user_id, 2);
                 String pass = users_islemleri.search_string(user_id, 1);
                 String mail = users_islemleri.search_string(user_id, 3);
-                
+
                 users u = new users(user_id, name, mail, pass, authority);
-                
+
                 Creator.setU(u);
-                
+
                 switch (authority) {
                     case 0: {
                         Parent root = FXMLLoader.load(getClass().getResource("/FXML/app_standart.fxml"));
                         Scene scene = new Scene(root);
                         Stage stage = new Stage();
                         stage.setScene(scene);
-                        
+
                         scene.setFill(Color.TRANSPARENT);
                         stage.setScene(scene);
                         stage.initStyle(StageStyle.UNDECORATED);
                         stage.show();
                         stage.setTitle("Cinema");
-                        Node node = (Node) event.getSource();
-                        Stage stage2 = (Stage) node.getScene().getWindow();
+
+                        Stage stage2 = (Stage) login_pane.getScene().getWindow();
                         stage2.close();
                         break;
                     }
@@ -110,44 +111,44 @@ public class loginController implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = new Stage();
                         stage.setScene(scene);
-                        
+
                         scene.setFill(Color.TRANSPARENT);
                         stage.setScene(scene);
                         stage.initStyle(StageStyle.UNDECORATED);
                         stage.show();
                         stage.setTitle("Cinema-Admin");
-                        Node node = (Node) event.getSource();
-                        Stage stage2 = (Stage) node.getScene().getWindow();
+
+                        Stage stage2 = (Stage) login_pane.getScene().getWindow();
                         stage2.close();
-                        
+
                         break;
                     }
                     default:
                         label.setText("Bir Hata Meydana Geldi. Hata kodu=-14");
                         break;
                 }
-                
+
             }
         }
-        
+
     }
-    
+
     @FXML
     private void kayit_ol(ActionEvent event) throws IOException {
         String user_name = tf_username2.getText();
         String user_mail = tf_mail.getText();
         String password = null;
-        
+
         if (sifre_gosterim2 == false) {
             password = pf_password2.getText();
         } else {
             password = tf_password2.getText();
         }
-        
+
         if ((password.length() == 0) || (user_name.length() == 0)) {
-            
+
             label2.setText("Lütfen Gerekli Yerleri Doldurunuz.");
-            
+
         } else {
             usersDAO users_islemleri = new usersDAO();
             if (users_islemleri.control_user_name(user_name)) {
@@ -170,10 +171,10 @@ public class loginController implements Initializable {
             } else {
                 label2.setText("Bu kullanıcı adı alınamaz");
             }
-            
+
         }
     }
-    
+
     @FXML
     private void sifremi_goster(ActionEvent event) {
         String username = tf_username3.getText();
@@ -184,129 +185,118 @@ public class loginController implements Initializable {
             String user_password = Creator.usersDao().search_string(user_id, 1);
             label_password.setText(user_password);
         }
-        
+
     }
-    
+
     @FXML
     private void btn(MouseEvent event) throws IOException {
         if (ortadaki_btn.getText().equals("Kayıt Ol")) {
-            
+
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.5));
             slide.setNode(ortadaki_pane);
-            
-            slide.setToX(832);
+
+            slide.setToX(824);
             slide.play();
-            
+
             kayit_ol_paneli.setVisible(true);
-            
+
             acik2.setVisible(false);
             gizli2.setVisible(true);
-            
+
             ortadaki_btn.setText("Giriş Yap");
-            
+
             yazi1.setText("Üyemiz Misin?");
             yazi2.setText("Hemen Hesabına giriş yap");
-            
+
             oturum_ac_paneli.setVisible(false);
             sifremi_unuttum_paneli.setVisible(false);
             sifremi_unuttum.setVisible(false);
             kayit_olmadan.setVisible(false);
-            
+
             slide.setOnFinished((e -> {
-                
+
             }));
-            
+
         } else if (ortadaki_btn.getText().equals("Giriş Yap")) {
             TranslateTransition slide = new TranslateTransition();
             slide.setDuration(Duration.seconds(0.5));
             slide.setNode(ortadaki_pane);
-            
+
             slide.setToX(0);
             slide.play();
-            
+
             oturum_ac_paneli.setVisible(true);
-            
+
             ortadaki_btn.setText("Kayıt Ol");
-            
+
             kayit_ol_paneli.setVisible(false);
             sifremi_unuttum_paneli.setVisible(false);
             sifremi_unuttum.setVisible(true);
             kayit_olmadan.setVisible(true);
-            
+
             slide.setOnFinished((e -> {
-                
+
             }));
-            
+
             yazi1.setText("Kayıtlı Üyemiz Değil misin?");
             yazi2.setText("Kayıt Ol Ve Sana Özel Fırsatlardan Yararlan");
-            
+
         } else {
             //doldurmayı unutma
             System.out.println("Hata: loginController.java, btn fonk.");
         }
     }
-    
+
     @FXML
     private void btn_2(MouseEvent event) {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.5));
         slide.setNode(ortadaki_pane);
-        
-        slide.setToX(832);
+
+        slide.setToX(824);
         slide.play();
-        
+
         sifremi_unuttum_paneli.setVisible(true);
-        
+
         ortadaki_btn.setText("Giriş Yap");
-        
+
         yazi1.setText("Şifreni mi unuttum?");
         yazi2.setText("Hemen Öğren");
-        
+
         oturum_ac_paneli.setVisible(false);
         kayit_ol_paneli.setVisible(false);
         sifremi_unuttum.setVisible(false);
         kayit_olmadan.setVisible(false);
-        
+
         slide.setOnFinished((e -> {
-            
+
         }));
     }
 
     //görünüş açısından gizlenen ve manuel olarak elle eklenen kapatma tuşunun methodu
     @FXML
     private void close(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = (Stage) login_pane.getScene().getWindow();
         stage.close();
     }
 
     //görünüş açısından gizlenen ve manuel olarak elle eklenen tam ekran moda geçme tuşunun methodu
     @FXML
     private void max(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = (Stage) login_pane.getScene().getWindow();
 
-        //yukarıda tanımladığımız değişkene göre tam ekran moda alıyoruz ya da normal boyuta alıyoruz.
-        if (a == false) {
-            //a false ise daha küçük demektir ve büyültüyoruz.
-            stage.setFullScreenExitHint("Tam moda geçildi çıkmak için 'esc' tuşuna basınız");
-            stage.setFullScreen(true);
-            a = true;
-            //a'yı true yapyıyoruz. Çünkü program artık tam ekran modunda.
+        if (stage.isMaximized()) {
+            stage.setMaximized(false);
         } else {
-            //eğer a true ise program tak eran modundadır o zaman da normal noyuta geçiyoruz.
-            stage.setFullScreen(false);
-            // a'yı false yapıyoruz çünkü artık tam ekranda değil nomral boyutta
-            a = false;
+            stage.setMaximized(true);
         }
     }
 
     //görünüş açısından gizlenen ve manuel olarak elle eklenen aşağı alma tuşunun methodu
     @FXML
     private void min(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = (Stage) login_pane.getScene().getWindow();
         stage.setIconified(true);
     }
 
@@ -327,7 +317,7 @@ public class loginController implements Initializable {
         acik.setVisible(false);
         pf_password.setText(tf_password.getText());
     }
-    
+
     @FXML
     private void goster2(MouseEvent event) {
         acik2.setVisible(true);
@@ -335,7 +325,7 @@ public class loginController implements Initializable {
         gizli2.setVisible(false);
         tf_password2.setText(pf_password2.getText());
     }
-    
+
     @FXML
     private void gizle2(MouseEvent event) {
         gizli2.setVisible(true);
@@ -343,9 +333,9 @@ public class loginController implements Initializable {
         acik2.setVisible(false);
         pf_password2.setText(tf_password2.getText());
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
     }
 }

@@ -21,9 +21,10 @@ public class Variables {
 
     public boolean sifre_gosterim = false;
 
-    public boolean a = false;
-
     public boolean a2 = false;
+    
+    @FXML
+    public AnchorPane admin_pane;
 
     @FXML
     public TextField user_name, user_mail;

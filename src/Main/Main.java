@@ -18,6 +18,7 @@ public class Main extends Application {
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setTitle("Cinema-Login");
         stage.show();
     }
 

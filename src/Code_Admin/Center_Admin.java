@@ -57,37 +57,26 @@ public class Center_Admin extends Yonetmenler implements Initializable {
 
     @FXML
     protected void close(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = (Stage) admin_pane.getScene().getWindow();
         stage.close();
     }
 
     //görünüş açısından gizlenen ve manuel olarak elle eklenen tam ekran moda geçme tuşunun methodu
     @FXML
     protected void max(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = (Stage) admin_pane.getScene().getWindow();
 
-        //yukarıda tanımladığımız değişkene göre tam ekran moda alıyoruz ya da normal boyuta alıyoruz.
-        if (a == false) {
-            //a false ise daha küçük demektir ve büyültüyoruz.
-            stage.setFullScreenExitHint("Tam moda geçildi çıkmak için 'esc' tuşuna basınız");
-            stage.setFullScreen(true);
-            a = true;
-            //a'yı true yapyıyoruz. Çünkü program artık tam ekran modunda.
+        if (stage.isMaximized()) {
+            stage.setMaximized(false);
         } else {
-            //eğer a true ise program tak eran modundadır o zaman da normal noyuta geçiyoruz.
-            stage.setFullScreen(false);
-            // a'yı false yapıyoruz çünkü artık tam ekranda değil nomral boyutta
-            a = false;
+            stage.setMaximized(true);
         }
     }
 
     //görünüş açısından gizlenen ve manuel olarak elle eklenen aşağı alma tuşunun methodu
     @FXML
     protected void min(MouseEvent event) {
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+        Stage stage = (Stage) admin_pane.getScene().getWindow();
         stage.setIconified(true);
     }
 
@@ -104,9 +93,9 @@ public class Center_Admin extends Yonetmenler implements Initializable {
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
-        stage.setTitle("Cinema-Admin");
-        Node node = (Node) event.getSource();
-        Stage stage2 = (Stage) node.getScene().getWindow();
+        stage.setTitle("Cinema-Login");
+        
+        Stage stage2 = (Stage) admin_pane.getScene().getWindow();
         stage2.close();
 
     }
