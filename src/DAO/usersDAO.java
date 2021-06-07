@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO_Controller.Users_Controller;
 import Pattern.Creator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entity.Center;
@@ -120,47 +121,22 @@ public class usersDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (user_id) from users";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<users> list = Users_Controller.getUser_list();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 189 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     public int count_user_name(String user_name) {
 
-        int sonuc = -1;
+        int sonuc = 0;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (user_id) from users where user_name='" + user_name + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<users> list = Users_Controller.getUser_list();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 181 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUser_name().equals(user_name)) {
+                sonuc++;
+            }
         }
 
         return sonuc;
@@ -169,23 +145,14 @@ public class usersDAO implements IDAO {
 
     public int count_user_mail(String user_mail) {
 
-        int sonuc = -1;
+        int sonuc = 0;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (user_id) from users where user_mail='" + user_mail + "'";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<users> list = Users_Controller.getUser_list();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 182 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUser_name().equals(user_mail)) {
+                sonuc++;
+            }
         }
 
         return sonuc;
@@ -194,10 +161,10 @@ public class usersDAO implements IDAO {
 
     public ObservableList<users> select(ObservableList<users> data, Label kullanici_islemleri_user_id, TextField kullanici_islemleri_user_name, TextField kullanici_islemleri_user_mail, PasswordField kullanici_islemleri_gizli_pf, ComboBox<String> kullanici_islemleri_user_turu, ComboBox<String> kullanici_islemleri_abone_turu, Pane gizli_pane, Pane acik_pane, Pane tablo_pane, Pane yonet_pane, FontAwesomeIconView geri_tusu, FontAwesomeIconView yonet_geri_tusu, Pane sil_pane) {
 
-        LinkedList<users> list = read();
+        LinkedList<users> list = Users_Controller.getUser_list();
 
         for (int i = 0; i < list.size(); i++) {
-            
+
             Button yonet = new Button();
             yonet.setText("Yönet");
             yonet.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
@@ -212,7 +179,7 @@ public class usersDAO implements IDAO {
     public String search_string(int user_id, int secim) {
         String sonuc = null;
 
-        LinkedList<users> list = read();
+        LinkedList<users> list = Users_Controller.getUser_list();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUser_id() == user_id) {
                 switch (secim) {
@@ -237,7 +204,7 @@ public class usersDAO implements IDAO {
 
     public int search_int(int user_id) {
         int sonuc = 0;
-        LinkedList<users> list = read();
+        LinkedList<users> list = Users_Controller.getUser_list();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUser_id() == user_id) {
                 sonuc = list.get(i).getUser_type();
@@ -249,7 +216,7 @@ public class usersDAO implements IDAO {
     public int search_int(String user_name) {
         int sonuc = -1;
 
-        LinkedList<users> list = read();
+        LinkedList<users> list = Users_Controller.getUser_list();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUser_name().equals(user_name)) {
@@ -311,7 +278,7 @@ public class usersDAO implements IDAO {
 
     public int control_password(String user_name, String password) {
         int user_id = search_int(user_name);
-        String sql_password = search_string(user_id,1);
+        String sql_password = search_string(user_id, 1);
         if (sql_password == null) {
             return -2; //kullanici adı 1 tane var ama kullanıcının şifesi Veri tabanında yok. Hata meydana geldi.
         } else if (sql_password.equals(password)) {

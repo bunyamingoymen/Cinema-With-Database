@@ -255,47 +255,22 @@ public class abonelerDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (user_id) from aboneler";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<aboneler> list = read();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 100 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     //kaç tane user_id'nin olduğunu buluyor
     public int count(int user_id) {
-        int sonuc = -1;
+        int sonuc = 0;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (user_id) from aboneler where user_id = " + user_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<aboneler> list = read();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 100 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUser_id() == user_id) {
+                sonuc++;
+            }
         }
 
         return sonuc;

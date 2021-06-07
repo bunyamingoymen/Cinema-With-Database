@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO_Controller.Film_Photos_Controller;
 import entity.Center;
 import entity.films_photos;
 import java.sql.Connection;
@@ -34,6 +35,30 @@ public class films_photosDAO implements IDAO {
 
     @Override
     public LinkedList read() {
+        try {
+            DBConnector d = new DBConnector();
+            Connection c = d.connect();
+            Statement st = c.createStatement();
+            String komut = "select * from films_photos";
+            ResultSet rs = st.executeQuery(komut);
+            LinkedList<films_photos> list = new LinkedList<>();
+            while (rs.next()) {
+                films_photos fp = new films_photos(rs.getInt("film_photo_id"), rs.getInt("film_id"), rs.getString("photo_name"), rs.getString("photo_parent"), rs.getString("photo_path"));
+
+                list.add(fp);
+            }
+            rs.next();
+
+            c.close();
+            st.close();
+            rs.close();
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println("Hata kodu: 248 - " + e.getMessage());
+        }
+
         return null;
     }
 
@@ -63,28 +88,19 @@ public class films_photosDAO implements IDAO {
 
     @Override
     public int count() {
-        return -1;
+        return Film_Photos_Controller.getFilm_photos_list().size();
     }
 
     //film_id sayar
     public int count(int film_id) {
-        int sonuc = -1;
+        int sonuc = 0;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (film_id) from films_photos where film_id = " + film_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<films_photos> list = Film_Photos_Controller.getFilm_photos_list();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 248 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFilm_id() == film_id) {
+                sonuc++;
+            }
         }
 
         return sonuc;
@@ -108,45 +124,28 @@ public class films_photosDAO implements IDAO {
 
     //photo path getirir
     public String search(int film_id) {
-        String path = "";
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from films_photos where film_id=" + film_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            path = rs.getString("photo_path");
 
-            c.close();
-            st.close();
-            rs.close();
+        LinkedList<films_photos> list = Film_Photos_Controller.getFilm_photos_list();
 
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 251 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFilm_id() == film_id) {
+                return list.get(i).getPhoto_path();
+            }
         }
-        return path;
+
+        return null;
     }
 
     public String default_photo() {
-        String path = "";
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select *  from films_photos where film_photo_id=" + 9;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            path = rs.getString("photo_path");
 
-            c.close();
-            st.close();
-            rs.close();
+        LinkedList<films_photos> list = Film_Photos_Controller.getFilm_photos_list();
 
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 251 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFilm_photo_id() == 9) {
+                return list.get(i).getPhoto_path();
+            }
         }
-        return path;
+        return null;
     }
 
     /*

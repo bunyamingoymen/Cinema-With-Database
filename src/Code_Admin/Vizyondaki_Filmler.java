@@ -1,7 +1,7 @@
 package Code_Admin;
 
 import DAO.films_photosDAO;
-import entity.filmler;
+import DAO_Controller.Vizyondaki_Filmler_Controller;
 import entity.vizyondaki_filmler;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -274,7 +273,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
         int minimum_gosterim = sonraki_sayfa * 10;
         int maksimum_gosteirm = minimum_gosterim + 10;
 
-        LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
         LinkedList<vizyondaki_filmler> list2 = new LinkedList<>();
 
@@ -304,7 +303,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
             int minimum_gosterim = onceki_sayfa * 10;
             int maksimum_gosteirm = minimum_gosterim + 10;
 
-            LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
+            LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
             LinkedList<vizyondaki_filmler> list2 = new LinkedList<>();
 
@@ -325,7 +324,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
     @FXML
     public void vizyondaki_filmler_gosterim_son(ActionEvent event) {
-        LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
+        LinkedList<vizyondaki_filmler> list =  Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
         int sayfa_sayisi = list.size() / 10;
 
         int mod = list.size() % 10;
@@ -339,11 +338,10 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
         } else {
 
-            for (int i = list.size() - 1 - mod; i < list.size(); i++) {
+            for (int i = list.size() - mod; i < list.size(); i++) {
                 list2.add(list.get(i));
             }
 
-            sayfa_sayisi = sayfa_sayisi + 1;
         }
 
         vizyondaki_filmler_gosterim(list2, 1);

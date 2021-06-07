@@ -90,26 +90,10 @@ public class user_photosDAO implements IDAO {
 
     //user_id sayısını getirir
     public int count(int user_id) {
-        int sonuc = -1;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (user_id) from user_photos where user_id = " + user_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<user_photos> list = read();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 244 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     //photo path getirir

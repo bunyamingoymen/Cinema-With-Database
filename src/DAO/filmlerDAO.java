@@ -39,7 +39,7 @@ public class filmlerDAO implements IDAO {
         } catch (SQLException e) {
             System.out.println("Hata kodu: 128 - " + e.getMessage());
         }
-        
+
         return id;
     }
 
@@ -137,47 +137,22 @@ public class filmlerDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (film_id) from filmler ";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<filmler> list = read();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 135 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     //gelen film_id'nin kaç tane olduğunu buluyor.
     public int count(int film_id) {
-        int sonuc = -1;
+        int sonuc = 0;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (film_id) from filmler where film_id= " + film_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<filmler> list = read();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 262 - " + e.getMessage());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getFilm_id() == film_id) {
+                sonuc++;
+            }
         }
 
         return sonuc;

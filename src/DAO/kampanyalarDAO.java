@@ -110,26 +110,10 @@ public class kampanyalarDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
+        
+        LinkedList<kampanyalar> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (kampanya_id) from kampanyalar ";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 216  " + e.getMessage());;
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     public ObservableList<kampanyalar> select(ObservableList<kampanyalar> data, Pane kampanyalar_sil_emin_misin_pane, Label kampanyalar_silmekten_emin_kampanya_id) {

@@ -2,6 +2,9 @@ package Controller;
 
 import Pattern.Creator;
 import DAO.usersDAO;
+import DAO_Controller.Film_Photos_Controller;
+import DAO_Controller.Users_Controller;
+import DAO_Controller.Vizyondaki_Filmler_Controller;
 import entity.Center;
 import entity.users;
 import java.net.URL;
@@ -336,6 +339,10 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Users_Controller.setUser_list();
+        Vizyondaki_Filmler_Controller.setVizyondaki_filmler_list();
+        Film_Photos_Controller.setFilm_photos_list();
 
     }
 }

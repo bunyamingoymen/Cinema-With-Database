@@ -2,6 +2,7 @@ package DAO;
 
 import entity.Center;
 import entity.satin_alinan_biletler;
+import entity.seans;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,7 +108,7 @@ public class satin_alinan_biletlerDAO implements IDAO {
     //satin_alinan_bilet sayısını sayar
     public int count(int seans_id) {
         int sonuc = -1;
-
+        
         try {
             DBConnector d = new DBConnector();
             Connection c = d.connect();

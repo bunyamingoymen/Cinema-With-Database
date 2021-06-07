@@ -150,46 +150,21 @@ public class seansDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
+        
+        LinkedList<seans> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (seans_id) from seans ";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 203 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     public int count(int vizyondaki_film_id) {
-        int sonuc = -1;
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (seans_id) from seans where vizyondaki_film_id =  " + vizyondaki_film_id;
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 203 - " + e.getMessage());
+        int sonuc = 0;
+        
+        LinkedList<seans> list = read();
+        
+        for(int i = 0;i<list.size();i++){
+            if(list.get(i).getVizyondaki_film_id() == vizyondaki_film_id){
+                sonuc++;
+            }
         }
 
         return sonuc;

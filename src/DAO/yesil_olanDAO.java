@@ -127,26 +127,10 @@ public class yesil_olanDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
+        
+        LinkedList<yesil_olan> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (yesil_olan_id) from yesil_olan";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 161 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     //bütün yeşil olanları toplu gönderen select

@@ -1,6 +1,7 @@
 package Code_Admin;
 
 import DAO.films_photosDAO;
+import DAO_Controller.Vizyondaki_Filmler_Controller;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import Pattern.Creator;
@@ -99,7 +100,7 @@ public class Par extends Variables {
     }
 
     public void vizyondaki_filmler_gosterim_oncesi_ortak() {
-        LinkedList<vizyondaki_filmler> list = Creator.vizyondaki_filmlerDao().read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
         if (list.size() <= 10) {
             vizyondaki_filmler_gosterim(list, 0);
@@ -349,32 +350,37 @@ public class Par extends Variables {
     public void vizyondaki_filmler_imageview_doldur(ImageView img, int film_id, Label msg) {
         int control = new films_photosDAO().count(film_id);
 
-        if (control == 1) {
-            BufferedImage bufferedImage = null;
-            try {
-                String photo_path = new films_photosDAO().search(film_id);
-                bufferedImage = ImageIO.read(new File(photo_path));
-            } catch (IOException ex) {
-                System.out.println(ex);
-                msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -38)");
+        switch (control) {
+            case 1: {
+                BufferedImage bufferedImage = null;
+                try {
+                    String photo_path = new films_photosDAO().search(film_id);
+                    bufferedImage = ImageIO.read(new File(photo_path));
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                    msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -38)");
+                }
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                img.setImage(image);
+                break;
             }
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            img.setImage(image);
-        } else if (control == 0) {
-
-            BufferedImage bufferedImage = null;
-            try {
-                String photo_path = Creator.films_photoDAO().default_photo();
-                bufferedImage = ImageIO.read(new File(photo_path));
-            } catch (IOException ex) {
-                System.out.println(ex);
-                msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -38)");
+            case 0: {
+                BufferedImage bufferedImage = null;
+                try {
+                    String photo_path = Creator.films_photoDAO().default_photo();
+                    bufferedImage = ImageIO.read(new File(photo_path));
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                    msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -38)");
+                }
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                img.setImage(image);
+                break;
             }
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            img.setImage(image);
-        } else {
-            msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -39)");
-            System.out.println(control);
+            default:
+                msg.setText("Bir Hata Meydana Geldi (Hata Kodu: -39)");
+                System.out.println(control);
+                break;
         }
     }
 

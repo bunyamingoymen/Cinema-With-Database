@@ -161,26 +161,10 @@ public class eski_filmlerDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
+        
+        LinkedList<eski_filmler> list = read();
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (eski_film_id) from eski_filmler ";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 116 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     //admin kısmındaki select

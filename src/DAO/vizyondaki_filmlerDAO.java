@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO_Controller.Vizyondaki_Filmler_Controller;
 import entity.Center;
 import entity.vizyondaki_filmler;
 import java.sql.Connection;
@@ -151,26 +152,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
-
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (vizyondaki_film_id) from vizyondaki_filmler ";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
-
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 170 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list().size();
     }
 
 //    public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data) {
@@ -187,7 +169,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
 //        return data;
 //    }
     public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi, Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi, Label film_detay_id, Label film_detay_id_oncesi, Pane film_detay_ana_pane, Pane film_detay_sil_emin_misin_pane, Pane film_detay_guncelle_pane) {
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -203,7 +185,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
     }
 
     public ObservableList<vizyondaki_filmler> select(ObservableList<vizyondaki_filmler> data, Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_eski_filmler, AnchorPane pnl_film_detayi, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi, Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi, Label film_detay_id, Label film_detay_id_oncesi) {
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -221,7 +203,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
     //combo doldurmak için kullanılan select
     public String[] select_string() {
         String[] arr = new String[count()];
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
         for (int i = 0; i < list.size(); i++) {
             String vizyondaki_filmler_combo = list.get(i).getVizyondaki_filmler_id() + " | " + list.get(i).getFilm_name() + " | " + list.get(i).getFilm_type() + " | " + list.get(i).getFilm_suresi() + " | " + list.get(i).getYonetmen_ad_soyad();
             arr[i] = vizyondaki_filmler_combo;
@@ -234,7 +216,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
     public int[] select_int() {
         int[] arr = new int[count()];
 
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
         for (int i = 0; i < list.size(); i++) {
             int vizyondaki_filmler = list.get(i).getVizyondaki_filmler_id();
@@ -247,7 +229,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
     public String search_string(int vizyondaki_film_id, int secim) {
         String sonuc = null;
 
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getVizyondaki_filmler_id() == vizyondaki_film_id) {
@@ -273,7 +255,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
 
     public int search_int(int id, int secim, int ust_secim) {
         int sonuc = 0;
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
         OUTER:
         for (int i = 0; i < list.size(); i++) {
             switch (ust_secim) {
@@ -321,7 +303,7 @@ public class vizyondaki_filmlerDAO implements IDAO {
     //vizyondan_kalkis_tareihi ni gönderir
     public LocalDate search_localdate(int vizyondaki_film_id) {
         LocalDate kalkis = null;
-        LinkedList<vizyondaki_filmler> list = read();
+        LinkedList<vizyondaki_filmler> list = Vizyondaki_Filmler_Controller.getVizyondaki_filmler_list();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getVizyondaki_filmler_id() == vizyondaki_film_id) {
                 kalkis = list.get(i).getVizyondan_kalkis_tarihi();

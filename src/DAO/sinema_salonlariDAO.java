@@ -121,26 +121,10 @@ public class sinema_salonlariDAO implements IDAO {
 
     @Override
     public int count() {
-        int sonuc = -1;
 
-        try {
-            DBConnector d = new DBConnector();
-            Connection c = d.connect();
-            Statement st = c.createStatement();
-            String komut = "select count (salon_id) from sinema_salonlari ";
-            ResultSet rs = st.executeQuery(komut);
-            rs.next();
-            sonuc = rs.getInt("count");
+        LinkedList<sinema_salonlari> list = read();
 
-            c.close();
-            st.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            System.out.println("Hata kodu: 194 - " + e.getMessage());
-        }
-
-        return sonuc;
+        return list.size();
     }
 
     public int count(String salon_name) {
