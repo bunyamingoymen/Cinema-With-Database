@@ -45,7 +45,7 @@ public class loginController implements Initializable {
     private HBox gizli, acik, gizli2, acik2;
 
     @FXML
-    private Button ortadaki_btn, sifremi_unuttum, kayit_olmadan;
+    private Button ortadaki_btn, sifremi_unuttum/*,kayit_olmadan*/;
 
     @FXML
     private AnchorPane ortadaki_pane, kayit_ol_paneli, oturum_ac_paneli, sifremi_unuttum_paneli;
@@ -215,7 +215,7 @@ public class loginController implements Initializable {
             oturum_ac_paneli.setVisible(false);
             sifremi_unuttum_paneli.setVisible(false);
             sifremi_unuttum.setVisible(false);
-            kayit_olmadan.setVisible(false);
+//            kayit_olmadan.setVisible(false);
 
             slide.setOnFinished((e -> {
 
@@ -236,7 +236,7 @@ public class loginController implements Initializable {
             kayit_ol_paneli.setVisible(false);
             sifremi_unuttum_paneli.setVisible(false);
             sifremi_unuttum.setVisible(true);
-            kayit_olmadan.setVisible(true);
+//            kayit_olmadan.setVisible(true);
 
             slide.setOnFinished((e -> {
 
@@ -270,7 +270,7 @@ public class loginController implements Initializable {
         oturum_ac_paneli.setVisible(false);
         kayit_ol_paneli.setVisible(false);
         sifremi_unuttum.setVisible(false);
-        kayit_olmadan.setVisible(false);
+//        kayit_olmadan.setVisible(false);
 
         slide.setOnFinished((e -> {
 

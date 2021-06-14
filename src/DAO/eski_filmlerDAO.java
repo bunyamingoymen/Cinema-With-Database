@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import util.DBConnector;
@@ -168,7 +169,7 @@ public class eski_filmlerDAO implements IDAO {
     }
 
     //admin kısmındaki select
-    public ObservableList<eski_filmler> select(ObservableList<eski_filmler> data , Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_eski_filmler, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_film_detayi, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi, Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi, Label film_detay_id, Label film_detay_id_oncesi, Pane film_detay_ana_pane, Pane film_detay_sil_emin_misin_pane, Pane film_detay_guncelle_pane) {
+    public ObservableList<eski_filmler> select(ObservableList<eski_filmler> data , Label film_detay_film_id, Label film_detay_film_adi, Label film_detay_film_turu, Label film_detay_film_suresi, Label film_detay_yonetmen, Label film_detay_kalkis_tarihi, Label film_detay_kullanici_puani, AnchorPane pnl_eski_filmler, AnchorPane pnl_vizyondaki_filmler, AnchorPane pnl_film_detayi, Label film_detay_aldigi_odul_sayisi, Label film_detay_hangi_abone_turu, Label film_detay_kalksi_tarihi_oncesi, Label film_detay_aldigi_odul_sayisi_oncesi, Label film_detay_hangi_abone_turu_oncesi, Label film_detay_id, Label film_detay_id_oncesi, Pane film_detay_ana_pane, Pane film_detay_sil_emin_misin_pane, Pane film_detay_guncelle_pane, ImageView img, Label guncelle_mesaj) {
         LinkedList<eski_filmler> list = read();
         for (int i = 0; i < list.size(); i++) {
 
@@ -176,7 +177,7 @@ public class eski_filmlerDAO implements IDAO {
             detay.setText("Detay");
             detay.setStyle("-fx-background-color : #393351; -fx-background-radius :  20; -fx-text-fill: white");
 
-            data.addAll(FXCollections.observableArrayList(new eski_filmler(list.get(i).getEski_film_id(), list.get(i).getFilm_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getFilm_suresi(), list.get(i).getYonetmen_ad_soyad(), list.get(i).getKullanici_puani(), list.get(i).getAldigi_odul_sayisi(), list.get(i).getHangi_aboneler_izleyebilir(), detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_eski_filmler, pnl_vizyondaki_filmler, pnl_film_detayi, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi, film_detay_ana_pane, film_detay_sil_emin_misin_pane, film_detay_guncelle_pane)));
+            data.addAll(FXCollections.observableArrayList(new eski_filmler(list.get(i).getEski_film_id(), list.get(i).getFilm_id(), list.get(i).getFilm_name(), list.get(i).getFilm_type(), list.get(i).getFilm_suresi(), list.get(i).getYonetmen_ad_soyad(), list.get(i).getKullanici_puani(), list.get(i).getAldigi_odul_sayisi(), list.get(i).getHangi_aboneler_izleyebilir(), detay, film_detay_film_id, film_detay_film_adi, film_detay_film_turu, film_detay_film_suresi, film_detay_yonetmen, film_detay_kalkis_tarihi, film_detay_kullanici_puani, pnl_eski_filmler, pnl_vizyondaki_filmler, pnl_film_detayi, film_detay_aldigi_odul_sayisi, film_detay_hangi_abone_turu, film_detay_kalksi_tarihi_oncesi, film_detay_aldigi_odul_sayisi_oncesi, film_detay_hangi_abone_turu_oncesi, film_detay_id, film_detay_id_oncesi, film_detay_ana_pane, film_detay_sil_emin_misin_pane, film_detay_guncelle_pane, img, guncelle_mesaj)));
         }
 
         return data;

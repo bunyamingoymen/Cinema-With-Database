@@ -238,7 +238,7 @@ public class Vizyondaki_Filmler extends Sinema_Salonlari_Koltık_Dolu_Bos {
 
         int control = fpdao.count(film_id);
 
-        if (new films_photosDAO().count(film_id) == 1) {
+        if (control == 1) {
             BufferedImage bufferedImage = null;
             try {
                 String photo_path = new films_photosDAO().search(film_id);
